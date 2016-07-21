@@ -1,0 +1,2 @@
+baseboard=fairy
+console=ttymxc0,115200 init=/init video=mxcfb0:dev=ldb,if=RGB24,bpp=32 video=mxcfb1:off video=mxcfb2:off video=mxcfb3:off androidboot.console=ttymxc0 androidboot.hardware=freescale vmalloc=300M androidboot.selinux=disabled consoleblank=0 cma=256M androidboot.dm_verity=disabled
