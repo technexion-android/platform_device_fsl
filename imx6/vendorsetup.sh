@@ -13,3 +13,5 @@ add_lunch_combo evk_6ul-eng
 add_lunch_combo evk_6ul-user
 add_lunch_combo edm1cf_6dq-eng
 add_lunch_combo edm1cf_6dq-user
+add_lunch_combo edm1cf_pmic_6dq-eng
+add_lunch_combo edm1cf_pmic_6dq-user

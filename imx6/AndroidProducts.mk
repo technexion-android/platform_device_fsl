@@ -34,3 +34,4 @@ PRODUCT_MAKEFILES := \
   $(LOCAL_DIR)/sabreauto_6sx.mk \
   $(LOCAL_DIR)/evk_6ul.mk \
   $(LOCAL_DIR)/edm1cf_6dq.mk \
+  $(LOCAL_DIR)/edm1cf_pmic_6dq.mk \
