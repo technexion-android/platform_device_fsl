@@ -35,3 +35,4 @@ PRODUCT_MAKEFILES := \
   $(LOCAL_DIR)/evk_6ul.mk \
   $(LOCAL_DIR)/edm1cf_6dq.mk \
   $(LOCAL_DIR)/edm1cf_pmic_6dq.mk \
+  $(LOCAL_DIR)/pico_6dq.mk \
