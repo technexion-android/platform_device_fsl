@@ -77,6 +77,33 @@ on boot
     setprop wifi.interface wlan0
     setprop wifi.ap.interface wlan0
 
+
+    #pico-imx6 external gpio
+    chown root system /sys/class/edm/gpio/GPIO_EXP0/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP0/direction
+    chown root system /sys/class/edm/gpio/GPIO_EXP0/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP0/value
+
+    chown root system /sys/class/edm/gpio/GPIO_EXP1/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP1/direction
+    chown root system /sys/class/edm/gpio/GPIO_EXP1/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP1/value
+
+    chown root system /sys/class/edm/gpio/GPIO_EXP2/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP2/direction
+    chown root system /sys/class/edm/gpio/GPIO_EXP2/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP2/value
+
+    chown root system /sys/class/edm/gpio/GPIO_EXP3/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP3/direction
+    chown root system /sys/class/edm/gpio/GPIO_EXP3/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP3/value
+
+    chown root system /sys/class/edm/gpio/GPIO_EXP5/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP5/direction
+    chown root system /sys/class/edm/gpio/GPIO_EXP5/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP5/value
+
     # BT reset pin
     chown root system /sys/class/gpio/gpio204/value
     chmod 0666 /sys/class/gpio/gpio204/value
