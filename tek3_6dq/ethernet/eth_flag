@@ -1,0 +1,7 @@
+#!/system/bin/sh
+
+if [[ $1 == "0" ]]; then
+    echo 0 > /data/eth_status
+else
+    echo 1 > /data/eth_status
+fi
