@@ -35,11 +35,6 @@ PRODUCT_COPY_FILES += \
 	device/fsl/pico_6dq/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf \
 	device/fsl/pico_6dq/bluetooth/bt_reset:system/bin/bt_reset \
 	device/fsl/pico_6dq/bluetooth/bd_mac_gen:system/bin/bd_mac_gen \
-	device/fsl/pico_6dq/brcm-firmware/fw_bcmdhd.bin:system/etc/firmware/brcm/fw_bcmdhd.bin \
-	device/fsl/pico_6dq/brcm-firmware/fw_bcmdhd_apsta.bin:system/etc/firmware/brcm/fw_bcmdhd_apsta.bin \
-	device/fsl/pico_6dq/brcm-firmware/bcmdhd.cal:system/etc/firmware/brcm/bcmdhd.cal \
-	device/fsl/pico_6dq/brcm-firmware/Type_ZP.hcd:system/etc/firmware/brcm/Type_ZP.hcd \
-	device/fsl/pico_6dq/brcm-firmware/wl:system/bin/wl
 
 # ethernet files
 PRODUCT_COPY_FILES += \
@@ -81,3 +76,30 @@ PRODUCT_PACKAGES += AudioRoute \
 					EDM_CANBUS \
 					Reboot \
 					CMFileManager
+
+# Broadcom firmwares
+PRODUCT_PACKAGES += \
+       Type_ZP.hcd     \
+       bt_vendor.conf  \
+       bcmdhd.cal              \
+       fw_bcmdhd.bin   \
+       fw_bcmdhd_apsta.bin
+
+# Broadcom BCM4339 extended binary
+PRODUCT_PACKAGES += \
+    bcmdhd.SN8000.OOB.cal     \
+    bcmdhd.SN8000.SDIO.cal    \
+    sn_fw_bcmdhd_apsta.bin    \
+    sn_fw_bcmdhd.bin          \
+    sn_fw_bcmdhd_mfgtest.bin  \
+    1bw_fw_bcmdhd.bin         \
+    1bw_fw_bcmdhd_mfgtest.bin \
+    BCM43341B0.1BW.hcd        \
+    bcmdhd.1BW.OOB.cal        \
+    bcmdhd.1BW.SDIO.cal       \
+    1dx_fw_bcmdhd.bin         \
+    1dx_fw_bcmdhd_mfgtest.bin \
+    BCM43430A1.1DX.hcd        \
+    bcmdhd.1DX.OOB.cal        \
+    bcmdhd.1DX.SDIO.cal       \
+    wl
