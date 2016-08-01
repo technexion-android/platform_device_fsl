@@ -30,17 +30,6 @@ PRODUCT_COPY_FILES +=	\
 	external/linux-firmware-imx/firmware/vpu/vpu_fw_imx6d.bin:system/lib/firmware/vpu/vpu_fw_imx6d.bin 	\
 	external/linux-firmware-imx/firmware/vpu/vpu_fw_imx6q.bin:system/lib/firmware/vpu/vpu_fw_imx6q.bin
 
-# wifi+bt files
-PRODUCT_COPY_FILES += \
-	device/fsl/tek3_6dq/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf \
-	device/fsl/tek3_6dq/bluetooth/bt_reset:system/bin/bt_reset \
-	device/fsl/tek3_6dq/bluetooth/bd_mac_gen:system/bin/bd_mac_gen \
-	device/fsl/tek3_6dq/brcm-firmware/fw_bcmdhd.bin:system/etc/firmware/brcm/fw_bcmdhd.bin \
-	device/fsl/tek3_6dq/brcm-firmware/fw_bcmdhd_apsta.bin:system/etc/firmware/brcm/fw_bcmdhd_apsta.bin \
-	device/fsl/tek3_6dq/brcm-firmware/bcmdhd.cal:system/etc/firmware/brcm/bcmdhd.cal \
-	device/fsl/tek3_6dq/brcm-firmware/Type_ZP.hcd:system/etc/firmware/brcm/Type_ZP.hcd \
-	device/fsl/tek3_6dq/brcm-firmware/wl:system/bin/wl
-
 # ethernet files
 PRODUCT_COPY_FILES += \
 	device/fsl/tek3_6dq/ethernet/eth_updown:system/bin/eth_updown \
