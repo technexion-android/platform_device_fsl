@@ -52,6 +52,11 @@ PRODUCT_COPY_FILES += \
 	device/fsl/common/input/eGalax_Touch_Screen.idc:system/usr/idc/ADS7846_Touchscreen.idc
 
 
+# busybox login files
+PRODUCT_COPY_FILES += \
+        device/fsl/edm1cf_6dq/bin/login:system/bin/login
+
+
 # GPU files
 
 DEVICE_PACKAGE_OVERLAYS := device/fsl/edm1cf_6dq/overlay
