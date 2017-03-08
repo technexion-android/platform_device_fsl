@@ -19,7 +19,7 @@ while true;
 do
   if [ -c "/dev/ttyUSB0" ];
   then
-      /system/xbin/getty -L 115200 ttyUSB0;
+      busybox getty -l /system/bin/login -L 115200 ttyUSB0;
   fi
 sleep 1
 done &
