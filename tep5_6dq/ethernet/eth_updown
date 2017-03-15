@@ -1,0 +1,77 @@
+#!/system/bin/sh
+
+#####################
+# CAN BUS INIT
+#####################
+ip link set can0 type can bitrate 125000
+ifconfig can0 up
+sleep 1
+ip link set can1 type can bitrate 125000
+ifconfig can1 up
+####################
+
+####################
+# For tc0700
+####################
+echo 'root::0:0:root:/root:/system/bin/sh' >/etc/passwd
+sleep 1
+while true;
+do
+  if [ -c "/dev/ttyUSB0" ];
+  then
+      /system/xbin/getty -L 115200 ttyUSB0;
+  fi
+sleep 1
+done &
+
+
+###################
+# For touch
+###################
+ads_path=""
+
+for i in ` ls /sys/class/input/ | grep input`
+do
+    name=`cat /sys/class/input/$i/name`
+    if [ "$name" == "ADS7846 Touchscreen" ]
+    then
+        ads_path="/sys/class/input/$i"
+        break
+    fi
+done
+
+if [ "$ads_path""X" == "X" ]
+then
+    exit 0
+fi
+
+if [ -f /data/pointercal ]
+then
+    cat /data/pointercal > $ads_path/calibration
+else
+    echo '0 0 0 0 0 0 0 0 0' > $ads_path/calibration
+    sleep 1
+    echo '-2305 -4 18295743 -8 -1568 12031813 8192 1024 600' > $ads_path/calibration
+fi
+
+###################
+# For Ethernet
+###################
+touch /data/eth_status
+chmod 666 /data/eth_status
+
+while true;
+do
+    eth=$(cat /data/eth_status)
+
+    if [[ $eth == "0" ]]; then
+        ip link set eth0 down
+        sleep 5
+    elif [[ $eth == "1" ]]; then
+        ip link set eth0 up
+        sleep 5
+    fi
+
+    echo "" > /data/eth_status
+    sleep 2
+done &

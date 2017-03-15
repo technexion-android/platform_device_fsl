@@ -19,3 +19,5 @@ add_lunch_combo pico_6dq-eng
 add_lunch_combo pico_6dq-user
 add_lunch_combo tek3_6dq-eng
 add_lunch_combo tek3_6dq-user
+add_lunch_combo tep5_6dq-eng
+add_lunch_combo tep5_6dq-user
