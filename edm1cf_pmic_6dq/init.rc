@@ -110,6 +110,11 @@ on boot
     chown root system /sys/class/edm/gpio/GPIO_P260/value
     chmod 0666 /sys/class/edm/gpio/GPIO_P260/value
 
+    chown root system /sys/class/edm/gpio/GPIO_P261/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_P261/direction
+    chown root system /sys/class/edm/gpio/GPIO_P261/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_P261/value
+
     chown root system /sys/class/edm/gpio/GPIO_P262/direction
     chmod 0666 /sys/class/edm/gpio/GPIO_P262/direction
     chown root system /sys/class/edm/gpio/GPIO_P262/value
