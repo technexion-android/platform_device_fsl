@@ -10,7 +10,7 @@ on boot
     setprop media.settings.xml /etc/media_profiles_720p.xml
 
     # set back camera.
-    setprop back_camera_name ov5640_camera
+    setprop back_camera_name ov5640_mipi
 
     # disable front camera support.
     setprop front_camera_name 0
