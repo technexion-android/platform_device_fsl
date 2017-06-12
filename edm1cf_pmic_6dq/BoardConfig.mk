@@ -70,9 +70,6 @@ WIFI_DRIVER_MODULE_NAME                  := "iwlagn"
 WIFI_DRIVER_MODULE_PATH                  ?= auto
 endif
 
-WIFI_DRIVER_FW_PATH_STA        := "/system/etc/firmware/brcm/fw_bcmdhd.bin"
-WIFI_DRIVER_FW_PATH_P2P        := "/system/etc/firmware/brcm/fw_bcmdhd.bin"
-WIFI_DRIVER_FW_PATH_AP         := "/system/etc/firmware/brcm/fw_bcmdhd_apsta.bin"
 WIFI_DRIVER_FW_PATH_PARAM      := "/sys/module/bcmdhd/parameters/firmware_path"
 
 BOARD_MODEM_VENDOR := AMAZON
