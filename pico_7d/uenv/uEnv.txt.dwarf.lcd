@@ -1,0 +1,2 @@
+baseboard=dwarf
+console=ttymxc4,115200 init=/init androidboot.hardware=freescale cma=192M vmalloc=300M androidboot.selinux=disabled androidboot.dm_verity=disabled 

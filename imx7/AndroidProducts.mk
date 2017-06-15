@@ -28,3 +28,4 @@
 
 PRODUCT_MAKEFILES := \
   $(LOCAL_DIR)/sabresd_7d.mk \
+  $(LOCAL_DIR)/pico_7d.mk \
