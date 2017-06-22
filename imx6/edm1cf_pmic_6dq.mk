@@ -80,7 +80,7 @@ PRODUCT_PACKAGES += AudioRoute \
 					EDM_UART \
 					EDM_CANBUS \
 					Reboot \
-					CMFileManager \
+					AmazeFileManager \
 					BluetoothLeGatt
 
 # Broadcom firmwares
