@@ -90,10 +90,20 @@ on boot
     chmod 0666 /dev/ttymxc2
 
     #edm1-cf-imx6 external gpio
+    chown root system /sys/class/edm/gpio/GPIO_P255/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_P255/direction
+    chown root system /sys/class/edm/gpio/GPIO_P255/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_P255/value
+
     chown root system /sys/class/edm/gpio/GPIO_P256/direction
     chmod 0666 /sys/class/edm/gpio/GPIO_P256/direction
     chown root system /sys/class/edm/gpio/GPIO_P256/value
     chmod 0666 /sys/class/edm/gpio/GPIO_P256/value
+
+    chown root system /sys/class/edm/gpio/GPIO_P257/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_P257/direction
+    chown root system /sys/class/edm/gpio/GPIO_P257/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_P257/value
 
     chown root system /sys/class/edm/gpio/GPIO_P258/direction
     chmod 0666 /sys/class/edm/gpio/GPIO_P258/direction
@@ -119,6 +129,70 @@ on boot
     chmod 0666 /sys/class/edm/gpio/GPIO_P262/direction
     chown root system /sys/class/edm/gpio/GPIO_P262/value
     chmod 0666 /sys/class/edm/gpio/GPIO_P262/value
+
+    chown root system /sys/class/edm/gpio/GPIO_EXP0/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP0/direction
+    chown root system /sys/class/edm/gpio/GPIO_EXP0/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP0/value
+
+    chown root system /sys/class/edm/gpio/GPIO_EXP1/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP1/direction
+    chown root system /sys/class/edm/gpio/GPIO_EXP1/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP1/value
+
+    chown root system /sys/class/edm/gpio/GPIO_EXP2/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP2/direction
+    chown root system /sys/class/edm/gpio/GPIO_EXP2/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP2/value
+
+    chown root system /sys/class/edm/gpio/GPIO_EXP3/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP3/direction
+    chown root system /sys/class/edm/gpio/GPIO_EXP3/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP3/value
+
+    chown root system /sys/class/edm/gpio/GPIO_EXP4/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP4/direction
+    chown root system /sys/class/edm/gpio/GPIO_EXP4/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP4/value
+
+    chown root system /sys/class/edm/gpio/GPIO_EXP5/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP5/direction
+    chown root system /sys/class/edm/gpio/GPIO_EXP5/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP5/value
+
+    chown root system /sys/class/edm/gpio/GPIO_EXP6/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP6/direction
+    chown root system /sys/class/edm/gpio/GPIO_EXP6/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP6/value
+
+    chown root system /sys/class/edm/gpio/GPIO_EXP7/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP7/direction
+    chown root system /sys/class/edm/gpio/GPIO_EXP7/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP7/value
+
+    chown root system /sys/class/edm/gpio/GPIO_EXP8/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP8/direction
+    chown root system /sys/class/edm/gpio/GPIO_EXP8/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP8/value
+
+    chown root system /sys/class/edm/gpio/GPIO_EXP9/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP9/direction
+    chown root system /sys/class/edm/gpio/GPIO_EXP9/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP9/value
+
+    chown root system /sys/class/edm/gpio/GPIO_EXP10/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP10/direction
+    chown root system /sys/class/edm/gpio/GPIO_EXP10/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP10/value
+
+    chown root system /sys/class/edm/gpio/GPIO_EXP11/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP11/direction
+    chown root system /sys/class/edm/gpio/GPIO_EXP11/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_EXP11/value
+
+
+
+
 
     # Prepare for RIL
     setprop gsm.ril.delay 15
