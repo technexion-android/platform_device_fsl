@@ -1,0 +1,22 @@
+#!/system/bin/sh
+
+#####################
+# CAN BUS INIT
+#####################
+ip link set can0 type can bitrate 125000
+ifconfig can0 up
+sleep 1
+ip link set can1 type can bitrate 125000
+ifconfig can1 up
+
+#####################
+# WakeUp Events Supported by USB
+#####################
+# echo enabled > /sys/bus/usb/devices/1-1/power/wakeup
+# echo enabled > /sys/bus/platform/devices/20ca000.usbphy/power/wakeup
+# echo enabled > /sys/bus/platform/devices/2184200.usb/power/wakeup
+# echo enabled > /sys/bus/platform/devices/2184200.usb/ci_hdrc.1/power/wakeup
+# echo enabled > /sys/bus/platform/devices/2184200.usb/ci_hdrc.1/usb2/power/wakeup
+# echo enabled > /sys/bus/platform/devices/2184200.usb/ci_hdrc.1/usb2/2-1/power/wakeup
+# echo auto > /sys/bus/platform/devices/2184200.usb/ci_hdrc.1/usb2/2-1/power/control
+

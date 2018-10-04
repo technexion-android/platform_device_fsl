@@ -10,3 +10,6 @@ add_lunch_combo mek_8q-eng
 add_lunch_combo mek_8q-userdebug
 add_lunch_combo mek_8q_car-eng
 add_lunch_combo mek_8q_car-userdebug
+add_lunch_combo pico_8m-eng
+add_lunch_combo pico_8m-userdebug
+add_lunch_combo pico_8m-user
