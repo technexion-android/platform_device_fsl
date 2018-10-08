@@ -131,7 +131,7 @@ IMX_CAMERA_HAL_V3 := true
 IMX6_CONSUMER_IR_HAL := false
 
 TARGET_KERNEL_DEFCONF := tn_imx_android_defconfig
-TARGET_BOOTLOADER_CONFIG := pico-imx6_defconfig
+# TARGET_BOOTLOADER_CONFIG := pico-imx6_defconfig
 TARGET_BOARD_DTS_CONFIG := imx6q-pico_dwarf.dtb imx6dl-pico_dwarf.dtb imx6q-pico_hobbit.dtb imx6dl-pico_hobbit.dtb imx6q-pico_nymph.dtb imx6dl-pico_nymph.dtb imx6q-pico_pi.dtb imx6dl-pico_pi.dtb
 
 BOARD_SEPOLICY_DIRS := \
