@@ -1,0 +1,2 @@
+type bt_reset, domain;
+type bt_reset_exec, exec_type, file_type;

@@ -1,0 +1,40 @@
+#!/system/bin/sh
+
+#####################
+# CAN BUS INIT
+#####################
+ip link set can0 type can bitrate 125000
+ifconfig can0 up
+sleep 1
+ip link set can1 type can bitrate 125000
+ifconfig can1 up
+####################
+
+####################
+# For tc0700
+####################
+#echo 'root::0:0:root:/root:/system/bin/sh' >/etc/passwd
+#sleep 1
+#while true; do /system/xbin/getty -L 115200 ttyUSB0;done &
+
+###################
+# For Ethernet
+###################
+touch /data/eth_status
+chmod 666 /data/eth_status
+
+while true;
+do
+    eth=$(cat /data/eth_status)
+
+    if [[ $eth == "0" ]]; then
+        ip link set eth1 down
+        sleep 5
+    elif [[ $eth == "1" ]]; then
+        ip link set eth1 up
+        sleep 5
+    fi
+
+    echo "" > /data/eth_status
+    sleep 2
+done &

@@ -1,0 +1,6 @@
+baseboard=tek3
+displayinfo=video=mxcfb0:dev=ldb,1280x800@60,if=RGB24,bpp=32 video=mxcfb1:off
+androidbootarg=androidboot.console=ttymxc0 androidboot.hardware=freescale vmalloc=300M androidboot.selinux=permissive consoleblank=0 cma=256M androidboot.serialno=123456789 galcore.gpuProfiler=1 androidboot.dm_verity=disabled
+mmcargs=setenv bootargs console=ttymxc0,115200 init=/init ${displayinfo} ${androidbootarg}
+bootcmd_mmc=run loadramdisk;run loadimage;
+uenvcmd=run bootcmd_mmc

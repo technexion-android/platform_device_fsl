@@ -1,0 +1,2 @@
+type bd_mac, domain;
+type bd_mac_exec, exec_type, file_type;
