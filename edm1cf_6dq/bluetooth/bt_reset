@@ -1,6 +1,0 @@
-#!/system/bin/sh
-
-
-echo 0 > /sys/class/gpio/gpio149/value
-sleep 0.3
-echo 1 > /sys/class/gpio/gpio149/value

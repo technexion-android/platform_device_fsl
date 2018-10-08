@@ -58,10 +58,10 @@ do
     eth=$(cat /data/eth_status)
 
     if [[ $eth == "0" ]]; then
-        ip link set eth1 down
+        ip link set eth0 down
         sleep 5
     elif [[ $eth == "1" ]]; then
-        ip link set eth1 up
+        ip link set eth0 up
         sleep 5
     fi
 

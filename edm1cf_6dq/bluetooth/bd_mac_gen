@@ -1,4 +1,0 @@
-#!/system/bin/sh
-bd_mac=$(ifconfig -a | grep eth0 | grep HWaddr | busybox awk '{print $5}')
-echo $bd_mac > /data/misc/bluetooth/bd_mac
-chmod 666 -R /data/misc/bluetooth/bd_mac

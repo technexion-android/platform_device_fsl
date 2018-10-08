@@ -5,7 +5,6 @@
 include device/fsl/imx6/soc/imx6ul.mk
 include device/fsl/evk_6ul/build_id.mk
 include device/fsl/imx6/BoardConfigCommon.mk
--include device/fsl-proprietary/gpu-viv/fsl-gpu.mk
 # evk_mx6ul default target for EXT4
 BUILD_TARGET_FS ?= ext4
 include device/fsl/imx6/imx6_target_fs.mk
@@ -16,6 +15,8 @@ TARGET_RECOVERY_FSTAB = device/fsl/evk_6ul/fstab_nand.freescale
 PRODUCT_COPY_FILES +=	\
 	device/fsl/evk_6ul/fstab_nand.freescale:root/fstab.freescale
 else
+ADDITIONAL_BUILD_PROPERTIES += \
+                        ro.frp.pst=/dev/block/mmcblk1p12
 ifneq ($(BUILD_TARGET_FS),f2fs)
 TARGET_RECOVERY_FSTAB = device/fsl/evk_6ul/fstab.freescale
 # build for ext4
@@ -99,3 +100,6 @@ BOARD_SEPOLICY_DIRS := \
        device/fsl/imx6/sepolicy \
        device/fsl/evk_6ul/sepolicy
 
+BOARD_SECCOMP_POLICY += device/fsl/evk_6ul/seccomp
+
+TARGET_BOARD_KERNEL_HEADERS := device/fsl/common/kernel-headers

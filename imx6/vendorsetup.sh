@@ -1,4 +1,3 @@
-
 add_lunch_combo sabresd_6dq-eng
 add_lunch_combo sabresd_6dq-user
 add_lunch_combo sabreauto_6q-eng
@@ -11,8 +10,8 @@ add_lunch_combo sabreauto_6sx-eng
 add_lunch_combo sabreauto_6sx-user
 add_lunch_combo evk_6ul-eng
 add_lunch_combo evk_6ul-user
-add_lunch_combo edm1cf_6dq-eng
-add_lunch_combo edm1cf_6dq-user
+add_lunch_combo wandboard_pmic-eng
+add_lunch_combo wandboard_pmic-user
 add_lunch_combo edm1cf_pmic_6dq-eng
 add_lunch_combo edm1cf_pmic_6dq-user
 add_lunch_combo pico_6dq-eng

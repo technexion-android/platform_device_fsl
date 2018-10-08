@@ -5,7 +5,6 @@
 include device/fsl/imx6/soc/imx6sx.mk
 include device/fsl/sabresd_6sx/build_id.mk
 include device/fsl/imx6/BoardConfigCommon.mk
-include device/fsl-proprietary/gpu-viv/fsl-gpu.mk
 # sabresd_6sx default target for EXT4
 BUILD_TARGET_FS ?= ext4
 include device/fsl/imx6/imx6_target_fs.mk
@@ -16,6 +15,9 @@ TARGET_RECOVERY_FSTAB = device/fsl/sabresd_6sx/fstab_nand.freescale
 PRODUCT_COPY_FILES +=	\
 	device/fsl/sabresd_6sx/fstab_nand.freescale:root/fstab.freescale
 else
+ADDITIONAL_BUILD_PROPERTIES += \
+                        ro.internel.storage_size=/sys/block/mmcblk3/size \
+                        ro.frp.pst=/dev/block/mmcblk3p12
 ifneq ($(BUILD_TARGET_FS),f2fs)
 TARGET_RECOVERY_FSTAB = device/fsl/sabresd_6sx/fstab.freescale
 # build for ext4
@@ -32,6 +34,8 @@ endif # BUILD_TARGET_FS
 
 TARGET_BOOTLOADER_BOARD_NAME := SABRESD
 PRODUCT_MODEL := SABRESD-MX6SX
+
+TARGET_BOOTLOADER_POSTFIX := imx
 
 TARGET_RELEASETOOLS_EXTENSIONS := device/fsl/imx6
 # UNITE is a virtual device.
@@ -67,6 +71,7 @@ BOARD_MODEM_VENDOR := AMAZON
 USE_ATHR_GPS_HARDWARE := true
 USE_QEMU_GPS_HARDWARE := false
 
+PHONE_MODULE_INCLUDE := flase
 #for accelerator sensor, need to define sensor type here
 BOARD_HAS_SENSOR := true
 SENSOR_MMA8451 := true
@@ -93,7 +98,7 @@ $(error "TARGET_USERIMAGES_USE_UBIFS and TARGET_USERIMAGES_USE_EXT4 config open 
 endif
 endif
 
-BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 init=/init androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale vmalloc=256M cma=384M 
+BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 init=/init androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale vmalloc=128M cma=448M
 
 ifeq ($(TARGET_USERIMAGES_USE_UBIFS),true)
 #UBI boot command line.
@@ -118,3 +123,7 @@ TARGET_BOARD_DTS_CONFIG := imx6sx:imx6sx-sdb.dtb
 BOARD_SEPOLICY_DIRS := \
        device/fsl/imx6/sepolicy \
        device/fsl/sabresd_6sx/sepolicy
+
+BOARD_SECCOMP_POLICY += device/fsl/sabresd_6sx/seccomp
+
+TARGET_BOARD_KERNEL_HEADERS := device/fsl/common/kernel-headers

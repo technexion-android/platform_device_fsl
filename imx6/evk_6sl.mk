@@ -26,9 +26,17 @@ PRODUCT_COPY_FILES += \
 	device/fsl/common/input/imx-keypad.kl:system/usr/keylayout/imx-keypad.kl \
 	device/fsl/common/input/20b8000_kpp.idc:system/usr/idc/20b8000_kpp.idc \
 	device/fsl/common/input/20b8000_kpp.kl:system/usr/keylayout/20b8000_kpp.kl \
-	device/fsl/evk_6sl/audio_policy.conf:system/etc/audio_policy.conf \
-	device/fsl/evk_6sl/audio_effects.conf:system/vendor/etc/audio_effects.conf
 
+# Audio
+USE_XML_AUDIO_POLICY_CONF := 1
+PRODUCT_COPY_FILES += \
+	device/fsl/evk_6sl/audio_effects.conf:system/vendor/etc/audio_effects.conf \
+	device/fsl/evk_6sl/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml \
+	frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:system/etc/a2dp_audio_policy_configuration.xml \
+	frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:system/etc/r_submix_audio_policy_configuration.xml \
+	frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:system/etc/usb_audio_policy_configuration.xml \
+	frameworks/av/services/audiopolicy/config/default_volume_tables.xml:system/etc/default_volume_tables.xml \
+	frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:system/etc/audio_policy_volumes.xml \
 
 DEVICE_PACKAGE_OVERLAYS := device/fsl/evk_6sl/overlay
 
@@ -57,3 +65,11 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
 	frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
 	device/fsl/evk_6sl/required_hardware.xml:system/etc/permissions/required_hardware.xml
+
+PRODUCT_PACKAGES += \
+    gralloc_viv.imx6 \
+    hwcomposer_viv.imx6 \
+    hwcomposer_fsl.imx6 \
+    libGAL \
+    libg2d \
+    libgpuhelper

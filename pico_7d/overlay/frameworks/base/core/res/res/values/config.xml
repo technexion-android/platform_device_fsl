@@ -29,7 +29,7 @@
      </string-array>
 
      <!--For Android we support eth0 now -->
-     <string translatable="false" name="config_ethernet_iface_regex">eth1</string>
+     <string translatable="false" name="config_ethernet_iface_regex">eth0</string>
 
     <!-- List of regexpressions describing the interface (if any) that represent tetherable
          Wifi interfaces.  If the device doesn't want to support tethering over Wifi this

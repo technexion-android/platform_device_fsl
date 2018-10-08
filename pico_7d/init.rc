@@ -18,12 +18,14 @@ on init
     export CORE_REGISTER_FILE /system/etc/core_register
     export COMPONENT_REGISTER_FILE /system/etc/component_register
     export CONTENTPIPE_REGISTER_FILE /system/etc/contentpipe_register
-    
+
     # disable cursor blink for fbcon, if no splash screen support
     write /sys/class/graphics/fbcon/cursor_blink 0
 
     # deattch the fbcon as hdmi hotplug conflict with fbcon
     write /sys/class/vtconsole/vtcon1/bind 0
+
+    mkdir /device 0771 system system
 
 on boot
 
@@ -151,6 +153,11 @@ on boot
     chown root system /sys/class/edm/gpio/GPIO_P42/value
     chmod 0666 /sys/class/edm/gpio/GPIO_P42/value
 
+    chown root system /sys/class/edm/gpio/GPIO_P44/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_P44/direction
+    chown root system /sys/class/edm/gpio/GPIO_P44/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_P44/value
+
     chown root system /sys/class/edm/gpio/GPIO_P48/direction
     chmod 0666 /sys/class/edm/gpio/GPIO_P48/direction
     chown root system /sys/class/edm/gpio/GPIO_P48/value
@@ -160,8 +167,8 @@ on boot
     chmod 0666 /sys/class/gpio/gpio112/value
 
     # BT reset pin
-    chown root system /sys/class/gpio/gpio204/value
-    chmod 0666 /sys/class/gpio/gpio204/value
+    # chown root system /sys/class/gpio/gpio114/value
+    # chmod 0666 /sys/class/gpio/gpio114/value
 
     # bluetooth uart
     chown bluetooth net_bt_stack /dev/ttymxc6
@@ -170,15 +177,12 @@ on boot
     # serial uart
     chown root system /dev/ttymxc5
     chmod 0666 /dev/ttymxc5
-
     # Prepare for RIL
-    setprop gsm.ril.delay 15
-    setprop ro.ril.wake_lock_timeout 300
-
+    # setprop gsm.ril.delay 15
+    # setprop ro.ril.wake_lock_timeout 300
 
 #  Enable adb security for JB4.2.2
     setprop ro.adb.secure 1
-
     # Set OpenGLES version
     # setprop ro.opengles.version 131072
 
@@ -186,7 +190,7 @@ on boot
     setprop ro.sf.hwrotation 0
 
     # Set the density to 120dpi for 640x480 lcd panel
-    setprop ro.sf.lcd_density 160
+    setprop ro.sf.lcd_density 120
 
     # Set sys.device.type to tablet to enable NavigationBar
     setprop sys.device.type tablet
@@ -220,19 +224,20 @@ on boot
     chmod 0664 /sys/devices/system/cpu/cpu3/online
 
     # prepare for ril
-    setprop gsm.ril.delay 15
-    setprop ro.ril.wake_lock_timeout 300
+    # setprop gsm.ril.delay 15
+    # setprop ro.ril.wake_lock_timeout 300
 
     # Default backlight device
-    setprop hw.backlight.dev "backlight"
+    # setprop hw.backlight.dev "backlight_lvds"
+    setprop hw.backlight.dev "backlight_lcd"
     # Chmod/chown FSL specific sys entry
-    chown system system /sys/class/backlight/backlight/brightness
-    chmod 0660 /sys/class/backlight/backlight/brightness
-
+    # chown system system /sys/class/backlight/backlight_lvds/brightness
+    # chmod 0660 /sys/class/backlight/backlight_lvds/brightness
+    chown system system /sys/class/backlight/backlight_lcd/brightness
+    chmod 0660 /sys/class/backlight/backlight_lcd/brightness
 
     # No bluetooth hardware present
     setprop wlan.interface wlan0
-
 
 on property:sys.boot_completed=1
 # Set default CPU frequency governor
@@ -277,6 +282,30 @@ service p2p_supplicant /system/bin/wpa_supplicant \
     disabled
     oneshot
 
+service rtw_suppl_con /system/bin/rtl_wpa_supplicant -dddd \
+    -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf \
+    -I/system/etc/wifi/p2p_supplicant_overlay.conf -N \
+    -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
+    -I/system/etc/wifi/wpa_supplicant_overlay.conf \
+    -O/data/misc/wifi/sockets -puse_p2p_group_interface=1 \
+    -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
+    class late_start
+    socket wpa_wlan0 dgram 660 wifi wifi
+    disabled
+    oneshot
+
+service rtw_supplc_adv /system/bin/rtl_wpa_supplicant \
+    -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf \
+    -I/system/etc/wifi/p2p_supplicant_advance_overlay.conf -N \
+    -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
+    -I/system/etc/wifi/wpa_supplicant_overlay.conf \
+    -O/data/misc/wifi/sockets -puse_p2p_group_interface=1 \
+    -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
+    class late_start
+    socket wpa_wlan0 dgram 660 wifi wifi
+    disabled
+    oneshot
+
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/system/etc/wifi/wpa_supplicant_overlay.conf \
@@ -302,17 +331,17 @@ service dhcpcd_wlan0 /system/bin/dhcpcd -aABDKL
     disabled
     oneshot
 
-service dhcpcd_p2p /system/bin/dhcpcd -aABKL
+service dhcpcd_p2p /system/bin/dhcpcd -aABKL p2p-wlan0-0
     class main
     disabled
     oneshot
 
-service dhcpcd_eth1 /system/bin/dhcpcd -ABKL
+service dhcpcd_eth0 /system/bin/dhcpcd -ABKL eth0
     class main
     disabled
     oneshot
 
-service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
+service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL bt-pan
     class main
     disabled
     oneshot
@@ -327,12 +356,12 @@ service iprenew_p2p /system/bin/dhcpcd -n
     disabled
     oneshot
 
-service iprenew_eth1 /system/bin/dhcpcd -n
+service iprenew_eth0 /system/bin/dhcpcd -n eth0
     class main
     disabled
     oneshot
 
-service iprenew_bt-pan /system/bin/dhcpcd -n
+service iprenew_bt-pan /system/bin/dhcpcd -n bt-pan
     class main
     disabled
     oneshot
@@ -354,7 +383,7 @@ service rtl_hostapd /system/bin/hostapd /data/misc/wifi/hostapd.conf
 service ril-daemon /system/bin/rild
     class main
     socket rild stream 660 root radio
-   socket rild-debug stream 660 radio system
+	socket rild-debug stream 660 radio system
     socket rild-ppp stream 660 radio system
     user root
     group radio cache inet misc audio sdcard_rw log
@@ -366,21 +395,33 @@ service pppd_gprs /etc/ppp/init.gprs-pppd
     disabled
     oneshot
 
-service bt_reset /system/bin/bt_reset start
+service bt_reset /system/bin/sh /system/bin/bt_reset start
     class late_start
+    user root
     oneshot
+    seclabel u:r:bt_reset:s0
 
-service bd_mac /system/bin/bd_mac_gen start
+service bd_mac /system/bin/sh /system/bin/bd_mac_gen start
     class late_start
+    user root
     oneshot
+    seclabel u:r:bd_mac:s0
 
-service eth_updown /system/bin/eth_updown start
+service eth_updown /system/bin/sh /system/bin/eth_updown start
     class late_start
+    user root
     oneshot
+    seclabel u:r:eth_updown:s0
 
 on fs
 # mount ext4 partitions
     mount_all /fstab.freescale
+
+    # Update dm-verity state and set partition.*.verified properties
+    verity_update_state
+
+# on verity-logging
+#     exec u:r:slideshow:s0 -- /sbin/slideshow warning/verity_red_1 warning/verity_red_2
 
 on post-fs
     # Turn on swap
@@ -388,3 +429,6 @@ on post-fs
 
     # Swap in only 1 page at a time
     write /proc/sys/vm/page-cluster 0
+
+    # This may have been created by the recovery system with the wrong context.
+    restorecon /cache/recovery

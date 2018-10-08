@@ -6,7 +6,6 @@ include device/fsl/imx7/soc/imx7d.mk
 include device/fsl/sabresd_7d/build_id.mk
 include device/fsl/imx7/BoardConfigCommon.mk
 include external/linux-firmware-imx/firmware/epdc/fsl-epdc.mk
--include device/fsl-proprietary/gpu-viv/fsl-gpu.mk
 # sabresd_mx7d default target for EXT4
 BUILD_TARGET_FS ?= ext4
 include device/fsl/imx7/imx7_target_fs.mk
@@ -30,8 +29,12 @@ PRODUCT_COPY_FILES +=	\
 endif # BUILD_TARGET_FS
 endif # BUILD_TARGET_FS
 
+ADDITIONAL_BUILD_PROPERTIES += \
+                       ro.internel.storage_size=/sys/block/mmcblk0/size
 TARGET_BOOTLOADER_BOARD_NAME := SABRESD
 PRODUCT_MODEL := SABRESD_MX7D
+
+TARGET_BOOTLOADER_POSTFIX := imx
 
 TARGET_RELEASETOOLS_EXTENSIONS := device/fsl/imx7
 # UNITE is a virtual device.
@@ -95,3 +98,6 @@ BOARD_SEPOLICY_DIRS := \
        device/fsl/imx7/sepolicy \
        device/fsl/sabresd_7d/sepolicy
 
+BOARD_SECCOMP_POLICY += device/fsl/sabresd_7d/seccomp
+
+TARGET_BOARD_KERNEL_HEADERS := device/fsl/common/kernel-headers

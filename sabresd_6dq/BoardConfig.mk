@@ -5,14 +5,15 @@
 include device/fsl/imx6/soc/imx6dq.mk
 include device/fsl/sabresd_6dq/build_id.mk
 include device/fsl/imx6/BoardConfigCommon.mk
-include device/fsl-proprietary/gpu-viv/fsl-gpu.mk
 # sabresd_6dq default target for EXT4
 BUILD_TARGET_FS ?= ext4
 include device/fsl/imx6/imx6_target_fs.mk
 
 ifeq ($(BUILD_TARGET_DEVICE),sd)
 ADDITIONAL_BUILD_PROPERTIES += \
-                        ro.boot.storage_type=sd
+                        ro.internel.storage_size=/sys/block/mmcblk2/size \
+                        ro.boot.storage_type=sd \
+                        ro.frp.pst=/dev/block/mmcblk2p12
 ifneq ($(BUILD_TARGET_FS),f2fs)
 TARGET_RECOVERY_FSTAB = device/fsl/sabresd_6dq/fstab_sd.freescale
 # build for ext4
@@ -26,7 +27,9 @@ PRODUCT_COPY_FILES +=	\
 endif # BUILD_TARGET_FS
 else
 ADDITIONAL_BUILD_PROPERTIES += \
-                        ro.boot.storage_type=emmc
+                        ro.internel.storage_size=/sys/block/mmcblk3/size \
+                        ro.boot.storage_type=emmc \
+                        ro.frp.pst=/dev/block/mmcblk3p12
 ifneq ($(BUILD_TARGET_FS),f2fs)
 TARGET_RECOVERY_FSTAB = device/fsl/sabresd_6dq/fstab.freescale
 # build for ext4
@@ -43,6 +46,8 @@ endif # BUILD_TARGET_DEVICE
 
 TARGET_BOOTLOADER_BOARD_NAME := SABRESD
 PRODUCT_MODEL := SABRESD-MX6DQ
+
+TARGET_BOOTLOADER_POSTFIX := imx
 
 TARGET_RELEASETOOLS_EXTENSIONS := device/fsl/imx6
 # UNITE is a virtual device.
@@ -104,7 +109,7 @@ $(error "TARGET_USERIMAGES_USE_UBIFS and TARGET_USERIMAGES_USE_EXT4 config open 
 endif
 endif
 
-BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 init=/init video=mxcfb0:dev=ldb,bpp=32 video=mxcfb1:off video=mxcfb2:off video=mxcfb3:off vmalloc=256M androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale cma=384M
+BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 init=/init video=mxcfb0:dev=ldb,bpp=32 video=mxcfb1:off video=mxcfb2:off video=mxcfb3:off vmalloc=128M androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale cma=448M
 
 ifeq ($(TARGET_USERIMAGES_USE_UBIFS),true)
 #UBI boot command line.
@@ -120,16 +125,20 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/fsl/sabresd_6dq/bluetooth
 USE_ION_ALLOCATOR := false
 USE_GPU_ALLOCATOR := true
 
+PHONE_MODULE_INCLUDE := true
 # camera hal v3
 IMX_CAMERA_HAL_V3 := true
 
 #define consumer IR HAL support
 IMX6_CONSUMER_IR_HAL := false
 
-TARGET_BOOTLOADER_CONFIG := imx6q:mx6qsabresdandroid_config imx6dl:mx6dlsabresdandroid_config imx6q-ldo:mx6qsabresdandroid_config imx6qp:mx6qpsabresdandroid_config
-TARGET_BOARD_DTS_CONFIG := imx6q:imx6q-sabresd.dtb imx6dl:imx6dl-sabresd.dtb imx6q-ldo:imx6q-sabresd-ldo.dtb imx6qp:imx6qp-sabresd.dtb
+TARGET_BOOTLOADER_CONFIG := imx6q:mx6qsabresdandroid_config imx6dl:mx6dlsabresdandroid_config imx6q-ldo:mx6qsabresdandroid_config imx6qp:mx6qpsabresdandroid_config imx6qp-ldo:mx6qpsabresdandroid_config
+TARGET_BOARD_DTS_CONFIG := imx6q:imx6q-sabresd.dtb imx6dl:imx6dl-sabresd.dtb imx6q-ldo:imx6q-sabresd-ldo.dtb imx6qp:imx6qp-sabresd.dtb imx6qp-ldo:imx6qp-sabresd-ldo.dtb
 
 BOARD_SEPOLICY_DIRS := \
        device/fsl/imx6/sepolicy \
        device/fsl/sabresd_6dq/sepolicy
 
+BOARD_SECCOMP_POLICY += device/fsl/sabresd_6dq/seccomp
+
+TARGET_BOARD_KERNEL_HEADERS := device/fsl/common/kernel-headers

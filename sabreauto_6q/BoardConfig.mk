@@ -5,7 +5,6 @@
 include device/fsl/imx6/soc/imx6dq.mk
 include device/fsl/sabreauto_6q/build_id.mk
 include device/fsl/imx6/BoardConfigCommon.mk
-include device/fsl-proprietary/gpu-viv/fsl-gpu.mk
 # sabreauto_6dq default target for EXT4
 BUILD_TARGET_FS ?= ext4
 include device/fsl/imx6/imx6_target_fs.mk
@@ -19,7 +18,9 @@ PRODUCT_COPY_FILES +=	\
 	device/fsl/sabreauto_6q/fstab_nand.freescale:root/fstab.freescale
 else
 ADDITIONAL_BUILD_PROPERTIES += \
-                        ro.boot.storage_type=sd
+                        ro.internel.storage_size=/sys/block/mmcblk2/size \
+                        ro.boot.storage_type=sd \
+                        ro.frp.pst=/dev/block/mmcblk2p12
 ifneq ($(BUILD_TARGET_FS),f2fs)
 TARGET_RECOVERY_FSTAB = device/fsl/sabreauto_6q/fstab.freescale
 # build for ext4
@@ -35,9 +36,9 @@ endif # BUILD_TARGET_FS
 
 TARGET_BOOTLOADER_BOARD_NAME := SABREAUTO
 
-BOARD_SOC_CLASS := IMX6
-BOARD_SOC_TYPE := IMX6DQ
 PRODUCT_MODEL := SABREAUTO-MX6Q
+
+TARGET_BOOTLOADER_POSTFIX := imx
 
 USE_OPENGL_RENDERER := true
 TARGET_CPU_SMP := true
@@ -66,6 +67,7 @@ BOARD_MODEM_VENDOR := AMAZON
 USE_ATHR_GPS_HARDWARE := false
 USE_QEMU_GPS_HARDWARE := false
 
+PHONE_MODULE_INCLUDE := flase
 #for accelerator sensor, need to define sensor type here
 BOARD_HAS_SENSOR := true
 SENSOR_MMA8451 := true
@@ -84,7 +86,7 @@ BOARD_HAVE_USB_CAMERA := true
 USE_ION_ALLOCATOR := false
 USE_GPU_ALLOCATOR := true
 
-BOARD_KERNEL_CMDLINE := console=ttymxc3,115200 init=/init video=mxcfb0:dev=ldb,bpp=32 video=mxcfb1:off video=mxcfb2:off video=mxcfb3:off vmalloc=320M androidboot.console=ttymxc3 consoleblank=0 androidboot.hardware=freescale cma=384M 
+BOARD_KERNEL_CMDLINE := console=ttymxc3,115200 init=/init video=mxcfb0:dev=ldb,bpp=32 video=mxcfb1:off video=mxcfb2:off video=mxcfb3:off vmalloc=128M androidboot.console=ttymxc3 consoleblank=0 androidboot.hardware=freescale cma=512M galcore.contiguousSize=201326592
 
 ifeq ($(TARGET_USERIMAGES_USE_UBIFS),true)
 #UBI boot command line.
@@ -93,7 +95,7 @@ TARGET_MKUBIFS_ARGS := -m 8192 -e 1032192 -c 4096 -x none -F
 TARGET_UBIRAW_ARGS := -m 8192 -p 1024KiB $(UBI_ROOT_INI)
 
 # Note: this NAND partition table must align with MFGTool's config.
-BOARD_KERNEL_CMDLINE +=  mtdparts=gpmi-nand:64m(bootloader),16m(bootimg),16m(recovery),-(root) ubi.mtd=4
+BOARD_KERNEL_CMDLINE +=  mtdparts=gpmi-nand:64m(bootloader),16m(bootimg),16m(recovery),1m(misc),-(root) ubi.mtd=5
 endif
 
 ifeq ($(TARGET_USERIMAGES_USE_UBIFS),true)
@@ -114,3 +116,6 @@ BOARD_SEPOLICY_DIRS := \
        device/fsl/imx6/sepolicy \
        device/fsl/sabreauto_6q/sepolicy
 
+BOARD_SECCOMP_POLICY += device/fsl/sabreauto_6q/seccomp
+
+TARGET_BOARD_KERNEL_HEADERS := device/fsl/common/kernel-headers

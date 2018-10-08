@@ -14,14 +14,26 @@ PRODUCT_PACKAGES += \
 	Gallery		    			\
 	SoundRecorder				\
 	Camera					\
-        LegacyCamera                            \
+	LegacyCamera                            \
 	Email					\
 	FSLOta					\
 	CactusPlayer                            \
+	WfdSink                                 \
+	wfd                                     \
 	A2dpSinkApp                             \
 	BleServerEmulator                       \
 	BleClient                               \
 	ethernet                                \
+	libfsl_wfd.so                           \
+	libfsl_wfd                           \
+	libpxp                               \
+	fsl.imx.jar                             \
+	libfsl_hdcp_blob.so                     \
+	libfsl_hdcp_blob                     \
+	libstagefright_hdcp.so                  \
+	libstagefright_hdcp                  \
+	hwcomposer_fsl.imx6.so                  \
+	hwcomposer_fsl.imx6                  \
 	VideoEditor				\
 	FSLProfileApp				\
 	FSLProfileService			\
@@ -68,11 +80,6 @@ PRODUCT_PACKAGES += \
 	hostapd 				\
 	rtl_hostapd 				\
 	hostapd_cli
-
-# keyboard mapping files.
-PRODUCT_PACKAGES += \
-	Dell_Dell_USB_Keyboard.kcm		\
-	mxckpd.kcm				\
 
 #audio related lib
 PRODUCT_PACKAGES += \
@@ -137,32 +144,9 @@ PRODUCT_PACKAGES += \
     bcmdhd.1DX.SDIO.cal       \
     wl
 
-# Atheros wifi firmwre files.
 PRODUCT_PACKAGES += \
-	fw-3					\
-	bdata					\
-	athtcmd_ram				\
-	nullTestFlow				\
-	cfg80211.ko				\
-	compat.ko				\
-	ath6kl_sdio.ko				\
-	check_wifi_mac.sh
-
-# Atheros wifi tool
-PRODUCT_PACKAGES += \
-	abtfilt					\
-	artagent				\
-	ath6kl-fwlog-record			\
-	athtestcmd				\
-	psatUtil				\
-	wmiconfig
-
-# Intel PCIE wifi firmware
-PRODUCT_PACKAGES += \
-	iwlwifi-6000-4.ucode			\
-	iwlwifi-5000-5.ucode			\
-	iwlagn.ko
-
+    slideshow \
+    verity_warning_images
 # drm related lib
 PRODUCT_PACKAGES += \
 	drmserver                   		\
@@ -272,7 +256,7 @@ omx_libs := \
 	lib_flac_parser_arm11_elinux.3.0 \
 	lib_wav_parser_arm11_elinux.3.0 \
 	lib_omx_ac3toiec937_arm11_elinux \
-        lib_omx_ec3_dec_v2_arm11_elinux \
+	lib_omx_ec3_dec_v2_arm11_elinux \
 	lib_omx_libav_video_dec_arm11_elinux \
 	libavcodec \
 	libavutil \
@@ -297,12 +281,12 @@ omx_excluded_libs :=					\
 	lib_wma10d_wrap_arm12_elinux_android \
 	lib_aacplusd_wrap_arm12_elinux_android \
 	lib_ac3d_wrap_arm11_elinux_android \
-        lib_ddpd_wrap_arm12_elinux_android \
-        lib_ddplus_dec_v2_arm12_elinux \
-        lib_realad_wrap_arm11_elinux_android \
-        lib_realaudio_dec_v2_arm11_elinux \
-        lib_rm_parser_arm11_elinux.3.0 \
-        lib_omx_ra_dec_v2_arm11_elinux \
+	lib_ddpd_wrap_arm12_elinux_android \
+	lib_ddplus_dec_v2_arm12_elinux \
+	lib_realad_wrap_arm11_elinux_android \
+	lib_realaudio_dec_v2_arm11_elinux \
+	lib_rm_parser_arm11_elinux.3.0 \
+	lib_omx_ra_dec_v2_arm11_elinux \
 
 
 
@@ -349,6 +333,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fsck.f2fs mkfs.f2fs
 
+PRODUCT_PACKAGES += \
+    slideshow \
+    verity_warning_images
+
 PRODUCT_COPY_FILES +=	\
 	device/fsl/common/input/Dell_Dell_USB_Keyboard.kl:system/usr/keylayout/Dell_Dell_USB_Keyboard.kl \
 	device/fsl/common/input/Dell_Dell_USB_Keyboard.idc:system/usr/idc/Dell_Dell_USB_Keyboard.idc \
@@ -363,12 +351,31 @@ PRODUCT_COPY_FILES +=	\
 	device/fsl/imx7/etc/ueventd.freescale.rc:root/ueventd.freescale.rc \
 	device/fsl/imx7/etc/ppp/init.gprs-pppd:system/etc/ppp/init.gprs-pppd \
 	device/fsl/imx7/etc/ota.conf:system/etc/ota.conf \
+	device/fsl/imx7/init.recovery.freescale.rc:root/init.recovery.freescale.rc \
 	device/fsl/common/display/display_mode_fb0.conf:system/etc/display_mode_fb0.conf \
 	device/fsl/common/display/display_mode_fb2.conf:system/etc/display_mode_fb2.conf \
 	device/fsl/common/display/display_mode_fb4.conf:system/etc/display_mode_fb4.conf \
     device/fsl-proprietary/media-profile/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     device/fsl-proprietary/media-profile/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
     device/fsl-proprietary/media-profile/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+	device/fsl-proprietary/media-profile/media_profiles_720p.xml:system/etc/media_profiles_720p.xml
+
+PRODUCT_COPY_FILES += \
+	external/imx-firmware/BCM4339/TypeZP/BCM4339_BT/Type_ZP.hcd:system/etc/firmware/bcm/Type_ZP.hcd 	\
+	external/imx-firmware/BCM4339/TypeZP/BCM4339_wifi/fw_bcmdhd.bin:system/etc/firmware/bcm/fw_bcmdhd.bin 	\
+	external/imx-firmware/BCM4339/TypeZP/BCM4339_wifi/fw_bcmdhd.bin:system/etc/firmware/bcm/fw_bcmdhd_apsta.bin 	\
+	external/imx-firmware/brcm/1BW_BCM43340/BCM43341B0.1BW.hcd:system/etc/firmware/bcm/1BW_BCM43340/BCM43341B0.1BW.hcd 	\
+	external/imx-firmware/brcm/1BW_BCM43340/bcmdhd.1BW.OOB.cal:system/etc/firmware/bcm/1BW_BCM43340/bbcmdhd.1BW.OOB.cal 	\
+	external/imx-firmware/brcm/1BW_BCM43340/bcmdhd.1BW.SDIO.cal:system/etc/firmware/bcm/1BW_BCM43340/bcmdhd.1BW.SDIO.cal 	\
+	external/imx-firmware/brcm/1BW_BCM43340/fw_bcmdhd.bin:system/etc/firmware/bcm/1BW_BCM43340/1bw_fw_bcmdhd.bin 	\
+	external/imx-firmware/brcm/1DX_BCM4343W/BCM43430A1.1DX.hcd:system/etc/firmware/bcm/1DX_BCM4343W/BCM43430A1.1DX.hcd 	\
+	external/imx-firmware/brcm/1DX_BCM4343W/bcmdhd.1DX.OOB.cal:system/etc/firmware/bcm/1DX_BCM4343W/bcmdhd.1DX.OOB.cal	\
+	external/imx-firmware/brcm/1DX_BCM4343W/bcmdhd.1DX.SDIO.cal:system/etc/firmware/bcm/1DX_BCM4343W/bcmdhd.1DX.SDIO.cal	\
+	external/imx-firmware/brcm/1DX_BCM4343W/fw_bcmdhd.bin:system/etc/firmware/bcm/1DX_BCM4343W/1dx_fw_bcmdhd.bin 	\
+	external/imx-firmware/brcm/SN8000_BCM43362/bcmdhd.SN8000.OOB.cal:system/etc/firmware/bcm/SN8000_BCM43362/bcmdhd.SN8000.OOB.cal 	\
+	external/imx-firmware/brcm/SN8000_BCM43362/bcmdhd.SN8000.SDIO.cal:system/etc/firmware/bcm/SN8000_BCM43362/bcmdhd.SN8000.SDIO.cal	\
+	external/imx-firmware/brcm/SN8000_BCM43362/fw_bcmdhd.bin:system/etc/firmware/bcm/SN8000_BCM43362/sn_fw_bcmdhd.bin 	\
+	external/imx-firmware/brcm/SN8000_BCM43362/fw_bcmdhd_apsta.bin:system/etc/firmware/bcm/SN8000_BCM43362/sn_fw_bcmdhd_apsta.bin 	\
 
 
 # we have enough storage space to hold precise GC data
@@ -378,8 +385,26 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mtp
 
+# enlarge media max memory size to 3G.
+PRODUCT_PROPERTY_OVERRIDES += \
+        ro.media.maxmem=3221225472
+#this must be set before including tablet-7in-hdpi-1024-dalvik-heap.mk
+PRODUCT_PROPERTY_OVERRIDES += \
+        dalvik.vm.heapgrowthlimit=128m
+
 PRODUCT_DEFAULT_DEV_CERTIFICATE := \
         device/fsl/common/security/testkey
+
+# In userdebug, add minidebug info the the boot image and the system server to support
+# diagnosing native crashes.
+ifneq (,$(filter userdebug, $(TARGET_BUILD_VARIANT)))
+    # Boot image.
+    PRODUCT_DEX_PREOPT_BOOT_FLAGS += --generate-mini-debug-info
+    # System server and some of its services.
+    # Note: we cannot use PRODUCT_SYSTEM_SERVER_JARS, as it has not been expanded at this point.
+    $(call add-product-dex-preopt-module-config,services,--generate-mini-debug-info)
+    $(call add-product-dex-preopt-module-config,wifi-service,--generate-mini-debug-info)
+endif
 
 # include a google recommand heap config file.
 include frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk

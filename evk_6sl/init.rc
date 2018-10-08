@@ -7,6 +7,9 @@ on early-init
 on init
     start watchdogd
 
+    # Load persistent dm-verity state
+    verity_load_state
+
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
@@ -19,13 +22,15 @@ on init
     export CORE_REGISTER_FILE /system/etc/core_register
     export COMPONENT_REGISTER_FILE /system/etc/component_register
     export CONTENTPIPE_REGISTER_FILE /system/etc/contentpipe_register
-    
+
 
     # disable cursor blink for fbcon, if no splash screen support
     write /sys/class/graphics/fbcon/cursor_blink 0
 
     # deattch the fbcon as hdmi hotplug conflict with fbcon
     write /sys/class/vtconsole/vtcon1/bind 0
+
+    mkdir /device 0771 system system
 
 on boot
 
@@ -85,10 +90,6 @@ on boot
     setprop gsm.ril.delay 15
     setprop ro.ril.wake_lock_timeout 300
 
-
-#  Enable adb security for JB4.2.2
-    setprop ro.adb.secure 1
-
     # Set OpenGLES version
     # setprop ro.opengles.version 131072
 
@@ -122,6 +123,9 @@ on boot
     chmod 0664 /sys/devices/system/cpu/cpu2/online
     chown root system /sys/devices/system/cpu/cpu3/online
     chmod 0664 /sys/devices/system/cpu/cpu3/online
+
+    # Set tracefs permission to 755
+    chmod 0755 /sys/kernel/debug/tracing
 
     # prepare for ril
     setprop gsm.ril.delay 15
@@ -222,17 +226,17 @@ service dhcpcd_wlan0 /system/bin/dhcpcd -aABDKL
     disabled
     oneshot
 
-service dhcpcd_p2p /system/bin/dhcpcd -aABKL
+service dhcpcd_p2p /system/bin/dhcpcd -aABKL p2p-wlan0-0
     class main
     disabled
     oneshot
 
-service dhcpcd_eth0 /system/bin/dhcpcd -ABKL
+service dhcpcd_eth0 /system/bin/dhcpcd -ABKL eth0
     class main
     disabled
     oneshot
 
-service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
+service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL bt-pan
     class main
     disabled
     oneshot
@@ -247,12 +251,12 @@ service iprenew_p2p /system/bin/dhcpcd -n
     disabled
     oneshot
 
-service iprenew_eth0 /system/bin/dhcpcd -n
+service iprenew_eth0 /system/bin/dhcpcd -n eth0
     class main
     disabled
     oneshot
 
-service iprenew_bt-pan /system/bin/dhcpcd -n
+service iprenew_bt-pan /system/bin/dhcpcd -n bt-pan
     class main
     disabled
     oneshot
@@ -290,9 +294,18 @@ on fs
 # mount ext4 partitions
     mount_all /fstab.freescale
 
+    # Update dm-verity state and set partition.*.verified properties
+    verity_update_state
+
+on verity-logging
+    exec u:r:slideshow:s0 -- /sbin/slideshow warning/verity_red_1 warning/verity_red_2
+
 on post-fs
     # Turn on swap
     swapon_all /fstab.freescale
 
     # Swap in only 1 page at a time
     write /proc/sys/vm/page-cluster 0
+
+    # This may have been created by the recovery system with the wrong context.
+    restorecon /cache/recovery

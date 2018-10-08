@@ -21,19 +21,49 @@ PRODUCT_NAME := pico_7d
 PRODUCT_DEVICE := pico_7d
 
 PRODUCT_COPY_FILES += \
-        device/fsl/pico_7d/init.rc:root/init.freescale.rc \
+	device/fsl/pico_7d/init.rc:root/init.freescale.rc \
 	device/fsl/common/input/imx-keypad.idc:system/usr/idc/imx-keypad.idc \
 	device/fsl/common/input/imx-keypad.kl:system/usr/keylayout/imx-keypad.kl \
 	device/fsl/common/input/20b8000_kpp.idc:system/usr/idc/20b8000_kpp.idc \
-	device/fsl/common/input/20b8000_kpp.kl:system/usr/keylayout/20b8000_kpp.kl \
-        device/fsl/pico_7d/audio_policy.conf:system/etc/audio_policy.conf \
-        device/fsl/pico_7d/audio_effects.conf:system/vendor/etc/audio_effects.conf
+	device/fsl/common/input/20b8000_kpp.kl:system/usr/keylayout/20b8000_kpp.kl
 
-# wifi+bt files
+# touch files
 PRODUCT_COPY_FILES += \
-                device/fsl/pico_7d/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf \
-                device/fsl/pico_7d/bluetooth/bt_reset:system/bin/bt_reset \
-                device/fsl/pico_7d/bluetooth/bd_mac_gen:system/bin/bd_mac_gen \
+	device/fsl/common/input/eGalax_Touch_Screen.idc:system/usr/idc/fusion_Touch_Screen.idc \
+	device/fsl/common/input/eGalax_Touch_Screen.idc:system/usr/idc/ADS7846_Touchscreen.idc
+
+# Audio
+USE_XML_AUDIO_POLICY_CONF := 1
+PRODUCT_COPY_FILES += \
+	device/fsl/sabresd_7d/audio_effects.conf:system/vendor/etc/audio_effects.conf \
+	device/fsl/sabresd_7d/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml \
+	frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:system/etc/a2dp_audio_policy_configuration.xml \
+	frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:system/etc/r_submix_audio_policy_configuration.xml \
+	frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:system/etc/usb_audio_policy_configuration.xml \
+	frameworks/av/services/audiopolicy/config/default_volume_tables.xml:system/etc/default_volume_tables.xml \
+	frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:system/etc/audio_policy_volumes.xml \
+
+# bt files
+PRODUCT_COPY_FILES += \
+	device/fsl/pico_7d/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf \
+	device/fsl/pico_7d/bluetooth/bt_reset:system/bin/bt_reset \
+	device/fsl/pico_7d/bluetooth/bd_mac_gen:system/bin/bd_mac_gen
+
+# wifi files
+PRODUCT_COPY_FILES += \
+	device/fsl/pico_7d/brcm-firmware/bcm43438a0.hcd:system/etc/firmware/bcm/bcm43438a0.hcd 	\
+	device/fsl/pico_7d/brcm-firmware/fw_bcm43438a0.bin:system/etc/firmware/bcm/fw_bcm43438a0.bin 	\
+	device/fsl/pico_7d/brcm-firmware/fw_bcm43438a0_apsta.bin:system/etc/firmware/bcm/fw_bcm43438a0_apsta.bin 	\
+	device/fsl/pico_7d/brcm-firmware/fw_bcm43438a0_p2p.bin:system/etc/firmware/bcm/fw_bcm43438a0_p2p.bin 	\
+	device/fsl/pico_7d/brcm-firmware/nvram_ap6212.txt:system/etc/firmware/bcm/nvram_ap6212.txt 	\
+	external/imx-firmware/BCM4339/TypeZP/BCM4339_BT/Type_ZP.hcd:system/etc/firmware/bcm/Type_ZP.hcd 	\
+	external/imx-firmware/BCM4339/TypeZP/BCM4339_wifi/fw_bcmdhd.bin:system/etc/firmware/bcm/fw_bcm4339a0_ag.bin 	\
+	external/imx-firmware/BCM4339/TypeZP/BCM4339_wifi/fw_bcmdhd.bin:system/etc/firmware/bcm/fw_bcm4339a0_ag_apsta.bin 	\
+	external/imx-firmware/BCM4339/TypeZP/BCM4339_wifi/nvram_ap6335.txt:system/etc/firmware/bcm/nvram_ap6335.txt 	\
+	external/imx-firmware/BCM4330/bcm4330.hcd:system/etc/firmware/bcm/bcm4330.hcd 	\
+	external/imx-firmware/BCM4330/fw_bcm4330_bg.bin:system/etc/firmware/bcm/fw_bcm4330_bg.bin 	\
+	external/imx-firmware/BCM4330/fw_bcm4330_bg_apsta.bin:system/etc/firmware/bcm/fw_bcm4330_bg_apsta.bin \
+	external/imx-firmware/BCM4330/brcmfmac4330-sdio.txt:system/etc/firmware/bcm/brcmfmac4330-sdio.txt
 
 # ethernet files
 PRODUCT_COPY_FILES += \
@@ -69,6 +99,8 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
 	frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
 	frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
+	frameworks/native/data/etc/android.hardware.sensor.ambient_temperature.xml:system/etc/permissions/android.hardware.sensor.ambient_temperature.xml \
+	frameworks/native/data/etc/android.hardware.sensor.barometer.xml:system/etc/permissions/android.hardware.sensor.barometer.xml \
 	frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
         device/fsl/pico_7d/required_hardware.xml:system/etc/permissions/required_hardware.xml
 PRODUCT_PACKAGES += AudioRoute \

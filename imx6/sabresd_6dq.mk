@@ -21,8 +21,17 @@ PRODUCT_COPY_FILES += \
         device/fsl/sabresd_6dq/init.i.MX6Q.rc:root/init.freescale.i.MX6Q.rc \
         device/fsl/sabresd_6dq/init.i.MX6DL.rc:root/init.freescale.i.MX6DL.rc \
 	device/fsl/sabresd_6dq/init.i.MX6QP.rc:root/init.freescale.i.MX6QP.rc \
-	device/fsl/sabresd_6dq/audio_policy.conf:system/etc/audio_policy.conf \
-	device/fsl/sabresd_6dq/audio_effects.conf:system/vendor/etc/audio_effects.conf
+
+# Audio
+USE_XML_AUDIO_POLICY_CONF := 1
+PRODUCT_COPY_FILES += \
+	device/fsl/sabresd_6dq/audio_effects.conf:system/vendor/etc/audio_effects.conf \
+	device/fsl/sabresd_6dq/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml \
+	frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:system/etc/a2dp_audio_policy_configuration.xml \
+	frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:system/etc/r_submix_audio_policy_configuration.xml \
+	frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:system/etc/usb_audio_policy_configuration.xml \
+	frameworks/av/services/audiopolicy/config/default_volume_tables.xml:system/etc/default_volume_tables.xml \
+	frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:system/etc/audio_policy_volumes.xml \
 
 PRODUCT_COPY_FILES +=	\
 	external/linux-firmware-imx/firmware/vpu/vpu_fw_imx6d.bin:system/lib/firmware/vpu/vpu_fw_imx6d.bin 	\
@@ -59,4 +68,19 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
 	frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
 	device/fsl/sabresd_6dq/required_hardware.xml:system/etc/permissions/required_hardware.xml
-PRODUCT_PACKAGES += AudioRoute
+
+PRODUCT_COPY_FILES += \
+    device/fsl-proprietary/gpu-viv/lib/egl/egl.cfg:system/lib/egl/egl.cfg
+
+PRODUCT_PACKAGES += \
+    libEGL_VIVANTE \
+    libGLESv1_CM_VIVANTE \
+    libGLESv2_VIVANTE \
+    gralloc_viv.imx6 \
+    hwcomposer_viv.imx6 \
+    hwcomposer_fsl.imx6 \
+    libGAL \
+    libGLSLC \
+    libVSC \
+    libg2d \
+    libgpuhelper

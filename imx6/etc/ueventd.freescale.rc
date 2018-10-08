@@ -9,16 +9,18 @@
 /dev/video1               0660   system     camera
 /dev/video2               0660   system     camera
 /dev/video16              0660   system     graphics
-/dev/mxc_ipu              0660   media      system
-/dev/mxc_vpu              0660   media      system
+/dev/mxc_ipu              0660   media      drmrpc
+/dev/mxc_vpu              0660   media      drmrpc
+/dev/pxp_device           0660   media      drmrpc
 /dev/uinput               0660   system     net_bt_stack
-/dev/ion                  0666   media      system
+/dev/ion                  0666   media      drmrpc
 /dev/galcore	          0666 	 system     graphics
 /dev/graphics/fb0         0660   system     graphics
 /dev/watchdog             0660   system     root
 /dev/ir                   0660   system     system
 /dev/mma8x5x              0640   compass     system
 /dev/caam_kb              0660   system     system
+/dev/block/mmcblk*p12     0600   system     system
 
 # sysfs properties
 /sys/devices/virtual/input/input*   name        0660  root   input

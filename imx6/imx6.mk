@@ -14,16 +14,19 @@ PRODUCT_PACKAGES += \
 	Gallery		    			\
 	SoundRecorder				\
 	Camera					\
-        LegacyCamera                            \
+	LegacyCamera                            \
 	Email					\
 	FSLOta					\
 	CactusPlayer                            \
 	WfdSink                                 \
 	wfd                                     \
 	A2dpSinkApp                             \
+	BleServerEmulator                       \
+	BleClient                               \
 	ethernet                                \
 	libfsl_wfd.so                           \
 	libfsl_wfd                           \
+	libpxp                               \
 	fsl.imx.jar                             \
 	libfsl_hdcp_blob.so                     \
 	libfsl_hdcp_blob                     \
@@ -62,9 +65,40 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += freescale-extended 		\
 		    freescale-extended.xml
 
+# Broadcom firmwares
+PRODUCT_PACKAGES += \
+	Type_ZP.hcd   	\
+	bt_vendor.conf	\
+	bcmdhd.cal		\
+	fw_bcmdhd.bin	\
+	fw_bcmdhd_apsta.bin	\
+	bcm43438a0.hcd	\
+	fw_bcm43438a0.bin	\
+	fw_bcm43438a0_apsta.bin	\
+	fw_bcm43438a0_p2p.bin	\
+	nvram_ap6212.txt
+
+# Broadcom BCM4339 extended binary
+PRODUCT_PACKAGES += \
+    bcmdhd.SN8000.OOB.cal     \
+    bcmdhd.SN8000.SDIO.cal    \
+    sn_fw_bcmdhd_apsta.bin    \
+    sn_fw_bcmdhd.bin          \
+    sn_fw_bcmdhd_mfgtest.bin  \
+    1bw_fw_bcmdhd.bin         \
+    1bw_fw_bcmdhd_mfgtest.bin \
+    BCM43341B0.1BW.hcd        \
+    bcmdhd.1BW.OOB.cal        \
+    bcmdhd.1BW.SDIO.cal       \
+    1dx_fw_bcmdhd.bin         \
+    1dx_fw_bcmdhd_mfgtest.bin \
+    BCM43430A1.1DX.hcd        \
+    bcmdhd.1DX.OOB.cal        \
+    bcmdhd.1DX.SDIO.cal       \
+    wl
+ 
 # Debug utils
 PRODUCT_PACKAGES += \
-	busybox					\
 	bash					\
 	taskset					\
 	sqlite3					\
@@ -73,14 +107,8 @@ PRODUCT_PACKAGES += \
 
 # Wifi AP mode
 PRODUCT_PACKAGES += \
-	rtl_hostapd 				\
 	hostapd					\
 	hostapd_cli
-
-# keyboard mapping files.
-PRODUCT_PACKAGES += \
-	Dell_Dell_USB_Keyboard.kcm		\
-	mxckpd.kcm				\
 
 #audio related lib
 PRODUCT_PACKAGES += \
@@ -110,9 +138,7 @@ PRODUCT_PACKAGES += \
 	audio.r_submix.default			\
 	libbt-vendor				\
 	libbt-vendor-broadcom		\
-	magd                                    \
-	consumerir.imx6
-
+	magd
 
 # Freescale VPU firmware files.
 PRODUCT_PACKAGES += \
@@ -120,31 +146,9 @@ PRODUCT_PACKAGES += \
 	vpu_fw_imx6q.bin			\
 	vpu_fw_imx6d.bin			\
 
-# Atheros wifi firmwre files.
 PRODUCT_PACKAGES += \
-	fw-3					\
-	bdata					\
-	athtcmd_ram				\
-	nullTestFlow				\
-	cfg80211.ko				\
-	compat.ko				\
-	ath6kl_sdio.ko				\
-	check_wifi_mac.sh
-
-# Atheros wifi tool
-PRODUCT_PACKAGES += \
-	abtfilt					\
-	artagent				\
-	ath6kl-fwlog-record			\
-	athtestcmd				\
-	psatUtil				\
-	wmiconfig
-
-# Intel PCIE wifi firmware
-PRODUCT_PACKAGES += \
-	iwlwifi-6000-4.ucode			\
-	iwlwifi-5000-5.ucode			\
-	iwlagn.ko
+    slideshow \
+    verity_warning_images
 
 # drm related lib
 PRODUCT_PACKAGES += \
@@ -255,7 +259,7 @@ omx_libs := \
 	lib_flac_parser_arm11_elinux.3.0 \
 	lib_wav_parser_arm11_elinux.3.0 \
 	lib_omx_ac3toiec937_arm11_elinux \
-        lib_omx_ec3_dec_v2_arm11_elinux \
+	lib_omx_ec3_dec_v2_arm11_elinux \
 	lib_omx_libav_video_dec_arm11_elinux \
 	libavcodec \
 	libavutil \
@@ -273,19 +277,18 @@ omx_excluded_libs :=					\
 	lib_WMV789_dec_v2_arm11_elinux		\
 	lib_aacplus_dec_v2_arm11_elinux			\
 	lib_ac3_dec_v2_arm11_elinux			\
-	\
 	lib_omx_wma_dec_v2_arm11_elinux			\
 	lib_omx_wmv_dec_v2_arm11_elinux			\
 	lib_omx_ac3_dec_v2_arm11_elinux			\
 	lib_wma10d_wrap_arm12_elinux_android \
 	lib_aacplusd_wrap_arm12_elinux_android \
 	lib_ac3d_wrap_arm11_elinux_android \
-        lib_ddpd_wrap_arm12_elinux_android \
-        lib_ddplus_dec_v2_arm12_elinux \
-    lib_realad_wrap_arm11_elinux_android \
-    lib_realaudio_dec_v2_arm11_elinux \
-    lib_rm_parser_arm11_elinux.3.0 \
-    lib_omx_ra_dec_v2_arm11_elinux \
+	lib_ddpd_wrap_arm12_elinux_android \
+	lib_ddplus_dec_v2_arm12_elinux \
+	lib_realad_wrap_arm11_elinux_android \
+	lib_realaudio_dec_v2_arm11_elinux \
+	lib_rm_parser_arm11_elinux.3.0 \
+	lib_omx_ra_dec_v2_arm11_elinux
 
 
 
@@ -319,7 +322,6 @@ PRODUCT_AAPT_CONFIG := normal mdpi
 
 # ril related libs
 PRODUCT_PACKAGES += \
-	libreference-ril-zte.so \
 	libruntime-ril-port
 
 PRODUCT_PACKAGES += \
@@ -338,28 +340,33 @@ PRODUCT_COPY_FILES +=	\
 	device/fsl/common/input/eGalax_Touch_Screen.idc:system/usr/idc/eGalax_Touch_Screen.idc \
 	device/fsl/common/input/eGalax_Touch_Screen.idc:system/usr/idc/HannStar_P1003_Touchscreen.idc \
 	device/fsl/common/input/eGalax_Touch_Screen.idc:system/usr/idc/Novatek_NT11003_Touch_Screen.idc \
+	device/fsl/common/input/eGalax_Touch_Screen.idc:system/usr/idc/ADS7846_Touchscreen.idc \
+	device/fsl/common/input/eGalax_Touch_Screen.idc:system/usr/idc/EP0850M09.idc \
 	system/core/rootdir/init.rc:root/init.rc \
 	device/fsl/imx6/etc/apns-conf.xml:system/etc/apns-conf.xml \
 	device/fsl/imx6/etc/init.usb.rc:root/init.freescale.usb.rc \
 	device/fsl/imx6/etc/ueventd.freescale.rc:root/ueventd.freescale.rc \
 	device/fsl/imx6/etc/ppp/init.gprs-pppd:system/etc/ppp/init.gprs-pppd \
 	device/fsl/imx6/etc/ota.conf:system/etc/ota.conf \
-        device/fsl/imx6/init.recovery.freescale.rc:root/init.recovery.freescale.rc \
+	device/fsl/imx6/init.recovery.freescale.rc:root/init.recovery.freescale.rc \
 	device/fsl/common/display/display_mode_fb0.conf:system/etc/display_mode_fb0.conf \
 	device/fsl/common/display/display_mode_fb2.conf:system/etc/display_mode_fb2.conf \
 	device/fsl/common/display/display_mode_fb4.conf:system/etc/display_mode_fb4.conf \
-    device/fsl-proprietary/media-profile/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
-    device/fsl-proprietary/media-profile/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
-    device/fsl-proprietary/media-profile/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
-    device/fsl-proprietary/media-profile/media_profiles_720p.xml:system/etc/media_profiles_720p.xml \
+	device/fsl-proprietary/media-profile/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+	device/fsl-proprietary/media-profile/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
+	device/fsl-proprietary/media-profile/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+	device/fsl-proprietary/media-profile/media_profiles_720p.xml:system/etc/media_profiles_720p.xml
     
-
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 # for property
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mtp
+
+# enlarge media max memory size to 3G.
+PRODUCT_PROPERTY_OVERRIDES += \
+        ro.media.maxmem=3221225472
 
 #this must be set before including tablet-7in-hdpi-1024-dalvik-heap.mk
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -368,7 +375,20 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_DEFAULT_DEV_CERTIFICATE := \
         device/fsl/common/security/testkey
 
+# In userdebug, add minidebug info the the boot image and the system server to support
+# diagnosing native crashes.
+ifneq (,$(filter userdebug, $(TARGET_BUILD_VARIANT)))
+    # Boot image.
+    PRODUCT_DEX_PREOPT_BOOT_FLAGS += --generate-mini-debug-info
+    # System server and some of its services.
+    # Note: we cannot use PRODUCT_SYSTEM_SERVER_JARS, as it has not been expanded at this point.
+    $(call add-product-dex-preopt-module-config,services,--generate-mini-debug-info)
+    $(call add-product-dex-preopt-module-config,wifi-service,--generate-mini-debug-info)
+endif
+
 # include a google recommand heap config file.
 include frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk
 
 -include device/google/gapps/gapps.mk
+
+

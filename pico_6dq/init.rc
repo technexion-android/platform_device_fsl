@@ -6,6 +6,9 @@ on early-init
     mount debugfs none /sys/kernel/debug/ mode=0755
 
 on init
+    # Load persistent dm-verity state
+    verity_load_state
+
     start watchdogd
 
     # Support legacy paths
@@ -28,8 +31,13 @@ on init
     # deattch the fbcon as hdmi hotplug conflict with fbcon
     write /sys/class/vtconsole/vtcon1/bind 0
 
-on boot
+    mkdir /device 0771 system system
 
+    # shared memory used by VPU to distinguish VPU instance.
+    mkdir /mnt/shm  0775 media drmrpc
+    mount tmpfs tmpfs /mnt/shm mode=0775,uid=1013,gid=1031,size=1m
+
+on boot
     # emmulate battery property
     setprop sys.emulated.battery 1
 
@@ -77,8 +85,125 @@ on boot
     setprop wifi.interface wlan0
     setprop wifi.ap.interface wlan0
 
+    # BT reset pin
+    chown root system /sys/class/gpio/gpio204/value
+    chmod 0666 /sys/class/gpio/gpio204/value
+
+    # serial uart
+    chown root system /dev/ttymxc2
+    chmod 0666 /dev/ttymxc2
+
+    # bluetooth uart
+    chown bluetooth net_bt_stack /dev/ttymxc1
+    chmod 0666 /dev/ttymxc1
+
+    # Prepare for bluetooth
+    chmod 665 /sys/class/rfkill/rfkill0/state
+    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/state
+    write /sys/class/rfkill/rfkill0/state 0
+
+    # GPIO pin
+    chown root system /sys/class/gpio/gpio147/value
+    chmod 0666 /sys/class/gpio/gpio147/value
+
+    chown root system /sys/class/gpio/gpio148/value
+    chmod 0666 /sys/class/gpio/gpio148/value
+
+    chown root system /sys/class/gpio/gpio149/value
+    chmod 0666 /sys/class/gpio/gpio149/value
+
+    chown root system /sys/class/gpio/gpio154/value
+    chmod 0666 /sys/class/gpio/gpio154/value
+
+    chown root system /sys/class/gpio/gpio160/value
+    chmod 0666 /sys/class/gpio/gpio160/value
+
+    # Prepare for RIL
+    # setprop gsm.ril.delay 15
+    # setprop ro.ril.wake_lock_timeout 300
+
+	# Enable adb security for JB4.2.2
+	setprop ro.adb.secure 1
+
+    # Set rotation to 270 to cofigure as portrait mode
+    setprop ro.sf.hwrotation 0
+
+    # Set the density to 160dpi, default 128dpi is not good
+    setprop ro.sf.lcd_density 120
+
+    # Set extsd access permission
+    setprop persist.sampling_profiler 1
+
+# change for FSL specific service
+    chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    chown root system /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq
+    chmod 0440 /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq
+    chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies
+    chown root system /sys/devices/system/cpu/cpu0/online
+    chmod 0664 /sys/devices/system/cpu/cpu0/online
+    chown root system /sys/devices/system/cpu/cpu1/online
+    chmod 0664 /sys/devices/system/cpu/cpu1/online
+    chown root system /sys/devices/system/cpu/cpu2/online
+    chmod 0664 /sys/devices/system/cpu/cpu2/online
+    chown root system /sys/devices/system/cpu/cpu3/online
+    chmod 0664 /sys/devices/system/cpu/cpu3/online
 
     #pico-imx6 external gpio
+    chown root system /sys/class/edm/gpio/GPIO_P24/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_P24/direction
+    chown root system /sys/class/edm/gpio/GPIO_P24/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_P24/value
+
+    chown root system /sys/class/edm/gpio/GPIO_P25/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_P25/direction
+    chown root system /sys/class/edm/gpio/GPIO_P25/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_P25/value
+
+    chown root system /sys/class/edm/gpio/GPIO_P26/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_P26/direction
+    chown root system /sys/class/edm/gpio/GPIO_P26/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_P26/value
+
+    chown root system /sys/class/edm/gpio/GPIO_P28/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_P28/direction
+    chown root system /sys/class/edm/gpio/GPIO_P28/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_P28/value
+
+    chown root system /sys/class/edm/gpio/GPIO_P30/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_P30/direction
+    chown root system /sys/class/edm/gpio/GPIO_P30/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_P30/value
+
+    chown root system /sys/class/edm/gpio/GPIO_P32/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_P32/direction
+    chown root system /sys/class/edm/gpio/GPIO_P32/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_P32/value
+
+    chown root system /sys/class/edm/gpio/GPIO_P34/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_P34/direction
+    chown root system /sys/class/edm/gpio/GPIO_P34/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_P34/value
+
+    chown root system /sys/class/edm/gpio/GPIO_P42/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_P42/direction
+    chown root system /sys/class/edm/gpio/GPIO_P42/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_P42/value
+
+    chown root system /sys/class/edm/gpio/GPIO_P44/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_P44/direction
+    chown root system /sys/class/edm/gpio/GPIO_P44/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_P44/value
+
+    chown root system /sys/class/edm/gpio/GPIO_P48/direction
+    chmod 0666 /sys/class/edm/gpio/GPIO_P48/direction
+    chown root system /sys/class/edm/gpio/GPIO_P48/value
+    chmod 0666 /sys/class/edm/gpio/GPIO_P48/value
+
     chown root system /sys/class/edm/gpio/GPIO_EXP0/direction
     chmod 0666 /sys/class/edm/gpio/GPIO_EXP0/direction
     chown root system /sys/class/edm/gpio/GPIO_EXP0/value
@@ -104,63 +229,21 @@ on boot
     chown root system /sys/class/edm/gpio/GPIO_EXP5/value
     chmod 0666 /sys/class/edm/gpio/GPIO_EXP5/value
 
-    # BT reset pin
-    chown root system /sys/class/gpio/gpio204/value
-    chmod 0666 /sys/class/gpio/gpio204/value
-
-    # bluetooth uart
-    chown bluetooth net_bt_stack /dev/ttymxc1
-    chmod 0666 /dev/ttymxc1
-
-    # serial uart
-    chown root system /dev/ttymxc2
-    chmod 0666 /dev/ttymxc2
-
-    # Prepare for RIL
-    setprop gsm.ril.delay 15
-    setprop ro.ril.wake_lock_timeout 300
-
-
-#  Enable adb security for JB4.2.2
-    setprop ro.adb.secure 1
-
-    # Set rotation to 270 to cofigure as portrait mode
-    setprop ro.sf.hwrotation 0
-
-    # Set the density to 160dpi, default 128dpi is not good
-    setprop ro.sf.lcd_density 160
-
-    # Set extsd access permission
-    setprop persist.sampling_profiler 1
-
-# change for FSL specific service
-    chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-    chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
-    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
-    chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-    chown root system /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq
-    chmod 0440 /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq
-    chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies
-    chown root system /sys/devices/system/cpu/cpu0/online
-    chmod 0664 /sys/devices/system/cpu/cpu0/online
-    chown root system /sys/devices/system/cpu/cpu1/online
-    chmod 0664 /sys/devices/system/cpu/cpu1/online
-    chown root system /sys/devices/system/cpu/cpu2/online
-    chmod 0664 /sys/devices/system/cpu/cpu2/online
-    chown root system /sys/devices/system/cpu/cpu3/online
-    chmod 0664 /sys/devices/system/cpu/cpu3/online
+    # Set tracefs permission to 755
+    chmod 0755 /sys/kernel/debug/tracing
 
     # prepare for ril
-    setprop gsm.ril.delay 15
-    setprop ro.ril.wake_lock_timeout 300
+    # setprop gsm.ril.delay 15
+    # setprop ro.ril.wake_lock_timeout 300
 
     # Default backlight device
-    setprop hw.backlight.dev "backlight_lvds"
+    # setprop hw.backlight.dev "backlight_lvds"
+    setprop hw.backlight.dev "backlight_lcd"
     # Chmod/chown FSL specific sys entry
     chown system system /sys/class/backlight/backlight_lvds/brightness
     chmod 0660 /sys/class/backlight/backlight_lvds/brightness
+    chown system system /sys/class/backlight/backlight_lcd/brightness
+    chmod 0660 /sys/class/backlight/backlight_lcd/brightness
 
     # Set light sensor sysfs path and light sensor threshold lux value
     setprop ro.hardware.lightsensor "/sys/class/i2c-dev/i2c-2/device/2-0044/"
@@ -176,6 +259,18 @@ on boot
     service watchdogd /sbin/watchdogd 10 20
     class core
     seclabel u:r:watchdogd:s0
+
+
+on charger
+    # Enable Power modes and set the CPU Freq Sampling rates
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "powersave"
+    write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 90
+    write /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate 50000
+    write /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy 1
+    write /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor 4
+    write /sys/devices/system/cpu/cpu1/online 0
+    write /sys/devices/system/cpu/cpu2/online 0
+    write /sys/devices/system/cpu/cpu3/online 0
 
 on property:sys.boot_completed=1
 # Set default CPU frequency governor
@@ -235,28 +330,31 @@ service wpa_supplicant /system/bin/wpa_supplicant \
 
 # magd daemon
 service magd /system/bin/magd
-    class late_start
-    seclabel u:r:sensors:s0
-    user system
-    group input
-    oneshot
+	class late_start
+	seclabel u:r:sensors:s0
+	user system
+	group input
+	oneshot
+
+service charger /charger
+    class charger
 
 service dhcpcd_wlan0 /system/bin/dhcpcd -aABDKL
     class main
     disabled
     oneshot
 
-service dhcpcd_p2p /system/bin/dhcpcd -aABKL
+service dhcpcd_p2p /system/bin/dhcpcd -aABKL p2p-wlan0-0
     class main
     disabled
     oneshot
 
-service dhcpcd_eth0 /system/bin/dhcpcd -ABKL
+service dhcpcd_eth0 /system/bin/dhcpcd -ABKL eth0
     class main
     disabled
     oneshot
 
-service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
+service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL bt-pan
     class main
     disabled
     oneshot
@@ -271,12 +369,12 @@ service iprenew_p2p /system/bin/dhcpcd -n
     disabled
     oneshot
 
-service iprenew_eth0 /system/bin/dhcpcd -n
+service iprenew_eth0 /system/bin/dhcpcd -n eth0
     class main
     disabled
     oneshot
 
-service iprenew_bt-pan /system/bin/dhcpcd -n
+service iprenew_bt-pan /system/bin/dhcpcd -n bt-pan
     class main
     disabled
     oneshot
@@ -295,13 +393,13 @@ service rtl_hostapd /system/bin/hostapd /data/misc/wifi/hostapd.conf
     oneshot
     disabled
 
-service ril-daemon /system/bin/rild
-    class main
-    socket rild stream 660 root radio
-   socket rild-debug stream 660 radio system
-    socket rild-ppp stream 660 radio system
-    user root
-    group radio cache inet misc audio sdcard_rw log
+# service ril-daemon /system/bin/rild
+#    class main
+#    socket rild stream 660 root radio
+#	socket rild-debug stream 660 radio system
+#    socket rild-ppp stream 660 radio system
+#    user root
+#    group radio cache inet misc audio sdcard_rw log
 
 service pppd_gprs /etc/ppp/init.gprs-pppd
     class main
@@ -310,21 +408,33 @@ service pppd_gprs /etc/ppp/init.gprs-pppd
     disabled
     oneshot
 
-service bt_reset /system/bin/bt_reset start
-    class late_start
-    oneshot
+# service bt_reset /system/bin/sh /system/bin/bt_reset start
+#    class late_start
+#    user root
+#    oneshot
+#    seclabel u:r:bt_reset:s0
 
-service bd_mac /system/bin/bd_mac_gen start
+service bd_mac /system/bin/sh /system/bin/bd_mac_gen start
     class late_start
+    user root
     oneshot
+    seclabel u:r:bd_mac:s0
 
-service eth_updown /system/bin/eth_updown start
+service eth_updown /system/bin/sh /system/bin/eth_updown start
     class late_start
+    user root
     oneshot
+    seclabel u:r:eth_updown:s0
 
 on fs
 # mount ext4 partitions
     mount_all /fstab.freescale
+
+    # Update dm-verity state and set partition.*.verified properties
+    verity_update_state
+
+on verity-logging
+    exec u:r:slideshow:s0 -- /sbin/slideshow warning/verity_red_1 warning/verity_red_2
 
 on post-fs
     # Turn on swap
@@ -333,3 +443,5 @@ on post-fs
     # Swap in only 1 page at a time
     write /proc/sys/vm/page-cluster 0
 
+    # This may have been created by the recovery system with the wrong context.
+    restorecon /cache/recovery

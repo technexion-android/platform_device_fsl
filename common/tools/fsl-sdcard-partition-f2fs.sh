@@ -5,13 +5,16 @@
 
 # partition size in MB
 BOOTLOAD_RESERVE=8
-BOOT_ROM_SIZE=16
-SYSTEM_ROM_SIZE=800
+BOOT_ROM_SIZE=32
+SYSTEM_ROM_SIZE=1536
 CACHE_SIZE=512
-RECOVERY_ROM_SIZE=16
+RECOVERY_ROM_SIZE=32
 DEVICE_SIZE=8
-MISC_SIZE=6
+MISC_SIZE=4
 DATAFOOTER_SIZE=2
+METADATA_SIZE=2
+FBMISC_SIZE=1
+PRESISTDATA_SIZE=1
 
 help() {
 
@@ -59,14 +62,22 @@ if [ ! -e ${node} ]; then
 	exit
 fi
 
+sfdisk_version=`sfdisk -v | awk '{print $4}' | awk -F '.' '{print $2}'`
+if [ $sfdisk_version -ge "26" ]; then
+    opt_unit=""
+    unit_mb="M"
+else
+    echo "Please update your sfdisk version to 2.26 or later version"
+    exit
+fi
 
 # call sfdisk to create partition table
 # get total card size
-seprate=40
+seprate=100
 total_size=`sfdisk -s ${node}`
 total_size=`expr ${total_size} / 1024`
 boot_rom_sizeb=`expr ${BOOT_ROM_SIZE} + ${BOOTLOAD_RESERVE}`
-extend_size=`expr ${SYSTEM_ROM_SIZE} + ${CACHE_SIZE} + ${DEVICE_SIZE} + ${MISC_SIZE} + ${DATAFOOTER_SIZE} + ${seprate}`
+extend_size=`expr ${SYSTEM_ROM_SIZE} + ${CACHE_SIZE} + ${DEVICE_SIZE} + ${MISC_SIZE} + ${FBMISC_SIZE} + ${PRESISTDATA_SIZE} + ${DATAFOOTER_SIZE} + ${METADATA_SIZE} +${seprate}`
 data_size=`expr ${total_size} - ${boot_rom_sizeb} - ${RECOVERY_ROM_SIZE} - ${extend_size} `
 
 # create partitions
@@ -80,6 +91,9 @@ DATA   : ${data_size}MB
 MISC   : ${MISC_SIZE}MB
 DEVICE : ${DEVICE_SIZE}MB
 DATAFOOTER : ${DATAFOOTER_SIZE}MB
+METADATA : ${METADATA_SIZE}MB
+FBMISC   : ${FBMISC_SIZE}MB
+PRESISTDATA : ${PRESISTDATA_SIZE}MB
 EOF
 exit
 fi
@@ -104,13 +118,13 @@ if [ "${flash_images}" -eq "1" ]; then
     echo "boot image: ${bootimage_file}"
     echo "recovery image: ${recoveryimage_file}"
     echo "system image: ${systemimage_file}"
-    dd if=/dev/zero of=${node} bs=1k seek=384 count=129
-    dd if=${bootimage_file} of=${node}${part}1
-    dd if=${recoveryimage_file} of=${node}${part}2
+    dd if=/dev/zero of=${node} bs=1k seek=${bootloader_offset} conv=fsync count=800
+    dd if=${bootloader_file} of=${node} bs=1k seek=${bootloader_offset} conv=fsync
+    dd if=${bootimage_file} of=${node}${part}1 conv=fsync
+    dd if=${recoveryimage_file} of=${node}${part}2 conv=fsync
     simg2img ${systemimage_file} ${systemimage_raw_file}
-    dd if=${systemimage_raw_file} of=${node}${part}5
+    dd if=${systemimage_raw_file} of=${node}${part}5 conv=fsync
     rm ${systemimage_raw_file}
-    dd if=${bootloader_file} of=${node} bs=1k seek=1
     sync
 fi
 }
@@ -121,16 +135,19 @@ if [[ "${not_partition}" -eq "1" && "${flash_images}" -eq "1" ]] ; then
 fi
 
 
-sfdisk --force -uM ${node} << EOF
-,${boot_rom_sizeb},83
-,${RECOVERY_ROM_SIZE},83
-,${extend_size},5
-,${data_size},83
-,${SYSTEM_ROM_SIZE},83
-,${CACHE_SIZE},83
-,${DEVICE_SIZE},83
-,${MISC_SIZE},83
-,${DATAFOOTER_SIZE},83
+sfdisk --force ${opt_unit} ${node} << EOF
+,${boot_rom_sizeb}${unit_mb},83
+,${RECOVERY_ROM_SIZE}${unit_mb},83
+,${extend_size}${unit_mb},5
+,${data_size}${unit_mb},83
+,${SYSTEM_ROM_SIZE}${unit_mb},83
+,${CACHE_SIZE}${unit_mb},83
+,${DEVICE_SIZE}${unit_mb},83
+,${MISC_SIZE}${unit_mb},83
+,${DATAFOOTER_SIZE}${unit_mb},83
+,${METADATA_SIZE}${unit_mb},83
+,${FBMISC_SIZE}${unit_mb},83
+,${PRESISTDATA_SIZE}${unit_mb},83
 EOF
 
 # adjust the partition reserve for bootloader.
@@ -138,9 +155,16 @@ EOF
 # to have 8M space.
 # the minimal sylinder for some card is 4M, maybe some was 8M
 # just 8M for some big eMMC 's sylinder
-sfdisk --force -uM ${node} -N1 << EOF
-${BOOTLOAD_RESERVE},${BOOT_ROM_SIZE},83
+sfdisk --force ${opt_unit} ${node} -N1 << EOF
+${BOOTLOAD_RESERVE}${unit_mb},${BOOT_ROM_SIZE}${unit_mb},83
 EOF
+
+# sleep 5s after re-partition
+# umount the partition which is mounted automatically.
+# sync the mbr table with hdparm
+sleep 5
+for i in `cat /proc/mounts | grep "${node}" | awk '{print $2}'`; do umount $i; done
+hdparm -z ${node}
 
 # format the SDCARD/DATA/CACHE partition
 part=""

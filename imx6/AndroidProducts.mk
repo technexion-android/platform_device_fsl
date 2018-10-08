@@ -33,8 +33,8 @@ PRODUCT_MAKEFILES := \
   $(LOCAL_DIR)/sabresd_6sx.mk \
   $(LOCAL_DIR)/sabreauto_6sx.mk \
   $(LOCAL_DIR)/evk_6ul.mk \
-  $(LOCAL_DIR)/edm1cf_6dq.mk \
+  $(LOCAL_DIR)/wandboard_pmic.mk \
   $(LOCAL_DIR)/edm1cf_pmic_6dq.mk \
   $(LOCAL_DIR)/pico_6dq.mk \
   $(LOCAL_DIR)/tek3_6dq.mk \
-  $(LOCAL_DIR)/tep5_6dq.mk \
+  $(LOCAL_DIR)/tep5_6dq.mk

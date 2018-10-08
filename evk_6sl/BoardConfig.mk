@@ -5,7 +5,6 @@
 include device/fsl/imx6/soc/imx6sl.mk
 include device/fsl/evk_6sl/build_id.mk
 include device/fsl/imx6/BoardConfigCommon.mk
--include device/fsl-proprietary/gpu-viv/fsl-gpu.mk
 # evk_mx6sl default target for EXT4
 BUILD_TARGET_FS ?= ext4
 include device/fsl/imx6/imx6_target_fs.mk
@@ -29,8 +28,12 @@ PRODUCT_COPY_FILES +=	\
 endif # BUILD_TARGET_FS
 endif # BUILD_TARGET_FS
 
+ADDITIONAL_BUILD_PROPERTIES += \
+                       ro.internel.storage_size=/sys/block/mmcblk1/size
 TARGET_BOOTLOADER_BOARD_NAME := EVK
 PRODUCT_MODEL := EVK_MX6SL
+
+TARGET_BOOTLOADER_POSTFIX := imx
 
 TARGET_RELEASETOOLS_EXTENSIONS := device/fsl/imx6
 # UNITE is a virtual device.
@@ -79,6 +82,7 @@ DM_VERITY_RUNTIME_CONFIG := true
 USE_ION_ALLOCATOR := false
 USE_GPU_ALLOCATOR := true
 
+PHONE_MODULE_INCLUDE := flase
 # camera hal v1
 IMX_CAMERA_HAL_V1 := true
 TARGET_VSYNC_DIRECT_REFRESH := true
@@ -91,3 +95,6 @@ BOARD_SEPOLICY_DIRS := \
        device/fsl/imx6/sepolicy \
        device/fsl/evk_6sl/sepolicy
 
+BOARD_SECCOMP_POLICY += device/fsl/evk_6sl/seccomp
+
+TARGET_BOARD_KERNEL_HEADERS := device/fsl/common/kernel-headers

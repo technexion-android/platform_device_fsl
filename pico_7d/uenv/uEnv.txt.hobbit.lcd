@@ -1,2 +1,6 @@
 baseboard=hobbit
-console=ttymxc4,115200 init=/init androidboot.hardware=freescale cma=192M vmalloc=300M androidboot.selinux=disabled androidboot.dm_verity=disabled 
+displayinfo=video=mxcfb0:dev=lcd,800x480@60,if=RGB24,bpp=16 video=mxcfb1:off
+androidbootarg=androidboot.console=ttymxc4 androidboot.hardware=freescale vmalloc=300M androidboot.selinux=permissive consoleblank=0 cma=256M androidboot.serialno=123456789 galcore.gpuProfiler=1 androidboot.dm_verity=disabled
+mmcargs=setenv bootargs console=ttymxc4,115200 init=/init ${displayinfo} ${androidbootarg}
+bootcmd_mmc=run loadramdisk;run loadimage;
+uenvcmd=run bootcmd_mmc

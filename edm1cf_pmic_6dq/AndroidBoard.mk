@@ -5,3 +5,4 @@ ifeq ($(PREBUILT_FSL_IMX_CODEC),true)
 endif
 include device/fsl-proprietary/media-profile/media-profile.mk
 include device/fsl-proprietary/sensor/fsl-sensor.mk
+
