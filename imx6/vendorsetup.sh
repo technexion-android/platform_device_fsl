@@ -10,3 +10,6 @@ add_lunch_combo sabresd_6sx-eng
 add_lunch_combo sabresd_6sx-userdebug
 add_lunch_combo sabreauto_6sx-eng
 add_lunch_combo sabreauto_6sx-userdebug
+add_lunch_combo edm1cf_pmic_6dq-eng
+add_lunch_combo edm1cf_pmic_6dq-user
+add_lunch_combo edm1cf_pmic_6dq-userdebug
