@@ -1,0 +1,2 @@
+type eth_updown, domain;
+type eth_updown_exec, exec_type, file_type;

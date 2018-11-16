@@ -47,6 +47,33 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += freescale-extended         \
 		    freescale-extended.xml
 
+# Broadcom firmwares
+PRODUCT_PACKAGES += \
+	Type_ZP.hcd   	\
+	bt_vendor.conf	\
+	bcmdhd.cal		\
+	fw_bcmdhd.bin	\
+	fw_bcmdhd_apsta.bin
+
+# Broadcom BCM4339 extended binary
+PRODUCT_PACKAGES += \
+    bcmdhd.SN8000.OOB.cal     \
+    bcmdhd.SN8000.SDIO.cal    \
+    sn_fw_bcmdhd_apsta.bin    \
+    sn_fw_bcmdhd.bin          \
+    sn_fw_bcmdhd_mfgtest.bin  \
+    1bw_fw_bcmdhd.bin         \
+    1bw_fw_bcmdhd_mfgtest.bin \
+    BCM43341B0.1BW.hcd        \
+    bcmdhd.1BW.OOB.cal        \
+    bcmdhd.1BW.SDIO.cal       \
+    1dx_fw_bcmdhd.bin         \
+    1dx_fw_bcmdhd_mfgtest.bin \
+    BCM43430A1.1DX.hcd        \
+    bcmdhd.1DX.OOB.cal        \
+    bcmdhd.1DX.SDIO.cal       \
+    wl
+ 
 # Debug utils
 PRODUCT_PACKAGES += \
 	taskset					\
@@ -320,6 +347,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES +=	\
 	device/fsl/common/input/Dell_Dell_USB_Keyboard.kl:system/usr/keylayout/Dell_Dell_USB_Keyboard.kl \
 	device/fsl/common/input/Dell_Dell_USB_Keyboard.idc:system/usr/idc/Dell_Dell_USB_Keyboard.idc \
+	device/fsl/common/input/Dell_Dell_USB_Entry_Keyboard.idc:system/usr/idc/Dell_Dell_USB_Entry_Keyboard.idc \
 	device/fsl/common/input/eGalax_Touch_Screen.idc:system/usr/idc/eGalax_Touch_Screen.idc \
 	device/fsl/common/input/eGalax_Touch_Screen.idc:system/usr/idc/HannStar_P1003_Touchscreen.idc \
 	device/fsl/common/input/eGalax_Touch_Screen.idc:system/usr/idc/Novatek_NT11003_Touch_Screen.idc \

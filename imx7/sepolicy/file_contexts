@@ -5,3 +5,4 @@
 /dev/pxp_device                 u:object_r:gpu_device:s0
 /system/bin/e2fsdroid           u:object_r:e2fs_exec:s0
 /system/bin/mke2fs              u:object_r:e2fs_exec:s0
+/system/bin/eth_updown			u:object_r:eth_updown_exec:s0
