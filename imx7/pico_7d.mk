@@ -14,7 +14,7 @@ $(shell touch device/fsl/pico_7d/fstab.freescale)
 endif
 
 # Device does not have firmware by default
-BOARD_HAS_QCA9377_WLAN_FIRMWARE := true
+BOARD_HAS_QCA9377_WLAN_FIRMWARE := false
 BOARD_HAS_BLUETOOTH_FIRMWARE := false
 
 # setup dm-verity configs.
