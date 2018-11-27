@@ -1,7 +1,6 @@
 #
 # Product-specific compile-time definitions.
 #
-
 include device/fsl/imx8/soc/pico_8m.mk
 include device/fsl/pico_8m/build_id.mk
 include device/fsl/imx8/BoardConfigCommon.mk
@@ -57,7 +56,7 @@ BOARD_HOSTAPD_PRIVATE_LIB               := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB        := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 
 BOARD_VENDOR_KERNEL_MODULES += \
-                            device/fsl/pico_8m/wifi-firmware/QCA9377/wlan.ko
+                            device/fsl/pico_8m/wifi-firmware/wlan.ko
 
 #BOARD_VENDOR_KERNEL_MODULES += \
 #                            $(KERNEL_OUT)/drivers/net/wireless/ath/ath.ko \
