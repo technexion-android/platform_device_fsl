@@ -34,3 +34,4 @@ PRODUCT_MAKEFILES := \
   $(LOCAL_DIR)/mek_8q.mk \
   $(LOCAL_DIR)/mek_8q_car.mk \
   $(LOCAL_DIR)/pico_8m.mk \
+  $(LOCAL_DIR)/pico_8m_lcd.mk \
