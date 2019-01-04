@@ -5,3 +5,6 @@ add_lunch_combo evk_7ulp-userdebug
 add_lunch_combo pico_7d-eng
 add_lunch_combo pico_7d-userdebug
 add_lunch_combo pico_7d-user
+add_lunch_combo tep1_7d-eng
+add_lunch_combo tep1_7d-userdebug
+add_lunch_combo tep1_7d-user
