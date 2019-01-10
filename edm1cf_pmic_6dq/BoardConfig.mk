@@ -113,7 +113,8 @@ IMX_CAMERA_HAL_V3 := true
 IMX6_CONSUMER_IR_HAL := false
 
 TARGET_BOOTLOADER_CONFIG := edm-cf-imx6_defconfig
-TARGET_BOARD_DTS_CONFIG := imx6dl-edm1_fairy.dtb imx6q-edm1_fairy.dtb imx6qp-edm1_fairy.dtb imx6dl-edm1_tc0700.dtb imx6q-edm1_tc0700.dtb imx6qp-edm1_tc0700.dtb
+TARGET_BOARD_DTS_CONFIG :=	imx6dl-edm1_fairy.dtb imx6q-edm1_fairy.dtb imx6qp-edm1_fairy.dtb imx6dl-edm1_tc0700.dtb imx6q-edm1_tc0700.dtb imx6qp-edm1_tc0700.dtb \
+							imx6dl-edm1_tc1000.dtb imx6q-edm1_tc1000.dtb imx6qp-edm1_tc1000.dtb
 
 BOARD_SEPOLICY_DIRS := \
        device/fsl/imx6/sepolicy \
