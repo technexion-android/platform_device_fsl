@@ -27,8 +27,9 @@ endif # BUILD_TARGET_FS
 # Support gpt
 BOARD_BPT_INPUT_FILES += device/fsl/common/partition/device-partitions-7GB-ab.bpt
 ADDITION_BPT_PARTITION = partition-table-7GB:device/fsl/common/partition/device-partitions-7GB-ab.bpt \
-						 partition-table-13GB:device/fsl/common/partition/device-partitions-13GB-ab.bpt \
-                         partition-table-28GB:device/fsl/common/partition/device-partitions-28GB-ab.bpt
+             partition-table-13GB:device/fsl/common/partition/device-partitions-13GB-ab.bpt \
+             partition-table-14GB:device/fsl/common/partition/device-partitions-13GB-ab.bpt \
+             partition-table-28GB:device/fsl/common/partition/device-partitions-28GB-ab.bpt
 
 # Vendor Interface manifest and compatibility
 DEVICE_MANIFEST_FILE := device/fsl/pico_8m/manifest.xml
