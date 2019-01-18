@@ -1,5 +1,5 @@
 baseboard=dwarf
-displayinfo=video=mxcfb0:dev=lcd,800x480@60,if=RGB24,bpp=16 video=mxcfb1:off
+displayinfo=video=mxcfb0:dev=lcd,800x480@60,if=RGB24,bpp=24 video=mxcfb1:off
 androidbootarg=androidboot.console=ttymxc4 consoleblank=0 androidboot.hardware=freescale vmalloc=128M androidboot.selinux=permissive cma=128M androidboot.serialno=123456789 galcore.gpuProfiler=1 androidboot.dm_verity=disabled galcore.contiguousSize=33554432
 mmcargs=setenv bootargs console=ttymxc4,115200 init=/init ${displayinfo} ${androidbootarg}
 bootcmd_mmc=run loadramdisk;run loadimage;
