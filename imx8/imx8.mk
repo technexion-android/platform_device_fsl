@@ -106,6 +106,16 @@ PRODUCT_PACKAGES += \
 	libdrmpassthruplugin        		\
 	libfwdlockengine
 
+# TN customized apps and exec
+PRODUCT_PACKAGES += \
+	UART-Test \
+	i2cdetect \
+	i2cdump \
+	i2cget \
+	i2cset \
+	candump \
+	cansend
+
 # Omx related libs, please align to device/fsl/proprietary/omx/fsl-omx.mk
 omx_libs := \
 	core_register					\
