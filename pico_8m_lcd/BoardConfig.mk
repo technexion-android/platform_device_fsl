@@ -35,7 +35,7 @@ ADDITION_BPT_PARTITION = partition-table-7GB:device/fsl/common/partition/device-
 DEVICE_MANIFEST_FILE := device/fsl/pico_8m_lcd/manifest.xml
 DEVICE_MATRIX_FILE := device/fsl/pico_8m_lcd/compatibility_matrix.xml
 
-TARGET_BOOTLOADER_BOARD_NAME := EVK
+TARGET_BOOTLOADER_BOARD_NAME := PICO-8M-LCD
 
 PRODUCT_MODEL := pico-pi-8m
 
