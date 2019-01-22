@@ -19,15 +19,7 @@
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
 
-#define BTM_DEF_LOCAL_NAME "iMX8"
+#define BTM_DEF_LOCAL_NAME "PICO-8M"
 
-// Disables Interleave scan
-#define BTA_HOST_INTERLEAVE_SEARCH  FALSE
-// skips conn update at conn completion
-#define BTA_BLE_SKIP_CONN_UPD  TRUE
-// Disables read remote device feature
-#define BTA_SKIP_BLE_READ_REMOTE_FEAT TRUE
-
-//Enable A2DPSink AVRCPController
-#define BTA_AV_SINK_INCLUDED TRUE
+#define BLE_VND_INCLUDED TRUE
 #endif
