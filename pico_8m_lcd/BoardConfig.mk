@@ -100,18 +100,19 @@ endif
 BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 earlycon=imxuart,0x30860000,115200 init=/init androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale androidboot.fbTileSupport=enable androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware
 
 # Qcom 1CQ(QCA6174) BT
-# BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/fsl/pico_8m_lcd/bluetooth
-# BOARD_HAVE_BLUETOOTH_QCOM := true
-# BOARD_HAS_QCA_BT_ROME := true
-# BOARD_HAVE_BLUETOOTH_BLUEZ := false
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/fsl/pico_8m_lcd/bluetooth
+BOARD_HAVE_BLUETOOTH_QCOM := true
+BOARD_HAS_QCA_BT_ROME := true
+BOARD_SUPPORTS_BLE_VND : true
+BOARD_HAVE_BLUETOOTH_BLUEZ := false
 # QCOM_BT_USE_SIBS := true
 # ifeq ($(QCOM_BT_USE_SIBS), true)
 #    WCNSS_FILTER_USES_SIBS := true
 # endif
 
 # Broadcom BCM4339 BT
-BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/fsl/pico_8m_lcd/bluetooth
+# BOARD_HAVE_BLUETOOTH_BCM := true
+# BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/fsl/pico_8m_lcd/bluetooth
 
 ifeq ($(TARGET_USERIMAGES_USE_UBIFS),true)
 ifeq ($(TARGET_USERIMAGES_USE_EXT4),true)
