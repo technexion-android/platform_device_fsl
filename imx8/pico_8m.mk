@@ -183,7 +183,7 @@ ifneq (,$(wildcard device/fsl/pico_8m/wifi-firmware/QCA9377/otp30.bin))
 PRODUCT_COPY_FILES += \
 	device/fsl/pico_8m/wifi-firmware/QCA9377/otp30.bin:vendor/lib/firmware/otp30.bin
 endif
-ifneq (,$(wildcard device/fsl/pico_8m/wifi-firmware/qca9377/qwlan30.bin))
+ifneq (,$(wildcard device/fsl/pico_8m/wifi-firmware/QCA9377/qwlan30.bin))
 PRODUCT_COPY_FILES += \
 	device/fsl/pico_8m/wifi-firmware/QCA9377/qwlan30.bin:vendor/lib/firmware/qwlan30.bin
 endif
