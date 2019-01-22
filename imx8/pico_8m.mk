@@ -95,6 +95,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.renderscript@1.0-impl
 
+BOARD_CUSTOM_BT_CONFIG := device/fsl/pico_8m/bluetooth/libbt_vnd.conf
+
 PRODUCT_PACKAGES += \
         libEGL_VIVANTE \
         libGLESv1_CM_VIVANTE \
