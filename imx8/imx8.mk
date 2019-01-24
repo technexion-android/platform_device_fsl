@@ -114,7 +114,8 @@ PRODUCT_PACKAGES += \
 	i2cget \
 	i2cset \
 	candump \
-	cansend
+	cansend \
+	Termux
 
 # Omx related libs, please align to device/fsl/proprietary/omx/fsl-omx.mk
 omx_libs := \
