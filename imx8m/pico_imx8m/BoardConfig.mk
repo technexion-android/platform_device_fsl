@@ -127,7 +127,7 @@ endif
 
 BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_imx8m/dtbo-imx8mq.img
 TARGET_BOARD_DTS_CONFIG ?= imx8mq:pico-8mq.dtb
-TARGET_BOOTLOADER_CONFIG := pico-8mq_android_defconfig
+TARGET_BOOTLOADER_CONFIG := pico-imx8m_android_defconfig
 
 TARGET_KERNEL_DEFCONFIG := tn_imx8_android_defconfig
 # TARGET_KERNEL_ADDITION_DEFCONF ?= android_addition_defconfig
