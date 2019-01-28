@@ -1,11 +1,11 @@
 # This is a FSL Android Reference Design platform based on i.MX8MQ board
 # It will inherit from FSL core product which in turn inherit from Google generic
 
-IMX_DEVICE_PATH := device/fsl/imx8m/pico_8mq
+IMX_DEVICE_PATH := device/fsl/imx8m/pico_imx8m
 
 PRODUCT_IMX_DRM := true
 
-# copy drm specific files before inherit pico_8mq.mk, otherwise copy is ignored
+# copy drm specific files before inherit pico_imx8m.mk, otherwise copy is ignored
 PRODUCT_COPY_FILES += \
 	$(IMX_DEVICE_PATH)/audio_policy_configuration_drm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
 	$(IMX_DEVICE_PATH)/init.imx8mq.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.freescale.imx8mq.main.rc \
@@ -14,13 +14,13 @@ PRODUCT_COPY_FILES += \
 
 
 $(call inherit-product, $(TOPDIR)device/fsl/imx8m/optee-packages.mk)
-$(call inherit-product, $(TOPDIR)$(IMX_DEVICE_PATH)/pico_8mq.mk)
+$(call inherit-product, $(TOPDIR)$(IMX_DEVICE_PATH)/pico_imx8m.mk)
 
 TARGET_KERNEL_DEFCONFIG := android_defconfig
 
 
 # Overrides
-PRODUCT_NAME := pico_8mq_drm
+PRODUCT_NAME := pico_imx8m_drm
 
 CFG_DRM_SECURE_DATA_PATH ?= y
 CFG_RDC_SECURE_DATA_PATH ?= y

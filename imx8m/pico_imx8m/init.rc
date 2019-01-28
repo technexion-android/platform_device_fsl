@@ -44,7 +44,7 @@ on early-boot
     setprop ro.lmk.use_minfree_levels true
 
     # Set the host name which used in console
-    export HOSTNAME pico_8mq
+    export HOSTNAME pico_imx8m
 
     # Set permission for IIM node
     symlink /dev/mxs_viim /dev/mxc_mem

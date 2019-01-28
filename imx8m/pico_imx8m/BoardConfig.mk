@@ -27,7 +27,7 @@ TARGET_OPENCL_2D := true
 # Product-specific compile-time definitions.
 #
 
-IMX_DEVICE_PATH := device/fsl/imx8m/pico_8mq
+IMX_DEVICE_PATH := device/fsl/imx8m/pico_imx8m
 
 include $(IMX_DEVICE_PATH)/build_id.mk
 include device/fsl/imx8m/BoardConfigCommon.mk
@@ -50,9 +50,9 @@ ADDITION_BPT_PARTITION = partition-table-7GB:device/fsl/common/partition/device-
 DEVICE_MANIFEST_FILE := $(IMX_DEVICE_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := $(IMX_DEVICE_PATH)/compatibility_matrix.xml
 
-TARGET_BOOTLOADER_BOARD_NAME := EVK
+TARGET_BOOTLOADER_BOARD_NAME := PICO-IMX8M
 
-PRODUCT_MODEL := EVK_8MQ
+PRODUCT_MODEL := PICO-IMX8M
 
 TARGET_BOOTLOADER_POSTFIX := bin
 
@@ -125,7 +125,7 @@ $(error "TARGET_USERIMAGES_USE_UBIFS and TARGET_USERIMAGES_USE_EXT4 config open 
 endif
 endif
 
-BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_8mq/dtbo-imx8mq.img
+BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_imx8m/dtbo-imx8mq.img
 TARGET_BOARD_DTS_CONFIG ?= imx8mq:pico-8mq.dtb
 TARGET_BOOTLOADER_CONFIG := pico-8mq_android_defconfig
 

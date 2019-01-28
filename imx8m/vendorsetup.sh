@@ -8,7 +8,7 @@ add_lunch_combo evk_8mm_drm-eng
 add_lunch_combo evk_8mm_drm-userdebug
 add_lunch_combo aiy_8mq-eng
 add_lunch_combo aiy_8mq-userdebug
-add_lunch_combo pico_8mq-eng
-add_lunch_combo pico_8mq-userdebug
-add_lunch_combo pico_8mq_drm-eng
-add_lunch_combo pico_8mq_drm-userdebug
+add_lunch_combo pico_imx8m-eng
+add_lunch_combo pico_imx8m-userdebug
+add_lunch_combo pico_imx8m_drm-eng
+add_lunch_combo pico_imx8m_drm-userdebug
