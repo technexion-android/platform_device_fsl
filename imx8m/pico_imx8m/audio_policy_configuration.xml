@@ -20,10 +20,10 @@
     <modules>
         <module name="primary" halVersion="2.0">
             <attachedDevices>
-                <item>Speaker</item>
+                <item>HDMI Out</item>
                 <item>Built-In Mic</item>
             </attachedDevices>
-            <defaultOutputDevice>Speaker</defaultOutputDevice>
+            <defaultOutputDevice>HDMI Out</defaultOutputDevice>
             <mixPorts>
                 <mixPort name="primary output" role="source" flags="AUDIO_OUTPUT_FLAG_PRIMARY">
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
@@ -31,15 +31,11 @@
                 </mixPort>
                 <mixPort name="hdmi output" role="source" flags="AUDIO_OUTPUT_FLAG_DIRECT">
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
-                             samplingRates="32000,44100,48000,88200,96000,176400,192000" channelMasks="AUDIO_CHANNEL_NONE"/>
+                             samplingRates="32000,44100,48000,88200,96000,176400,192000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
                 </mixPort>
                 <mixPort name="esai output" role="source" flags="AUDIO_OUTPUT_FLAG_DIRECT">
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                              samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_5POINT1,AUDIO_CHANNEL_OUT_7POINT1"/>
-                </mixPort>
-                <mixPort name="dsd output" role="source" flags="AUDIO_OUTPUT_FLAG_DIRECT|AUDIO_OUTPUT_FLAG_COMPRESS_OFFLOAD">
-                    <profile name="" format="AUDIO_FORMAT_DSD"
-                             samplingRates="2822400,5644800,11289600,22579200" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
                 </mixPort>
                 <mixPort name="primary input" role="sink">
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
@@ -62,7 +58,7 @@
             </devicePorts>
             <routes>
                 <route type="mix" sink="Speaker"
-                       sources="dsd output,primary output"/>
+                       sources="primary output"/>
                 <route type="mix" sink="Wired Headphones"
                        sources="esai output,primary output"/>
                 <route type="mix" sink="HDMI Out"
