@@ -91,10 +91,16 @@ ifeq ($(TARGET_USERIMAGES_USE_UBIFS),true)
 BOARD_KERNEL_CMDLINE +=  mtdparts=gpmi-nand:16m(bootloader),16m(bootimg),128m(recovery),-(root) gpmi_debug_init ubi.mtd=3
 endif
 
-
 # Broadcom BCM4339 BT
-BOARD_HAVE_BLUETOOTH_BCM := true
+# BOARD_HAVE_BLUETOOTH_BCM := true
+# BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/fsl/pico_6dq/bluetooth
+
+# Qcom 1CQ(QCA6174) BT
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/fsl/pico_6dq/bluetooth
+BOARD_HAVE_BLUETOOTH_QCOM := true
+BOARD_HAS_QCA_BT_ROME := true
+BOARD_SUPPORTS_BLE_VND : true
+BOARD_HAVE_BLUETOOTH_BLUEZ := false
 
 USE_ION_ALLOCATOR := true
 USE_GPU_ALLOCATOR := false

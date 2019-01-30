@@ -14,9 +14,7 @@ $(shell touch device/fsl/pico_6dq/fstab.freescale)
 endif
 
 # Device does not have firmware by default
-BOARD_HAS_QCA9377_WLAN_FIRMWARE := false
 BOARD_HAS_ATH10K_WLAN_FIRMWARE := false
-BOARD_HAS_BLUETOOTH_FIRMWARE := false
 
 # ethernet files
 PRODUCT_COPY_FILES += \
@@ -90,15 +88,30 @@ PRODUCT_COPY_FILES += \
 #	device/fsl/pico_6dq/wifi-firmware/ath10k_sdio.ko:system/lib/modules/ath10k_sdio.ko \
 #	device/fsl/pico_6dq/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf	\
 
-ifeq ($(BOARD_HAS_QCA9377_WLAN_FIRMWARE),true)
-# QCA9377 WiFi Firmware
-# device/fsl/pico_6dq/wifi-firmware/QCA9377/wlan_mac.bin:vendor/lib/firmware/wlan/wlan_mac.bin
+
+
+ifneq (,$(wildcard device/fsl/pico_6dq/wifi-firmware/QCA9377/wlan/cfg.dat))
 PRODUCT_COPY_FILES += \
-	device/fsl/pico_6dq/wifi-firmware/QCA9377/wlan/cfg.dat:vendor/lib/firmware/wlan/cfg.dat \
-	device/fsl/pico_6dq/wifi-firmware/QCA9377/wlan/qcom_cfg.ini:vendor/lib/firmware/wlan/qcom_cfg.ini \
-	device/fsl/pico_6dq/wifi-firmware/QCA9377/bdwlan30.bin:vendor/lib/firmware/bdwlan30.bin \
-	device/fsl/pico_6dq/wifi-firmware/QCA9377/otp30.bin:vendor/lib/firmware/otp30.bin \
-	device/fsl/pico_6dq/wifi-firmware/QCA9377/qwlan30.bin:vendor/lib/firmware/qwlan30.bin \
+	device/fsl/pico_6dq/wifi-firmware/QCA9377/wlan/cfg.dat:vendor/lib/firmware/wlan/cfg.dat
+endif
+ifneq (,$(wildcard device/fsl/pico_6dq/wifi-firmware/QCA9377/wlan/qcom_cfg.ini))
+PRODUCT_COPY_FILES += \
+	device/fsl/pico_6dq/wifi-firmware/QCA9377/wlan/qcom_cfg.ini:vendor/lib/firmware/wlan/qcom_cfg.ini
+endif
+ifneq (,$(wildcard device/fsl/pico_6dq/wifi-firmware/QCA9377/bdwlan30.bin))
+PRODUCT_COPY_FILES += \
+	device/fsl/pico_6dq/wifi-firmware/QCA9377/bdwlan30.bin:vendor/lib/firmware/bdwlan30.bin
+endif
+ifneq (,$(wildcard device/fsl/pico_6dq/wifi-firmware/QCA9377/otp30.bin))
+PRODUCT_COPY_FILES += \
+	device/fsl/pico_6dq/wifi-firmware/QCA9377/otp30.bin:vendor/lib/firmware/otp30.bin
+endif
+ifneq (,$(wildcard device/fsl/pico_6dq/wifi-firmware/QCA9377/qwlan30.bin))
+PRODUCT_COPY_FILES += \
+	device/fsl/pico_6dq/wifi-firmware/QCA9377/qwlan30.bin:vendor/lib/firmware/qwlan30.bin
+endif
+ifneq (,$(wildcard device/fsl/pico_6dq/wifi-firmware/QCA9377/utf30.bin))
+PRODUCT_COPY_FILES += \
 	device/fsl/pico_6dq/wifi-firmware/QCA9377/utf30.bin:vendor/lib/firmware/utf30.bin
 endif
 
@@ -110,12 +123,19 @@ PRODUCT_COPY_FILES += \
 	device/fsl/pico_6dq/wifi-firmware/QCA9377/hw1.0/firmware-sdio-5.bin:vendor/lib/firmware/ath10k/QCA9377/hw1.0/firmware-sdio-5.bin
 endif
 
-ifeq ($(BOARD_HAS_BLUETOOTH_FIRMWARE),true)
+# QCA9377 Bluetooth Firmware
+ifneq (,$(wildcard device/fsl/pico_6dq/bluetooth/nvm_tlv_3.2.bin))
 PRODUCT_COPY_FILES += \
-	device/fsl/pico_6dq/bluetooth/Type_ZP.hcd:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/bcm/Type_ZP.hcd 	\
-	device/fsl/pico_6dq/bluetooth/bcm43438a0.hcd:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/bcm/bcm43438a0.hcd 	\
-	device/fsl/pico_6dq/bluetooth/bcm4330.hcd:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/bcm/bcm4330.hcd
+	device/fsl/pico_6dq/bluetooth/nvm_tlv_3.2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtnv11.bin
 endif
+ifneq (,$(wildcard device/fsl/pico_6dq/bluetooth/rampatch_tlv_3.2.tlv))
+PRODUCT_COPY_FILES += \
+	device/fsl/pico_6dq/bluetooth/rampatch_tlv_3.2.tlv:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtfw11.tlv
+endif
+
+# wifi+bt files
+PRODUCT_COPY_FILES += \
+	device/fsl/pico_6dq/bluetooth/libbt_vnd.conf:system/etc/bluetooth/bt_vendor.conf
 
 # HWC2 HAL
 PRODUCT_PACKAGES += \
@@ -130,6 +150,8 @@ PRODUCT_PACKAGES += \
 # RenderScript HAL
 PRODUCT_PACKAGES += \
     android.hardware.renderscript@1.0-impl
+
+BOARD_CUSTOM_BT_CONFIG := device/fsl/pico_6dq/bluetooth/libbt_vnd.conf
 
 PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-impl \
