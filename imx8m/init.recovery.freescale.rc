@@ -1,6 +1,6 @@
 import init.recovery.${ro.hardware}.${ro.boot.storage_type}.rc
-on init 
-    # disable cursor blink for fbcon, if no splash screen support
+on init
+   # disable cursor blink for fbcon, if no splash screen support
     write /sys/class/graphics/fbcon/cursor_blink 0
 
     mkdir /config 0500 root root
@@ -21,4 +21,8 @@ on init
 on property:sys.usb.ffs.ready=1
     rm /config/usb_gadget/g1/configs/b.1/f1
     symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f1
-    write /config/usb_gadget/g1/UDC "ci_hdrc.0"
+    write /config/usb_gadget/g1/UDC "38100000.dwc3"
+
+on fs
+    wait /dev/block/platform/${ro.boot.bootdevice}
+    symlink /dev/block/platform/${ro.boot.bootdevice} /dev/block/bootdevice
