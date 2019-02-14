@@ -210,3 +210,7 @@ PRODUCT_PACKAGES += \
 # Add oem unlocking option in settings.
 PRODUCT_PROPERTY_OVERRIDES += ro.frp.pst=/dev/block/by-name/presistdata
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
+
+# Opengapps support, default is disabled
+# $(call inherit-product, vendor/opengapps/build/opengapps-packages.mk)
+# GAPPS_VARIANT := nano
