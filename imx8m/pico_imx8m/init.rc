@@ -71,7 +71,6 @@ on early-boot
 
    # Tweak the mmc device read ahead buffer size
     write /sys/block/mmcblk0/queue/read_ahead_kb 2048
-    write /sys/block/mmcblk1/queue/read_ahead_kb 2048
 
     # Set period_us for usb audio
     setprop ro.audio.usb.period_us 20000
