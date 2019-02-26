@@ -107,7 +107,12 @@ CMASIZE=900M
 endif
 
 KERNEL_NAME := Image
-BOARD_KERNEL_CMDLINE := init=/init androidboot.gui_resolution=1080p androidboot.console=ttymxc0 androidboot.hardware=freescale androidboot.fbTileSupport=enable cma=$(CMASIZE) androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware transparent_hugepage=never
+
+ifeq ($(DISPLAY_TARGET),DISP_HDMI)
+BOARD_KERNEL_CMDLINE := init=/init androidboot.hwrotation=0 androidboot.gui_resolution=1080p androidboot.console=ttymxc0 androidboot.hardware=freescale androidboot.fbTileSupport=enable cma=$(CMASIZE) androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware transparent_hugepage=never
+else ifeq ($(DISPLAY_TARGET),DISP_MIPI_ILI9881C)
+BOARD_KERNEL_CMDLINE := init=/init androidboot.hwrotation=90 androidboot.console=ttymxc0 androidboot.hardware=freescale androidboot.fbTileSupport=enable cma=$(CMASIZE) androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware transparent_hugepage=never
+endif
 
 # Qcom 1CQ(QCA6174) BT
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(IMX_DEVICE_PATH)/bluetooth
@@ -125,8 +130,14 @@ $(error "TARGET_USERIMAGES_USE_UBIFS and TARGET_USERIMAGES_USE_EXT4 config open 
 endif
 endif
 
+ifeq ($(DISPLAY_TARGET),DISP_HDMI)
 BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_imx8m/dtbo-imx8mq.img
 TARGET_BOARD_DTS_CONFIG ?= imx8mq:imx8mq-pico-pi.dtb
+else ifeq ($(DISPLAY_TARGET),DISP_MIPI_ILI9881C)
+BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_imx8m/dtbo-imx8mq-mipi.img
+TARGET_BOARD_DTS_CONFIG ?= imx8mq:imx8mq-pico-pi-dcss-ili9881c.dtb
+endif
+
 TARGET_BOOTLOADER_CONFIG := pico-imx8m_android_defconfig
 
 TARGET_KERNEL_DEFCONFIG := tn_imx8_android_defconfig
