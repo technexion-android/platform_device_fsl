@@ -27,6 +27,21 @@ PRODUCT_PACKAGES += \
     verity_warning_images \
     vndk-sp
 
+# technexion customized apps
+PRODUCT_PACKAGES += \
+    UART-Test \
+    Termux \
+    i2cdetect \
+    i2cdump \
+    i2cget \
+    i2cset \
+    gpiodetect \
+    gpiofind \
+    gpioget \
+    gpioinfo \
+    gpiomon \
+    gpioset
+
 ifneq ($(PRODUCT_IMX_CAR),true)
 PRODUCT_PACKAGES += \
     Camera \
