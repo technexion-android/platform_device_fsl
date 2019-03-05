@@ -134,7 +134,7 @@ ifeq ($(DISPLAY_TARGET),DISP_HDMI)
 BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_imx8m/dtbo-imx8mq.img
 TARGET_BOARD_DTS_CONFIG ?= imx8mq:imx8mq-pico-pi.dtb
 else ifeq ($(DISPLAY_TARGET),DISP_MIPI_ILI9881C)
-BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_imx8m/dtbo-imx8mq-mipi.img
+BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_imx8m/dtbo-imx8mq.img
 TARGET_BOARD_DTS_CONFIG ?= imx8mq:imx8mq-pico-pi-dcss-ili9881c.dtb
 endif
 
