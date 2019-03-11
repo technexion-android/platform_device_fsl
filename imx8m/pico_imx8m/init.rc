@@ -38,6 +38,7 @@ on init
 on late-fs
     # Start keymaster service
     start vendor.keymaster-3-0-${ro.boot.keystore}
+    start early_init_sh
 
 on early-boot
     # Config lowmemorykiller options
