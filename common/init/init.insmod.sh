@@ -14,6 +14,8 @@ if [ -f $cfg_file ]; then
   do
     case $action in
       "insmod") insmod $name ;;
+      "rmmod") rmmod $name ;;
+      "sleep") sleep $name ;;
       "setprop") setprop $name $value ;;
     esac
   done < $cfg_file
