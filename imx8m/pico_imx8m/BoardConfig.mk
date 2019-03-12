@@ -106,6 +106,12 @@ else
 CMASIZE=900M
 endif
 
+ifeq ($(DRAM_SIZE_1G),true)
+CMASIZE=450M
+else
+CMASIZE=900M
+endif
+
 KERNEL_NAME := Image
 
 ifeq ($(DISPLAY_TARGET),DISP_HDMI)
