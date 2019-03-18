@@ -28,6 +28,8 @@ TARGET_OPENCL_2D := true
 #
 
 IMX_DEVICE_PATH := device/fsl/imx8m/pico_imx8m
+ADDITION_DRIVERS_PATH := vendor/nxp-opensource/out-of-tree_drivers
+
 
 include $(IMX_DEVICE_PATH)/build_id.mk
 include device/fsl/imx8m/BoardConfigCommon.mk
@@ -142,6 +144,12 @@ ifeq ($(DISPLAY_TARGET),DISP_HDMI)
 TARGET_BOARD_DTS_CONFIG ?= imx8mq:imx8mq-pico-pi.dtb
 else ifeq ($(DISPLAY_TARGET),DISP_MIPI_ILI9881C)
 TARGET_BOARD_DTS_CONFIG ?= imx8mq:imx8mq-pico-pi-dcss-ili9881c.dtb
+endif
+
+ifeq ($(AUDIOHAT_ACTIVE),true)
+TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-pi-voicehat.dtb
+BOARD_VENDOR_KERNEL_MODULES += \
+        $(ADDITION_DRIVERS_PATH)/tfa98xx/snd-soc-tfa98xx.ko
 endif
 
 TARGET_BOOTLOADER_CONFIG := pico-imx8m_android_defconfig
