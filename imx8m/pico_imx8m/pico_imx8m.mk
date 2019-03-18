@@ -198,6 +198,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/fsl/imx8m/pico_imx8m/ui/bootanimation.zip:system/media/bootanimation.zip
 
+# audio-hat relative firmware
+PRODUCT_COPY_FILES += \
+    device/fsl/imx8m/pico_imx8m/firmware/TFA9892N1A_stereo_32FS.cnt:vendor/firmware/tfa98xx.cnt
+
 # Keymaster HAL
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@3.0-impl \
