@@ -219,3 +219,9 @@ PRODUCT_PACKAGES += \
 # Add oem unlocking option in settings.
 PRODUCT_PROPERTY_OVERRIDES += ro.frp.pst=/dev/block/by-name/presistdata
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
+
+# Darwinn hidl service and native apps.
+PRODUCT_PACKAGES += \
+  android.hardware.neuralnetworks@1.1-service-beagle-pci \
+  DarwiNNTest \
+  run_nnapi_tests
