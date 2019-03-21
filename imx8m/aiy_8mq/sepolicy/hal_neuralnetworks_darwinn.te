@@ -1,0 +1,8 @@
+type darwinn_device, dev_type, mlstrustedobject;
+type hal_neuralnetworks_darwinn_beagle_pci, domain;
+hal_server_domain(hal_neuralnetworks_darwinn_beagle_pci, hal_neuralnetworks)
+type hal_neuralnetworks_darwinn_beagle_pci_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_neuralnetworks_darwinn_beagle_pci)
+allow hal_neuralnetworks_darwinn_beagle_pci darwinn_device:chr_file { read write open map ioctl getattr };
+allow hal_neuralnetworks_darwinn_beagle_pci sysfs:dir { read open };
+vndbinder_use(hal_neuralnetworks_darwinn_beagle_pci);
