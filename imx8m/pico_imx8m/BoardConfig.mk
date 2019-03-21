@@ -148,8 +148,10 @@ endif
 
 ifeq ($(AUDIOHAT_ACTIVE),true)
 TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-pi-voicehat.dtb
+ifneq (,$(wildcard $(ADDITION_DRIVERS_PATH)/tfa98xx/snd-soc-tfa98xx.ko))
 BOARD_VENDOR_KERNEL_MODULES += \
         $(ADDITION_DRIVERS_PATH)/tfa98xx/snd-soc-tfa98xx.ko
+endif
 endif
 
 TARGET_BOOTLOADER_CONFIG := pico-imx8m_android_defconfig
