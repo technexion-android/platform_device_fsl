@@ -188,10 +188,19 @@ PRODUCT_COPY_FILES += \
 	device/fsl/imx8m/pico_imx8m/wifi-firmware/QCA9377/utf30.bin:vendor/firmware/utf30.bin
 endif
 
-# Qcom Bluetooth Firmware
+# QCA9377 Bluetooth Firmware
+ifneq (,$(wildcard device/fsl/imx8m/pico_imx8m/bluetooth/rampatch_tlv_3.2.tlv))
 PRODUCT_COPY_FILES += \
-    vendor/nxp/qca-wifi-bt/1CQ_QCA6174A_LEA_2.0/lib/firmware/nvm_tlv_3.2.bin:vendor/firmware/nvm_tlv_3.2.bin \
-    vendor/nxp/qca-wifi-bt/1CQ_QCA6174A_LEA_2.0/lib/firmware/rampatch_tlv_3.2.tlv:vendor/firmware/rampatch_tlv_3.2.tlv \
+	device/fsl/imx8m/pico_imx8m/bluetooth/rampatch_tlv_3.2.tlv:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/rampatch_tlv_tf_1.0.tlv \
+	device/fsl/imx8m/pico_imx8m/bluetooth/rampatch_tlv_3.2.tlv:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtfw11.tlv
+endif
+ifneq (,$(wildcard device/fsl/imx8m/pico_imx8m/bluetooth/nvm_tlv_3.2.bin))
+PRODUCT_COPY_FILES += \
+	device/fsl/imx8m/pico_imx8m/bluetooth/nvm_tlv_3.2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/nvm_tlv_tf_1.0.bin \
+	device/fsl/imx8m/pico_imx8m/bluetooth/nvm_tlv_3.2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtnv11.bin
+endif
+
+PRODUCT_COPY_FILES += \
     vendor/nxp/qca-wifi-bt/qca_proprietary/Android_HAL/wcnss_filter_8mq:vendor/bin/wcnss_filter
 
 # bootanimation ui
