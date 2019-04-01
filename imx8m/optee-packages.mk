@@ -1,5 +1,5 @@
 OPTEE_PLATFORM ?= imx
-ifeq ($(TARGET_PRODUCT),$(filter $(TARGET_PRODUCT),evk_8mm evk_8mm_drm))
+ifeq ($(TARGET_PRODUCT),$(filter $(TARGET_PRODUCT),evk_8mm evk_8mm_drm pico_imx8mm))
 OPTEE_PLATFORM_FLAVOR ?= mx8mmevk
 else
 ifeq ($(TARGET_PRODUCT),$(filter $(TARGET_PRODUCT),evk_8mq evk_8mq_drm pico_imx8m pico_imx8m_drm))
