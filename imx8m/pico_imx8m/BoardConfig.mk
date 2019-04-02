@@ -109,7 +109,7 @@ CMASIZE=900M
 endif
 
 ifeq ($(DRAM_SIZE_1G),true)
-CMASIZE=450M
+CMASIZE=400M
 else
 CMASIZE=900M
 endif
