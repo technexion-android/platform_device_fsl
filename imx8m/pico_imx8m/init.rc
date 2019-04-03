@@ -65,9 +65,9 @@ on early-boot
     #For portrait mode, orient is 90
     #the android before honycomb are all in portrait mode
     setprop camera.disable_zsl_mode 1
-    setprop back_camera_name mx6s-csi
+    setprop back_camera_name mxc-mipi-csi2.0
     setprop back_camera_orient 0
-    setprop front_camera_name uvc,mx6s-csi
+    setprop front_camera_name uvc,mxc-mipi-csi2.1
     setprop front_camera_orient 0
 
    # Tweak the mmc device read ahead buffer size
