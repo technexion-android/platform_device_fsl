@@ -92,6 +92,13 @@ on early-boot
     setprop wifi.interface wlan0
     setprop wifi.concurrent.interface p2p0
 
+    # serial uart
+    chown root system /dev/ttymxc1
+    chmod 0666 /dev/ttymxc0
+
+    chown root system /dev/ttymxc2
+    chmod 0666 /dev/ttymxc2
+
     # Prepare for bluetooth
     chmod 665 /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
