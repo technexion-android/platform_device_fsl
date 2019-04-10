@@ -121,18 +121,10 @@ endif
 endif
 
 BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_imx8mm/dtbo-imx8mm.img
-ifeq ($(PRODUCT_IMX_TRUSTY),true)
-TARGET_BOOTLOADER_CONFIG := imx8mm:imx8mm_evk_android_trusty_defconfig
-TARGET_BOARD_DTS_CONFIG ?= imx8mm:fsl-imx8mm-trusty-evk.dtb imx8mm-mipi-panel:fsl-imx8mm-evk-rm67191.dtb imx8mm-dsd:fsl-imx8mm-evk-ak4497.dtb imx8mm-m4:fsl-imx8mm-evk-m4.dtb
-else
-TARGET_BOARD_DTS_CONFIG ?= imx8mm:fsl-imx8mm-evk.dtb imx8mm-mipi-panel:fsl-imx8mm-evk-rm67191.dtb imx8mm-dsd:fsl-imx8mm-evk-ak4497.dtb imx8mm-m4:fsl-imx8mm-evk-m4.dtb
-TARGET_BOOTLOADER_CONFIG := imx8mm:imx8mm_evk_android_defconfig
-endif
-TARGET_KERNEL_DEFCONFIG := android_defconfig
+TARGET_BOARD_DTS_CONFIG ?= imx8mm:imx8mm-pico-pi-ili9881c.dtb
+TARGET_BOOTLOADER_CONFIG := pico-imx8mm_android_defconfig
+TARGET_KERNEL_DEFCONFIG := tn_imx8_android_defconfig
 TARGET_KERNEL_ADDITION_DEFCONF := android_addition_defconfig
-
-# set TARGET_BOOTLOADER_CONFIG for u-boot used by uuu
-TARGET_BOOTLOADER_CONFIG += imx8mm-evk-uuu:imx8mm_evk_android_uuu_defconfig
 
 BOARD_SEPOLICY_DIRS := \
        device/fsl/imx8m/sepolicy \
