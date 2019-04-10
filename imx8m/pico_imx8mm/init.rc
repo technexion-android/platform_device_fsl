@@ -7,7 +7,7 @@ on early-init
     mount debugfs none /sys/kernel/debug/ mode=0755
 
 on early-init
-    start early_init_sh
+    # start early_init_sh
 
     # Due keymaster start very early so set prop here
     # Also gatekeeper share same role for keymaster
@@ -43,6 +43,7 @@ on init
 on late-fs
     # Start keymaster service
     start vendor.keymaster-3-0-${ro.boot.keystore}
+    start early_init_sh
 
 on early-boot
     # Config lowmemorykiller options
