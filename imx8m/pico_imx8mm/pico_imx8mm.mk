@@ -148,12 +148,6 @@ PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-impl \
     android.hardware.bluetooth@1.0-service
 
-# Qcom 1PJ Bluetooth Firmware
- PRODUCT_COPY_FILES += \
-    vendor/nxp/qca-wifi-bt/1PJ_QCA9377-3_LEA_2.0/lib/firmware/qca/tfbtnv11.bin:vendor/firmware/nvm_tlv_3.2.bin \
-    vendor/nxp/qca-wifi-bt/1PJ_QCA9377-3_LEA_2.0/lib/firmware/qca/tfbtfw11.tlv:vendor/firmware/rampatch_tlv_3.2.tlv \
-    vendor/nxp/qca-wifi-bt/qca_proprietary/Android_HAL/wcnss_filter_8mm:vendor/bin/wcnss_filter
-
 # WiFi HAL
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
@@ -161,11 +155,42 @@ PRODUCT_PACKAGES += \
     wificond
 
 # Qcom WiFi Firmware
+ifneq (,$(wildcard device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/wlan/cfg.dat))
 PRODUCT_COPY_FILES += \
-    vendor/nxp/qca-wifi-bt/1PJ_QCA9377-3_LEA_2.0/lib/firmware/qca9377/bdwlan30.bin:vendor/firmware/bdwlan30.bin \
-    vendor/nxp/qca-wifi-bt/1PJ_QCA9377-3_LEA_2.0/lib/firmware/qca9377/otp30.bin:vendor/firmware/otp30.bin \
-    vendor/nxp/qca-wifi-bt/1PJ_QCA9377-3_LEA_2.0/lib/firmware/qca9377/qwlan30.bin:vendor/firmware/qwlan30.bin \
-    vendor/nxp/qca-wifi-bt/1PJ_QCA9377-3_LEA_2.0/lib/firmware/wlan/qca9377/qcom_cfg.ini:vendor/firmware/wlan/qcom_cfg.ini
+device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/wlan/cfg.dat:vendor/firmware/wlan/cfg.dat
+endif
+ifneq (,$(wildcard device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/wlan/qcom_cfg.ini))
+PRODUCT_COPY_FILES += \
+device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/wlan/qcom_cfg.ini:vendor/firmware/wlan/qcom_cfg.ini
+endif
+ifneq (,$(wildcard device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/bdwlan30.bin))
+PRODUCT_COPY_FILES += \
+device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/bdwlan30.bin:vendor/firmware/bdwlan30.bin
+endif
+ifneq (,$(wildcard device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/otp30.bin))
+PRODUCT_COPY_FILES += \
+device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/otp30.bin:vendor/firmware/otp30.bin
+endif
+ifneq (,$(wildcard device/fsl/imx8mm/pico_imx8mm/wifi-firmware/QCA9377/qwlan30.bin))
+PRODUCT_COPY_FILES += \
+device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/qwlan30.bin:vendor/firmware/qwlan30.bin
+endif
+ifneq (,$(wildcard device/fsl/imx8mm/pico_imx8mm/wifi-firmware/QCA9377/utf30.bin))
+PRODUCT_COPY_FILES += \
+device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/utf30.bin:vendor/firmware/utf30.bin
+endif
+
+# QCA9377 Bluetooth Firmware
+ifneq (,$(wildcard device/fsl/imx8m/pico_imx8mm/bluetooth/rampatch_tlv_3.2.tlv))
+PRODUCT_COPY_FILES += \
+device/fsl/imx8m/pico_imx8mm/bluetooth/rampatch_tlv_3.2.tlv:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/rampatch_tlv_tf_1.0.tlv \
+device/fsl/imx8m/pico_imx8mm/bluetooth/rampatch_tlv_3.2.tlv:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtfw11.tlv
+endif
+ifneq (,$(wildcard device/fsl/imx8m/pico_imx8mm/bluetooth/nvm_tlv_3.2.bin))
+PRODUCT_COPY_FILES += \
+device/fsl/imx8m/pico_imx8mm/bluetooth/nvm_tlv_3.2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/nvm_tlv_tf_1.0.bin \
+device/fsl/imx8m/pico_imx8mm/bluetooth/nvm_tlv_3.2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtnv11.bin
+endif
 
 # Keymaster HAL
 ifeq ($(PRODUCT_IMX_TRUSTY),true)
