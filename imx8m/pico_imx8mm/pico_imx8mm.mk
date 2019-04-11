@@ -212,6 +212,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libbt-vendor-unite-qca
 
+# bootanimation ui
+PRODUCT_COPY_FILES += \
+device/fsl/imx8m/pico_imx8mm/ui/bootanimation.zip:system/media/bootanimation.zip
+
 # Keymaster HAL
 ifeq ($(PRODUCT_IMX_TRUSTY),true)
 PRODUCT_PACKAGES += \
