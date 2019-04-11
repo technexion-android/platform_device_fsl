@@ -192,6 +192,10 @@ device/fsl/imx8m/pico_imx8mm/bluetooth/nvm_tlv_3.2.bin:$(TARGET_COPY_OUT_VENDOR)
 device/fsl/imx8m/pico_imx8mm/bluetooth/nvm_tlv_3.2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtnv11.bin
 endif
 
+# bootanimation ui
+PRODUCT_COPY_FILES += \
+device/fsl/imx8m/pico_imx8mm/ui/bootanimation.zip:system/media/bootanimation.zip
+
 # Keymaster HAL
 ifeq ($(PRODUCT_IMX_TRUSTY),true)
 PRODUCT_PACKAGES += \
