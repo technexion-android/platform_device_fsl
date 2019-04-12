@@ -196,6 +196,10 @@ endif
 PRODUCT_COPY_FILES += \
 device/fsl/imx8m/pico_imx8mm/ui/bootanimation.zip:system/media/bootanimation.zip
 
+# audio-hat relative firmware
+PRODUCT_COPY_FILES += \
+device/fsl/imx8m/pico_imx8mm/firmware/TFA9892N1A_stereo_32FS.cnt:vendor/firmware/tfa98xx.cnt
+
 # Keymaster HAL
 ifeq ($(PRODUCT_IMX_TRUSTY),true)
 PRODUCT_PACKAGES += \
