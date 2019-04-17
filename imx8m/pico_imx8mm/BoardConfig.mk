@@ -26,6 +26,7 @@ ENABLE_CFI=false
 #
 
 IMX_DEVICE_PATH := device/fsl/imx8m/pico_imx8mm
+ADDITION_DRIVERS_PATH := vendor/nxp-opensource/out-of-tree_drivers
 
 include $(IMX_DEVICE_PATH)/build_id.mk
 include device/fsl/imx8m/BoardConfigCommon.mk
@@ -119,6 +120,14 @@ TARGET_BOARD_DTS_CONFIG ?= imx8mm:imx8mm-pico-pi-ili9881c.dtb
 TARGET_BOOTLOADER_CONFIG := pico-imx8mm_android_defconfig
 TARGET_KERNEL_DEFCONFIG := tn_imx8_android_defconfig
 TARGET_KERNEL_ADDITION_DEFCONF := android_addition_defconfig
+
+ifeq ($(AUDIOHAT_ACTIVE),true)
+TARGET_BOARD_DTS_CONFIG := imx8mm:imx8mm-pico-pi-ili9881c-voicehat.dtb
+ifneq (,$(wildcard $(ADDITION_DRIVERS_PATH)/tfa98xx/snd-soc-tfa98xx.ko))
+BOARD_VENDOR_KERNEL_MODULES += \
+       $(ADDITION_DRIVERS_PATH)/tfa98xx/snd-soc-tfa98xx.ko
+endif
+endif
 
 BOARD_SEPOLICY_DIRS := \
        device/fsl/imx8m/sepolicy \
