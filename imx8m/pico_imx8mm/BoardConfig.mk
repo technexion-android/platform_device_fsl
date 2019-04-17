@@ -114,12 +114,6 @@ endif
 KERNEL_NAME := Image
 BOARD_KERNEL_CMDLINE := init=/init androidboot.hwrotation=90 androidboot.console=ttymxc1 androidboot.hardware=freescale cma=$(CMASIZE) androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware transparent_hugepage=never
 
-ifeq ($(TARGET_USERIMAGES_USE_UBIFS),true)
-ifeq ($(TARGET_USERIMAGES_USE_EXT4),true)
-$(error "TARGET_USERIMAGES_USE_UBIFS and TARGET_USERIMAGES_USE_EXT4 config open in same time, please only choose one target file system image")
-endif
-endif
-
 BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_imx8mm/dtbo-imx8mm.img
 TARGET_BOARD_DTS_CONFIG ?= imx8mm:imx8mm-pico-pi-ili9881c.dtb
 TARGET_BOOTLOADER_CONFIG := pico-imx8mm_android_defconfig
