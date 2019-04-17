@@ -171,11 +171,11 @@ ifneq (,$(wildcard device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/otp30.bin)
 PRODUCT_COPY_FILES += \
 device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/otp30.bin:vendor/firmware/otp30.bin
 endif
-ifneq (,$(wildcard device/fsl/imx8mm/pico_imx8mm/wifi-firmware/QCA9377/qwlan30.bin))
+ifneq (,$(wildcard device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/qwlan30.bin))
 PRODUCT_COPY_FILES += \
 device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/qwlan30.bin:vendor/firmware/qwlan30.bin
 endif
-ifneq (,$(wildcard device/fsl/imx8mm/pico_imx8mm/wifi-firmware/QCA9377/utf30.bin))
+ifneq (,$(wildcard device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/utf30.bin))
 PRODUCT_COPY_FILES += \
 device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/utf30.bin:vendor/firmware/utf30.bin
 endif
