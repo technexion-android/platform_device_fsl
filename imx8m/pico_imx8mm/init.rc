@@ -99,6 +99,24 @@ on early-boot
     chown root system /dev/ttymxc2
     chmod 0666 /dev/ttymxc2
 
+    # permission configuration of audio-hat led controller
+    chmod 666 /sys/class/leds/pca995x:blue0/brightness
+    chmod 666 /sys/class/leds/pca995x:blue1/brightness
+    chmod 666 /sys/class/leds/pca995x:blue2/brightness
+    chmod 666 /sys/class/leds/pca995x:blue3/brightness
+    chmod 666 /sys/class/leds/pca995x:blue4/brightness
+    chmod 666 /sys/class/leds/pca995x:blue5/brightness
+    chmod 666 /sys/class/leds/pca995x:green0/brightness
+    chmod 666 /sys/class/leds/pca995x:green1/brightness
+    chmod 666 /sys/class/leds/pca995x:green2/brightness
+    chmod 666 /sys/class/leds/pca995x:green3/brightness
+    chmod 666 /sys/class/leds/pca995x:green4/brightness
+    chmod 666 /sys/class/leds/pca995x:red0/brightness
+    chmod 666 /sys/class/leds/pca995x:red1/brightness
+    chmod 666 /sys/class/leds/pca995x:red2/brightness
+    chmod 666 /sys/class/leds/pca995x:red3/brightness
+    chmod 666 /sys/class/leds/pca995x:red4/brightness
+
     # Prepare for bluetooth
     chmod 665 /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
