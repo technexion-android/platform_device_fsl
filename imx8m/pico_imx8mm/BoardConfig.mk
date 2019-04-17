@@ -112,7 +112,7 @@ CMASIZE=900M
 endif
 
 KERNEL_NAME := Image
-BOARD_KERNEL_CMDLINE := init=/init androidboot.hwrotation=90 androidboot.console=ttymxc1 androidboot.hardware=freescale cma=$(CMASIZE) androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware transparent_hugepage=never
+BOARD_KERNEL_CMDLINE := init=/init androidboot.hwrotation=90 androidboot.console=ttymxc1 androidboot.hardware=freescale cma=$(CMASIZE) androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware transparent_hugepage=never quiet
 
 BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_imx8mm/dtbo-imx8mm.img
 TARGET_BOARD_DTS_CONFIG ?= imx8mm:imx8mm-pico-pi-ili9881c.dtb
