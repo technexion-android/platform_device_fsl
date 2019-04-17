@@ -40,6 +40,14 @@ on init
     write /dev/stune/rt/schedtune.boost 50
     write /dev/stune/rt/schedtune.prefer_idle 1
 
+    # add a cpuset for the camera daemon
+    mkdir /dev/cpuset/camera-daemon
+    write /dev/cpuset/camera-daemon/cpus 0
+    write /dev/cpuset/camera-daemon/mems 0
+    chown system system /dev/cpuset/camera-daemon
+    chown system system /dev/cpuset/camera-daemon/tasks
+    chmod 0664 /dev/cpuset/camera-daemon/tasks
+
 on late-fs
     # Start keymaster service
     start vendor.keymaster-3-0-${ro.boot.keystore}
