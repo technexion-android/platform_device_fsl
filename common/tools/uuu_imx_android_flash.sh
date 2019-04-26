@@ -105,7 +105,7 @@ while [ $# -gt 0 ]; do
 done
 
 # if card_size is not correctly set, exit.
-if [ ${card_size} -ne 0 ] && [ ${card_size} -ne 7 ] && [ ${card_size} -ne 14 ] && [ ${card_size} -ne 28 ]; then
+if [ ${card_size} -ne 0 ] && [ ${card_size} -ne 7 ] && [ ${card_size} -ne 13 ] && [ ${card_size} -ne 14 ] && [ ${card_size} -ne 28 ]; then
     echo -e >&2 ${RED}card size ${card_size} is not legal${STD};
     help; exit 1;
 fi
