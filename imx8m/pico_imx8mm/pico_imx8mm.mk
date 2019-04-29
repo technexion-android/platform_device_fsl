@@ -238,6 +238,10 @@ PRODUCT_PACKAGES += \
     libcodec_enc \
     DirectAudioPlayer
 
+ifeq ($(DRAM_SIZE_1G),true)
+PRODUCT_PROPERTY_OVERRIDES += ro.config.low_ram=true
+endif
+
 # Add oem unlocking option in settings.
 PRODUCT_PROPERTY_OVERRIDES += ro.frp.pst=/dev/block/by-name/presistdata
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
