@@ -382,7 +382,7 @@ if not [%local_str:gpt=%] == [%local_str%] (
 
 :start_to_flash
 echo flash the file of %img_name% to the partition of %1
-%fastboot_tool% flash %1 %image_directory%%img_name% || exit /B 1
+%fastboot_tool% flash -S 256M %1 %image_directory%%img_name% || exit /B 1
 goto :eof
 
 

@@ -265,7 +265,7 @@ function flash_partition
     fi
 
     echo -e flash the file of ${RED}${img_name}${STD} to the partition of ${RED}${1}${STD}
-    ${fastboot_tool} flash ${1} "${image_directory}${img_name}"
+    ${fastboot_tool} flash ${1} -S 256M "${image_directory}${img_name}"
 }
 
 function flash_userpartitions
