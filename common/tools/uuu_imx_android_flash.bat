@@ -84,7 +84,7 @@ if %card_size% neq 7 set /A statisc+=1
 if %card_size% neq 13 set /A statisc+=1
 if %card_size% neq 14 set /A statisc+=1
 if %card_size% neq 28 set /A statisc+=1
-if %statisc% == 4 echo card_size is not a legal value & exit /B 1
+if %statisc% == 5 echo card_size is not a legal value & exit /B 1
 
 if %card_size% gtr 0 set partition_file=partition-table-%card_size%GB.img
 
