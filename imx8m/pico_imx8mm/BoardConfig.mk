@@ -106,10 +106,10 @@ TARGET_USES_MKE2FS := true
 # define frame buffer count
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 5
 
-ifeq ($(PRODUCT_IMX_DRM),true)
-CMASIZE=736M
+ifeq ($(DRAM_SIZE_1G),true)
+CMASIZE=256M
 else
-CMASIZE=900M
+CMASIZE=736M
 endif
 
 KERNEL_NAME := Image
