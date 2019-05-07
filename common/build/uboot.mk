@@ -63,8 +63,8 @@ UBOOT_CROSS_COMPILE := $(UBOOT_TOOLCHAIN_ABS)/arm-linux-androidkernel-
 UBOOT_SRC_ARCH := arm
 UBOOT_CFLAGS :=
 else ifeq ($(TARGET_UBOOT_ARCH), arm64)
-UBOOT_TOOLCHAIN_ABS := $(realpath prebuilts/gcc/$(HOST_PREBUILT_TAG)/aarch64/aarch64-linux-android-4.9/bin)
-UBOOT_CROSS_COMPILE := $(UBOOT_TOOLCHAIN_ABS)/aarch64-linux-androidkernel-
+UBOOT_TOOLCHAIN_ABS := $(realpath prebuilts/gcc/$(HOST_PREBUILT_TAG)/aarch64/aarch64-linux-gnu/bin)
+UBOOT_CROSS_COMPILE := $(UBOOT_TOOLCHAIN_ABS)/aarch64-linux-gnu-
 UBOOT_SRC_ARCH := arm64
 UBOOT_CFLAGS :=
 else ifeq ($(TARGET_UBOOT_ARCH), i386)
