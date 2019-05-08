@@ -81,11 +81,6 @@ WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/net/wireless/qcacld-2.0/wlan.ko
 
-# BCM fmac wifi driver module
-BOARD_VENDOR_KERNEL_MODULES += \
-    $(KERNEL_OUT)/drivers/net/wireless/broadcom/brcm80211/brcmfmac/brcmfmac.ko \
-    $(KERNEL_OUT)/drivers/net/wireless/broadcom/brcm80211/brcmutil/brcmutil.ko
-
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(IMX_DEVICE_PATH)/bluetooth
 
 # BCM 1CX BT
@@ -138,10 +133,10 @@ KERNEL_NAME := Image
 BOARD_KERNEL_CMDLINE := init=/init androidboot.gui_resolution=1080p androidboot.console=ttymxc0 androidboot.hardware=freescale androidboot.fbTileSupport=enable cma=$(CMASIZE) androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware transparent_hugepage=never
 
 # Default wificountrycode
-BOARD_KERNEL_CMDLINE += androidboot.wificountrycode=CN
+BOARD_KERNEL_CMDLINE += androidboot.wificountrycode=TW
 
 # Defaultly pico_imx8m use BCM 1CX BCM4356 wifi module, if use QCOM qca9377 module, set androidboot.wifivendor=qca
-BOARD_KERNEL_CMDLINE += androidboot.wifivendor=bcm
+BOARD_KERNEL_CMDLINE += androidboot.wifivendor=qca
 
 ifeq ($(TARGET_USERIMAGES_USE_UBIFS),true)
 ifeq ($(TARGET_USERIMAGES_USE_EXT4),true)
@@ -154,7 +149,7 @@ TARGET_BOARD_DTS_CONFIG ?= imx8mq:imx8mq-pico-pi.dtb
 TARGET_BOOTLOADER_CONFIG := imx8mq:pico-imx8m_android_defconfig
 
 TARGET_KERNEL_DEFCONFIG := tn_imx8_android_defconfig
-# TARGET_KERNEL_ADDITION_DEFCONF ?= android_addition_defconfig
+TARGET_KERNEL_ADDITION_DEFCONF ?= android_addition_defconfig
 
 BOARD_SEPOLICY_DIRS := \
        device/fsl/imx8m/sepolicy \
