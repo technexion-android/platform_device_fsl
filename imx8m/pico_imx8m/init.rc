@@ -73,7 +73,6 @@ on early-boot
 
    # Tweak the mmc device read ahead buffer size
     write /sys/block/mmcblk0/queue/read_ahead_kb 2048
-    write /sys/block/mmcblk1/queue/read_ahead_kb 2048
 
     # Set period_us for usb audio
     setprop ro.audio.usb.period_us 20000
@@ -109,10 +108,6 @@ on early-boot
     # Chmod/chown FSL specific sys entry
     chown system system /sys/class/backlight/30a00000.mipi_dsi_bridge.0/brightness
     chmod 0660 /sys/class/backlight/30a00000.mipi_dsi_bridge.0/brightness
-
-    # Set light sensor sysfs path and light sensor threshold lux value
-    setprop ro.hardware.lightsensor "/sys/class/i2c-dev/i2c-0/device/0-0044/"
-    setprop ro.lightsensor.threshold  20
 
     # Dectect DSF streams when scanning media
     setprop ro.FSL_DSF_PARSER 1
