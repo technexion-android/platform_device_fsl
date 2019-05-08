@@ -49,8 +49,6 @@
 
                 <devicePort tagName="Built-In Mic" type="AUDIO_DEVICE_IN_BUILTIN_MIC" role="source">
                 </devicePort>
-                <devicePort tagName="Spdif-In" type="AUDIO_DEVICE_IN_AUX_DIGITAL" role="source">
-                </devicePort>
             </devicePorts>
             <routes>
                 <route type="mix" sink="Speaker"
@@ -61,7 +59,7 @@
                        sources="hdmi output,primary output"/>
 
                 <route type="mix" sink="primary input"
-                       sources="Built-In Mic,Spdif-In"/>
+                       sources="Built-In Mic"/>
             </routes>
         </module>
 
