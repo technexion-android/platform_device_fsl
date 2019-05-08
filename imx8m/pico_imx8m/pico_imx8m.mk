@@ -162,14 +162,6 @@ PRODUCT_PACKAGES += \
     wifilogd \
     wificond
 
-# BCM bluetooth for UNITE mode
-PRODUCT_PACKAGES += \
-    libbt-vendor-unite-bcm
-
-# QCA bluetooth for UNITE mode
-PRODUCT_PACKAGES += \
-    libbt-vendor-unite-qca
-
 # QCA wifi supplicant for UNITE mode
 PRODUCT_PACKAGES += \
     qca_hostapd \
@@ -204,23 +196,15 @@ endif
 
 # Qcom Bluetooth Firmware
 PRODUCT_COPY_FILES += \
-    vendor/nxp/qca-wifi-bt/1CQ_QCA6174A_LEA_2.0/lib/firmware/nvm_tlv_3.2.bin:vendor/firmware/nvm_tlv_3.2.bin \
-    vendor/nxp/qca-wifi-bt/1CQ_QCA6174A_LEA_2.0/lib/firmware/rampatch_tlv_3.2.tlv:vendor/firmware/rampatch_tlv_3.2.tlv \
     vendor/nxp/qca-wifi-bt/qca_proprietary/Android_HAL/wcnss_filter_8mq:vendor/bin/wcnss_filter
-
-# BCM Bluetooth vendor config
-PRODUCT_PACKAGES += \
-    bt_vendor.conf
-
-# BCM 1CX Bluetooth Firmware
+ifneq (,$(wildcard device/fsl/imx8m/pico_imx8m/bluetooth/rampatch_tlv_3.2.tlv))
 PRODUCT_COPY_FILES += \
-    vendor/nxp/imx-firmware/cyw-wifi-bt/1CX_CYW4356/BCM4354A2.1CX.hcd:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/CYW4354A2.1CX.hcd
-
-# BCM 1CX Wifi Firmware
+    device/fsl/imx8m/pico_imx8m/bluetooth/rampatch_tlv_3.2.tlv:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtfw11.tlv
+endif
+ifneq (,$(wildcard device/fsl/imx8m/pico_imx8m/bluetooth/nvm_tlv_3.2.bin))
 PRODUCT_COPY_FILES += \
-    vendor/nxp/imx-firmware/cyw-wifi-bt/1CX_CYW4356/brcmfmac4356-pcie.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac4356-pcie.bin \
-    vendor/nxp/imx-firmware/cyw-wifi-bt/1CX_CYW4356/brcmfmac4356-pcie.clm_blob:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac4356-pcie.clm_blob \
-    vendor/nxp/imx-firmware/cyw-wifi-bt/1CX_CYW4356/brcmfmac4356-pcie.txt:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac4356-pcie.txt
+    device/fsl/imx8m/pico_imx8m/bluetooth/nvm_tlv_3.2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtnv11.bin
+endif
 
 # Keymaster HAL
 PRODUCT_PACKAGES += \
