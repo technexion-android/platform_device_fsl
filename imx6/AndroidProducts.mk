@@ -33,5 +33,6 @@ PRODUCT_MAKEFILES := \
   $(LOCAL_DIR)/sabresd_6sx.mk \
   $(LOCAL_DIR)/sabreauto_6sx.mk \
   $(LOCAL_DIR)/sabresd_6dq_car.mk \
+  $(LOCAL_DIR)/wandboard.mk \
   $(LOCAL_DIR)/edm1cf_pmic_6dq.mk \
   $(LOCAL_DIR)/pico_6dq.mk
