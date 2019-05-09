@@ -206,6 +206,10 @@ PRODUCT_COPY_FILES += \
     device/fsl/imx8m/pico_imx8m/bluetooth/nvm_tlv_3.2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtnv11.bin
 endif
 
+# voice-hat relative firmware
+PRODUCT_COPY_FILES += \
+    device/fsl/imx8m/pico_imx8m/firmware/TFA9892N1A_stereo_32FS.cnt:vendor/firmware/tfa98xx.cnt
+
 # Keymaster HAL
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@3.0-impl \
