@@ -124,7 +124,12 @@ CMASIZE=900M
 endif
 
 KERNEL_NAME := Image
-BOARD_KERNEL_CMDLINE := init=/init androidboot.gui_resolution=1080p androidboot.console=ttymxc0 androidboot.hardware=freescale androidboot.fbTileSupport=enable cma=$(CMASIZE) androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware transparent_hugepage=never
+
+ifeq ($(DISPLAY_TARGET),DISP_HDMI)
+BOARD_KERNEL_CMDLINE := init=/init androidboot.hwrotation=0 androidboot.gui_resolution=1080p androidboot.console=ttymxc0 androidboot.hardware=freescale androidboot.fbTileSupport=enable cma=$(CMASIZE) androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware transparent_hugepage=never
+else ifeq ($(DISPLAY_TARGET),DISP_MIPI_ILI9881C)
+BOARD_KERNEL_CMDLINE := init=/init androidboot.hwrotation=90 androidboot.console=ttymxc0 androidboot.hardware=freescale androidboot.fbTileSupport=enable cma=$(CMASIZE) androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware transparent_hugepage=never
+endif
 
 # Default wificountrycode
 BOARD_KERNEL_CMDLINE += androidboot.wificountrycode=TW
@@ -139,7 +144,34 @@ endif
 endif
 
 BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_imx8m/dtbo-imx8mq.img
-TARGET_BOARD_DTS_CONFIG ?= imx8mq:imx8mq-pico-pi.dtb
+
+# display with dtb
+ifeq ($(DISPLAY_TARGET),DISP_HDMI)
+
+ifeq ($(AUDIOHAT_ACTIVE),true)
+TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-pi-voicehat.dtb
+else
+TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-pi.dtb
+endif
+
+else ifeq ($(DISPLAY_TARGET),DISP_MIPI_ILI9881C)
+
+ifeq ($(AUDIOHAT_ACTIVE),true)
+TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-pi-dcss-ili9881c-voicehat.dtb
+else
+TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-pi-dcss-ili9881c.dtb
+endif
+
+endif
+
+ifeq ($(AUDIOHAT_ACTIVE),true)
+ifneq (,$(wildcard $(ADDITION_DRIVERS_PATH)/tfa98xx/snd-soc-tfa98xx.ko))
+BOARD_VENDOR_KERNEL_MODULES += \
+  $(ADDITION_DRIVERS_PATH)/tfa98xx/snd-soc-tfa98xx.ko
+endif
+endif
+
+
 TARGET_BOOTLOADER_CONFIG := imx8mq:pico-imx8m_android_defconfig
 
 TARGET_KERNEL_DEFCONFIG := tn_imx8_android_defconfig
