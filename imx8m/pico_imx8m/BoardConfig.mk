@@ -28,6 +28,7 @@ TARGET_OPENCL_2D := true
 #
 
 IMX_DEVICE_PATH := device/fsl/imx8m/pico_imx8m
+ADDITION_DRIVERS_PATH := vendor/nxp-opensource/out-of-tree_drivers
 
 include $(IMX_DEVICE_PATH)/build_id.mk
 include device/fsl/imx8m/BoardConfigCommon.mk
