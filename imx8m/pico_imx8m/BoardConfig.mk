@@ -117,8 +117,8 @@ TARGET_USES_MKE2FS := true
 # define frame buffer count
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 
-ifeq ($(PRODUCT_IMX_DRM),true)
-CMASIZE=736M
+ifeq ($(DRAM_SIZE_1G),true)
+CMASIZE=400M
 else
 CMASIZE=900M
 endif
