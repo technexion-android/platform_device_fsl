@@ -156,17 +156,19 @@ PRODUCT_PACKAGES += \
 
 # Qcom 1PJ Bluetooth Firmware
 PRODUCT_COPY_FILES += \
-    vendor/nxp/qca-wifi-bt/1PJ_QCA9377-3_LEA_2.0/lib/firmware/qca/tfbtnv11.bin:vendor/firmware/nvm_tlv_3.2.bin \
-    vendor/nxp/qca-wifi-bt/1PJ_QCA9377-3_LEA_2.0/lib/firmware/qca/tfbtfw11.tlv:vendor/firmware/rampatch_tlv_3.2.tlv \
     vendor/nxp/qca-wifi-bt/qca_proprietary/Android_HAL/wcnss_filter_8mm:vendor/bin/wcnss_filter
 
-# BCM Bluetooth vendor config
-PRODUCT_PACKAGES += \
-    bt_vendor.conf
-
-# BCM 1MW Bluetooth Firmware
+# QCA9377 Bluetooth Firmware
+ifneq (,$(wildcard device/fsl/imx8m/pico_imx8mm/bluetooth/rampatch_tlv_3.2.tlv))
 PRODUCT_COPY_FILES += \
-    vendor/nxp/imx-firmware/cyw-wifi-bt/1MW_CYW43455/BCM4345C0.1MW.hcd:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/CYW4345C0.1MW.hcd
+device/fsl/imx8m/pico_imx8mm/bluetooth/rampatch_tlv_3.2.tlv:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/rampatch_tlv_tf_1.0.tlv \
+device/fsl/imx8m/pico_imx8mm/bluetooth/rampatch_tlv_3.2.tlv:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtfw11.tlv
+endif
+ifneq (,$(wildcard device/fsl/imx8m/pico_imx8mm/bluetooth/nvm_tlv_3.2.bin))
+PRODUCT_COPY_FILES += \
+device/fsl/imx8m/pico_imx8mm/bluetooth/nvm_tlv_3.2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/nvm_tlv_tf_1.0.bin \
+device/fsl/imx8m/pico_imx8mm/bluetooth/nvm_tlv_3.2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtnv11.bin
+endif
 
 # WiFi HAL
 PRODUCT_PACKAGES += \
