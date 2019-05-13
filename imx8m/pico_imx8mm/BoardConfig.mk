@@ -135,33 +135,20 @@ endif
 endif
 
 BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_imx8mm/dtbo-imx8mm.img
-ifeq ($(PRODUCT_IMX_TRUSTY),true)
-# u-boot target for imx8mm_evk with trusty os related features supported
-TARGET_BOOTLOADER_CONFIG := imx8mm:imx8mm_evk_android_trusty_defconfig
-# imx8mm with MIPI-HDMI display, QCA wifi and support trusty
-TARGET_BOARD_DTS_CONFIG ?= imx8mm:fsl-imx8mm-trusty-evk.dtb
-else
-# imx8mm with MIPI-HDMI display and QCA wifi
-TARGET_BOARD_DTS_CONFIG ?= imx8mm:fsl-imx8mm-evk.dtb
-# u-boot target for imx8mm_evk with LPDDR4 on board
-TARGET_BOOTLOADER_CONFIG := imx8mm:imx8mm_evk_android_defconfig
-# u-boot target for imx8mm_evk with DDR4 on board
-TARGET_BOOTLOADER_CONFIG += imx8mm-ddr4:imx8mm_ddr4_evk_android_defconfig
-endif
-# imx8mm with MIPI panel display and QCA wifi
-TARGET_BOARD_DTS_CONFIG += imx8mm-mipi-panel:fsl-imx8mm-evk-rm67191.dtb
-# imx8mm with MIPI-HDMI display, QCA wifi and m4 image to support LPA
-TARGET_BOARD_DTS_CONFIG += imx8mm-m4:fsl-imx8mm-evk-m4.dtb
-# imx8mm with MIPI-HDMI display with BCM wifi
-TARGET_BOARD_DTS_CONFIG += imx8mm-ddr4:fsl-imx8mm-ddr4-evk.dtb
-TARGET_KERNEL_DEFCONFIG := android_defconfig
 
+TARGET_BOARD_DTS_CONFIG ?= imx8mm:imx8mm-pico-pi-ili9881c.dtb
+TARGET_BOOTLOADER_CONFIG := pico-imx8mm_android_defconfig
+TARGET_KERNEL_DEFCONFIG := tn_imx8_android_defconfig
 TARGET_KERNEL_ADDITION_DEFCONF := android_addition_defconfig
 
-# u-boot target used by uuu for imx8mm_evk with LPDDR4 on board
-TARGET_BOOTLOADER_CONFIG += imx8mm-evk-uuu:imx8mm_evk_android_uuu_defconfig
-# u-boot target used by uuu for imx8mm_evk with DDR4 on board
-TARGET_BOOTLOADER_CONFIG += imx8mm-ddr4-evk-uuu:imx8mm_ddr4_evk_android_uuu_defconfig
+ifeq ($(AUDIOHAT_ACTIVE),true)
+TARGET_BOARD_DTS_CONFIG := imx8mm:imx8mm-pico-pi-ili9881c-voicehat.dtb
+ifneq (,$(wildcard $(ADDITION_DRIVERS_PATH)/tfa98xx/snd-soc-tfa98xx.ko))
+  BOARD_VENDOR_KERNEL_MODULES += \
+  $(ADDITION_DRIVERS_PATH)/tfa98xx/snd-soc-tfa98xx.ko
+endif
+endif
+
 
 BOARD_SEPOLICY_DIRS := \
        device/fsl/imx8m/sepolicy \
