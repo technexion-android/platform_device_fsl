@@ -71,19 +71,12 @@ BOARD_HOSTAPD_PRIVATE_LIB_BCM           := lib_driver_cmd_bcmdhd
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB_BCM    := lib_driver_cmd_bcmdhd
 endif
 
-WIFI_DRIVER_FW_PATH_PARAM := "/sys/module/brcmfmac/parameters/alternative_fw_path"
-
 # QCA wifi support dual interface
 WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 
 # QCA qcacld wifi driver module
 BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/net/wireless/qcacld-2.0/wlan.ko
-
-# BCM fmac wifi driver module
-BOARD_VENDOR_KERNEL_MODULES += \
-    $(KERNEL_OUT)/drivers/net/wireless/broadcom/brcm80211/brcmfmac/brcmfmac.ko \
-    $(KERNEL_OUT)/drivers/net/wireless/broadcom/brcm80211/brcmutil/brcmutil.ko
 
 BOARD_USE_SENSOR_FUSION := true
 
@@ -137,7 +130,7 @@ KERNEL_NAME := Image
 BOARD_KERNEL_CMDLINE := init=/init androidboot.console=ttymxc1 androidboot.hardware=freescale cma=$(CMASIZE) androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware transparent_hugepage=never
 
 # Default wificountrycode
-BOARD_KERNEL_CMDLINE += androidboot.wificountrycode=CN
+BOARD_KERNEL_CMDLINE += androidboot.wificountrycode=TW
 
 # Defaultly pico_imx8mm use QCA 1PJ wifi module, if use BCM 1MW module, set androidboot.wifivendor=bcm
 BOARD_KERNEL_CMDLINE += androidboot.wifivendor=qca
