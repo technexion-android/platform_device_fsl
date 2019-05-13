@@ -175,18 +175,30 @@ PRODUCT_PACKAGES += \
     wificond
 
 # Qcom WiFi Firmware
+ifneq (,$(wildcard device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/wlan/cfg.dat))
 PRODUCT_COPY_FILES += \
-    vendor/nxp/qca-wifi-bt/1PJ_QCA9377-3_LEA_2.0/lib/firmware/qca9377/bdwlan30.bin:vendor/firmware/bdwlan30.bin \
-    vendor/nxp/qca-wifi-bt/1PJ_QCA9377-3_LEA_2.0/lib/firmware/qca9377/otp30.bin:vendor/firmware/otp30.bin \
-    vendor/nxp/qca-wifi-bt/1PJ_QCA9377-3_LEA_2.0/lib/firmware/qca9377/qwlan30.bin:vendor/firmware/qwlan30.bin \
-    vendor/nxp/qca-wifi-bt/1PJ_QCA9377-3_LEA_2.0/lib/firmware/wlan/qca9377/qcom_cfg.ini:vendor/firmware/wlan/qcom_cfg.ini
-
-
-# BCM wifi supplicant for UNITE mode
-PRODUCT_PACKAGES += \
-    bcm_hostapd \
-    bcm_wpa_supplicant \
-    android.hardware.wifi@1.0-service.bcm
+device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/wlan/cfg.dat:vendor/firmware/wlan/cfg.dat
+endif
+ifneq (,$(wildcard device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/wlan/qcom_cfg.ini))
+PRODUCT_COPY_FILES += \
+device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/wlan/qcom_cfg.ini:vendor/firmware/wlan/qcom_cfg.ini
+endif
+ifneq (,$(wildcard device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/bdwlan30.bin))
+PRODUCT_COPY_FILES += \
+device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/bdwlan30.bin:vendor/firmware/bdwlan30.bin
+endif
+ifneq (,$(wildcard device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/otp30.bin))
+PRODUCT_COPY_FILES += \
+device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/otp30.bin:vendor/firmware/otp30.bin
+endif
+ifneq (,$(wildcard device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/qwlan30.bin))
+PRODUCT_COPY_FILES += \
+device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/qwlan30.bin:vendor/firmware/qwlan30.bin
+endif
+ifneq (,$(wildcard device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/utf30.bin))
+PRODUCT_COPY_FILES += \
+device/fsl/imx8m/pico_imx8mm/wifi-firmware/QCA9377/utf30.bin:vendor/firmware/utf30.bin
+endif
 
 # QCA wifi supplicant for UNITE mode
 PRODUCT_PACKAGES += \
@@ -194,19 +206,9 @@ PRODUCT_PACKAGES += \
     qca_wpa_supplicant \
     android.hardware.wifi@1.0-service.qca
 
-# BCM bluetooth for UNITE mode
-PRODUCT_PACKAGES += \
-    libbt-vendor-unite-bcm
-
 # QCA bluetooth for UNITE mode
 PRODUCT_PACKAGES += \
     libbt-vendor-unite-qca
-
-# BCM 1MW Wifi Firmware
-PRODUCT_COPY_FILES += \
-    vendor/nxp/imx-firmware/cyw-wifi-bt/1MW_CYW43455/brcmfmac43455-sdio.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac43455-sdio.bin \
-    vendor/nxp/imx-firmware/cyw-wifi-bt/1MW_CYW43455/brcmfmac43455-sdio.clm_blob:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac43455-sdio.clm_blob \
-    vendor/nxp/imx-firmware/cyw-wifi-bt/1MW_CYW43455/brcmfmac43455-sdio.txt:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac43455-sdio.txt
 
 # Keymaster HAL
 ifeq ($(PRODUCT_IMX_TRUSTY),true)
