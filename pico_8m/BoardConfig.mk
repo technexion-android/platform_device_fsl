@@ -97,8 +97,11 @@ endif
 
 # BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 earlycon=imxuart,0x30860000,115200 init=/init video=HDMI-A-1:1920x1080-32@60 androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale androidboot.fbTileSupport=enable androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware
 # BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 earlycon=imxuart,0x30860000,115200 init=/init androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale androidboot.fbTileSupport=enable androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware
+ifeq ($(DUAL_DISPLAY_LVDS),true)
+BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 earlycon=imxuart,0x30860000,115200 init=/init video=HDMI-A-1:1280x720-32@60 androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale androidboot.primary_display=mxsfb-drm firmware_class.path=/vendor/firmware
+else
 BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 earlycon=imxuart,0x30860000,115200 init=/init androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale androidboot.fbTileSupport=enable androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware
-
+endif
 # Qcom 1CQ(QCA6174) BT
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/fsl/pico_8m/bluetooth
 BOARD_HAVE_BLUETOOTH_QCOM := true
@@ -120,7 +123,11 @@ $(error "TARGET_USERIMAGES_USE_UBIFS and TARGET_USERIMAGES_USE_EXT4 config open 
 endif
 endif
 
+ifeq ($(DUAL_DISPLAY_LVDS),true)
+TARGET_BOARD_DTS_CONFIG ?= imxpico_8m:pico_8m_dual-sn65dsi84.dtb
+else
 TARGET_BOARD_DTS_CONFIG ?= imxpico_8m:pico_8m.dtb
+endif
 # TARGET_BOARD_DTS_CONFIG ?= imxpico_8m:pico-8m-dcss-ili9881c.dtb
 TARGET_BOOTLOADER_CONFIG := imxpico_8m:pico_8m_android_defconfig
 
