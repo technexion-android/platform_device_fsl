@@ -12,3 +12,5 @@ add_lunch_combo pico_imx8m-eng
 add_lunch_combo pico_imx8m-userdebug
 add_lunch_combo pico_imx8mm-eng
 add_lunch_combo pico_imx8mm-userdebug
+add_lunch_combo flex_imx8mm-eng
+add_lunch_combo flex_imx8mm-userdebug
