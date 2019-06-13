@@ -175,7 +175,7 @@ endif
 endif
 
 
-TARGET_BOOTLOADER_CONFIG := imx8mq:pico-imx8m_android_defconfig
+TARGET_BOOTLOADER_CONFIG := imx8mq:pico-imx8mq_android_defconfig
 
 TARGET_KERNEL_DEFCONFIG := tn_imx8_android_defconfig
 TARGET_KERNEL_ADDITION_DEFCONF ?= android_addition_defconfig
