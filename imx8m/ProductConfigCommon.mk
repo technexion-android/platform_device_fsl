@@ -51,7 +51,7 @@ PRODUCT_PACKAGES += \
     LegacyCamera \
     LiveWallpapersPicker \
     MagicSmokeWallpapers \
-    SoundRecorder
+    Audio_Recorder
 endif
 
 # HAL
