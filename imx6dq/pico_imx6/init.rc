@@ -102,14 +102,10 @@ on early-boot
     chmod 0755 /sys/kernel/debug/tracing
 
     # Default backlight device
-    setprop hw.backlight.dev "backlight"
+    setprop hw.backlight.dev "backlight_lcd"
     # Chmod/chown FSL specific sys entry
-    chown system system /sys/class/backlight/backlight/brightness
-    chmod 0660 /sys/class/backlight/backlight/brightness
-
-    # Set light sensor sysfs path and light sensor threshold lux value
-    setprop ro.hardware.lightsensor "/sys/class/i2c-dev/i2c-2/device/2-0044/"
-    setprop ro.lightsensor.threshold  20
+    chown system system /sys/class/backlight/backlight_lcd/brightness
+    chmod 0660 /sys/class/backlight/backlight_lcd/brightness
 
     setprop wlan.interface wlan0
 
