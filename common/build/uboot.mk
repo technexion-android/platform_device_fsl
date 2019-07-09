@@ -48,7 +48,7 @@ endif
 endif
 
 # TARGET_UBOOT_BUILD_TARGET may be assigned in target BoardConfig.mk.
-TARGET_UBOOT_BUILD_TARGET ?= u-boot.imx
+TARGET_UBOOT_BUILD_TARGET ?= u-boot.img
 
 # Check target arch.
 TARGET_UBOOT_ARCH := $(strip $(TARGET_UBOOT_ARCH))
@@ -129,7 +129,8 @@ $(UBOOT_BIN): $(UBOOT_OUT)
 		$(MAKE) -C $(UBOOT_IMX_PATH)/uboot-imx/ CROSS_COMPILE="$(UBOOT_CROSS_COMPILE_WRAPPER)" O=$(realpath $(UBOOT_OUT)) $$UBOOT_CONFIG; \
 		$(MAKE) -C $(UBOOT_IMX_PATH)/uboot-imx/ CROSS_COMPILE="$(UBOOT_CROSS_COMPILE_WRAPPER)" mrproper; \
 		$(MAKE) -s -C $(UBOOT_IMX_PATH)/uboot-imx/ CROSS_COMPILE="$(UBOOT_CROSS_COMPILE_WRAPPER)" O=$(realpath $(UBOOT_OUT)) || exit 1; \
-		install -D $(UBOOT_OUT)/u-boot$(TARGET_DTB_POSTFIX).$(TARGET_BOOTLOADER_POSTFIX) $(PRODUCT_OUT)/u-boot-$$UBOOT_PLATFORM.imx; \
+		install -D $(UBOOT_OUT)/SPL $(PRODUCT_OUT)/u-boot-$$UBOOT_PLATFORM.SPL; \
+		install -D $(UBOOT_OUT)/u-boot.img $(PRODUCT_OUT)/u-boot-$$UBOOT_PLATFORM.img; \
 	done
 
 .PHONY: $(UBOOT_BIN)
