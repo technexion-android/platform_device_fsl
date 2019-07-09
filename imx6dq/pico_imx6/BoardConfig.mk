@@ -36,10 +36,15 @@ TARGET_DTB_POSTFIX := -dtb
 USE_OPENGL_RENDERER := true
 TARGET_CPU_SMP := true
 
-BOARD_WLAN_DEVICE            := bcmdhd
+BOARD_WLAN_DEVICE            := qcwcn
 WPA_SUPPLICANT_VERSION       := VER_0_8_X
 BOARD_WPA_SUPPLICANT_DRIVER  := NL80211
 BOARD_HOSTAPD_DRIVER         := NL80211
+
+# QCA qcacld wifi driver module
+BOARD_VENDOR_KERNEL_MODULES += \
+  $(KERNEL_OUT)/drivers/net/wireless/qcacld-2.0/wlan.ko
+
 
 #for accelerator sensor, need to define sensor type here
 BOARD_HAS_SENSOR := true
@@ -78,7 +83,7 @@ BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_imx6/dtbo-imx6q.img
 TARGET_BOARD_DTS_CONFIG := imx6q:imx6q-pico-qca_pi.dtb
 TARGET_BOOTLOADER_CONFIG := pico-imx6_spl_defconfig
 TARGET_KERNEL_DEFCONFIG := tn_android_defconfig
-# TARGET_KERNEL_ADDITION_DEFCONF := imx_v7_android_addition_defconfig
+TARGET_KERNEL_ADDITION_DEFCONF ?= android_addition_defconfig
 
 BOARD_SEPOLICY_DIRS := \
        device/fsl/imx6dq/sepolicy \

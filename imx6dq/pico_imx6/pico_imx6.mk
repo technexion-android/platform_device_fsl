@@ -34,9 +34,11 @@ PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/init.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.freescale.rc \
     $(IMX_DEVICE_PATH)/required_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/required_hardware.xml \
     $(IMX_DEVICE_PATH)/ueventd.freescale.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc \
+    $(IMX_DEVICE_PATH)/early.init.cfg:$(TARGET_COPY_OUT_VENDOR)/etc/early.init.cfg \
     $(IMX_DEVICE_PATH)/privapp-permissions-imx.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-imx.xml \
     $(LINUX_FIRMWARE_IMX_PATH)/linux-firmware-imx/firmware/vpu/vpu_fw_imx6d.bin:$(TARGET_COPY_OUT_VENDOR)/lib/firmware/vpu/vpu_fw_imx6d.bin \
     $(LINUX_FIRMWARE_IMX_PATH)/linux-firmware-imx/firmware/vpu/vpu_fw_imx6q.bin:$(TARGET_COPY_OUT_VENDOR)/lib/firmware/vpu/vpu_fw_imx6q.bin \
+    device/fsl/common/init/init.insmod.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.insmod.sh \
     device/fsl/common/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
     device/fsl/common/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
 
@@ -86,6 +88,32 @@ PRODUCT_COPY_FILES += \
     device/fsl/common/tools/fsl-sdcard-partition.sh:fsl-sdcard-partition.sh \
     device/fsl/common/tools/uuu_imx_android_flash.bat:uuu_imx_android_flash.bat \
     device/fsl/common/tools/uuu_imx_android_flash.sh:uuu_imx_android_flash.sh
+
+# Qcom WiFi Firmware
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/wlan/cfg.dat))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/wlan/cfg.dat:vendor/firmware/wlan/cfg.dat
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/wlan/qcom_cfg.ini))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/wlan/qcom_cfg.ini:vendor/firmware/wlan/qcom_cfg.ini
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/bdwlan30.bin))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/bdwlan30.bin:vendor/firmware/bdwlan30.bin
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/otp30.bin))
+PRODUCT_COPY_FILES += \
+     $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/otp30.bin:vendor/firmware/otp30.bin
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/qwlan30.bin))
+PRODUCT_COPY_FILES += \
+     $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/qwlan30.bin:vendor/firmware/qwlan30.bin
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/utf30.bin))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/utf30.bin:vendor/firmware/utf30.bin
+endif
 
 DEVICE_PACKAGE_OVERLAYS := $(IMX_DEVICE_PATH)/overlay
 
@@ -145,6 +173,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@3.0-impl \
     android.hardware.keymaster@3.0-service
+
+# WiFi HAL
+PRODUCT_PACKAGES += \
+    android.hardware.wifi@1.0-service \
+    wifilogd \
+    wificond
 
 # DRM HAL
 PRODUCT_PACKAGES += \

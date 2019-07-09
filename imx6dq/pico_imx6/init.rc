@@ -36,6 +36,7 @@ on init
 on late-fs
     # Start keymaster service
     start vendor.keymaster-3-0-${ro.boot.keystore}
+    start early_init_sh
 
 on early-boot
     # Set the host name which used in console
@@ -71,8 +72,8 @@ on early-boot
     write /sys/block/mmcblk2/queue/read_ahead_kb 2048
 
     # Wifi firmware reload path
-    chown wifi wifi /sys/module/bcmdhd/parameters/firmware_path
-    chown wifi wifi /sys/module/bcmdhd/parameters/nvram_path
+    # chown wifi wifi /sys/module/bcmdhd/parameters/firmware_path
+    # chown wifi wifi /sys/module/bcmdhd/parameters/nvram_path
 
     # Prepare for wifi
     setprop wifi.interface wlan0
@@ -212,6 +213,13 @@ on post-fs
 
 on post-fs-data
     setprop vold.post_fs_data_done 1
+
+service early_init_sh /vendor/bin/init.insmod.sh /vendor/etc/early.init.cfg sys.all.early_init.ready
+    class main
+    user root
+    group root system
+    disabled
+    oneshot
 
 on zygote-start
     # Create the directories used by the Wireless subsystem
