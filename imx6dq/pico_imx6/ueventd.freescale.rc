@@ -12,7 +12,9 @@
 /dev/watchdog             0660   system     root
 /dev/mma8x5x              0640   compass     system
 /dev/input/event*         0660   system     system
+/dev/ttymxc0              0666   system     system
 /dev/ttymxc1              0666   bluetooth  bluetooth
+/dev/ttymxc2              0666   system     system
 # sysfs properties
 /sys/devices/virtual/input/input*   name        0660  system   system
 /sys/devices/virtual/input/input*   max         0660  system   system
