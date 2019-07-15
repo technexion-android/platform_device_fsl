@@ -6,6 +6,7 @@
 /devices/soc0/soc/2100000.aips-bus/2190000.usdhc/mmc_host* auto auto defaults voldmanaged=sdcard:auto,encryptable=userdata
 /devices/soc0/soc/2100000.aips-bus/2184200.usb/ci_hdrc.1*  auto auto defaults voldmanaged=usb:auto
 /devices/soc0/soc/2100000.aips-bus/2184000.usb/ci_hdrc.0*  auto auto defaults voldmanaged=usb:auto
+/devices/soc0/soc/2200000.sata/ata1* auto auto defaults voldmanaged=sata:auto
 
 /dev/block/by-name/system      /system      ext4    ro,barrier=1                                                                     wait,avb
 /dev/block/by-name/vendor      /vendor      ext4    ro,barrier=1                                                                     wait,avb
