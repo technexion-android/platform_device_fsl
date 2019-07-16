@@ -92,8 +92,15 @@ endif
 
 BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_imx6/dtbo-imx6q.img
 
-# imx6q with sd card boot
-TARGET_BOARD_DTS_CONFIG := imx6q:imx6q-pico-qca_pi.dtb
+ifeq ($(EXPORT_BASEBOARD_NAME),PI)
+  TARGET_BOARD_DTS_CONFIG := imx6q:imx6q-pico-qca_pi.dtb
+  TARGET_BOARD_DTS_CONFIG += imx6dl:imx6dl-pico-qca_pi.dtb
+else ifeq ($(EXPORT_BASEBOARD_NAME),DWARF)
+  TARGET_BOARD_DTS_CONFIG := imx6q:imx6q-pico-qca_dwarf.dtb
+  TARGET_BOARD_DTS_CONFIG += imx6dl:imx6dl-pico-qca_dwarf.dtb
+endif
+
+
 TARGET_BOOTLOADER_CONFIG := pico-imx6_spl_defconfig
 TARGET_KERNEL_DEFCONFIG := tn_android_defconfig
 TARGET_KERNEL_ADDITION_DEFCONF ?= android_addition_defconfig
