@@ -136,6 +136,11 @@ PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/bluetooth/nvm_tlv_3.2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtnv11.bin
 endif
 
+# tn-init file
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/init/tn_init.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/tn_init.sh
+
+
 DEVICE_PACKAGE_OVERLAYS := $(IMX_DEVICE_PATH)/overlay
 
 PRODUCT_CHARACTERISTICS := tablet

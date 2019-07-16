@@ -191,6 +191,12 @@ service bugreport /system/bin/dumpstate -d -p -B -z \
     oneshot
     keycodes 114 115 116
 
+service tn_init /system/bin/sh /system/bin/tn_init.sh start
+    class late_start
+    user root
+    oneshot
+    seclabel u:r:tn_init:s0
+
 on fs
 # mount ext4 partitions
     mount_all /vendor/etc/fstab.freescale

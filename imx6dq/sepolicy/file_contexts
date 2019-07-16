@@ -53,3 +53,4 @@
 /vendor/bin/init\.insmod\.sh            u:object_r:init-insmod-sh_exec:s0
 /vendor/etc/early\.init\.cfg            u:object_r:init-insmod-sh_exec:s0
 /vendor/bin/hw/android\.hardware\.health@2\.0-service.imx          u:object_r:hal_health_default_exec:s0
+/system/bin/tn_init\.sh                 u:object_r:tn_init_exec:s0

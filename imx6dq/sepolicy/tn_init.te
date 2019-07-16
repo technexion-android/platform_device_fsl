@@ -1,0 +1,2 @@
+type tn_init, domain;
+type tn_init_exec, exec_type, file_type;
