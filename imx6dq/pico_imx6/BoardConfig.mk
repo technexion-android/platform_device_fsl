@@ -101,7 +101,7 @@ else ifeq ($(EXPORT_BASEBOARD_NAME),DWARF)
 endif
 
 
-TARGET_BOOTLOADER_CONFIG := pico-imx6_spl_defconfig
+TARGET_BOOTLOADER_CONFIG := pico-imx6_android_spl_defconfig
 TARGET_KERNEL_DEFCONFIG := tn_android_defconfig
 TARGET_KERNEL_ADDITION_DEFCONF ?= android_addition_defconfig
 
