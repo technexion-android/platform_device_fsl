@@ -1,2 +1,13 @@
 type tn_init, domain;
+permissive tn_init;
 type tn_init_exec, exec_type, file_type;
+
+init_daemon_domain(tn_init)
+net_domain(tn_init)
+
+allow tn_init shell_exec:file rx_file_perms;
+allow tn_init system_file:file rx_file_perms;
+# For /proc/sys/net/ipv4/conf/*/promote_secondaries
+allow tn_init proc_net:file write;
+
+typeattribute tn_init coredomain;
