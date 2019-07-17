@@ -125,14 +125,10 @@ on early-boot
     chmod 0755 /sys/kernel/debug/tracing
 
     # Default backlight device
-    setprop hw.backlight.dev "32e10000.mipi_dsi.0"
+    setprop hw.backlight.dev "backlight_mipi"
     # Chmod/chown FSL specific sys entry
-    chown system system /sys/class/backlight/32e10000.mipi_dsi.0/brightness
-    chmod 0660 /sys/class/backlight/32e10000.mipi_dsi.0/brightness
-
-    # Set light sensor sysfs path and light sensor threshold lux value
-    setprop ro.hardware.lightsensor "/sys/class/i2c-dev/i2c-0/device/0-0044/"
-    setprop ro.lightsensor.threshold  20
+    chown system system /sys/class/backlight/backlight_mipi/brightness
+    chmod 0660 /sys/class/backlight/backlight_mipi/brightness
 
     # Dectect DSF streams when scanning media
     setprop ro.FSL_DSF_PARSER 1
