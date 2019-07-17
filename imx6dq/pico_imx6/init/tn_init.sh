@@ -1,4 +1,4 @@
-#!/systen/bin/sh
+#!/system/bin/sh
 
 #####################
 # CAN BUS INIT
