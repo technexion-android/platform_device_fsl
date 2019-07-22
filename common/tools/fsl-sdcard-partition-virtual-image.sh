@@ -131,24 +131,27 @@ function get_partition_size
 function format_partition
 {
     num=`gdisk -l ${node} | grep -w $1 | awk '{print $1}'`
+    node_mapper=$(echo ${node} | awk -F/ '{ print $3 }')
     if [ ${num} -gt 0 ] 2>/dev/null; then
         echo "format_partition: $1:${node}p${num} ext4"
-        mkfs.ext4 -F /dev/mapper/loop23p${num} -L$1
+        mkfs.ext4 -F /dev/mapper/"${node_mapper}"p${num} -L$1
     fi
 }
 
 function erase_partition
 {
     num=`gdisk -l ${node} | grep -w $1 | awk '{print $1}'`
+    node_mapper=$(echo ${node} | awk -F/ '{ print $3 }')
     if [ ${num} -gt 0 ] 2>/dev/null; then
         get_partition_size $1
         echo "erase_partition: $1 : ${node}p${num} ${g_sizes}M"
-        dd if=/dev/zero of=/dev/mapper/loop23p${num} bs=1048576 conv=fsync count=$g_sizes
+        dd if=/dev/zero of=/dev/mapper/"${node_mapper}"p${num} bs=1048576 conv=fsync count=$g_sizes
     fi
 }
 
 function flash_partition
 {
+    node_mapper=$(echo ${node} | awk -F/ '{ print $3 }')
     for num in `gdisk -l ${node} | grep -E -w "$1|$1_a|$1_b" | awk '{print $1}'`
     do
         if [ $? -eq 0 ]; then
@@ -166,7 +169,7 @@ function flash_partition
                 echo -e >&2 "${RED}File ${img_name} not found. Please check. Exiting${STD}"
                 return 1
             fi
-            dd if=${img_name} of=/dev/mapper/loop23p${num} bs=10M conv=fsync
+            dd if=${img_name} of=/dev/mapper/"${node_mapper}"p${num} bs=10M conv=fsync
         fi
     done
 }
