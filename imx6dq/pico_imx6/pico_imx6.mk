@@ -209,7 +209,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
     wifilogd \
-    wificond
+    wificond \
+    qca_hostapd \
+    qca_wpa_supplicant
 
 # DRM HAL
 PRODUCT_PACKAGES += \
