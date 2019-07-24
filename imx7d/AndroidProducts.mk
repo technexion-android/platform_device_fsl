@@ -27,4 +27,5 @@
 # Copied from build/target/product/AndroidProducts.mk
 
 PRODUCT_MAKEFILES := \
-  $(LOCAL_DIR)/sabresd_7d/sabresd_7d.mk
+  $(LOCAL_DIR)/sabresd_7d/sabresd_7d.mk \
+  $(LOCAL_DIR)/pico_imx7/pico_imx7.mk
