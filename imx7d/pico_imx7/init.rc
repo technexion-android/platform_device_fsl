@@ -5,7 +5,6 @@ on early-init
     # mount the debugfs
     mount debugfs none /sys/kernel/debug/ mode=0755
 
-    start early_init_sh
 
 on init
     start watchdogd
@@ -31,6 +30,7 @@ on init
 on late-fs
     # Start keymaster service
     start vendor.keymaster-3-0-${ro.boot.keystore}
+    start early_init_sh
 
 on early-boot
     # Set the host name which used in console

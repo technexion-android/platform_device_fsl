@@ -28,20 +28,19 @@ TARGET_BOOTLOADER_POSTFIX := imx
 TARGET_DTB_POSTFIX := -dtb
 
 # UNITE is a virtual device.
-BOARD_WLAN_DEVICE            := bcmdhd
+BOARD_WLAN_DEVICE            := qcwcn
 WPA_SUPPLICANT_VERSION       := VER_0_8_X
 
 BOARD_WPA_SUPPLICANT_DRIVER  := NL80211
 BOARD_HOSTAPD_DRIVER         := NL80211
 
-BOARD_HOSTAPD_PRIVATE_LIB               := lib_driver_cmd_bcmdhd
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
+BOARD_HOSTAPD_PRIVATE_LIB               := lib_driver_cmd_qcwcn
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB        := lib_driver_cmd_qcwcn
 
 WIFI_DRIVER_FW_PATH_PARAM      := "/sys/module/brcmfmac/parameters/alternative_fw_path"
 
 BOARD_VENDOR_KERNEL_MODULES += \
-                            $(KERNEL_OUT)/drivers/net/wireless/broadcom/brcm80211/brcmfmac/brcmfmac.ko \
-                            $(KERNEL_OUT)/drivers/net/wireless/broadcom/brcm80211/brcmutil/brcmutil.ko
+                            $(KERNEL_OUT)/drivers/net/wireless/qcacld-2.0/wlan.ko
 
 #for accelerator sensor, need to define sensor type here
 BOARD_USE_SENSOR_FUSION := true
@@ -73,7 +72,8 @@ BOARD_KERNEL_CMDLINE := console=ttymxc4,115200 init=/init video=mxcfb0:dev=lcd,8
 TARGET_BOOTLOADER_CONFIG := pico-imx7d_android_spl_defconfig
 TARGET_BOARD_DTS_CONFIG := imx7d:imx7d-pico-qca_pi.dtb
 TARGET_KERNEL_DEFCONFIG := tn_android_defconfig
-# TARGET_KERNEL_ADDITION_DEFCONF := imx_v7_android_addition_defconfig
+TARGET_KERNEL_ADDITION_DEFCONF ?= android_addition_defconfig
+
 BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_imx7/dtbo-imx7d.img
 
 

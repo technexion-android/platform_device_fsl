@@ -36,7 +36,7 @@ PRODUCT_COPY_FILES += \
     device/fsl/common/input/imx-keypad.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/imx-keypad.idc \
     device/fsl/common/input/imx-keypad.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/imx-keypad.kl \
     device/fsl/common/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
-    device/fsl/common/wifi/bcm_wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
+    device/fsl/common/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
 
 # ONLY devices that meet the CDD's requirements may declare these features
 PRODUCT_COPY_FILES += \
@@ -153,6 +153,32 @@ PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
     wifilogd \
     wificond
+
+# Qcom WiFi Firmware
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/wlan/cfg.dat))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/wlan/cfg.dat:vendor/firmware/wlan/cfg.dat
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/wlan/qcom_cfg.ini))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/wlan/qcom_cfg.ini:vendor/firmware/wlan/qcom_cfg.ini
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/bdwlan30.bin))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/bdwlan30.bin:vendor/firmware/bdwlan30.bin
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/otp30.bin))
+PRODUCT_COPY_FILES += \
+     $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/otp30.bin:vendor/firmware/otp30.bin
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/qwlan30.bin))
+PRODUCT_COPY_FILES += \
+     $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/qwlan30.bin:vendor/firmware/qwlan30.bin
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/utf30.bin))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/utf30.bin:vendor/firmware/utf30.bin
+endif
 
 # Copy bluetooth firmware to board
 PRODUCT_COPY_FILES += \
