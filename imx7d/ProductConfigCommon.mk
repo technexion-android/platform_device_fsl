@@ -46,6 +46,24 @@ PRODUCT_PACKAGES += \
     verity_warning_images \
     vndk-sp
 
+# technexion customized apps
+PRODUCT_PACKAGES += \
+    Audio_Recorder \
+    UART-Test \
+    Termux \
+    i2cdetect \
+    i2cdump \
+    i2cget \
+    i2cset \
+    gpiodetect \
+    gpiofind \
+    gpioget \
+    gpioinfo \
+    gpiomon \
+    gpioset \
+    cansend \
+    candump \
+
 # HAL
 PRODUCT_PACKAGES += \
     camera.imx7 \
