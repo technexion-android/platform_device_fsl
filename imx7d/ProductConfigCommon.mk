@@ -9,7 +9,6 @@ PRODUCT_MANUFACTURER := freescale
 PRODUCT_PACKAGES += \
     CactusPlayer \
     ExtractorPkg \
-    Camera \
     CubeLiveWallpapers \
     Email \
     FSLOta \
@@ -17,12 +16,10 @@ PRODUCT_PACKAGES += \
     FSLProfileService \
     Gallery \
     Gallery2 \
-    LegacyCamera \
     LiveWallpapers \
     LiveWallpapersPicker \
     MagicSmokeWallpapers \
     PinyinIME \
-    SoundRecorder \
     VideoEditor \
     VisualizationWallpapers \
     charger_res_images \
