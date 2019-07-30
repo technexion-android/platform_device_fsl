@@ -10,7 +10,6 @@
 /dev/galcore              0666   system     graphics
 /dev/graphics/fb0         0660   system     graphics
 /dev/watchdog             0660   system     root
-/dev/mma8x5x              0640   compass     system
 /dev/input/event*         0660   system     system
 
 # Sensors sysfs for 7d platform.
