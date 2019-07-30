@@ -245,9 +245,9 @@ function flash_android
     first_partition_offset=`gdisk -l ${node} | grep ' 1 ' | awk '{print $2}'`
     # the unit of first_partition_offset is sector size which is 512 Byte.
     count_bootloader=`expr ${first_partition_offset} / 2 - ${bootloader_offset}`
-    echo "the bootloader partition size: ${count_bootloader}"
-    dd if=/dev/zero of=${node} bs=1k seek=${bootloader_offset} conv=fsync count=${count_bootloader}
-    dd if=${image_directory}${bootloader_file} of=${node} bs=1k seek=${bootloader_offset} conv=fsync
+    # echo "the bootloader partition size: ${count_bootloader}"
+    # dd if=/dev/zero of=${node} bs=1k seek=${bootloader_offset} conv=fsync count=${count_bootloader}
+    # dd if=${image_directory}${bootloader_file} of=${node} bs=1k seek=${bootloader_offset} conv=fsync
     if [ "${flash_m4}" -eq "1" ] ; then
         if [ "${soc_name}" = "imx7ulp" ]; then
             echo -e >&2 "${RED}Caution:${STD}"
