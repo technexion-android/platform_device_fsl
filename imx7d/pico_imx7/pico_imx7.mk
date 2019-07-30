@@ -180,9 +180,19 @@ PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/utf30.bin:vendor/firmware/utf30.bin
 endif
 
-# Copy bluetooth firmware to board
+# Qcom Bluetooth Firmware
 PRODUCT_COPY_FILES += \
-    vendor/nxp/imx-firmware/cyw-wifi-bt/ZP_CYW4339/BCM4335C0.ZP.hcd:vendor/firmware/bcm/Type_ZP.hcd \
+    vendor/nxp/qca-wifi-bt/qca_proprietary/Android_HAL/wcnss_filter_8mq:vendor/bin/wcnss_filter
+
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/bluetooth/rampatch_tlv_3.2.tlv))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/bluetooth/rampatch_tlv_3.2.tlv:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtfw11.tlv
+endif
+
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/bluetooth/nvm_tlv_3.2.bin))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/bluetooth/nvm_tlv_3.2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtnv11.bin
+endif
 
 PRODUCT_PACKAGES += \
     bt_vendor.conf
