@@ -84,6 +84,10 @@ WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/net/wireless/qcacld-2.0/wlan.ko
 
+# NXP NFC driver module
+BOARD_VENDOR_KERNEL_MODULES += \
+    $(KERNEL_OUT)/drivers/misc/nxp-pn5xx/pn5xx_i2c.ko
+
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(IMX_DEVICE_PATH)/bluetooth
 
 # Qcom 1CQ(QCA6174) BT
@@ -190,3 +194,7 @@ BOARD_SEPOLICY_DIRS += \
 endif
 
 TARGET_BOARD_KERNEL_HEADERS := device/fsl/common/kernel-headers
+ifeq ($(NFC_TARGET),NFC_PN7150)
+# adding NFC to the build
+-include vendor/nxp/nfc/BoardConfigNfc.mk
+endif

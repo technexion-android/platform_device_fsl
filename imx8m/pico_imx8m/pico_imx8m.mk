@@ -253,3 +253,8 @@ endif
 # Add oem unlocking option in settings.
 PRODUCT_PROPERTY_OVERRIDES += ro.frp.pst=/dev/block/by-name/presistdata
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
+
+ifeq ($(NFC_TARGET),NFC_PN7150)
+# adding NFC to the build
+$(call inherit-product, vendor/nxp/nfc/device-nfc.mk)
+endif
