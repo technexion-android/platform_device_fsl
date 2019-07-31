@@ -90,6 +90,10 @@ PRODUCT_COPY_FILES += \
     device/fsl/common/tools/uuu_imx_android_flash.bat:uuu_imx_android_flash.bat \
     device/fsl/common/tools/uuu_imx_android_flash.sh:uuu_imx_android_flash.sh
 
+# tn-init file
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/init/tn_init.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/tn_init.sh
+
 DEVICE_PACKAGE_OVERLAYS := $(IMX_DEVICE_PATH)/overlay
 
 PRODUCT_CHARACTERISTICS := tablet
