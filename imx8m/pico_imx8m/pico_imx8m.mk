@@ -254,7 +254,11 @@ endif
 PRODUCT_PROPERTY_OVERRIDES += ro.frp.pst=/dev/block/by-name/presistdata
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
 
-ifeq ($(NFC_TARGET),NFC_PN7150)
+ifeq ($(NFC_ACTIVE),true)
+ifeq ($(DISPLAY_TARGET),DISP_HDMI)
+ifneq ($(AUDIOHAT_ACTIVE),true)
 # adding NFC to the build
 $(call inherit-product, vendor/nxp/nfc/device-nfc.mk)
+endif
+endif
 endif

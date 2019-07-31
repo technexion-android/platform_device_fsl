@@ -194,7 +194,12 @@ BOARD_SEPOLICY_DIRS += \
 endif
 
 TARGET_BOARD_KERNEL_HEADERS := device/fsl/common/kernel-headers
-ifeq ($(NFC_TARGET),NFC_PN7150)
+ifeq ($(NFC_ACTIVE),true)
+ifeq ($(DISPLAY_TARGET),DISP_HDMI)
+ifneq ($(AUDIOHAT_ACTIVE),true)
 # adding NFC to the build
 -include vendor/nxp/nfc/BoardConfigNfc.mk
+TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-pi-nfc.dtb
+endif
+endif
 endif
