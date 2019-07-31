@@ -4,3 +4,6 @@ get_prop(platform_app, vendor_default_prop)
 set_prop(platform_app, public_vendor_default_prop)
 allow platform_app vendor_file:file { read open getattr };
 allow platform_app graphics_device:dir { search };
+allow platform_app platform_app:can_socket { create read write bind };
+allow platform_app self:can_socket ioctl;
+allowxperm platform_app self:can_socket ioctl SIOCGIFINDEX;
