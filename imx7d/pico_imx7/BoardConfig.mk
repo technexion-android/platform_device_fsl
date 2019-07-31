@@ -40,9 +40,7 @@ BOARD_WPA_SUPPLICANT_PRIVATE_LIB        := lib_driver_cmd_qcwcn
 WIFI_DRIVER_FW_PATH_PARAM      := "/sys/module/brcmfmac/parameters/alternative_fw_path"
 
 BOARD_VENDOR_KERNEL_MODULES += \
-                            $(KERNEL_OUT)/drivers/net/wireless/qcacld-2.0/wlan.ko \
-                            $(KERNEL_OUT)/drivers/media/platform/mxc/capture/mx6s_capture_legacy.ko \
-                            $(KERNEL_OUT)/drivers/media/platform/mxc/capture/ov5645_camera_mipi_v2.ko
+                            $(KERNEL_OUT)/drivers/net/wireless/qcacld-2.0/wlan.ko
 
 #for accelerator sensor, need to define sensor type here
 BOARD_USE_SENSOR_FUSION := true
