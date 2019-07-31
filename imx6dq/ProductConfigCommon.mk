@@ -75,6 +75,11 @@ PRODUCT_PACKAGES += \
     gpioset \
     cansend \
     candump \
+    EDM_CANBUS \
+    libcanbus \
+    libsocketcan_canbus \
+    libedm_canbus \
+    libedm
 
 # HAL
 PRODUCT_PACKAGES += \
