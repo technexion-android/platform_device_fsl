@@ -6,3 +6,5 @@ add_lunch_combo sabreauto_6q-user
 add_lunch_combo sabreauto_6q-userdebug
 add_lunch_combo pico_imx6-user
 add_lunch_combo pico_imx6-userdebug
+add_lunch_combo edm1_imx6-user
+add_lunch_combo edm1_imx6-userdebug
