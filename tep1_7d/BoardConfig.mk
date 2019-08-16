@@ -106,7 +106,7 @@ TARGET_VSYNC_DIRECT_REFRESH := true
 
 BOARD_KERNEL_CMDLINE := console=ttymxc4 consoleblank=0 androidboot.hardware=freescale vmalloc=128M androidboot.selinux=permissive cma=300M androidboot.serialno=123456789 galcore.gpuProfiler=1 androidboot.dm_verity=disabled galcore.contiguousSize=33554432
 TARGET_BOOTLOADER_CONFIG := tep1-imx7d_spl_defconfig
-TARGET_BOARD_DTS_CONFIG := imx7d-tep1.dtb
+TARGET_BOARD_DTS_CONFIG := imx7d-tep1.dtb imx7d-tep1-tvt.dtb
 
 BOARD_SEPOLICY_DIRS := \
        device/fsl/imx7/sepolicy \
