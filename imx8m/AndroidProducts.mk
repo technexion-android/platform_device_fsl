@@ -33,5 +33,6 @@ PRODUCT_MAKEFILES := \
   $(LOCAL_DIR)/evk_8mm/evk_8mm_drm.mk \
   $(LOCAL_DIR)/aiy_8mq/aiy_8mq.mk \
   $(LOCAL_DIR)/pico_imx8m/pico_imx8m.mk \
+  $(LOCAL_DIR)/edm_imx8m/edm_imx8m.mk \
   $(LOCAL_DIR)/pico_imx8mm/pico_imx8mm.mk \
   $(LOCAL_DIR)/flex_imx8mm/flex_imx8mm.mk
