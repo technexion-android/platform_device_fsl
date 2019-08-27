@@ -98,6 +98,9 @@ else ifeq ($(EXPORT_BASEBOARD_NAME),DWARF)
 else ifeq ($(EXPORT_BASEBOARD_NAME),NYMPH)
   TARGET_BOARD_DTS_CONFIG := imx6q:imx6q-pico-qca_nymph.dtb
   TARGET_BOARD_DTS_CONFIG += imx6dl:imx6dl-pico-qca_nymph.dtb
+else ifeq ($(EXPORT_BASEBOARD_NAME),HOBBIT)
+  TARGET_BOARD_DTS_CONFIG := imx6q:imx6q-pico-qca_hobbit.dtb
+  TARGET_BOARD_DTS_CONFIG += imx6dl:imx6dl-pico-qca_hobbit.dtb
 endif
 
 
