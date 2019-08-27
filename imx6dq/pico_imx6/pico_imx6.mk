@@ -21,6 +21,15 @@ PRODUCT_DEVICE := pico_imx6
 
 PRODUCT_FULL_TREBLE_OVERRIDE := true
 
+# Copy touch/keyboard related config file
+PRODUCT_COPY_FILES +=	\
+	device/fsl/common/input/Dell_Dell_USB_Keyboard.kl:system/usr/keylayout/Dell_Dell_USB_Keyboard.kl \
+	device/fsl/common/input/Dell_Dell_USB_Keyboard.idc:system/usr/idc/Dell_Dell_USB_Keyboard.idc \
+	device/fsl/common/input/Dell_Dell_USB_Entry_Keyboard.idc:system/usr/idc/Dell_Dell_USB_Entry_Keyboard.idc \
+	device/fsl/common/input/eGalax_Touch_Screen.idc:system/usr/idc/eGalax_Touch_Screen.idc \
+	device/fsl/common/input/eGalax_Touch_Screen.idc:system/usr/idc/HannStar_P1003_Touchscreen.idc \
+	device/fsl/common/input/eGalax_Touch_Screen.idc:system/usr/idc/Novatek_NT11003_Touch_Screen.idc
+
 # Copy device related config and binary to board
 PRODUCT_COPY_FILES += \
     $(FSL_PROPRIETARY_PATH)/fsl-proprietary/gpu-viv/lib/egl/egl.cfg:$(TARGET_COPY_OUT_VENDOR)/lib/egl/egl.cfg \
