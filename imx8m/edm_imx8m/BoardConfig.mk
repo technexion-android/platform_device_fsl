@@ -164,9 +164,9 @@ endif
 else ifeq ($(DISPLAY_TARGET),DISP_MIPI_ILI9881C)
 
 ifeq ($(AUDIOHAT_ACTIVE),true)
-TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-pi-dcss-ili9881c-voicehat.dtb
+TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-edm-wizard-dcss-ili9881c-voicehat.dtb
 else
-TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-pi-dcss-ili9881c.dtb
+TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-edm-wizard-dcss-ili9881c.dtb
 endif
 
 endif
