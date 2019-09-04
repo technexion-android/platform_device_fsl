@@ -73,7 +73,16 @@ KERNEL_NAME := zImage
 BOARD_KERNEL_CMDLINE := console=ttymxc4,115200 init=/init video=mxcfb0:dev=lcd,800x480@60,if=RGB24,bpp=24 video=mxcfb1:off androidboot.console=ttymxc4 consoleblank=0 androidboot.hardware=freescale cma=320M loop.max_part=7
 # u-boot target for imx7d_sabresd with HDMI or LCD display
 TARGET_BOOTLOADER_CONFIG := pico-imx7d_android_spl_defconfig
-TARGET_BOARD_DTS_CONFIG := imx7d:imx7d-pico-qca_pi.dtb
+ifeq ($(EXPORT_BASEBOARD_NAME),PI)
+  TARGET_BOARD_DTS_CONFIG := imx7d:imx7d-pico-qca_pi.dtb
+else ifeq ($(EXPORT_BASEBOARD_NAME),DWARF)
+  TARGET_BOARD_DTS_CONFIG := imx7d:imx7d-pico-qca_dwarf.dtb
+else ifeq ($(EXPORT_BASEBOARD_NAME),NYMPH)
+  TARGET_BOARD_DTS_CONFIG := imx7d:imx7d-pico-qca_nymph.dtb
+	BOARD_KERNEL_CMDLINE := console=ttymxc4,115200 init=/init video=mxcfb0:dev=lcd,1024x768@60,if=RGB24,bpp=24 video=mxcfb1:off androidboot.console=ttymxc4 consoleblank=0 androidboot.hardware=freescale cma=320M loop.max_part=7
+else ifeq ($(EXPORT_BASEBOARD_NAME),HOBBIT)
+  TARGET_BOARD_DTS_CONFIG := imx7d:imx7d-pico-qca_hobbit.dtb
+endif
 TARGET_KERNEL_DEFCONFIG := tn_android_defconfig
 TARGET_KERNEL_ADDITION_DEFCONF ?= android_addition_defconfig
 
