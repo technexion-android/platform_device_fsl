@@ -255,6 +255,10 @@ PRODUCT_PACKAGES += \
     libhantro \
     libcodec
 
+# Dual Camera app for imx8mq platform
+PRODUCT_PACKAGES += \
+    Dual-Camera
+
 # low memory configuration when size lower than 1GB
 ifeq ($(DRAM_SIZE_1G),true)
 PRODUCT_PROPERTY_OVERRIDES += ro.config.low_ram=true
