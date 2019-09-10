@@ -100,13 +100,13 @@ on early-boot
     chmod 0755 /sys/kernel/debug/tracing
 
     # Default lcd backlight device
-    setprop hw.backlight.dev "backlight_lcd"
+		setprop hw.backlight.dev "backlight_lcd"
     # Chmod/chown FSL specific sys entry
     chown system system /sys/class/backlight/backlight_lcd/brightness
     chmod 0660 /sys/class/backlight/backlight_lcd/brightness
 
     # Default lvds backlight device
-    setprop hw.backlight.dev "backlight_lvds"
+		# setprop hw.backlight.dev "backlight_lvds"
     # Chmod/chown FSL specific sys entry
     chown system system /sys/class/backlight/backlight_lvds/brightness
     chmod 0660 /sys/class/backlight/backlight_lvds/brightness
