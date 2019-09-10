@@ -97,7 +97,8 @@ BOARD_SEPOLICY_DIRS := \
 BOARD_BPT_INPUT_FILES += device/fsl/common/partition/device-partitions-7GB.bpt
 ADDITION_BPT_PARTITION = partition-table-14GB:device/fsl/common/partition/device-partitions-14GB.bpt \
                          partition-table-28GB:device/fsl/common/partition/device-partitions-28GB.bpt \
-                         partition-table-3GB:device/fsl/common/partition/device-partitions-3GB.bpt
+                         partition-table-3GB:device/fsl/common/partition/device-partitions-3GB.bpt \
+                         partition-table-7GB:device/fsl/common/partition/device-partitions-7GB.bpt
 
 TARGET_BOARD_KERNEL_HEADERS := device/fsl/common/kernel-headers
 
