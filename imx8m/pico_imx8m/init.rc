@@ -229,6 +229,30 @@ on property:ro.boot.wifivendor=qca
     setprop wifi.concurrent.interface p2p0
     start vendor.wifi_hal_legacy_qca
 
+on property:vendor.wc_transport.start_hci=true
+    start start_hci_filter
+
+on property:vendor.wc_transport.start_hci=false
+    stop start_hci_filter
+
+service start_hci_filter /vendor/bin/wcnss_filter
+    class late_start
+    user bluetooth
+    group bluetooth diag
+    disabled
+
+on property:vendor.wc_transport.start_root=true
+    start hci_filter_root
+
+on property:vendor.wc_transport.start_root=false
+    stop hci_filter_root
+
+service hci_filter_root /vendor/bin/wcnss_filter
+    class late_start
+    user bluetooth
+    group bluetooth diag system
+    disabled
+
 on fs
 # mount ext4 partitions
     mount_all /vendor/etc/fstab.freescale
