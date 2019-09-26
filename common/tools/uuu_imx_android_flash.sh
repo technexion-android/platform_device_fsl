@@ -20,10 +20,10 @@ options:
   -f soc_name       flash android image file with soc_name
   -a                only flash image to slot_a
   -b                only flash image to slot_b
-  -c card_size      optional setting: 7 / 14 / 28
+  -c card_size      optional setting: 7 / 13 / 28
                         If not set, use partition-table.img (default)
                         If set to  7, use partition-table-7GB.img  for  8GB SD card
-                        If set to 14, use partition-table-14GB.img for 16GB SD card
+                        If set to 13, use partition-table-13GB.img for 16GB SD card
                         If set to 28, use partition-table-28GB.img for 32GB SD card
                     Make sure the corresponding file exist for your platform
   -m                flash m4 image
@@ -134,7 +134,7 @@ if [[ "${image_directory}" != "" ]]; then
 fi
 
 # if card_size is not correctly set, exit.
-if [ ${card_size} -ne 0 ] && [ ${card_size} -ne 7 ] && [ ${card_size} -ne 14 ] && [ ${card_size} -ne 28 ]; then
+if [ ${card_size} -ne 0 ] && [ ${card_size} -ne 7 ] && [ ${card_size} -ne 13 ] && [ ${card_size} -ne 28 ]; then
     echo -e >&2 ${RED}card size ${card_size} is not legal${STD};
     help; exit 1;
 fi
