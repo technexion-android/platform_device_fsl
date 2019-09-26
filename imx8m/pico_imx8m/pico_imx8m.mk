@@ -195,7 +195,7 @@ endif
 
 # Qcom Bluetooth Firmware
 PRODUCT_COPY_FILES += \
-    vendor/nxp/qca-wifi-bt/qca_proprietary/Android_HAL/wcnss_filter_8mq:vendor/bin/wcnss_filter
+    $(IMX_DEVICE_PATH)/bluetooth/wcnss_filter_tn_8mq:vendor/bin/wcnss_filter
 ifneq (,$(wildcard device/fsl/imx8m/pico_imx8m/bluetooth/rampatch_tlv_3.2.tlv))
 PRODUCT_COPY_FILES += \
     device/fsl/imx8m/pico_imx8m/bluetooth/rampatch_tlv_3.2.tlv:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtfw11.tlv
