@@ -89,7 +89,11 @@ else ifeq ($(DISPLAY_TARGET),DISP_LVDS_7INCH)
   BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 init=/init video=mxcfb0:dev=ldb,1024x600@60,if=RGB24,bpp=24 video=mxcfb1:off vmalloc=128M androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale cma=320M galcore.contiguousSize=67108864 loop.max_part=7
 endif
 
-BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_imx6/dtbo-imx6q.img
+ifeq ($(GLOBAL_CPU_TYPE),IMX6Q)
+  BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_imx6/dtbo-imx6q.img
+else ifeq ($(GLOBAL_CPU_TYPE),IMX6DL)
+  BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_imx6/dtbo-imx6dl.img
+endif
 
 ifeq ($(EXPORT_BASEBOARD_NAME),PI)
   TARGET_BOARD_DTS_CONFIG := imx6q:imx6q-pico-qca_pi.dtb
