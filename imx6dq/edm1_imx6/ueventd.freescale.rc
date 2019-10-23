@@ -1,5 +1,5 @@
 /dev/block/platform/soc0/soc/2100000\.aips-bus/2198000\.usdhc/by-name/presistdata 0600   system     system
-/dev/block/platform/soc0/soc/2100000\.aips-bus/2190000\.usdhc/by-name/presistdata 0600   system     system
+/dev/block/platform/soc0/soc/2100000\.aips-bus/219c000\.usdhc/by-name/presistdata 0600   system     system
 /dev/snd/*                0660   system     audio
 /dev/video*               0660   system     camera
 /dev/mxc_ipu              0660   media      drmrpc

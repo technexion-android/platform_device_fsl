@@ -20,7 +20,9 @@ TARGET_RECOVERY_FSTAB = $(IMX_DEVICE_PATH)/fstab.freescale
 # Support gpt
 BOARD_BPT_INPUT_FILES += device/fsl/common/partition/device-partitions-7GB.bpt
 ADDITION_BPT_PARTITION = partition-table-14GB:device/fsl/common/partition/device-partitions-14GB.bpt \
-                         partition-table-28GB:device/fsl/common/partition/device-partitions-28GB.bpt
+                         partition-table-28GB:device/fsl/common/partition/device-partitions-28GB.bpt \
+                         partition-table-3GB:device/fsl/common/partition/device-partitions-3GB.bpt \
+                         partition-table-7GB:device/fsl/common/partition/device-partitions-7GB.bpt
 
 # Vendor Interface manifest and compatibility
 DEVICE_MANIFEST_FILE := $(IMX_DEVICE_PATH)/manifest.xml
@@ -46,8 +48,8 @@ BOARD_WPA_SUPPLICANT_PRIVATE_LIB        := lib_driver_cmd_qcwcn
 
 # QCA qcacld wifi driver module
 BOARD_VENDOR_KERNEL_MODULES += \
-  $(KERNEL_OUT)/drivers/net/wireless/qcacld-2.0/wlan.ko \
-  $(KERNEL_OUT)/drivers/media/platform/mxc/capture/ov5645_camera_mipi_int.ko
+  $(KERNEL_OUT)/drivers/net/wireless/qcacld-2.0/wlan.ko
+
 
 #for accelerator sensor, need to define sensor type here
 BOARD_HAS_SENSOR := true
@@ -68,7 +70,7 @@ BOARD_HAVE_USB_CAMERA := true
 # Qcom 1CQ(QCA6174) BT
 BOARD_HAVE_BLUETOOTH_QCOM := true
 BOARD_HAS_QCA_BT_ROME := true
-BOARD_SUPPORTS_BLE_VND : true
+BOARD_SUPPORTS_BLE_VND := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(IMX_DEVICE_PATH)/bluetooth
 
 USE_ION_ALLOCATOR := true
@@ -87,15 +89,19 @@ else ifeq ($(DISPLAY_TARGET),DISP_LVDS_7INCH)
   BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 init=/init video=mxcfb0:dev=ldb,1024x600@60,if=RGB24,bpp=24 video=mxcfb1:off vmalloc=128M androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale cma=320M galcore.contiguousSize=67108864 loop.max_part=7
 endif
 
-BOARD_PREBUILT_DTBOIMAGE := out/target/product/edm1_imx6/dtbo-imx6q.img
-
-ifeq ($(EXPORT_BASEBOARD_NAME),FAIRY)
-  TARGET_BOARD_DTS_CONFIG := imx6q:imx6q-edm1-qca_fairy.dtb
-  TARGET_BOARD_DTS_CONFIG += imx6dl:imx6dl-edm1-qca_fairy.dtb
+ifeq ($(GLOBAL_CPU_TYPE),IMX6Q)
+  BOARD_PREBUILT_DTBOIMAGE := out/target/product/edm1_imx6/dtbo-imx6q.img
+else ifeq ($(GLOBAL_CPU_TYPE),IMX6DL)
+  BOARD_PREBUILT_DTBOIMAGE := out/target/product/edm1_imx6/dtbo-imx6dl.img
 endif
 
+ifeq ($(EXPORT_BASEBOARD_NAME),FAIRY)
+  TARGET_BOARD_DTS_CONFIG := imx6q:imx6q-edm1-fairy-qca.dtb
+  TARGET_BOARD_DTS_CONFIG += imx6dl:imx6dl-edm1-fairy-qca.dtb
+  TARGET_BOARD_DTS_CONFIG += imx6qp:imx6qp-edm1-fairy-qca.dtb
+endif
 
-TARGET_BOOTLOADER_CONFIG := edm1-imx6_android_spl_defconfig
+TARGET_BOOTLOADER_CONFIG := edm-imx6_android_spl_defconfig
 TARGET_KERNEL_DEFCONFIG := tn_android_defconfig
 TARGET_KERNEL_ADDITION_DEFCONF ?= android_addition_defconfig
 
