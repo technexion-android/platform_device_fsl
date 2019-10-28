@@ -100,15 +100,12 @@ endif
 ifeq ($(EXPORT_BASEBOARD_NAME),FAIRY)
   TARGET_BOARD_DTS_CONFIG := imx6q:imx6q-edm1-fairy-qca.dtb
   TARGET_BOARD_DTS_CONFIG += imx6dl:imx6dl-edm1-fairy-qca.dtb
-  TARGET_BOARD_DTS_CONFIG += imx6qp:imx6qp-edm1-fairy-qca.dtb
 else ifeq ($(EXPORT_BASEBOARD_NAME),TC0700)
   TARGET_BOARD_DTS_CONFIG := imx6q:imx6q-edm1-tc0700-qca.dtb
   TARGET_BOARD_DTS_CONFIG += imx6dl:imx6dl-edm1-tc0700-qca.dtb
-  TARGET_BOARD_DTS_CONFIG += imx6qp:imx6qp-edm1-tc0700-qca.dtb
 else ifeq ($(EXPORT_BASEBOARD_NAME),TC1000)
   TARGET_BOARD_DTS_CONFIG := imx6q:imx6q-edm1-tc1000-qca.dtb
   TARGET_BOARD_DTS_CONFIG += imx6dl:imx6dl-edm1-tc1000-qca.dtb
-  TARGET_BOARD_DTS_CONFIG += imx6qp:imx6qp-edm1-tc1000-qca.dtb
 endif
 
 TARGET_BOOTLOADER_CONFIG := edm-imx6_android_spl_defconfig
