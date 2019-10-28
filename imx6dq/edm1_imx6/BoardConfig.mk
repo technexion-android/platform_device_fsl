@@ -87,6 +87,8 @@ else ifeq ($(DISPLAY_TARGET),DISP_HDMI)
   BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 init=/init video=mxcfb0:dev=hdmi,1280x720M@60,if=RGB24 video=mxcfb1:off vmalloc=128M androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale cma=320M galcore.contiguousSize=67108864 loop.max_part=7
 else ifeq ($(DISPLAY_TARGET),DISP_LVDS_7INCH)
   BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 init=/init video=mxcfb0:dev=ldb,1024x600@60,if=RGB24,bpp=24 video=mxcfb1:off vmalloc=128M androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale cma=320M galcore.contiguousSize=67108864 loop.max_part=7
+else ifeq ($(DISPLAY_TARGET),DISP_LVDS_10INCH)
+  BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 init=/init video=mxcfb0:dev=ldb,1280x800@60,if=RGB24,bpp=24 video=mxcfb1:off vmalloc=128M androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale cma=320M galcore.contiguousSize=67108864 loop.max_part=7
 endif
 
 ifeq ($(GLOBAL_CPU_TYPE),IMX6Q)
@@ -98,11 +100,12 @@ endif
 ifeq ($(EXPORT_BASEBOARD_NAME),FAIRY)
   TARGET_BOARD_DTS_CONFIG := imx6q:imx6q-edm1-fairy-qca.dtb
   TARGET_BOARD_DTS_CONFIG += imx6dl:imx6dl-edm1-fairy-qca.dtb
-  TARGET_BOARD_DTS_CONFIG += imx6qp:imx6qp-edm1-fairy-qca.dtb
 else ifeq ($(EXPORT_BASEBOARD_NAME),TC0700)
   TARGET_BOARD_DTS_CONFIG := imx6q:imx6q-edm1-tc0700-qca.dtb
   TARGET_BOARD_DTS_CONFIG += imx6dl:imx6dl-edm1-tc0700-qca.dtb
-  TARGET_BOARD_DTS_CONFIG += imx6qp:imx6qp-edm1-tc0700-qca.dtb
+else ifeq ($(EXPORT_BASEBOARD_NAME),TC1000)
+  TARGET_BOARD_DTS_CONFIG := imx6q:imx6q-edm1-tc1000-qca.dtb
+  TARGET_BOARD_DTS_CONFIG += imx6dl:imx6dl-edm1-tc1000-qca.dtb
 endif
 
 TARGET_BOOTLOADER_CONFIG := edm-imx6_android_spl_defconfig
