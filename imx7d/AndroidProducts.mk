@@ -28,4 +28,5 @@
 
 PRODUCT_MAKEFILES := \
   $(LOCAL_DIR)/sabresd_7d/sabresd_7d.mk \
-  $(LOCAL_DIR)/pico_imx7/pico_imx7.mk
+  $(LOCAL_DIR)/pico_imx7/pico_imx7.mk \
+  $(LOCAL_DIR)/tep1_imx7/tep1_imx7.mk
