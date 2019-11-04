@@ -8,3 +8,5 @@ add_lunch_combo pico_imx6-user
 add_lunch_combo pico_imx6-userdebug
 add_lunch_combo edm1_imx6-user
 add_lunch_combo edm1_imx6-userdebug
+add_lunch_combo tep5_imx6-user
+add_lunch_combo tep5_imx6-userdebug
