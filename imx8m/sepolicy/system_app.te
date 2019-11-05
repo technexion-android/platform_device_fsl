@@ -17,6 +17,7 @@ allow system_app update_engine:binder { call transfer };
 allow system_app fs_bpf:dir { search };
 allow system_app proc_tty_drivers:file { read open getattr };
 allow system_app device:dir { read open getattr };
+allow system_app device:chr_file { read open write ioctl getattr};
 allow system_app tty_device:chr_file { read open write ioctl };
 
 set_prop(system_app, vendor_bluetooth_prop)
