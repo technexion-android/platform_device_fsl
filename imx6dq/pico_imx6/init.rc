@@ -82,6 +82,10 @@ on early-boot
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     write /sys/class/rfkill/rfkill0/state 0
 
+    setprop persist.service.bdroid.bdaddr 22:22:67:C6:69:73
+    setprop qcom.bluetooth.soc rome
+    setprop vendor.wc_transport.start_hci false
+
     # Set the density to 160 dpi, default 128dpi is not good
     setprop ro.sf.lcd_density 160
 
@@ -196,6 +200,30 @@ service tn_init /system/bin/sh /system/bin/tn_init.sh
     user root
     oneshot
     seclabel u:r:tn_init:s0
+
+on property:vendor.wc_transport.start_hci=true
+    start start_hci_filter
+
+on property:vendor.wc_transport.start_hci=false
+    stop start_hci_filter
+
+service start_hci_filter /vendor/bin/wcnss_filter
+    class late_start
+    user bluetooth
+    group bluetooth diag
+    disabled
+
+on property:vendor.wc_transport.start_root=true
+    start hci_filter_root
+
+on property:vendor.wc_transport.start_root=false
+    stop hci_filter_root
+
+service hci_filter_root /vendor/bin/wcnss_filter
+    class late_start
+    user bluetooth
+    group bluetooth diag system
+    disabled
 
 on fs
 # mount ext4 partitions
