@@ -135,6 +135,9 @@ endif
 
 
 # Qcom Bluetooth Firmware
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/bluetooth/wcnss_filter_pico_imx6:vendor/bin/wcnss_filter
+
 ifneq (,$(wildcard $(IMX_DEVICE_PATH)/bluetooth/rampatch_tlv_3.2.tlv))
 PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/bluetooth/rampatch_tlv_3.2.tlv:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtfw11.tlv
