@@ -34,7 +34,7 @@ on late-fs
 
 on early-boot
     # Set the host name which used in console
-    export HOSTNAME pico_imx7
+    export HOSTNAME tep1_imx7
 
     # Set permission for IIM node
     symlink /dev/mxs_viim /dev/mxc_mem
@@ -44,7 +44,7 @@ on early-boot
 
     setprop hwc.stretch.filter  1
 
-    # Disable OpenGL Renderer on pico_imx7
+    # Disable OpenGL Renderer on tep1_imx7
     setprop sys.viewroot.hw false
 
     # platform need use Launcher2 as default launcher should set this prop
