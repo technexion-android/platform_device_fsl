@@ -38,7 +38,9 @@ PRODUCT_PACKAGES += \
     gpioget \
     gpioinfo \
     gpiomon \
-    gpioset
+    gpioset \
+    libgpiod_jni \
+    GPIOD_JNI_TEST
 
 ifneq ($(PRODUCT_IMX_CAR),true)
 PRODUCT_PACKAGES += \
