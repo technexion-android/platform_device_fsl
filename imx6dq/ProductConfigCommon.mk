@@ -79,7 +79,9 @@ PRODUCT_PACKAGES += \
     libcanbus \
     libsocketcan_canbus \
     libedm_canbus \
-    libedm
+    libedm \
+    libgpiod_jni \
+    GPIOD_JNI_TEST
 
 # HAL
 PRODUCT_PACKAGES += \
