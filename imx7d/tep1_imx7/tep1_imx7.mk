@@ -170,6 +170,10 @@ PRODUCT_PACKAGES += \
     wifilogd \
     wificond
 
+# dhcpcd
+PRODUCT_PACKAGES += \
+    dhcpcd-6.8.2
+
 # Qcom WiFi Firmware
 ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/wlan/cfg.dat))
 PRODUCT_COPY_FILES += \
