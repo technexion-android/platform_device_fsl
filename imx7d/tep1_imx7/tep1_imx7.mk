@@ -175,29 +175,17 @@ PRODUCT_PACKAGES += \
     dhcpcd-6.8.2
 
 # Qcom WiFi Firmware
-ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/wlan/cfg.dat))
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/qca9377-5_wifi_firmware/ath10k/QCA9377/hw1.0/board-2.bin))
 PRODUCT_COPY_FILES += \
-    $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/wlan/cfg.dat:vendor/firmware/wlan/cfg.dat
+    $(IMX_DEVICE_PATH)/qca9377-5_wifi_firmware/ath10k/QCA9377/hw1.0/board-2.bin:vendor/firmware/ath10k/QCA9377/hw1.0/board-2.bin
 endif
-ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/wlan/qcom_cfg.ini))
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/qca9377-5_wifi_firmware/ath10k/QCA9377/hw1.0/board.bin))
 PRODUCT_COPY_FILES += \
-    $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/wlan/qcom_cfg.ini:vendor/firmware/wlan/qcom_cfg.ini
+    $(IMX_DEVICE_PATH)/qca9377-5_wifi_firmware/ath10k/QCA9377/hw1.0/board.bin:vendor/firmware/ath10k/QCA9377/hw1.0/board.bin
 endif
-ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/bdwlan30.bin))
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/qca9377-5_wifi_firmware/ath10k/QCA9377/hw1.0/firmware-5.bin))
 PRODUCT_COPY_FILES += \
-    $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/bdwlan30.bin:vendor/firmware/bdwlan30.bin
-endif
-ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/otp30.bin))
-PRODUCT_COPY_FILES += \
-     $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/otp30.bin:vendor/firmware/otp30.bin
-endif
-ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/qwlan30.bin))
-PRODUCT_COPY_FILES += \
-     $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/qwlan30.bin:vendor/firmware/qwlan30.bin
-endif
-ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/utf30.bin))
-PRODUCT_COPY_FILES += \
-    $(IMX_DEVICE_PATH)/wifi-firmware/QCA9377/utf30.bin:vendor/firmware/utf30.bin
+    $(IMX_DEVICE_PATH)/qca9377-5_wifi_firmware/ath10k/QCA9377/hw1.0/firmware-5.bin:vendor/firmware/ath10k/QCA9377/hw1.0/firmware-5.bin
 endif
 
 # Qcom Bluetooth Firmware

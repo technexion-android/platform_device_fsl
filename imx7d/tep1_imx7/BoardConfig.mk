@@ -28,19 +28,21 @@ TARGET_BOOTLOADER_POSTFIX := imx
 TARGET_DTB_POSTFIX := -dtb
 
 # UNITE is a virtual device.
-# BOARD_WLAN_DEVICE            := qcwcn
-# WPA_SUPPLICANT_VERSION       := VER_0_8_X
+BOARD_WLAN_DEVICE            := bcmdhd
+WPA_SUPPLICANT_VERSION       := VER_0_8_X
 
-# BOARD_WPA_SUPPLICANT_DRIVER  := NL80211
-# BOARD_HOSTAPD_DRIVER         := NL80211
+BOARD_WPA_SUPPLICANT_DRIVER  := NL80211
+BOARD_HOSTAPD_DRIVER         := NL80211
 
-# BOARD_HOSTAPD_PRIVATE_LIB               := lib_driver_cmd_qcwcn
-# BOARD_WPA_SUPPLICANT_PRIVATE_LIB        := lib_driver_cmd_qcwcn
+BOARD_HOSTAPD_PRIVATE_LIB               := lib_driver_cmd_bcmdhd
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
 
 # WIFI_DRIVER_FW_PATH_PARAM      := "/sys/module/brcmfmac/parameters/alternative_fw_path"
 
-# BOARD_VENDOR_KERNEL_MODULES += \
-#                            $(KERNEL_OUT)/drivers/net/wireless/qcacld-2.0/wlan.ko
+BOARD_VENDOR_KERNEL_MODULES += \
+                           $(KERNEL_OUT)/drivers/net/wireless/ath/ath10k/ath10k_core.ko \
+                           $(KERNEL_OUT)/drivers/net/wireless/ath/ath10k/ath10k_pci.ko \
+                           $(KERNEL_OUT)/drivers/net/wireless/ath/ath.ko \
 
 #for accelerator sensor, need to define sensor type here
 BOARD_USE_SENSOR_FUSION := true
