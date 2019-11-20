@@ -79,7 +79,8 @@ PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_volumes.xml \
     frameworks/av/services/audiopolicy/config/default_volume_tables.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default_volume_tables.xml \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
-    frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml
+    frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml \
+    frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_audio_policy_configuration.xml
 
 # output audio configuration file
 ifeq ($(DISPLAY_TARGET),DISP_HDMI)
@@ -125,7 +126,7 @@ endif
 
 # Qcom Bluetooth Firmware
 PRODUCT_COPY_FILES += \
-    vendor/nxp/qca-wifi-bt/qca_proprietary/Android_HAL/wcnss_filter_8mq:vendor/bin/wcnss_filter
+    $(IMX_DEVICE_PATH)/bluetooth/wcnss_filter_edm1_imx6:vendor/bin/wcnss_filter
 
 ifneq (,$(wildcard $(IMX_DEVICE_PATH)/bluetooth/rampatch_tlv_3.2.tlv))
 PRODUCT_COPY_FILES += \
