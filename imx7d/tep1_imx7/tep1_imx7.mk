@@ -189,17 +189,14 @@ PRODUCT_COPY_FILES += \
 endif
 
 # Qcom Bluetooth Firmware
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/bluetooth/nvm_usb_00000302.bin))
 PRODUCT_COPY_FILES += \
-    vendor/nxp/qca-wifi-bt/qca_proprietary/Android_HAL/wcnss_filter_8mq:vendor/bin/wcnss_filter
-
-ifneq (,$(wildcard $(IMX_DEVICE_PATH)/bluetooth/rampatch_tlv_3.2.tlv))
-PRODUCT_COPY_FILES += \
-    $(IMX_DEVICE_PATH)/bluetooth/rampatch_tlv_3.2.tlv:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtfw11.tlv
+    $(IMX_DEVICE_PATH)/bluetooth/nvm_usb_00000302.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/nvm_usb_00000302.bin
 endif
 
-ifneq (,$(wildcard $(IMX_DEVICE_PATH)/bluetooth/nvm_tlv_3.2.bin))
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/bluetooth/rampatch_usb_00000302.bin))
 PRODUCT_COPY_FILES += \
-    $(IMX_DEVICE_PATH)/bluetooth/nvm_tlv_3.2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtnv11.bin
+    $(IMX_DEVICE_PATH)/bluetooth/rampatch_usb_00000302.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/rampatch_usb_00000302.bin
 endif
 
 PRODUCT_PACKAGES += \
