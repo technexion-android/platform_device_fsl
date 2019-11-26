@@ -12,6 +12,15 @@
 /dev/watchdog             0660   system     root
 /dev/input/event*         0660   system     system
 
+
+/sys/devices/soc0/soc/30800000.aips-bus/30b20000.usb/ci_hdrc.1/usb1/1-1/1-1.2/1-1.2:1.0/bluetooth/hci0/rfkill0  state 0660  bluetooth bluetooth
+/sys/devices/soc0/soc/30800000.aips-bus/30b20000.usb/ci_hdrc.1/usb1/1-1/1-1.2/1-1.2:1.0/bluetooth/hci0/rfkill0  type  0440  bluetooth bluetooth
+/sys/class/rfkill/rfkill0/type   0440       bluetooth bluetooth
+/sys/class/rfkill/rfkill0/state  0660       bluetooth bluetooth
+
+# Bluedroid uhid support
+/dev/uhid                 0660   system     bluetooth
+
 # Sensors sysfs for 7d platform.
 /sys/devices/virtual/misc/Freescale* name       0660 system system
 /sys/devices/virtual/misc/Freescale* max        0660 system system
