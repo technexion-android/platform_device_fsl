@@ -43,6 +43,9 @@ BOARD_VENDOR_KERNEL_MODULES += \
                            $(KERNEL_OUT)/drivers/net/wireless/ath/ath10k/ath10k_core.ko \
                            $(KERNEL_OUT)/drivers/net/wireless/ath/ath10k/ath10k_pci.ko \
                            $(KERNEL_OUT)/drivers/net/wireless/ath/ath.ko \
+                           $(KERNEL_OUT)/drivers/bluetooth/btintel.ko \
+                           $(KERNEL_OUT)/drivers/bluetooth/btusb.ko
+
 
 #for accelerator sensor, need to define sensor type here
 BOARD_USE_SENSOR_FUSION := true
@@ -55,11 +58,9 @@ TARGET_SELECT_KEY := 28
 # we don't support sparse image.
 TARGET_USERIMAGES_SPARSE_EXT_DISABLED := false
 
-# Qcom 1CQ(QCA6174) BT
-# BOARD_HAVE_BLUETOOTH_QCOM := true
-# BOARD_HAS_QCA_BT_ROME := true
-# BOARD_SUPPORTS_BLE_VND := true
-# BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(IMX_DEVICE_PATH)/bluetooth
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_USB := true
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(IMX_DEVICE_PATH)/bluetooth
 
 USE_ION_ALLOCATOR := true
 USE_GPU_ALLOCATOR := false

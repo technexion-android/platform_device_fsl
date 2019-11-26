@@ -19,7 +19,26 @@
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
 
-#define BTM_DEF_LOCAL_NAME "PICO-IMX7"
+#define BTM_DEF_LOCAL_NAME "TEP1-IMX7"
+
+#define HCILP_INCLUDED                 FALSE
+
+/* Default class of device
+* {SERVICE_CLASS, MAJOR_CLASS, MINOR_CLASS}
+*
+* SERVICE_CLASS:0x1A (Bit17 -Networking,Bit19 - Capturing,Bit20 -Object Transfer)
+* MAJOR_CLASS:0x01 - COMPUTER
+* MINOR_CLASS:0x1C - TABLET
+*/
+
+#define BTA_DM_COD {0x1A, 0x01, 0x1C}
+
+#define PRELOAD_MAX_RETRY_ATTEMPTS 1
+
+#define PRELOAD_START_TIMEOUT_MS 3500
 
 #define BLE_VND_INCLUDED TRUE
+
+#define BTM_SSR_INCLUDED FALSE
+
 #endif
