@@ -40,7 +40,12 @@ PRODUCT_PACKAGES += \
     gpiomon \
     gpioset \
     libgpiod_jni \
-    GPIOD_JNI_TEST
+    GPIOD_JNI_TEST \
+    libssh \
+    ssh \
+    scp \
+    ssh-keygen \
+    ethtool
 
 ifneq ($(PRODUCT_IMX_CAR),true)
 PRODUCT_PACKAGES += \
