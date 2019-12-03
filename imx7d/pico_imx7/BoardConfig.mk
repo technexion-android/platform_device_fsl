@@ -3,6 +3,7 @@
 #
 
 IMX_DEVICE_PATH := device/fsl/imx7d/pico_imx7
+ADDITION_DRIVERS_PATH := vendor/nxp-opensource/out-of-tree_drivers
 
 include $(IMX_DEVICE_PATH)/build_id.mk
 include device/fsl/imx7d/BoardConfigCommon.mk
@@ -42,6 +43,12 @@ WIFI_DRIVER_FW_PATH_PARAM      := "/sys/module/brcmfmac/parameters/alternative_f
 BOARD_VENDOR_KERNEL_MODULES += \
                             $(KERNEL_OUT)/drivers/net/wireless/qcacld-2.0/wlan.ko
 
+ifeq ($(AUDIOHAT_ACTIVE),true)
+ifneq (,$(wildcard $(ADDITION_DRIVERS_PATH)/tfa98xx/snd-soc-tfa98xx.ko))
+BOARD_VENDOR_KERNEL_MODULES += \
+   $(ADDITION_DRIVERS_PATH)/tfa98xx/snd-soc-tfa98xx.ko
+endif
+endif
 #for accelerator sensor, need to define sensor type here
 BOARD_USE_SENSOR_FUSION := true
 #SENSOR_MMA8451 := true
@@ -74,7 +81,13 @@ BOARD_KERNEL_CMDLINE := console=ttymxc4,115200 init=/init video=mxcfb0:dev=lcd,8
 # u-boot target for imx7d_sabresd with HDMI or LCD display
 TARGET_BOOTLOADER_CONFIG := pico-imx7d_android_spl_defconfig
 ifeq ($(EXPORT_BASEBOARD_NAME),PI)
+
+ifeq ($(AUDIOHAT_ACTIVE),true)
+  TARGET_BOARD_DTS_CONFIG := imx7d:imx7d-pico-qca_pi-voicehat.dtb
+else
   TARGET_BOARD_DTS_CONFIG := imx7d:imx7d-pico-qca_pi.dtb
+endif
+
 else ifeq ($(EXPORT_BASEBOARD_NAME),DWARF)
   TARGET_BOARD_DTS_CONFIG := imx7d:imx7d-pico-qca_dwarf.dtb
 else ifeq ($(EXPORT_BASEBOARD_NAME),NYMPH)
