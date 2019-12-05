@@ -205,7 +205,7 @@ endif
 
 # Qcom Bluetooth Firmware
 PRODUCT_COPY_FILES += \
-    vendor/nxp/qca-wifi-bt/qca_proprietary/Android_HAL/wcnss_filter_8mq:vendor/bin/wcnss_filter
+    $(IMX_DEVICE_PATH)/bluetooth/wcnss_filter_pico_imx7:vendor/bin/wcnss_filter
 
 ifneq (,$(wildcard $(IMX_DEVICE_PATH)/bluetooth/rampatch_tlv_3.2.tlv))
 PRODUCT_COPY_FILES += \
