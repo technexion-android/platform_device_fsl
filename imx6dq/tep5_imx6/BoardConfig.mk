@@ -81,14 +81,10 @@ NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 
 KERNEL_NAME := zImage
 
-ifeq ($(DISPLAY_TARGET),DISP_LCD_5INCH)
-  BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 init=/init video=mxcfb0:dev=lcd,800x480@60,if=RGB24,bpp=24 video=mxcfb1:off video=mxcfb2:off video=mxcfb3:off vmalloc=128M androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale cma=320M galcore.contiguousSize=67108864 loop.max_part=7
-else ifeq ($(DISPLAY_TARGET),DISP_HDMI)
-  BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 init=/init video=mxcfb0:dev=hdmi,1280x720M@60,if=RGB24 video=mxcfb1:off vmalloc=128M androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale cma=320M galcore.contiguousSize=67108864 loop.max_part=7
-else ifeq ($(DISPLAY_TARGET),DISP_LVDS_7INCH)
-  BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 init=/init video=mxcfb0:dev=ldb,1024x600@60,if=RGB24,bpp=24 video=mxcfb1:off vmalloc=128M androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale cma=320M galcore.contiguousSize=67108864 loop.max_part=7
-else ifeq ($(DISPLAY_TARGET),DISP_LVDS_10INCH)
+ifeq ($(DISPLAY_TARGET),DISP_LVDS_10INCH)
   BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 init=/init video=mxcfb0:dev=ldb,1280x800@60,if=RGB24,bpp=24 video=mxcfb1:off vmalloc=128M androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale cma=320M galcore.contiguousSize=67108864 loop.max_part=7
+else ifeq ($(DISPLAY_TARGET),DISP_LVDS_15INCH)
+  BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 init=/init video=mxcfb0:dev=ldb,1360x768@60,if=RGB24,bpp=32 video=mxcfb1:off vmalloc=128M androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale cma=320M galcore.contiguousSize=67108864 loop.max_part=7
 endif
 
 ifeq ($(GLOBAL_CPU_TYPE),IMX6Q)
@@ -98,8 +94,13 @@ else ifeq ($(GLOBAL_CPU_TYPE),IMX6DL)
 endif
 
 ifeq ($(EXPORT_BASEBOARD_NAME),TEP5)
+ifeq ($(DISPLAY_TARGET),DISP_LVDS_10INCH)
   TARGET_BOARD_DTS_CONFIG := imx6q:imx6q-tep5.dtb
   TARGET_BOARD_DTS_CONFIG += imx6dl:imx6dl-tep5.dtb
+else ifeq ($(DISPLAY_TARGET),DISP_LVDS_15INCH)
+  TARGET_BOARD_DTS_CONFIG := imx6q:imx6q-tep5-15.dtb
+  TARGET_BOARD_DTS_CONFIG += imx6dl:imx6dl-tep5-15.dtb
+endif
 endif
 
 TARGET_BOOTLOADER_CONFIG := tek-imx6_android_spl_defconfig
