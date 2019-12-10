@@ -82,9 +82,9 @@ NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 KERNEL_NAME := zImage
 
 ifeq ($(DISPLAY_TARGET),DISP_LVDS_10INCH)
-  BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 init=/init video=mxcfb0:dev=ldb,1280x800@60,if=RGB24,bpp=24 video=mxcfb1:off vmalloc=128M androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale cma=320M galcore.contiguousSize=67108864 loop.max_part=7
+  BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 init=/init video=mxcfb0:dev=ldb,1280x800@60,if=RGB24,bpp=24 video=mxcfb1:off vmalloc=128M androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale cma=320M galcore.contiguousSize=67108864 loop.max_part=7 quiet
 else ifeq ($(DISPLAY_TARGET),DISP_LVDS_15INCH)
-  BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 init=/init video=mxcfb0:dev=ldb,1360x768@60,if=RGB24,bpp=32 video=mxcfb1:off vmalloc=128M androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale cma=320M galcore.contiguousSize=67108864 loop.max_part=7
+  BOARD_KERNEL_CMDLINE := console=ttymxc0,115200 init=/init video=mxcfb0:dev=ldb,1360x768@60,if=RGB24,bpp=32 video=mxcfb1:off vmalloc=128M androidboot.console=ttymxc0 consoleblank=0 androidboot.hardware=freescale cma=320M galcore.contiguousSize=67108864 loop.max_part=7 quiet
 endif
 
 ifeq ($(GLOBAL_CPU_TYPE),IMX6Q)

@@ -82,7 +82,7 @@ IMX_CAMERA_HAL_V1 := true
 TARGET_VSYNC_DIRECT_REFRESH := true
 
 KERNEL_NAME := zImage
-BOARD_KERNEL_CMDLINE := console=ttymxc4,115200 init=/init video=mxcfb0:dev=lcd,800x480@60,if=RGB24,bpp=24 video=mxcfb1:off androidboot.console=ttymxc4 consoleblank=0 androidboot.hardware=freescale cma=320M loop.max_part=7
+BOARD_KERNEL_CMDLINE := console=ttymxc4,115200 init=/init video=mxcfb0:dev=lcd,800x480@60,if=RGB24,bpp=24 video=mxcfb1:off androidboot.console=ttymxc4 consoleblank=0 androidboot.hardware=freescale cma=320M loop.max_part=7 quiet
 # u-boot target for imx7d_sabresd with HDMI or LCD display
 TARGET_BOOTLOADER_CONFIG := pico-imx7d_android_spl_defconfig
 ifeq ($(EXPORT_BASEBOARD_NAME),PI)

@@ -73,7 +73,7 @@ IMX_CAMERA_HAL_V1 := true
 TARGET_VSYNC_DIRECT_REFRESH := true
 
 KERNEL_NAME := zImage
-BOARD_KERNEL_CMDLINE := console=ttymxc2,115200 init=/init video=mxcfb0:dev=lcd,800x480@60,if=RGB24,bpp=24 video=mxcfb1:off androidboot.console=ttymxc2 consoleblank=0 androidboot.hardware=freescale cma=320M loop.max_part=7
+BOARD_KERNEL_CMDLINE := console=ttymxc2,115200 init=/init video=mxcfb0:dev=lcd,800x480@60,if=RGB24,bpp=24 video=mxcfb1:off androidboot.console=ttymxc2 consoleblank=0 androidboot.hardware=freescale cma=320M loop.max_part=7 quiet
 # u-boot target for imx7d_sabresd with HDMI or LCD display
 TARGET_BOOTLOADER_CONFIG := tep1-imx7d_android_spl_defconfig
 # TARGET_BOARD_DTS_CONFIG := imx7d:imx7d-tep1.dtb
