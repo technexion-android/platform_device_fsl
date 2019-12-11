@@ -12,6 +12,13 @@
 /dev/watchdog             0660   system     root
 /dev/input/event*         0660   system     system
 
+/dev/gpiochip0            0666   system     system
+/dev/gpiochip1            0666   system     system
+/dev/gpiochip2            0666   system     system
+/dev/gpiochip3            0666   system     system
+/dev/gpiochip4            0666   system     system
+/dev/gpiochip5            0666   system     system
+/dev/gpiochip6            0666   system     system
 
 /sys/devices/soc0/soc/30800000.aips-bus/30b20000.usb/ci_hdrc.1/usb1/1-1/1-1.2/1-1.2:1.0/bluetooth/hci0/rfkill0  state 0660  bluetooth bluetooth
 /sys/devices/soc0/soc/30800000.aips-bus/30b20000.usb/ci_hdrc.1/usb1/1-1/1-1.2/1-1.2:1.0/bluetooth/hci0/rfkill0  type  0440  bluetooth bluetooth
