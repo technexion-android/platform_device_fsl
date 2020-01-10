@@ -22,6 +22,7 @@
 /dev/gpiochip4            0666   system     system
 /dev/gpiochip5            0666   system     system
 /dev/gpiochip6            0666   system     system
+/dev/gpiochip7            0666   system     system
 # sysfs properties
 /sys/devices/virtual/input/input*   name        0660  system   system
 /sys/devices/virtual/input/input*   max         0660  system   system
