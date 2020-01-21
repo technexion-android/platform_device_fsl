@@ -40,7 +40,7 @@ on late-fs
 
 on early-boot
     # Set the host name which used in console
-    export HOSTNAME edm1_imx6
+    export HOSTNAME tep5_imx6
 
     # Set permission for IIM node
     symlink /dev/mxs_viim /dev/mxc_mem
