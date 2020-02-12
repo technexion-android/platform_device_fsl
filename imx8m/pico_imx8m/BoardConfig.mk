@@ -127,7 +127,7 @@ TARGET_USES_MKE2FS := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 
 ifeq ($(DRAM_SIZE_1G),true)
-CMASIZE=450M
+CMASIZE=400M
 else
 CMASIZE=1280M
 endif
@@ -135,7 +135,11 @@ endif
 KERNEL_NAME := Image
 
 ifeq ($(DISPLAY_TARGET),DISP_HDMI)
+ifeq ($(DRAM_SIZE_1G),true)
+BOARD_KERNEL_CMDLINE := init=/init androidboot.hwrotation=0 androidboot.gui_resolution=720p androidboot.displaymode=720p androidboot.console=ttymxc0 androidboot.hardware=freescale androidboot.fbTileSupport=enable cma=$(CMASIZE) androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware transparent_hugepage=never
+else
 BOARD_KERNEL_CMDLINE := init=/init androidboot.hwrotation=0 androidboot.gui_resolution=1080p androidboot.console=ttymxc0 androidboot.hardware=freescale androidboot.fbTileSupport=enable cma=$(CMASIZE) androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware transparent_hugepage=never
+endif
 else ifeq ($(DISPLAY_TARGET),DISP_MIPI_ILI9881C)
 BOARD_KERNEL_CMDLINE := init=/init androidboot.hwrotation=90 androidboot.console=ttymxc0 androidboot.hardware=freescale androidboot.fbTileSupport=enable cma=$(CMASIZE) androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware transparent_hugepage=never
 endif
