@@ -21,7 +21,12 @@ TARGET_HAVE_VULKAN := true
 ENABLE_CFI=false
 
 # enable opencl 2d.
+ifeq ($(DRAM_SIZE_1G),true)
+TARGET_OPENCL_2D := false
+else
 TARGET_OPENCL_2D := true
+endif
+
 
 #
 # Product-specific compile-time definitions.
@@ -127,7 +132,7 @@ TARGET_USES_MKE2FS := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 
 ifeq ($(DRAM_SIZE_1G),true)
-CMASIZE=400M
+CMASIZE=385M
 else
 CMASIZE=1280M
 endif

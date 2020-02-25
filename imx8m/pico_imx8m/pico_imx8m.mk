@@ -251,6 +251,7 @@ PRODUCT_PACKAGES += \
 # low memory configuration when size lower than 1GB
 ifeq ($(DRAM_SIZE_1G),true)
 PRODUCT_PROPERTY_OVERRIDES += ro.config.low_ram=true
+$(call inherit-product, build/target/product/go_defaults.mk)
 endif
 
 # Add oem unlocking option in settings.
