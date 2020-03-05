@@ -137,10 +137,12 @@ KERNEL_NAME := Image
 
 ifeq ($(DISPLAY_TARGET),DISP_HDMI)
 BOARD_KERNEL_CMDLINE := init=/init androidboot.hwrotation=0 androidboot.gui_resolution=1080p androidboot.console=ttymxc0 androidboot.hardware=freescale androidboot.fbTileSupport=enable cma=$(CMASIZE) androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware transparent_hugepage=never
-else ifeq ($(DISPLAY_TARGET),DISP_MIPI_ILI9881C)
-BOARD_KERNEL_CMDLINE := init=/init androidboot.hwrotation=90 androidboot.console=ttymxc0 androidboot.hardware=freescale androidboot.fbTileSupport=enable cma=$(CMASIZE) androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware transparent_hugepage=never
 else ifeq ($(DISPLAY_TARGET),DISP_DUAL_HDMI)
 BOARD_KERNEL_CMDLINE := init=/init androidboot.hwrotation=0 androidboot.gui_resolution=1080p androidboot.console=ttymxc0 androidboot.hardware=freescale cma=$(CMASIZE) androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware transparent_hugepage=never
+else ifeq ($(DISPLAY_TARGET),DISP_MIPI_G101UAN02)
+BOARD_KERNEL_CMDLINE := init=/init androidboot.hwrotation=0 androidboot.console=ttymxc0 androidboot.hardware=freescale androidboot.fbTileSupport=enable cma=$(CMASIZE) androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware transparent_hugepage=never
+else ifneq ($(findstring $(DISPLAY_TARGET), DISP_MIPI_ILI9881C DISP_MIPI_G080UAN01),)
+BOARD_KERNEL_CMDLINE := init=/init androidboot.hwrotation=90 androidboot.console=ttymxc0 androidboot.hardware=freescale androidboot.fbTileSupport=enable cma=$(CMASIZE) androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware transparent_hugepage=never
 endif
 
 # Default wificountrycode
@@ -173,6 +175,14 @@ TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-edm-wizard-dcss-ili9881c-voicehat.dtb
 else
 TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-edm-wizard-dcss-ili9881c.dtb
 endif
+
+else ifeq ($(DISPLAY_TARGET),DISP_MIPI_G101UAN02)
+
+TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-edm-wizard-dcss-g101uan02.dtb
+
+else ifeq ($(DISPLAY_TARGET),DISP_MIPI_G080UAN01)
+
+TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-edm-wizard-dcss-g080uan01.dtb
 
 else ifeq ($(DISPLAY_TARGET),DISP_DUAL_HDMI)
 TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-edm-wizard-dual-display-adv7535.dtb
