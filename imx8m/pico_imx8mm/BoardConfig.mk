@@ -155,7 +155,6 @@ else
 TARGET_BOARD_DTS_CONFIG := imx8mm:imx8mm-pico-pi-ili9881c.dtb
 endif
 
-
 BOARD_SEPOLICY_DIRS := \
        device/fsl/imx8m/sepolicy \
        $(IMX_DEVICE_PATH)/sepolicy
@@ -166,3 +165,11 @@ BOARD_SEPOLICY_DIRS += \
 endif
 
 TARGET_BOARD_KERNEL_HEADERS := device/fsl/common/kernel-headers
+
+ifeq ($(NFC_ACTIVE),true)
+ifneq ($(AUDIOHAT_ACTIVE),true)
+# adding NFC to the build
+-include vendor/nxp/nfc/BoardConfigNfc.mk
+TARGET_BOARD_DTS_CONFIG := imx8mm:imx8mm-pico-pi-ili9881c-nfc.dtb
+endif
+endif
