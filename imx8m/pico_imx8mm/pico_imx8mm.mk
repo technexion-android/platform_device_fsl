@@ -272,3 +272,8 @@ PRODUCT_PACKAGES += \
     gatekeeper.trusty \
     storageproxyd
 endif
+
+ifeq ($(NFC_ACTIVE),true)
+# adding NFC to the build
+$(call inherit-product, vendor/nxp/nfc/device-nfc.mk)
+endif
