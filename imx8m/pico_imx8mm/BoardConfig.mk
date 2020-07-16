@@ -145,14 +145,18 @@ TARGET_BOOTLOADER_CONFIG := pico-imx8mm_android_defconfig
 TARGET_KERNEL_DEFCONFIG := tn_imx8_android_defconfig
 TARGET_KERNEL_ADDITION_DEFCONF := android_addition_defconfig
 
+ifeq ($(EXPORT_BASEBOARD_NAME),PI)
 ifeq ($(AUDIOHAT_ACTIVE),true)
-TARGET_BOARD_DTS_CONFIG := imx8mm:imx8mm-pico-pi-ili9881c-voicehat.dtb
+  TARGET_BOARD_DTS_CONFIG := imx8mm:imx8mm-pico-pi-ili9881c-voicehat.dtb
 ifneq (,$(wildcard $(ADDITION_DRIVERS_PATH)/tfa98xx/snd-soc-tfa98xx.ko))
   BOARD_VENDOR_KERNEL_MODULES += \
   $(ADDITION_DRIVERS_PATH)/tfa98xx/snd-soc-tfa98xx.ko
 endif
 else
-TARGET_BOARD_DTS_CONFIG := imx8mm:imx8mm-pico-pi-ili9881c.dtb
+  TARGET_BOARD_DTS_CONFIG := imx8mm:imx8mm-pico-pi-ili9881c.dtb
+endif
+else ifeq ($(EXPORT_BASEBOARD_NAME),WIZARD)
+TARGET_BOARD_DTS_CONFIG := imx8mm:imx8mm-pico-wizard-ili9881c.dtb
 endif
 
 BOARD_SEPOLICY_DIRS := \
