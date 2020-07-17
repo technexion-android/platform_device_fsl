@@ -56,11 +56,7 @@ PRODUCT_COPY_FILES += \
 ifeq ($(WM8960_AUDIO_CODEC_ACTIVE),true)
 PRODUCT_COPY_FILES += $(IMX_DEVICE_PATH)/audio_policy_configuration_wm8960.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml
 else
-ifeq ($(AUDIOHAT_ACTIVE),true)
-PRODUCT_COPY_FILES += $(IMX_DEVICE_PATH)/audio_policy_configuration_voicehat.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml
-else
 PRODUCT_COPY_FILES += $(IMX_DEVICE_PATH)/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml
-endif
 endif
 
 ifeq ($(PRODUCT_IMX_TRUSTY),true)
