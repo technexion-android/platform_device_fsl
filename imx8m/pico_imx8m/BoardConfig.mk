@@ -160,22 +160,25 @@ endif
 BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_imx8m/dtbo-imx8mq.img
 
 # display with dtb
-ifeq ($(DISPLAY_TARGET),DISP_HDMI)
+ifeq ($(EXPORT_BASEBOARD_NAME),PI)
+  ifeq ($(DISPLAY_TARGET),DISP_HDMI)
+    ifeq ($(AUDIOHAT_ACTIVE),true)
+      TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-pi-voicehat.dtb
+    else
+      TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-pi.dtb
+    endif
 
-ifeq ($(AUDIOHAT_ACTIVE),true)
-TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-pi-voicehat.dtb
-else
-TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-pi.dtb
-endif
-
-else ifeq ($(DISPLAY_TARGET),DISP_MIPI_ILI9881C)
-
-ifeq ($(AUDIOHAT_ACTIVE),true)
-TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-pi-dcss-ili9881c-voicehat.dtb
-else
-TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-pi-dcss-ili9881c.dtb
-endif
-
+  else ifeq ($(DISPLAY_TARGET),DISP_MIPI_ILI9881C)
+    ifeq ($(AUDIOHAT_ACTIVE),true)
+      TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-pi-dcss-ili9881c-voicehat.dtb
+    else
+      TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-pi-dcss-ili9881c.dtb
+    endif
+  endif
+else ifeq ($(EXPORT_BASEBOARD_NAME),WIZARD)
+  ifeq ($(DISPLAY_TARGET),DISP_HDMI)
+      TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-wizard.dtb
+  endif
 endif
 
 ifeq ($(AUDIOHAT_ACTIVE),true)
