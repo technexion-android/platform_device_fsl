@@ -46,6 +46,8 @@ BOARD_HOSTAPD_DRIVER         := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB               := lib_driver_cmd_qcwcn
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB        := lib_driver_cmd_qcwcn
 
+WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
+
 # QCA qcacld wifi driver module
 BOARD_VENDOR_KERNEL_MODULES += \
   $(KERNEL_OUT)/drivers/net/wireless/qcacld-2.0/wlan.ko
