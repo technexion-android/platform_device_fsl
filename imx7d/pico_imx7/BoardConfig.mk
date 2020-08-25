@@ -38,6 +38,8 @@ BOARD_HOSTAPD_DRIVER         := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB               := lib_driver_cmd_qcwcn
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB        := lib_driver_cmd_qcwcn
 
+WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
+
 WIFI_DRIVER_FW_PATH_PARAM      := "/sys/module/brcmfmac/parameters/alternative_fw_path"
 
 BOARD_VENDOR_KERNEL_MODULES += \
