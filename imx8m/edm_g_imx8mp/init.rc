@@ -76,13 +76,13 @@ on late-fs && property:vendor.storageproxyd=trusty
     start vendor.oemlock-1-0
 
 on early-boot
-    # For evk_8mp, when swap used about 400M, upgrade the level.
+    # For edm_g_imx8mp, when swap used about 400M, upgrade the level.
     setprop ro.lmk.upgrade_pressure 93
     setprop ro.lmk.downgrade_pressure 99
     setprop ro.lmk.critical_upgrade true
 
     # Set the host name which used in console
-    export HOSTNAME evk_8mp
+    export HOSTNAME edm_g_imx8mp
 
     # Set permission for IIM node
     symlink /dev/mxs_viim /dev/mxc_mem
@@ -118,6 +118,10 @@ on early-boot
 
     setprop persist.service.bdroid.bdaddr 22:22:67:C6:69:73
 
+    setprop qcom.bluetooth.soc rome_uart
+    setprop vendor.wc_transport.start_hci false
+
+
     # Use ro.boot.lcd_density to override ro.sf.lcd_density
     setprop ro.sf.lcd_density ${ro.boot.lcd_density}
 
@@ -136,10 +140,6 @@ on early-boot
     # Chmod/chown FSL specific sys entry
     chown system system /sys/class/backlight/32e60000.mipi_dsi.0/brightness
     chmod 0660 /sys/class/backlight/32e60000.mipi_dsi.0/brightness
-
-    # Set light sensor sysfs path and light sensor threshold lux value
-    setprop ro.hardware.lightsensor "/sys/class/i2c-dev/i2c-0/device/0-0044/"
-    setprop ro.lightsensor.threshold  20
 
     # Dectect DSF streams when scanning media
     setprop ro.FSL_DSF_PARSER 1
@@ -164,13 +164,6 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     class main
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
-    oneshot
-
-service sensor_fusion /vendor/bin/fsl_sensor_fusion
-    class late_start
-    seclabel u:r:sensors:s0
-    user system
-    group input
     oneshot
 
 # Set watchdog timer to 30 seconds and pet it every 10 seconds to get a 20 second margin
@@ -297,3 +290,27 @@ on property:ro.boot.vendor.sysrq=1
 # setenv append_bootargs androidboot.usb.debugging=1
 on property:ro.boot.usb.debugging=1
     setprop persist.sys.usb.config adb
+
+on property:vendor.wc_transport.start_hci=true
+  start start_hci_filter
+
+on property:vendor.wc_transport.start_hci=false
+    stop start_hci_filter
+
+service start_hci_filter /vendor/bin/wcnss_filter
+    class late_start
+    user bluetooth
+    group bluetooth diag
+    disabled
+
+on property:vendor.wc_transport.start_root=true
+    start hci_filter_root
+
+on property:vendor.wc_transport.start_root=false
+    stop hci_filter_root
+
+service hci_filter_root /vendor/bin/wcnss_filter
+    class late_start
+    user bluetooth
+    group bluetooth diag system
+    disabled

@@ -3,7 +3,7 @@
 #
 
 BOARD_SOC_TYPE := IMX8MP
-BOARD_TYPE := EVK
+BOARD_TYPE := SOM
 BOARD_HAVE_VPU := true
 BOARD_VPU_TYPE := hantro
 HAVE_FSL_IMX_GPU2D := false
@@ -32,7 +32,7 @@ SOONG_CONFIG_IMXPLUGIN_BOARD_VPU_ONLY = false
 # Product-specific compile-time definitions.
 #
 
-IMX_DEVICE_PATH := device/fsl/imx8m/evk_8mp
+IMX_DEVICE_PATH := device/fsl/imx8m/edm_g_imx8mp
 
 include device/fsl/imx8m/BoardConfigCommon.mk
 
@@ -42,35 +42,27 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_RECOVERY_FSTAB = $(IMX_DEVICE_PATH)/fstab.freescale
 
 # Support gpt
-ifeq ($(TARGET_USE_DYNAMIC_PARTITIONS),true)
-  BOARD_BPT_INPUT_FILES += device/fsl/common/partition/device-partitions-13GB-ab_super.bpt
-  ADDITION_BPT_PARTITION = partition-table-28GB:device/fsl/common/partition/device-partitions-28GB-ab_super.bpt \
-                           partition-table-dual:device/fsl/common/partition/device-partitions-13GB-ab-dual-bootloader_super.bpt \
-                           partition-table-28GB-dual:device/fsl/common/partition/device-partitions-28GB-ab-dual-bootloader_super.bpt
-else
-  ifeq ($(IMX_NO_PRODUCT_PARTITION),true)
-    BOARD_BPT_INPUT_FILES += device/fsl/common/partition/device-partitions-13GB-ab-no-product.bpt
-    ADDITION_BPT_PARTITION = partition-table-28GB:device/fsl/common/partition/device-partitions-28GB-ab-no-product.bpt \
-                             partition-table-dual:device/fsl/common/partition/device-partitions-13GB-ab-dual-bootloader-no-product.bpt \
-                             partition-table-28GB-dual:device/fsl/common/partition/device-partitions-28GB-ab-dual-bootloader-no-product.bpt
-  else
-    BOARD_BPT_INPUT_FILES += device/fsl/common/partition/device-partitions-13GB-ab.bpt
-    ADDITION_BPT_PARTITION = partition-table-28GB:device/fsl/common/partition/device-partitions-28GB-ab.bpt \
-                             partition-table-dual:device/fsl/common/partition/device-partitions-13GB-ab-dual-bootloader.bpt \
-                             partition-table-28GB-dual:device/fsl/common/partition/device-partitions-28GB-ab-dual-bootloader.bpt
-  endif
-endif
+BOARD_BPT_INPUT_FILES += device/fsl/common/partition/device-partitions-13GB-ab_super.bpt
+ADDITION_BPT_PARTITION = partition-table-28GB:device/fsl/common/partition/device-partitions-28GB-ab_super.bpt \
+                         partition-table-dual:device/fsl/common/partition/device-partitions-13GB-ab-dual-bootloader_super.bpt \
+                         partition-table-28GB-dual:device/fsl/common/partition/device-partitions-28GB-ab-dual-bootloader_super.bpt
 
 # Vendor Interface manifest and compatibility
 DEVICE_MANIFEST_FILE := $(IMX_DEVICE_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := $(IMX_DEVICE_PATH)/compatibility_matrix.xml
 
-TARGET_BOOTLOADER_BOARD_NAME := EVK
+TARGET_BOOTLOADER_BOARD_NAME := edm-g-imx8mp_android
 
 USE_OPENGL_RENDERER := true
 
-# NXP 8997 WIFI
-BOARD_WLAN_DEVICE            := nxp
+
+# QCA qcacld wifi driver module
+BOARD_VENDOR_KERNEL_MODULES += \
+     $(KERNEL_OUT)/drivers/net/wireless/qcacld-2.0/wlan.ko
+
+
+# QCA9377 WIFI
+BOARD_WLAN_DEVICE            := qcwcn
 WPA_SUPPLICANT_VERSION       := VER_0_8_X
 BOARD_WPA_SUPPLICANT_DRIVER  := NL80211
 BOARD_HOSTAPD_DRIVER         := NL80211
@@ -79,13 +71,17 @@ BOARD_WPA_SUPPLICANT_PRIVATE_LIB        := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 
 WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 
-# NXP 8997 BT
-BOARD_HAVE_BLUETOOTH_NXP := true
+# QCA9377 BT
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(IMX_DEVICE_PATH)/bluetooth
+BOARD_HAVE_BLUETOOTH_QCOM := true
+BOARD_HAS_QCA_BT_ROME := true
+BOARD_HAVE_BLUETOOTH_BLUEZ := false
+QCOM_BT_USE_SIBS := true
+ifeq ($(QCOM_BT_USE_SIBS), true)
+  WCNSS_FILTER_USES_SIBS := true
+endif
 
-# NXP 8997 BT
-BOARD_HAVE_BLUETOOTH_NXP := true
-
-BOARD_USE_SENSOR_FUSION := true
+BOARD_USE_SENSOR_FUSION := false
 
 # we don't support sparse image.
 TARGET_USERIMAGES_SPARSE_EXT_DISABLED := false
@@ -107,60 +103,28 @@ TARGET_USES_MKE2FS := true
 # define frame buffer count
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 
-CMASIZE=800M
-# NXP default config
-BOARD_KERNEL_CMDLINE := init=/init androidboot.console=ttymxc1 androidboot.hardware=freescale firmware_class.path=/vendor/firmware loop.max_part=7
-
-# memory config
-BOARD_KERNEL_CMDLINE += transparent_hugepage=never
-
-# display config
-BOARD_KERNEL_CMDLINE += androidboot.lcd_density=240 androidboot.primary_display=imx-drm
-
-# wifi config
-BOARD_KERNEL_CMDLINE += androidboot.wificountrycode=CN
-
-# low memory device build config
-ifeq ($(LOW_MEMORY),true)
-BOARD_KERNEL_CMDLINE += cma=320M@0x400M-0xb80M androidboot.displaymode=720p galcore.contiguousSize=33554432
-else
-BOARD_KERNEL_CMDLINE += cma=$(CMASIZE)@0x400M-0xb80M
-endif
-
 ifeq ($(TARGET_USERIMAGES_USE_UBIFS),true)
 ifeq ($(TARGET_USERIMAGES_USE_EXT4),true)
 $(error "TARGET_USERIMAGES_USE_UBIFS and TARGET_USERIMAGES_USE_EXT4 config open in same time, please only choose one target file system image")
 endif
 endif
 
-BOARD_PREBUILT_DTBOIMAGE := out/target/product/evk_8mp/dtbo-imx8mp.img
+BOARD_PREBUILT_DTBOIMAGE := out/target/product/edm_g_imx8mp/dtbo-imx8mp.img
 
-ifeq ($(TARGET_USE_DYNAMIC_PARTITIONS),true)
-  ifeq ($(IMX_NO_PRODUCT_PARTITION),true)
-    TARGET_BOARD_DTS_CONFIG := imx8mp:imx8mp-evk-no-product.dtb
-  else
-    # Default use basler + ov5640
-    TARGET_BOARD_DTS_CONFIG := imx8mp:imx8mp-evk-basler-ov5640.dtb
-    # Only ov5640
-    TARGET_BOARD_DTS_CONFIG += imx8mp-ov5640:imx8mp-evk.dtb
-    # Only basler
-    TARGET_BOARD_DTS_CONFIG += imx8mp-basler:imx8mp-evk-basler.dtb
-    # Used to support mcu image
-    TARGET_BOARD_DTS_CONFIG += imx8mp-rpmsg:imx8mp-evk-rpmsg.dtb
-    # Support LVDS interface
-    TARGET_BOARD_DTS_CONFIG += imx8mp-lvds:imx8mp-evk-it6263-lvds-dual-channel.dtb
-    # Support LVDS panel
-    TARGET_BOARD_DTS_CONFIG += imx8mp-lvds-panel:imx8mp-evk-jdi-wuxga-lvds-panel.dtb
-    # Support MIPI panel
-    TARGET_BOARD_DTS_CONFIG += imx8mp-mipi-panel:imx8mp-evk-rm67191.dtb
-  endif
-else # no dynamic parition feature
-  ifeq ($(IMX_NO_PRODUCT_PARTITION),true)
-    TARGET_BOARD_DTS_CONFIG := imx8mp:imx8mp-evk-no-product-no-dynamic_partition.dtb
-  else
-    TARGET_BOARD_DTS_CONFIG := imx8mp:imx8mp-evk-no-dynamic_partition.dtb
-  endif
-endif
+# Default use basler + ov5640
+TARGET_BOARD_DTS_CONFIG := imx8mp:imx8mp-edm-g-wb.dtb
+# Only ov5640
+TARGET_BOARD_DTS_CONFIG += imx8mp-ov5640:imx8mp-evk.dtb
+# Only basler
+TARGET_BOARD_DTS_CONFIG += imx8mp-basler:imx8mp-evk-basler.dtb
+# Used to support mcu image
+TARGET_BOARD_DTS_CONFIG += imx8mp-rpmsg:imx8mp-evk-rpmsg.dtb
+# Support LVDS interface
+TARGET_BOARD_DTS_CONFIG += imx8mp-lvds:imx8mp-evk-it6263-lvds-dual-channel.dtb
+# Support LVDS panel
+TARGET_BOARD_DTS_CONFIG += imx8mp-lvds-panel:imx8mp-evk-jdi-wuxga-lvds-panel.dtb
+# Support MIPI panel
+TARGET_BOARD_DTS_CONFIG += imx8mp-mipi-panel:imx8mp-evk-rm67191.dtb
 
 BOARD_SEPOLICY_DIRS := \
        device/fsl/imx8m/sepolicy \
