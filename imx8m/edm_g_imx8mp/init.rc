@@ -20,8 +20,6 @@ on early-init
 
 
 on early-init
-    start early_init_sh
-
     # Due keymaster start very early so set prop here
     # Also gatekeeper share same role for keymaster
     setprop ro.hardware.keystore ${ro.boot.keystore}
@@ -71,6 +69,8 @@ on late-fs
     setprop vendor.powerhal.init 1
 
     mount_all /vendor/etc/fstab.freescale --late
+    start early_init_sh
+
 
 on late-fs && property:vendor.storageproxyd=trusty
     start vendor.oemlock-1-0
@@ -111,11 +111,6 @@ on early-boot
     # Set period_us for usb audio
     setprop ro.audio.usb.period_us 20000
 
-    # Prepare for wifi
-    setprop wifi.interface wlan0
-    setprop wifi.direct.interface p2p0
-    setprop wifi.concurrent.interface wlan1
-
     setprop persist.service.bdroid.bdaddr 22:22:67:C6:69:73
 
     setprop qcom.bluetooth.soc rome_uart
@@ -153,6 +148,9 @@ on early-boot
     # enlarge media max memory size to 3G.
     setprop ro.media.maxmem 3221225471
 
+    # Prepare for wifi
+    setprop wifi.interface wlan0
+    setprop wifi.direct.interface p2p0
     start vendor.wifi_hal_legacy
 
 service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
