@@ -23,6 +23,7 @@ DTS_ADDITIONAL_PATH :=
 else ifeq ($(TARGET_KERNEL_ARCH), arm64)
 KERNEL_SRC_ARCH := arm64
 DTS_ADDITIONAL_PATH := freescale
+DTS_OVERLAY_PATH := freescale/overlays
 else
 $(error kernel arch not supported at present)
 endif
@@ -36,12 +37,17 @@ $(foreach dts_config,$(TARGET_BOARD_DTS_CONFIG), \
 
 $(BOARD_PREBUILT_DTBOIMAGE): $(KERNEL_BIN) $(TARGET_DTB) | $(MKDTIMG) $(AVBTOOL)
 	$(hide) echo "Building $(KERNEL_ARCH) dtbo ..."
+	for dtboplat in $(TARGET_BOARD_DTBO_CONFIG); do \
+			DTBO_FILE=`echo $$dtboplat | cut -d':' -f2`; \
+			DTBO_APPEND+=`echo "$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/arch/$(TARGET_KERNEL_ARCH)/boot/dts/$(DTS_OVERLAY_PATH)/$${DTBO_FILE} "`; \
+	done; \
 	for dtsplat in $(TARGET_BOARD_DTS_CONFIG); do \
 		DTS_PLATFORM=`echo $$dtsplat | cut -d':' -f1`; \
 		DTB_NAME=`echo $$dtsplat | cut -d':' -f2`; \
 		DTB=`echo $(KERNEL_OUT)/arch/$(TARGET_KERNEL_ARCH)/boot/dts/$(DTS_ADDITIONAL_PATH)/$${DTB_NAME}`; \
 		DTBO_IMG=`echo $(PRODUCT_OUT)/dtbo-$${DTS_PLATFORM}.img`; \
-		$(MKDTIMG) create $$DTBO_IMG $$DTB; \
+		echo $$DTBO_APPEND; \
+		$(MKDTIMG) create $$DTBO_IMG $$DTB $$DTBO_APPEND; \
 		$(AVBTOOL) add_hash_footer --image $$DTBO_IMG  \
 			--partition_name dtbo \
 			--partition_size $(BOARD_DTBOIMG_PARTITION_SIZE); \
