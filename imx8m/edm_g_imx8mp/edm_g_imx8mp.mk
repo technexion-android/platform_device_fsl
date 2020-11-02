@@ -308,7 +308,8 @@ endif
 
 # boot animation
 PRODUCT_COPY_FILES += \
-    $(IMX_DEVICE_PATH)/boot/bootanimation.zip:$(TARGET_COPY_OUT_SYSTEM)/media/bootanimation.zip
+    $(IMX_DEVICE_PATH)/boot/bootanimation.zip:$(TARGET_COPY_OUT_SYSTEM)/media/bootanimation.zip \
+    $(IMX_DEVICE_PATH)/boot/tn_init.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/tn_init.sh
 
 # Wifi regulatory
 PRODUCT_COPY_FILES += \
