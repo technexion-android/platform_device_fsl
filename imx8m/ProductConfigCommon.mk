@@ -76,6 +76,16 @@ PRODUCT_PACKAGES += \
     tinyplay \
     tinypcminfo
 
+# tn custom utils/apps
+PRODUCT_PACKAGES += \
+    libgpiod \
+    gpiodetect \
+    gpiofind \
+    gpioget \
+    gpioinfo \
+    gpiomon \
+    gpioset
+
 # LDAC codec
 PRODUCT_PACKAGES += \
     libldacBT_enc \
