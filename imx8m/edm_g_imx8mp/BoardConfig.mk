@@ -111,20 +111,9 @@ endif
 
 BOARD_PREBUILT_DTBOIMAGE := out/target/product/edm_g_imx8mp/dtbo-imx8mp.img
 
-# Default use basler + ov5640
 TARGET_BOARD_DTS_CONFIG := imx8mp:imx8mp-edm-g-wb.dtb
-# Only ov5640
-TARGET_BOARD_DTS_CONFIG += imx8mp-ov5640:imx8mp-evk.dtb
-# Only basler
-TARGET_BOARD_DTS_CONFIG += imx8mp-basler:imx8mp-evk-basler.dtb
-# Used to support mcu image
-TARGET_BOARD_DTS_CONFIG += imx8mp-rpmsg:imx8mp-evk-rpmsg.dtb
-# Support LVDS interface
-TARGET_BOARD_DTS_CONFIG += imx8mp-lvds:imx8mp-evk-it6263-lvds-dual-channel.dtb
-# Support LVDS panel
-TARGET_BOARD_DTS_CONFIG += imx8mp-lvds-panel:imx8mp-evk-jdi-wuxga-lvds-panel.dtb
-# Support MIPI panel
-TARGET_BOARD_DTS_CONFIG += imx8mp-mipi-panel:imx8mp-evk-rm67191.dtb
+TARGET_BOARD_DTBO_CONFIG := imx8mp:imx8mp-edm-g-wb-lvds-vl10112880.dtbo
+TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wb-lvds-vl215192108.dtbo
 
 BOARD_SEPOLICY_DIRS := \
        device/fsl/imx8m/sepolicy \
