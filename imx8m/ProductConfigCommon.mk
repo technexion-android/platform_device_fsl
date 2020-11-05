@@ -17,7 +17,7 @@ PRODUCT_PACKAGES += \
 
 # overrides
 PRODUCT_BRAND := Android
-PRODUCT_MANUFACTURER := freescale
+PRODUCT_MANUFACTURER := technexion
 
 # Android infrastructures
 PRODUCT_PACKAGES += \
