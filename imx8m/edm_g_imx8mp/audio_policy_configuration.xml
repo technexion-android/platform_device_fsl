@@ -20,10 +20,11 @@
     <modules>
         <module name="primary" halVersion="2.0">
             <attachedDevices>
+                <item>Wired Headset</item>
                 <item>Speaker</item>
-                <item>Built-In Mic</item>
+                <item>Wired Headset Mic</item>
             </attachedDevices>
-            <defaultOutputDevice>Speaker</defaultOutputDevice>
+            <defaultOutputDevice>Wired Headset</defaultOutputDevice>
             <mixPorts>
                 <mixPort name="primary output" role="source" flags="AUDIO_OUTPUT_FLAG_PRIMARY">
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
@@ -101,7 +102,7 @@
                        sources="bt sco output"/>
 
                 <route type="mix" sink="primary input"
-                       sources="Wired Headset Mic,Built-In Mic,Spdif-In,BT SCO Headset Mic"/>
+                       sources="Wired Headset Mic"/>
             </routes>
         </module>
 
