@@ -167,13 +167,10 @@ PRODUCT_PACKAGES += \
     media_codecs_performance.xml \
     media_profiles_V1_0.xml \
     media_codecs_google_c2_video.xml \
-    media_codecs_c2.xml \
     media_codecs_performance_c2.xml
 
-ifneq ($(LOW_MEMORY),true)
 PRODUCT_PACKAGES += \
     media_codecs.xml
-endif
 
 #parser
 PRODUCT_PACKAGES += \
