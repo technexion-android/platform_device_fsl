@@ -44,12 +44,6 @@
             "type_guid": "c1dedb9a-a0d3-42e4-b74d-0acf96833624"
         },
         {
-            "label": "userdata",
-            "grow": true,
-            "guid": "auto",
-            "type_guid": "0bb7e6ed-4424-49c0-9372-7fbab465ab4c"
-        },
-        {
             "label": "fbmisc",
             "size": "1 MiB",
             "guid": "auto",
@@ -61,6 +55,12 @@
             "size": "1 MiB",
             "guid": "auto",
             "type_guid": "7d6ea677-fe98-4ffe-9771-f5c3ef6d282c"
-         }
+         },
+        {
+            "label": "userdata",
+            "grow": true,
+            "guid": "auto",
+            "type_guid": "0bb7e6ed-4424-49c0-9372-7fbab465ab4c"
+        }
     ]
 }
