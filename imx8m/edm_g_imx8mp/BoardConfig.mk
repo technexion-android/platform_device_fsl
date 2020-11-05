@@ -42,10 +42,10 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_RECOVERY_FSTAB = $(IMX_DEVICE_PATH)/fstab.freescale
 
 # Support gpt
-BOARD_BPT_INPUT_FILES += device/fsl/common/partition/device-partitions-13GB-ab_super.bpt
-ADDITION_BPT_PARTITION = partition-table-28GB:device/fsl/common/partition/device-partitions-28GB-ab_super.bpt \
-                         partition-table-dual:device/fsl/common/partition/device-partitions-13GB-ab-dual-bootloader_super.bpt \
-                         partition-table-28GB-dual:device/fsl/common/partition/device-partitions-28GB-ab-dual-bootloader_super.bpt
+BOARD_BPT_INPUT_FILES += device/fsl/common/partition/device-partitions-28GB-ab_super.bpt
+ADDITION_BPT_PARTITION = partition-table-9GB:device/fsl/common/partition/device-partitions-9GB-ab_super.bpt \
+                         partition-table-13GB:device/fsl/common/partition/device-partitions-13GB-ab_super.bpt \
+                         partition-table-28GB:device/fsl/common/partition/device-partitions-28GB-ab_super.bpt
 
 # Vendor Interface manifest and compatibility
 DEVICE_MANIFEST_FILE := $(IMX_DEVICE_PATH)/manifest.xml
