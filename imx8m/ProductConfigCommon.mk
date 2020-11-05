@@ -84,7 +84,14 @@ PRODUCT_PACKAGES += \
     gpioget \
     gpioinfo \
     gpiomon \
-    gpioset
+    gpioset \
+    libgpiod_jni \
+    GPIOD_JNI_TEST \
+    libssh \
+    ssh \
+    scp \
+    ssh-keygen \
+    ethtool
 
 # LDAC codec
 PRODUCT_PACKAGES += \
