@@ -155,7 +155,7 @@ command -v simg2img >/dev/null 2>&1 || { echo -e >&2 "${RED}Missing simg2img app
 command -v hdparm >/dev/null 2>&1 || { echo -e >&2 "${RED}Missing hdparm app. Please make sure it is installed. Exiting.${STD}" ; exit 1 ; }
 command -v gdisk >/dev/null 2>&1 || { echo -e >&2 "${RED}Missing gdisk app. Please make sure it is installed. Exiting.${STD}" ; exit 1 ; }
 
-if [ ${card_size} -ne 0 ] && [ ${card_size} -ne 7 ] && [ ${card_size} -ne 14 ] && [ ${card_size} -ne 28 ]; then
+if [ ${card_size} -ne 0 ] && [ ${card_size} -ne 7 ] && [ ${card_size} -ne 9 ] && [ ${card_size} -ne 13 ] && [ ${card_size} -ne 28 ]; then
     help; exit 1;
 fi
 
