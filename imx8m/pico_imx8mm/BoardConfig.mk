@@ -125,7 +125,11 @@ CMASIZE=736M
 endif
 
 KERNEL_NAME := Image
-BOARD_KERNEL_CMDLINE := init=/init androidboot.hwrotation=90 androidboot.console=ttymxc1 androidboot.hardware=freescale cma=$(CMASIZE) androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware transparent_hugepage=never
+ifeq ($(DISPLAY_TARGET),DISP_MIPI_ILI9881C)
+  BOARD_KERNEL_CMDLINE := init=/init androidboot.hwrotation=90 androidboot.console=ttymxc1 androidboot.hardware=freescale cma=$(CMASIZE) androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware transparent_hugepage=never
+else ifeq ($(DISPLAY_TARGET),DISP_MIPI_G101UAN02)
+  BOARD_KERNEL_CMDLINE := init=/init androidboot.hwrotation=0 androidboot.console=ttymxc1 androidboot.hardware=freescale cma=$(CMASIZE) androidboot.primary_display=imx-drm firmware_class.path=/vendor/firmware transparent_hugepage=never
+endif
 
 # Default wificountrycode
 BOARD_KERNEL_CMDLINE += androidboot.wificountrycode=TW
@@ -156,7 +160,13 @@ else
   TARGET_BOARD_DTS_CONFIG := imx8mm:imx8mm-pico-pi-ili9881c.dtb
 endif
 else ifeq ($(EXPORT_BASEBOARD_NAME),WIZARD)
-TARGET_BOARD_DTS_CONFIG := imx8mm:imx8mm-pico-wizard-ili9881c.dtb
+
+ifeq ($(DISPLAY_TARGET),DISP_MIPI_ILI9881C)
+  TARGET_BOARD_DTS_CONFIG := imx8mm:imx8mm-pico-wizard-ili9881c.dtb
+else ifeq ($(DISPLAY_TARGET),DISP_MIPI_G101UAN02)
+  TARGET_BOARD_DTS_CONFIG := imx8mm:imx8mm-pico-wizard-g101uan02.dtb
+endif
+
 endif
 
 BOARD_SEPOLICY_DIRS := \
