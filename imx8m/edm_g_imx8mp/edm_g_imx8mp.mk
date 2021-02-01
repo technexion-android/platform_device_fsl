@@ -437,6 +437,11 @@ PRODUCT_PACKAGES += \
     adb_debug.prop
 endif
 
+# TN relate apps
+PRODUCT_PACKAGES += \
+    Lesser_AudioSwitch \
+    Dual-Camera
+
 IMX-DEFAULT-G2D-LIB := libg2d-opencl
 
 ifeq ($(PREBUILT_FSL_IMX_CODEC),true)
