@@ -131,11 +131,6 @@ product_path=${product_makefile%/*}
 soc_path=${product_path%/*}
 nxp_git_path=${soc_path%/*}
 
-# if uboot is to be compiled, remove the UBOOT_COLLECTION directory
-if [ -n "${build_bootloader}" ]; then
-    rm -rf ${OUT}/obj/UBOOT_COLLECTION
-fi
-
 # redirect standard input to /dev/null to avoid manually input in kernel configuration stage
 soc_path=${soc_path} product_path=${product_path} nxp_git_path=${nxp_git_path} clean_build=${clean_build} \
     make -C ./ -f ${nxp_git_path}/common/build/Makefile ${parallel_option} \
@@ -153,9 +148,3 @@ if [ ${build_android_flag} -eq 1 ]; then
     source build/envsetup.sh
     make ${parallel_option} ${build_bootimage} ${build_vendorbootimage} ${build_dtboimage} ${build_vendorimage}
 fi
-
-# copy the uboot output to ${OUT_DIR}
-if [ -n "${build_bootloader}" ]; then
-    cp -f ${OUT}/obj/UBOOT_COLLECTION/*\.* ${OUT}
-fi
-

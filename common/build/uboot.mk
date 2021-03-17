@@ -48,7 +48,7 @@ endif
 endif
 
 # TARGET_UBOOT_BUILD_TARGET may be assigned in target BoardConfig.mk.
-TARGET_UBOOT_BUILD_TARGET ?= u-boot.imx
+TARGET_UBOOT_BUILD_TARGET ?= u-boot.bin
 
 # Check target arch.
 TARGET_UBOOT_ARCH := $(strip $(TARGET_UBOOT_ARCH))
@@ -118,7 +118,7 @@ $(UBOOTENVSH): | $(UBOOT_OUT)
 		echo 'export ROLLBACK_INDEX_IN_CONTAINER=' >> $@; \
 	fi
 
-$(UBOOT_BIN): $(UBOOTENVSH) | $(UBOOT_COLLECTION) $(UBOOT_OUT)
+$(UBOOT_BIN): $(UBOOTENVSH) | $(UBOOT_OUT)
 	$(hide) echo "Building $(UBOOT_ARCH) $(UBOOT_VERSION) U-Boot ..."
 	$(hide) $(call build_m4_image)
 	$(hide) for ubootplat in $(TARGET_BOOTLOADER_CONFIG); do \
@@ -127,19 +127,6 @@ $(UBOOT_BIN): $(UBOOTENVSH) | $(UBOOT_COLLECTION) $(UBOOT_OUT)
 		$(MAKE) -C $(UBOOT_IMX_PATH)/uboot-imx/ CROSS_COMPILE="$(UBOOT_CROSS_COMPILE_WRAPPER)" O=$(realpath $(UBOOT_OUT)) mrproper; \
 		$(MAKE) -C $(UBOOT_IMX_PATH)/uboot-imx/ CROSS_COMPILE="$(UBOOT_CROSS_COMPILE_WRAPPER)" O=$(realpath $(UBOOT_OUT)) $$UBOOT_CONFIG; \
 		$(MAKE) -s -C $(UBOOT_IMX_PATH)/uboot-imx/ CROSS_COMPILE="$(UBOOT_CROSS_COMPILE_WRAPPER)" O=$(realpath $(UBOOT_OUT)) 1>/dev/null || exit 1; \
-		if [ "$(UBOOT_POST_PROCESS)" = "true" ]; then \
-			echo "build post process" ; \
-			. $(UBOOTENVSH); \
-		    $(call build_imx_uboot, $(TARGET_BOOTLOADER_POSTFIX), $$UBOOT_PLATFORM) \
-		    echo "===================Finish building `echo $$ubootplat` ==================="; \
-		else \
-			install -D $(UBOOT_OUT)/u-boot$(TARGET_DTB_POSTFIX).$(TARGET_BOOTLOADER_POSTFIX) $(UBOOT_COLLECTION)/u-boot-$$UBOOT_PLATFORM.imx; \
-		fi; \
-		if [ "$(PRODUCT_IMX_DRM)" = "true" ]; then \
-		    echo "build post process with tee" ; \
-		    $(call build_uboot_w_tee,  $(TARGET_BOOTLOADER_POSTFIX), $$UBOOT_PLATFORM) \
-		fi; \
-		install -D $(UBOOT_COLLECTION)/u-boot-$$UBOOT_PLATFORM.imx $(UBOOT_BIN); \
 	done
 
 .PHONY: bootloader $(UBOOT_BIN) $(UBOOTENVSH)
