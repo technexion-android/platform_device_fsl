@@ -282,11 +282,47 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     WifiOverlay
 
-# nxp 8997 wifi and bluetooth combo Firmware
+# qca9377 WiFi Firmware
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/wlan/cfg.dat))
 PRODUCT_COPY_FILES += \
-    vendor/nxp/imx-firmware/nxp/FwImage_8997/pcieuart8997_combo_v4.bin:vendor/firmware/pcieuart8997_combo_v4.bin \
-    vendor/nxp/imx-firmware/nxp/android_wifi_mod_para.conf:vendor/firmware/wifi_mod_para.conf \
-    vendor/nxp/imx-firmware/nxp/android_wifi_mod_para_powersave.conf:vendor/firmware/wifi_mod_para_powersave.conf
+    $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/wlan/cfg.dat:vendor/firmware/wlan/cfg.dat
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/wlan/qca9377/qcom_cfg.ini))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/wlan/qca9377/qcom_cfg.ini:vendor/firmware/wlan/qcom_cfg.ini
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/bdwlan30.bin))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/bdwlan30.bin:vendor/firmware/bdwlan30.bin
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/otp30.bin))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/otp30.bin:vendor/firmware/otp30.bin
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/qwlan30.bin))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/qwlan30.bin:vendor/firmware/qwlan30.bin
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/utf30.bin))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/utf30.bin:vendor/firmware/utf30.bin
+endif
+
+# Qcom 1PJ Bluetooth Firmware
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/bluetooth/wcnss_filter_8mp:vendor/bin/wcnss_filter
+
+# QCA9377 Bluetooth Firmware
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/bluetooth/qca/rampatch_tlv_3.2.tlv))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/bluetooth/qca/rampatch_tlv_3.2.tlv:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/rampatch_tlv_tf_1.0.tlv \
+    $(IMX_DEVICE_PATH)/bluetooth/qca/rampatch_tlv_3.2.tlv:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtfw11.tlv
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/bluetooth/qca/nvm_tlv_3.2.bin))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/bluetooth/qca/nvm_tlv_3.2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/nvm_tlv_tf_1.0.bin \
+    $(IMX_DEVICE_PATH)/bluetooth/qca/nvm_tlv_3.2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtnv11.bin
+endif
 
 # Wifi regulatory
 PRODUCT_COPY_FILES += \

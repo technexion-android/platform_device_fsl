@@ -82,6 +82,7 @@ on late-fs && property:vendor.skip.charger_not_need=0
     exec_start wait_for_keymaster
 
     mount_all /vendor/etc/fstab.nxp --late
+    start early_init_sh
 
 on late-fs && property:vendor.storageproxyd=trusty && property:vendor.skip.charger_not_need=0
     start vendor.oemlock-1-0
@@ -143,6 +144,10 @@ on early-boot && property:vendor.skip.charger_not_need=0
     # Enlarge limition of audio buffer allocation
     setprop ro.af.client_heap_size_kbyte 32768
 
+    # Prepare for wifi hal
+    setprop wifi.interface wlan0
+    setprop wifi.concurrent.interface p2p0
+    setprop wifi.direct.interface p2p0
     start vendor.wifi_hal_legacy
 
 service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
