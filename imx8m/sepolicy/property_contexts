@@ -202,9 +202,24 @@ vendor.sys.SECOND_DISPLAY_ENABLED          u:object_r:vendor_default_prop:s0
 vendor.AQROOT                              u:object_r:vendor_default_prop:s0
 vendor.CL_NOPREPROCESS                     u:object_r:vendor_default_prop:s0
 
+# vendor_bluetooth_prop
+persist.bluetooth.a4wp              u:object_r:vendor_bluetooth_prop:s0
+persist.bluetooth.csoc.cnt          u:object_r:vendor_bluetooth_prop:s0
+persist.service.bdroid.fwsnoop      u:object_r:vendor_bluetooth_prop:s0
+persist.service.bdroid.sibs         u:object_r:vendor_bluetooth_prop:s0
+persist.service.bdroid.snooplog     u:object_r:vendor_bluetooth_prop:s0
+persist.service.bdroid.soclog       u:object_r:vendor_bluetooth_prop:s0
+persist.service.bdroid.ssrlvl       u:object_r:vendor_bluetooth_prop:s0
+persist.set.rx_delay                u:object_r:vendor_bluetooth_prop:s0
+ro.bluetooth.emb_wp_mode            u:object_r:vendor_bluetooth_prop:s0
+ro.bluetooth.wipower                u:object_r:vendor_bluetooth_prop:s0
+unified_bt_logging                  u:object_r:vendor_bluetooth_prop:s0
+persist.BT3_2.version               u:object_r:vendor_bluetooth_prop:s0
+
 # vendor_wifi_version
 vendor.wlan.driver.version    u:object_r:vendor_wifi_version:s0
 vendor.wlan.firmware.version  u:object_r:vendor_wifi_version:s0
+wifi.concurrent.interface     u:object_r:vendor_default_prop:s0
 
 # vendor verbose logging prop
 persist.vendor.verbose_logging_enabled u:object_r:vendor_logging_prop:s0
