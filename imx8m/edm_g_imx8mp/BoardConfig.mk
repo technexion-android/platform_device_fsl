@@ -135,6 +135,8 @@ endif
 
 BOARD_PREBUILT_DTBOIMAGE := out/target/product/edm_g_imx8mp/dtbo-imx8mp.img
 TARGET_BOARD_DTS_CONFIG := imx8mp:imx8mp-edm-g-wb.dtb
+TARGET_BOARD_DTBO_CONFIG := imx8mp:imx8mp-edm-g-wb-lvds-vl10112880.dtbo
+TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wb-lvds-vl215192108.dtbo
 
 BOARD_SEPOLICY_DIRS := \
        device/nxp/imx8m/sepolicy \
