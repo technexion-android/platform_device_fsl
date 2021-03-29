@@ -324,6 +324,10 @@ PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/bluetooth/qca/nvm_tlv_3.2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtnv11.bin
 endif
 
+# boot animation
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/boot/tn_init.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/tn_init.sh
+
 # Wifi regulatory
 PRODUCT_COPY_FILES += \
     external/wireless-regdb/regulatory.db:vendor/firmware/regulatory.db \
