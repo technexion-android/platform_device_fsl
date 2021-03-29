@@ -223,3 +223,6 @@ wifi.concurrent.interface     u:object_r:vendor_default_prop:s0
 
 # vendor verbose logging prop
 persist.vendor.verbose_logging_enabled u:object_r:vendor_logging_prop:s0
+
+# NFC properties
+persist.nfc.                  u:object_r:nfc_prop:s0

@@ -4,3 +4,5 @@ type debugfs_sw_sync, debugfs_type, fs_type;
 type sysfs_soc, sysfs_type, fs_type;
 type proc_util_clamp, fs_type, proc_type;
 type pps_socket, file_type;
+
+type nfc_vendor_data_file, file_type, data_file_type;
