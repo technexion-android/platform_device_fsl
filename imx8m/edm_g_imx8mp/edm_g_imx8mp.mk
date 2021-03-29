@@ -76,13 +76,6 @@ PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/required_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/required_hardware.xml
 endif
 
-# Copy isp files to board
-ISP_PROPRIETARY := $(FSL_PROPRIETARY_PATH)/fsl-proprietary/isp
-PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,$(ISP_PROPRIETARY)/bin,$(TARGET_COPY_OUT_VENDOR)/bin) \
-    $(call find-copy-subdir-files,*,$(ISP_PROPRIETARY)/lib64,$(TARGET_COPY_OUT_VENDOR)/lib64) \
-    $(call find-copy-subdir-files,*,$(ISP_PROPRIETARY)/config,$(TARGET_COPY_OUT_VENDOR)/etc/configs/isp)
-
 # We load the fstab from device tree so this is not needed, but since no kernel modules are installed to vendor
 # boot ramdisk so far, we need this step to generate the vendor-ramdisk folder or build process would fail. This
 # can be deleted once we figure out what kernel modules should be put into the vendor boot ramdisk.
@@ -115,8 +108,6 @@ endif
 
 PRODUCT_COPY_FILES += \
     device/nxp/imx8m/edm_g_imx8mp/camera_config_imx8mp.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mp.json \
-    device/nxp/imx8m/edm_g_imx8mp/ov5640_camera_config_imx8mp.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/ov5640_camera_config_imx8mp.json \
-    device/nxp/imx8m/edm_g_imx8mp/isp_camera_config_imx8mp.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/isp_camera_config_imx8mp.json \
     device/nxp/imx8m/edm_g_imx8mp/external_camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/external_camera_config.xml
 
 # ONLY devices that meet the CDD's requirements may declare these features
@@ -399,10 +390,6 @@ PRODUCT_PACKAGES += \
 # Tensorflow lite camera demo
 PRODUCT_PACKAGES += \
                     tflitecamerademo
-
-# ISP camera feature demo
-PRODUCT_PACKAGES += \
-    CameraXBasic
 
 # Multi-Display launcher
 PRODUCT_PACKAGES += \
