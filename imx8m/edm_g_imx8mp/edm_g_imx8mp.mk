@@ -315,6 +315,9 @@ PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/bluetooth/qca/nvm_tlv_3.2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtnv11.bin
 endif
 
+PRODUCT_COPY_FILES += \
+    vendor/nxp/imx_android_mm/mediacodec-profile/imx8mp/media_codecs_c2_temp.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_c2_temp.xml
+
 # boot animation
 PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/boot/tn_init.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/tn_init.sh
@@ -437,6 +440,10 @@ BOARD_AVB_BOOT_ROLLBACK_INDEX := $(AVB_BOOT_RBINDEX)
 else
 BOARD_AVB_BOOT_ROLLBACK_INDEX := 0
 endif
+
+# TN relate apps
+PRODUCT_PACKAGES += \
+    Dual-Camera
 
 IMX-DEFAULT-G2D-LIB := libg2d-opencl
 
