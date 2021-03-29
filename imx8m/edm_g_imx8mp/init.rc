@@ -328,3 +328,9 @@ service hci_filter_root /vendor/bin/wcnss_filter
     user bluetooth
     group bluetooth diag system
     disabled
+
+service tn_init /system/bin/sh /system/bin/tn_init.sh
+    class late_start
+    user root
+    oneshot
+    seclabel u:r:tn_init:s0
