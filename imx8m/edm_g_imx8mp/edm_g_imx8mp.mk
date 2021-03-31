@@ -153,6 +153,7 @@ PRODUCT_COPY_FILES += \
     device/nxp/common/tools/fastboot_imx_flashall.bat:fastboot_imx_flashall.bat \
     device/nxp/common/tools/fastboot_imx_flashall.sh:fastboot_imx_flashall.sh \
     device/nxp/common/tools/imx-sdcard-partition.sh:imx-sdcard-partition.sh \
+    device/nxp/common/tools/imx-sdcard-partition-gen_image.sh:imx-sdcard-partition-gen_image.sh \
     device/nxp/common/tools/uuu_imx_android_flash.bat:uuu_imx_android_flash.bat \
     device/nxp/common/tools/uuu_imx_android_flash.sh:uuu_imx_android_flash.sh
 
