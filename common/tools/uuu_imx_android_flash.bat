@@ -167,8 +167,8 @@ if not [%yocto_image%] == [] (
 
 :: If sdcard size is not correctly set, exit
 if %card_size% neq 0 set /A statisc+=1
-if %card_size% neq 7 set /A statisc+=1
-if %card_size% neq 14 set /A statisc+=1
+if %card_size% neq 9 set /A statisc+=1
+if %card_size% neq 13 set /A statisc+=1
 if %card_size% neq 28 set /A statisc+=1
 if %statisc% == 4 echo card_size is not a legal value & set /A error_level=1 && goto :exit
 
