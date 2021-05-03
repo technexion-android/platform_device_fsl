@@ -16,7 +16,7 @@ endif
 # Overrides
 PRODUCT_NAME := pico_imx8mm
 PRODUCT_DEVICE := pico_imx8mm
-PRODUCT_MODEL := EVK_8MM
+PRODUCT_MODEL := PICO_IMX8MM
 
 PRODUCT_FULL_TREBLE_OVERRIDE := true
 PRODUCT_SOONG_NAMESPACES += vendor/nxp-opensource/imx/power
@@ -234,9 +234,6 @@ PRODUCT_PACKAGES += \
     wifilogd \
     wificond
 
-# WiFi RRO
-PRODUCT_PACKAGES += \
-    WifiOverlay
 
 # NXP 8987 WiFi Firmware
 PRODUCT_COPY_FILES += \
