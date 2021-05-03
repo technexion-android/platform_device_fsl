@@ -7,6 +7,14 @@ net_domain(tn_init)
 
 allow tn_init shell_exec:file rx_file_perms;
 allow tn_init system_file:file rx_file_perms;
+allow tn_init activity_service:service_manager find;
+allow tn_init toolbox_exec:file { read open getattr execute execute_no_trans map };
+allow tn_init zygote_exec:file { read open getattr execute execute_no_trans map };
+allow tn_init device_config_runtime_native_boot_prop:file { read open getattr execute execute_no_trans map };
+allow tn_init tmpfs:file { read open getattr execute execute_no_trans map write };
+allow tn_init system_server:binder { call transfer };
+allow tn_init servicemanager:binder { call transfer };
+
 # For /proc/sys/net/ipv4/conf/*/promote_secondaries
 allow tn_init proc_net:file write;
 

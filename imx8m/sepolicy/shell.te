@@ -8,3 +8,4 @@ allow shell kernel:process { setsched };
 dontaudit shell self:capability { dac_override };
 allow shell vendor_file:file { read execute open getattr };
 allow shell system_prop:property_service { set };
+allow shell vendor_toolbox_exec:file { read execute open getattr };
