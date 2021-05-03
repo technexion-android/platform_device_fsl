@@ -235,10 +235,9 @@ PRODUCT_PACKAGES += \
     wificond
 
 
-# NXP 8987 WiFi Firmware
+# boot animation
 PRODUCT_COPY_FILES += \
-    vendor/nxp/imx-firmware/nxp/FwImage_8987/sdiouart8987_combo_v0.bin:vendor/firmware/sdiouart8987_combo_v0.bin \
-    vendor/nxp/imx-firmware/nxp/android_wifi_mod_para.conf:vendor/firmware/wifi_mod_para_sd8987.conf
+    $(IMX_DEVICE_PATH)/boot/tn_init.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/tn_init.sh
 
 # Wifi regulatory
 PRODUCT_COPY_FILES += \
