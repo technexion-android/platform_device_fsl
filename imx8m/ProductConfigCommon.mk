@@ -8,7 +8,9 @@ $(call inherit-product, packages/services/Car/car_product/build/car.mk)
 endif
 $(call inherit-product, $(TOPDIR)frameworks/base/data/sounds/AllAudio.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
+ifeq ($(NFC_ACTIVE),true)
 $(call inherit-product, vendor/nxp/nfc/device-nfc.mk)
+endif
 
 # Installs gsi keys into ramdisk.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
@@ -301,7 +303,9 @@ include frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk
 
 -include $(FSL_RESTRICTED_CODEC_PATH)/fsl-restricted-codec/fsl_real_dec/fsl_real_dec.mk
 -include $(FSL_RESTRICTED_CODEC_PATH)/fsl-restricted-codec/fsl_ms_codec/fsl_ms_codec.mk
+ifeq ($(NFC_ACTIVE),true)
 -include vendor/nxp/nfc/BoardConfigNfc.mk
+endif
 
 PREBUILT_FSL_IMX_CODEC := true
 
