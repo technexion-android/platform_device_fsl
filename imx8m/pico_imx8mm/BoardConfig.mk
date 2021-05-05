@@ -111,7 +111,7 @@ endif
 endif
 
 BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_imx8mm/dtbo-imx8mm.img
-TARGET_BOARD_DTS_CONFIG := imx8mm:imx8mm-pico-pi-ili9881c.dtb
+TARGET_BOARD_DTS_CONFIG := imx8mm:imx8mm-pico-pi.dtb
 TARGET_BOARD_DTBO_CONFIG := imx8mm:imx8mm-pico-pi-ili9881c.dtbo
 
 BOARD_SEPOLICY_DIRS := \
