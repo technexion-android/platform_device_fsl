@@ -97,9 +97,20 @@ PRODUCT_COPY_FILES += \
     device/nxp/common/security/testkey_public_rsa4096.bin:testkey_public_rsa4096.bin
 endif
 
-PRODUCT_COPY_FILES += \
-    device/nxp/imx8m/pico_imx8mm/camera_config_imx8mm.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mm.json \
+ifeq ($(TN_DEFAULT_CAMERA),TEVI_OV5640)
+    PRODUCT_COPY_FILES +=\
+        device/nxp/imx8m/pico_imx8mm/camera_config_imx8mm.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mm.json
+else ifeq ($(TN_DEFAULT_CAMERA),TEVI_UVC)
+    PRODUCT_COPY_FILES +=\
+        device/nxp/imx8m/pico_imx8mm/camera_config_imx8mm_tevi-uvc.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mm.json
+else ifeq ($(TN_DEFAULT_CAMERA),DUAL)
+    PRODUCT_COPY_FILES +=\
+        device/nxp/imx8m/pico_imx8mm/camera_config_imx8mm_dual.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mm.json
+endif
+
+PRODUCT_COPY_FILES +=\
     device/nxp/imx8m/pico_imx8mm/external_camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/external_camera_config.xml
+
 
 # ONLY devices that meet the CDD's requirements may declare these features
 PRODUCT_COPY_FILES += \
