@@ -1,7 +1,7 @@
 TARGET_BOOTLOADER_POSTFIX := bin
 UBOOT_POST_PROCESS := true
 
-TARGET_BOOTLOADER_CONFIG += imx8mm:pico-imx8mm_android_defconfig
+TARGET_BOOTLOADER_CONFIG := imx8mm:pico-imx8mm_android_defconfig
 TARGET_KERNEL_DEFCONFIG := tn_android_defconfig
 TARGET_KERNEL_ADDITION_DEFCONF := android_addition_defconfig
 
