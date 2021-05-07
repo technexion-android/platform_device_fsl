@@ -97,7 +97,7 @@ PRODUCT_COPY_FILES += \
     device/nxp/common/security/testkey_public_rsa4096.bin:testkey_public_rsa4096.bin
 endif
 
-ifeq ($(TN_DEFAULT_CAMERA),TEVI_OV5640)
+ifeq ($(TN_DEFAULT_CAMERA),TEVI_OV564X)
     PRODUCT_COPY_FILES +=\
         device/nxp/imx8m/pico_imx8mm/camera_config_imx8mm.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mm.json
 else ifeq ($(TN_DEFAULT_CAMERA),TEVI_UVC)
