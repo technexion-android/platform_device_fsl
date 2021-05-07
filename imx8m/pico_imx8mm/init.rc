@@ -83,6 +83,8 @@ on late-fs && property:vendor.skip.charger_not_need=0
     # exec_start wait_for_keymaster
 
     mount_all /vendor/etc/fstab.nxp --late
+    start early_init_sh
+
 
 on late-fs && property:vendor.storageproxyd=trusty && property:vendor.skip.charger_not_need=0
     start vendor.oemlock-1-0
@@ -290,7 +292,6 @@ on property:vendor.wc_transport.start_root=false
     stop hci_filter_root
 
 on property:init.svc.bootanim=stopped
-    start early_init_sh
     start tn_init
 
 service hci_filter_root /vendor/bin/wcnss_filter
