@@ -254,9 +254,31 @@ PRODUCT_PACKAGES += \
     wifilogd \
     wificond
 
-# WiFi RRO
-PRODUCT_PACKAGES += \
-    WifiOverlay
+# qca9377 WiFi Firmware
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/wlan/cfg.dat))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/wlan/cfg.dat:vendor/firmware/wlan/cfg.dat
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/wlan/qca9377/qcom_cfg.ini))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/wlan/qca9377/qcom_cfg.ini:vendor/firmware/wlan/qcom_cfg.ini
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/bdwlan30.bin))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/bdwlan30.bin:vendor/firmware/bdwlan30.bin
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/otp30.bin))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/otp30.bin:vendor/firmware/otp30.bin
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/qwlan30.bin))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/qwlan30.bin:vendor/firmware/qwlan30.bin
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/utf30.bin))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/utf30.bin:vendor/firmware/utf30.bin
+endif
 
 # NXP 8997 Bluetooth vendor config
 PRODUCT_PACKAGES += \

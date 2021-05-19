@@ -19,7 +19,6 @@ on early-init
     mount debugfs none /sys/kernel/debug/ mode=0755
 
 on early-init
-    start early_init_sh
     # Set the host name which used in console
     export HOSTNAME pico_imx8m
 
@@ -82,6 +81,7 @@ on late-fs && property:vendor.skip.charger_not_need=0
     # Wait for keymaster
     exec_start wait_for_keymaster
 
+    start early_init_sh
     mount_all /vendor/etc/fstab.nxp --late
 
 on late-fs && property:vendor.storageproxyd=trusty && property:vendor.skip.charger_not_need=0
@@ -115,8 +115,9 @@ on early-boot && property:vendor.skip.charger_not_need=0
 
     # Prepare for wifi
     setprop wifi.interface wlan0
+    setprop wifi.concurrent.interface p2p0
     setprop wifi.direct.interface p2p0
-    setprop wifi.concurrent.interface wlan1
+    start vendor.wifi_hal_legacy
 
     # Disable surfaceflinger back pressure propagate
     setprop debug.sf.disable_backpressure 1
