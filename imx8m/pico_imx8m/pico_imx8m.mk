@@ -296,6 +296,15 @@ PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/bluetooth/qca/nvm_tlv_3.2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtnv11.bin
 endif
 
+# boot animation
+ifeq ($(DISPLAY_TARGET),DISP_HDMI)
+    PRODUCT_COPY_FILES += \
+        $(IMX_DEVICE_PATH)/boot/tn_init.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/tn_init.sh \
+else ifeq ($(DISPLAY_TARGET),DISP_ILI9881C)
+    PRODUCT_COPY_FILES += \
+        $(IMX_DEVICE_PATH)/boot/tn_init_mipi-panel.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/tn_init.sh \
+endif
+
 # Wifi regulatory
 PRODUCT_COPY_FILES += \
     external/wireless-regdb/regulatory.db:vendor/firmware/regulatory.db \
