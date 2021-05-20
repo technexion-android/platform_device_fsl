@@ -300,9 +300,11 @@ endif
 ifeq ($(DISPLAY_TARGET),DISP_HDMI)
     PRODUCT_COPY_FILES += \
         $(IMX_DEVICE_PATH)/boot/tn_init.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/tn_init.sh \
+        $(IMX_DEVICE_PATH)/camera_config_imx8mq.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mq.json
 else ifeq ($(DISPLAY_TARGET),DISP_ILI9881C)
     PRODUCT_COPY_FILES += \
         $(IMX_DEVICE_PATH)/boot/tn_init_mipi-panel.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/tn_init.sh \
+        $(IMX_DEVICE_PATH)/camera_config_imx8mq_ili9881c.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mq.json
 endif
 
 # Wifi regulatory
@@ -317,7 +319,6 @@ PRODUCT_PACKAGES += \
 endif
 
 PRODUCT_COPY_FILES += \
-    device/nxp/imx8m/pico_imx8m/camera_config_imx8mq.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mq.json \
     device/nxp/imx8m/pico_imx8m/external_camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/external_camera_config.xml
 
 # Keymaster HAL
