@@ -106,7 +106,19 @@ endif
 endif
 
 BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_imx8m/dtbo-imx8mq.img
-TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-pi.dtb
+
+ifeq ($(DISPLAY_TARGET),DISP_HDMI)
+  TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-pi.dtb
+else ifeq ($(DISPLAY_TARGET),DISP_ILI9881C)
+  TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-pi-dcss-ili9881c.dtb
+endif
+
+TARGET_BOARD_DTBO_CONFIG := imx8mq:imx8mq-pico-pi-clixnfc.dtbo
+TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-pi-csi.dtbo
+TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-pi-ov5640-sensor1.dtbo
+TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-pi-ov5640-sensor2.dtbo
+TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-pi-ov5645-sensor1.dtbo
+TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-pi-ov5645-sensor2.dtbo
 
 BOARD_SEPOLICY_DIRS := \
        device/nxp/imx8m/sepolicy \
