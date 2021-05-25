@@ -99,31 +99,6 @@ BOARD_AVB_BOOT_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
 BOARD_AVB_BOOT_ALGORITHM := SHA256_RSA2048
 BOARD_AVB_BOOT_ROLLBACK_INDEX_LOCATION := 2
 
-ifeq ($(PRODUCT_IMX_DRM),true)
-CMASIZE=736M
-else
-CMASIZE=1280M
-endif
-
-# NXP default config
-BOARD_KERNEL_CMDLINE := init=/init androidboot.console=ttymxc0 androidboot.hardware=nxp firmware_class.path=/vendor/firmware loop.max_part=7
-
-# framebuffer config
-BOARD_KERNEL_CMDLINE += androidboot.fbTileSupport=enable
-
-# memory config
-BOARD_KERNEL_CMDLINE += transparent_hugepage=never cma=$(CMASIZE)
-
-# display config
-BOARD_KERNEL_CMDLINE += androidboot.lcd_density=240 androidboot.primary_display=imx-dcss androidboot.gui_resolution=1080p
-
-# wifi config
-BOARD_KERNEL_CMDLINE += androidboot.wificountrycode=CN moal.mod_para=wifi_mod_para.conf
-
-ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
-BOARD_KERNEL_CMDLINE += androidboot.vendor.sysrq=1
-endif
-
 ifeq ($(TARGET_USERIMAGES_USE_UBIFS),true)
 ifeq ($(TARGET_USERIMAGES_USE_EXT4),true)
 $(error "TARGET_USERIMAGES_USE_UBIFS and TARGET_USERIMAGES_USE_EXT4 config open in same time, please only choose one target file system image")
@@ -136,11 +111,6 @@ TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-pi.dtb
 BOARD_SEPOLICY_DIRS := \
        device/nxp/imx8m/sepolicy \
        $(IMX_DEVICE_PATH)/sepolicy
-
-ifeq ($(PRODUCT_IMX_DRM),true)
-BOARD_SEPOLICY_DIRS += \
-       $(IMX_DEVICE_PATH)/sepolicy_drm
-endif
 
 TARGET_BOARD_KERNEL_HEADERS := device/nxp/common/kernel-headers
 
