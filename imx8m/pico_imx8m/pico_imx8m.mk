@@ -405,6 +405,11 @@ PRODUCT_PACKAGES += \
     libwvhidl \
     libwvdrmengine \
 
+
+# TN relate apps
+PRODUCT_PACKAGES += \
+    Dual-Camera
+
 IMX-DEFAULT-G2D-LIB := libg2d-viv
 
 ifeq ($(PREBUILT_FSL_IMX_CODEC),true)
