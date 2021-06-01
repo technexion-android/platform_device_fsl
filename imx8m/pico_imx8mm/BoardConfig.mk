@@ -111,10 +111,28 @@ endif
 endif
 
 BOARD_PREBUILT_DTBOIMAGE := out/target/product/pico_imx8mm/dtbo-imx8mm.img
-TARGET_BOARD_DTS_CONFIG := imx8mm:imx8mm-pico-pi.dtb
-TARGET_BOARD_DTBO_CONFIG := imx8mm:imx8mm-pico-pi-ili9881c.dtbo
-TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-pi-ov5640.dtbo
-TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-pi-ov5645.dtbo
+
+ifeq ($(EXPORT_BASEBOARD_NAME),PI)
+  TARGET_BOARD_DTS_CONFIG := imx8mm:imx8mm-pico-pi.dtb
+  TARGET_BOARD_DTBO_CONFIG := imx8mm:imx8mm-pico-pi-ili9881c.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-pi-ov5640.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-pi-ov5645.dtbo
+
+else ifeq ($(EXPORT_BASEBOARD_NAME),WIZARD)
+  TARGET_BOARD_DTS_CONFIG := imx8mm:imx8mm-pico-wizard.dtb
+  TARGET_BOARD_DTBO_CONFIG := imx8mm:imx8mm-pico-wizard-ili9881c.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-wizard-ov5640.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-wizard-ov5645.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-wizard-voicehat.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-wizard-clix1nfc.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-wizard-clix2nfc.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-wizard-g080uan01.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-wizard-g101uan02.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-wizard-mipi2hdmi-adv7535.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-wizard-sn65dsi84-vl10112880.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-wizard-sn65dsi84-vl15613676.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-wizard-sn65dsi84-vl215192108.dtbo
+endif
 
 BOARD_SEPOLICY_DIRS := \
        device/nxp/imx8m/sepolicy \
