@@ -11,7 +11,7 @@
     {
       "camera_type": "back",
       "camera_name": "mx6s-csi",
-      "orientation": "90",
+      "orientation": "0",
       "buffer_type": "mmap",
       "ActiveArrayWidth": "2592",
       "ActiveArrayHeight": "1944",
