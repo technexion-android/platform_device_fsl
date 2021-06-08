@@ -77,12 +77,8 @@ endif
 
 # Audio card json
 PRODUCT_COPY_FILES += \
-    device/nxp/common/audio-json/wm8524_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/wm8524_config.json \
-    device/nxp/common/audio-json/spdif_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/spdif_config.json \
     device/nxp/common/audio-json/cdnhdmi_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/cdnhdmi_config.json \
-    device/nxp/common/audio-json/ak4458_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/ak4458_config.json \
-    device/nxp/common/audio-json/ak5558_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/ak5558_config.json \
-    device/nxp/common/audio-json/btsco_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/btsco_config.json \
+    device/nxp/common/audio-json/wm8960_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/wm8960_config.json \
     device/nxp/common/audio-json/readme.txt:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/readme.txt
 
 ifeq ($(PRODUCT_IMX_TRUSTY),true)
