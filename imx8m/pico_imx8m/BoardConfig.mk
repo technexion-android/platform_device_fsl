@@ -129,8 +129,6 @@ else ifeq ($(EXPORT_BASEBOARD_NAME),WIZARD)
   TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-wizard-ov5640-sensor2.dtbo
   TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-wizard-ov5645-sensor1.dtbo
   TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-wizard-ov5645-sensor2.dtbo
-  TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-wizard-voicehat.dtbo
-  TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-wizard-clix2nfc.dtbo
 endif
 
 BOARD_SEPOLICY_DIRS := \
