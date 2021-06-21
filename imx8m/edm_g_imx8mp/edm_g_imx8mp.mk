@@ -163,7 +163,12 @@ PRODUCT_COPY_FILES += \
 
 USE_XML_AUDIO_POLICY_CONF := 1
 
+
+ifeq ($(SIM8202_MODEM_ACTIVE),true)
+DEVICE_PACKAGE_OVERLAYS := $(IMX_DEVICE_PATH)/overlay_sim8202
+else
 DEVICE_PACKAGE_OVERLAYS := $(IMX_DEVICE_PATH)/overlay
+endif
 
 PRODUCT_CHARACTERISTICS := tablet
 
@@ -325,6 +330,61 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     external/wireless-regdb/regulatory.db:vendor/firmware/regulatory.db \
     external/wireless-regdb/regulatory.db.p7s:vendor/firmware/regulatory.db.p7s
+
+
+ifeq ($(SIM8202_MODEM_ACTIVE),true)
+# Modem files
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/modem/sim8202/3gdata_call.conf))
+PRODUCT_COPY_FILES += \
+     $(IMX_DEVICE_PATH)/modem/sim8202/3gdata_call.conf:system/etc/3gdata_call.conf
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/modem/sim8202/init.gprs-pppd))
+PRODUCT_COPY_FILES += \
+     $(IMX_DEVICE_PATH)/modem/sim8202/init.gprs-pppd:system/etc/init.gprs-pppd
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/modem/sim8202/libreference-ril.so))
+PRODUCT_COPY_FILES += \
+     $(IMX_DEVICE_PATH)/modem/sim8202/libreference-ril.so:vendor/lib64/libreference-ril.so
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/modem/sim8202/8200-chat))
+PRODUCT_COPY_FILES += \
+     $(IMX_DEVICE_PATH)/modem/sim8202/8200-chat:system/etc/ppp/chat/8200-chat
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/modem/sim8202/8200option))
+PRODUCT_COPY_FILES += \
+     $(IMX_DEVICE_PATH)/modem/sim8202/8200option:system/etc/ppp/peers/8200option
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/modem/sim8202/apns-conf.xml))
+PRODUCT_COPY_FILES += \
+     $(IMX_DEVICE_PATH)/modem/sim8202/apns-conf.xml:system/etc/apns-conf.xml
+endif
+
+PRODUCT_PACKAGES += \
+    android.hardware.radio@1.5 \
+    android.hardware.radio.config@1.2 \
+    TeleService \
+    Dialer \
+    TeleServiceDialer \
+    messaging
+
+PRODUCT_PRODUCT_PROPERTIES += rild.simcom.gps=0
+PRODUCT_PRODUCT_PROPERTIES += rild.simcom.ussd=1
+PRODUCT_PRODUCT_PROPERTIES += rild.simcom.stk=1
+PRODUCT_PRODUCT_PROPERTIES += rild.simcom.ndis=1
+PRODUCT_PRODUCT_PROPERTIES += rild.simcom.ppp=0
+PRODUCT_PRODUCT_PROPERTIES += rild.simcom.nr5g_icon=1
+PRODUCT_PRODUCT_PROPERTIES += rild.simcom.stopgps=1
+PRODUCT_PRODUCT_PROPERTIES += rild.simcom.netclose=1
+PRODUCT_PRODUCT_PROPERTIES += rild.simcom.clvl=4
+PRODUCT_PRODUCT_PROPERTIES += rild.simcom.csdvc=1
+PRODUCT_PRODUCT_PROPERTIES += rild.simcom.rndis=0
+PRODUCT_PRODUCT_PROPERTIES += rild.path=/vendor/lib64/libreference-ril.so
+
+# 9=4G/3G/2G 26=5G/4G/3G/2G
+PRODUCT_PRODUCT_PROPERTIES += ro.telephony.default_network=26
+vendor.rild.libpath=/vendor/lib64/libreference-ril.so
+
+endif
 
 # Keymaster HAL
 ifeq ($(PRODUCT_IMX_TRUSTY),true)

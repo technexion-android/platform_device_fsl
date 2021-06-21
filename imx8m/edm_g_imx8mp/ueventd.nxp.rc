@@ -27,6 +27,9 @@
 /dev/gpiochip5            0666   system     system
 /dev/gpiochip6            0666   system     system
 
+/dev/ttyUSB*              0666   radio      radio
+/dev/cdc-wdm*             0666   radio      radio
+
 /sys/devices/virtual/thermal/thermal_zone* trip_point_0_temp 0660 system system
 /sys/devices/virtual/thermal/thermal_zone* trip_point_1_temp 0660 system system
 

@@ -8,13 +8,19 @@ $(call inherit-product, packages/services/Car/car_product/build/car.mk)
 endif
 $(call inherit-product, $(TOPDIR)frameworks/base/data/sounds/AllAudio.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
+
 ifeq ($(NFC_ACTIVE),true)
 $(call inherit-product, vendor/nxp/nfc/device-nfc.mk)
+endif
+
+ifeq ($(SIM8202_MODEM_ACTIVE),true)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 endif
 
 # Installs gsi keys into ramdisk.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
+
 PRODUCT_PACKAGES += \
     adb_debug.prop
 
@@ -256,9 +262,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     pm.dexopt.boot=quicken
 
-# wifionly device
+# mobile device or wifionly device
+#ifeq ($(SIM8202_MODEM_ACTIVE),true)
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.radio.noril=false
+#else
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.radio.noril=yes
+#endif
 
 # Set c2 codec in default
 PRODUCT_PROPERTY_OVERRIDES += \
