@@ -1,0 +1,12 @@
+allow rild usb_serial_device:chr_file { read write open ioctl};
+allow rild self:packet_socket { create bind write read };
+allow rild default_prop:file { open read map getattr };
+
+allow rild init:dir { open read map getattr };
+allow rild init:file { open read map getattr };
+allow rild sysfs:file { open read map getattr write };
+allow rild vendor_init:file { open read map getattr };
+allow rild device:chr_file { open read write ioctl };
+allow rild sysfs:file { open read write ioctl };
+
+set_prop(rild, system_prop)
