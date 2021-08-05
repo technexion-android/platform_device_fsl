@@ -64,6 +64,13 @@ on init && property:vendor.skip.charger_not_need=0
     chown system system /dev/stune/schedtune.boost
     chmod 664 /dev/stune/schedtune.boost
 
+    chmod 777 /etc/init.gprs-pppd
+    chmod 777 /etc/3gdata_call.conf
+    chmod 777 /vendor/bin/hw/rild
+    chmod 777 /system/etc/ppp/peers/8200option
+    chmod 777 /system/etc/ppp/chat/8200-chat
+    chmod 777 /proc/cmdline
+
    # set default schedTune value for foreground/top-app (only affects EAS)
     write /dev/stune/foreground/schedtune.boost 10
     write /dev/stune/foreground/schedtune.prefer_idle 1
@@ -334,3 +341,11 @@ service tn_init /system/bin/sh /system/bin/tn_init.sh
     user root
     oneshot
     seclabel u:r:tn_init:s0
+
+service ril-daemon /vendor/bin/hw/rild -l /vendor/lib64/libreference-ril.so
+    class main
+    socket rild stream 660 root radio system
+    socket sap_uim_socket1 stream 660 bluetooth bluetooth
+    socket rild-debug stream 660 radio system
+    user root
+    group radio cache inet misc audio sdcard_rw log

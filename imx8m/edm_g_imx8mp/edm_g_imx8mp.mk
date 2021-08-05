@@ -60,7 +60,6 @@ PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/init.imx8mp.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.nxp.imx8mp.rc \
     $(IMX_DEVICE_PATH)/init.recovery.nxp.rc:root/init.recovery.nxp.rc \
     $(IMX_DEVICE_PATH)/early.init.cfg:$(TARGET_COPY_OUT_VENDOR)/etc/early.init.cfg \
-    $(IMX_DEVICE_PATH)/init.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.nxp.rc \
     $(IMX_DEVICE_PATH)/init.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.nxp.usb.rc \
     $(IMX_DEVICE_PATH)/ueventd.nxp.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc \
     $(LINUX_FIRMWARE_IMX_PATH)/linux-firmware-imx/firmware/sdma/sdma-imx7d.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/imx/sdma/sdma-imx7d.bin \
@@ -166,8 +165,12 @@ USE_XML_AUDIO_POLICY_CONF := 1
 
 ifeq ($(SIM8202_MODEM_ACTIVE),true)
 DEVICE_PACKAGE_OVERLAYS := $(IMX_DEVICE_PATH)/overlay_sim8202
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/init.sim8202.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.nxp.rc
 else
 DEVICE_PACKAGE_OVERLAYS := $(IMX_DEVICE_PATH)/overlay
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/init.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.nxp.rc
 endif
 
 PRODUCT_CHARACTERISTICS := tablet

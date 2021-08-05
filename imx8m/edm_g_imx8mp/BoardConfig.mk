@@ -49,7 +49,13 @@ ADDITION_BPT_PARTITION = partition-table-28GB:device/nxp/common/partition/device
 ifeq ($(POWERSAVE),true)
     DEVICE_MANIFEST_FILE := $(IMX_DEVICE_PATH)/manifest_powersave.xml
 else
+
+ifeq ($(SIM8202_MODEM_ACTIVE),true)
+    DEVICE_MANIFEST_FILE := $(IMX_DEVICE_PATH)/manifest-sim8202.xml
+else
     DEVICE_MANIFEST_FILE := $(IMX_DEVICE_PATH)/manifest.xml
+endif
+
 endif
 
 DEVICE_MATRIX_FILE := $(IMX_DEVICE_PATH)/compatibility_matrix.xml

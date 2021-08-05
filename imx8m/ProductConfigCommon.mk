@@ -263,13 +263,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     pm.dexopt.boot=quicken
 
 # mobile device or wifionly device
-#ifeq ($(SIM8202_MODEM_ACTIVE),true)
+ifeq ($(SIM8202_MODEM_ACTIVE),true)
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.radio.noril=false
-#else
+else
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.radio.noril=yes
-#endif
+endif
 
 # Set c2 codec in default
 PRODUCT_PROPERTY_OVERRIDES += \

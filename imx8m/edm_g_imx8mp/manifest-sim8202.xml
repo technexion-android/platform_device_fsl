@@ -173,4 +173,19 @@
     <sepolicy>
         <version>0.0</version>
     </sepolicy>
+    <hal format="hidl">
+        <name>android.hardware.radio.deprecated</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IOemHook</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.radio</name>
+        <transport>hwbinder</transport>
+        <version>1.1</version>
+        <fqname>@1.1::IRadio/slot1</fqname>
+   </hal>
 </manifest>
