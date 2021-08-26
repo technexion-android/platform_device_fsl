@@ -315,8 +315,7 @@ PRODUCT_PACKAGES += \
     libhantro \
     libcodec \
     libhantro_h1 \
-    libcodec_enc \
-    DirectAudioPlayer
+    libcodec_enc
 
 # imx c2 codec binary
 PRODUCT_PACKAGES += \

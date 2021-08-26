@@ -448,10 +448,6 @@ PRODUCT_PACKAGES += \
     c2_component_register_dsp_wma \
     c2_component_register_dsp_aacp
 
-
-PRODUCT_PACKAGES += \
-    DirectAudioPlayer
-
 # Tensorflow lite camera demo
 PRODUCT_PACKAGES += \
                     tflitecamerademo
