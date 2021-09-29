@@ -143,6 +143,12 @@ BOARD_PREBUILT_DTBOIMAGE := out/target/product/edm_g_imx8mp/dtbo-imx8mp.img
 TARGET_BOARD_DTS_CONFIG := imx8mp:imx8mp-edm-g-wb.dtb
 TARGET_BOARD_DTBO_CONFIG := imx8mp:imx8mp-edm-g-wb-lvds-vl10112880.dtbo
 TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wb-lvds-vl215192108.dtbo
+TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wb-tevi-ov5640.dtbo
+TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wb-tevi-ar0521.dtbo
+TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wb-tevi-ar0144.dtbo
+TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wb-tevi-ar0234.dtbo
+
+
 
 BOARD_SEPOLICY_DIRS := \
        device/nxp/imx8m/sepolicy \
