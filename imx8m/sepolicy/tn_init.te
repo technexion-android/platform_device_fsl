@@ -13,6 +13,10 @@ allow tn_init zygote_exec:file { read open getattr execute execute_no_trans map 
 allow tn_init device_config_runtime_native_boot_prop:file { read open getattr execute execute_no_trans map };
 allow tn_init tmpfs:file { read open getattr execute execute_no_trans map write };
 allow tn_init system_server:binder { call transfer };
+allow tn_init dalvikcache_data_file:dir { search getattr };
+
+
+
 allow tn_init servicemanager:binder { call transfer };
 
 # For /proc/sys/net/ipv4/conf/*/promote_secondaries

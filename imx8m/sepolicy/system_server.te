@@ -27,3 +27,5 @@ allow system_server graphics_device:dir { search };
 allow system_server graphics_device:chr_file { open read ioctl };
 allow system_server sysfs_extcon:file { getattr open read };
 allow system_server tn_init:binder { transfer call };
+allow system_server tn_init:fd { use };
+allow system_server tn_init:fifo_file { write };
