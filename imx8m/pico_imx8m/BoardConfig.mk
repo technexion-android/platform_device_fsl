@@ -111,24 +111,24 @@ ifeq ($(EXPORT_BASEBOARD_NAME),PI)
   TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-pi.dtb
 
   TARGET_BOARD_DTBO_CONFIG := imx8mq:imx8mq-pico-pi-ili9881c.dtbo
-  TARGET_BOARD_DTBO_CONFIG := imx8mq:imx8mq-pico-pi-tevi-ov5640.dtbo
-  TARGET_BOARD_DTBO_CONFIG := imx8mq:imx8mq-pico-pi-ov5645.dtbo
-  TARGET_BOARD_DTBO_CONFIG := imx8mq:imx8mq-pico-pi-voicehat.dtbo
-  TARGET_BOARD_DTBO_CONFIG := imx8mq:imx8mq-pico-pi-clixnfc.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-pi-tevi-ov5640.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-pi-ov5645.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-pi-voicehat.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-pi-clixnfc.dtbo
 else ifeq ($(EXPORT_BASEBOARD_NAME),WIZARD)
   TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-wizard.dtb
 
   TARGET_BOARD_DTBO_CONFIG := imx8mq:imx8mq-pico-wizard-ili9881c.dtbo
-  TARGET_BOARD_DTBO_CONFIG := imx8mq:imx8mq-pico-wizard-tevi-ov5640.dtbo
-  TARGET_BOARD_DTBO_CONFIG := imx8mq:imx8mq-pico-wizard-ov5645.dtbo
-  TARGET_BOARD_DTBO_CONFIG := imx8mq:imx8mq-pico-wizard-voicehat.dtbo
-  TARGET_BOARD_DTBO_CONFIG := imx8mq:imx8mq-pico-wizard-clix1nfc.dtbo
-  TARGET_BOARD_DTBO_CONFIG := imx8mq:imx8mq-pico-wizard-clix2nfc.dtbo
-  TARGET_BOARD_DTBO_CONFIG := imx8mq:imx8mq-pico-wizard-g101uan02.dtbo
-  TARGET_BOARD_DTBO_CONFIG := imx8mq:imx8mq-pico-wizard-mipi2hdmi-adv7535.dtbo
-  TARGET_BOARD_DTBO_CONFIG := imx8mq:imx8mq-pico-wizard-sn65dsi84-vl10112880.dtbo
-  TARGET_BOARD_DTBO_CONFIG := imx8mq:imx8mq-pico-wizard-sn65dsi84-vl15613676.dtbo
-  TARGET_BOARD_DTBO_CONFIG := imx8mq:imx8mq-pico-wizard-sn65dsi84-vl215192108.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-wizard-tevi-ov5640.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-wizard-ov5645.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-wizard-voicehat.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-wizard-clix1nfc.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-wizard-clix2nfc.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-wizard-g101uan02.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-wizard-mipi2hdmi-adv7535.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-wizard-sn65dsi84-vl10112880.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-wizard-sn65dsi84-vl15613676.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-wizard-sn65dsi84-vl215192108.dtbo
 endif
 
 BOARD_SEPOLICY_DIRS := \
