@@ -171,7 +171,7 @@
         <item>0</item>
     </integer-array>
 
-    <integer name="config_screenBrightnessDim">5</integer>
+    <integer name="config_screenBrightnessDim">180</integer>
 
     <!--  Maximum number of supported users -->
     <integer name="config_multiuserMaximumUsers">8</integer>

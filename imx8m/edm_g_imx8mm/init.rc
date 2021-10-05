@@ -134,10 +134,10 @@ on early-boot && property:vendor.skip.charger_not_need=0
     chmod 0664 /sys/kernel/debug/sync/sw_sync
 
     # Default backlight device
-    setprop vendor.hw.backlight.dev "backlight_mipi"
+    setprop vendor.hw.backlight.dev "lvds_backlight"
     # Chmod/chown FSL specific sys entry
-    chown system system /sys/class/backlight/backlight_mipi/brightness
-    chmod 0660 /sys/class/backlight/backlight_mipi/brightness
+    chown system system /sys/class/backlight/lvds_backlight/brightness
+    chmod 0660 /sys/class/backlight/lvds_backlight/brightness
 
     # Allow DSD file(duration larger than 10s) can play
     setprop audio.offload.min.duration.secs 10
