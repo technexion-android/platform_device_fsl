@@ -65,6 +65,7 @@ PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/ueventd.nxp.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc \
     $(LINUX_FIRMWARE_IMX_PATH)/linux-firmware-imx/firmware/sdma/sdma-imx7d.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/imx/sdma/sdma-imx7d.bin \
     device/nxp/common/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
+    device/nxp/common/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
     device/nxp/common/init/init.insmod.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.insmod.sh
 
 # We load the fstab from device tree so this is not needed, but since no kernel modules are installed to vendor
@@ -79,12 +80,6 @@ endif
 PRODUCT_COPY_FILES += \
     device/nxp/common/audio-json/wm8960_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/wm8960_config.json \
     device/nxp/common/audio-json/readme.txt:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/readme.txt
-
-
-#LPDDR4 board, NXP wifi supplicant overlay
-PRODUCT_COPY_FILES += \
-    $(IMX_DEVICE_PATH)/init.imx8mm.lpddr4.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.nxp.additional.rc \
-    device/nxp/common/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf
 
 ifeq ($(PRODUCT_IMX_TRUSTY),true)
 PRODUCT_COPY_FILES += \
@@ -239,6 +234,10 @@ PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
     wifilogd \
     wificond
+
+# WiFi RRO
+PRODUCT_PACKAGES += \
+    WifiOverlay
 
 # qca9377 WiFi Firmware
 ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/wlan/cfg.dat))
