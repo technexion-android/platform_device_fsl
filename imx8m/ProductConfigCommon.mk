@@ -98,7 +98,9 @@ PRODUCT_PACKAGES += \
     ssh \
     scp \
     ssh-keygen \
-    ethtool
+    ethtool \
+    cansend \
+    candump
 
 # LDAC codec
 PRODUCT_PACKAGES += \
