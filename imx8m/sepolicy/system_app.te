@@ -14,5 +14,6 @@ allow system_app proc_tty_drivers:file { read open getattr };
 allow system_app device:dir { read open getattr };
 allow system_app tty_device:chr_file { read open write ioctl };
 allow system_app device:chr_file { read open write ioctl getattr};
+allow system_app sysfs:file { read open write ioctl };
 
 get_prop(system_app, vendor_default_prop)
