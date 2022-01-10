@@ -116,6 +116,7 @@ ifeq ($(EXPORT_BASEBOARD_NAME),PI)
   TARGET_BOARD_DTS_CONFIG := imx8mm:imx8mm-pico-pi.dtb
   TARGET_BOARD_DTBO_CONFIG := imx8mm:imx8mm-pico-pi-ili9881c.dtbo
   TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-pi-tevi-ov5640.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-pi-ov7251.dtbo
   TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-pi-ov5645.dtbo
   TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-pi-voicehat.dtbo
 
@@ -123,6 +124,7 @@ else ifeq ($(EXPORT_BASEBOARD_NAME),WIZARD)
   TARGET_BOARD_DTS_CONFIG := imx8mm:imx8mm-pico-wizard.dtb
   TARGET_BOARD_DTBO_CONFIG := imx8mm:imx8mm-pico-wizard-ili9881c.dtbo
   TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-wizard-tevi-ov5640.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-wizard-ov7251.dtbo
   TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-wizard-ov5645.dtbo
   TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-wizard-voicehat.dtbo
   TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-wizard-clix1nfc.dtbo
