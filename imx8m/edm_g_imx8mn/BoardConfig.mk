@@ -107,6 +107,10 @@ BOARD_PREBUILT_DTBOIMAGE := out/target/product/edm_g_imx8mn/dtbo-imx8mn.img
 
 TARGET_BOARD_DTS_CONFIG := imx8mn:imx8mn-edm-g-wb.dtb
 TARGET_BOARD_DTBO_CONFIG := imx8mn:imx8mn-edm-g-wb-sn65dsi84-vl10112880.dtbo
+TARGET_BOARD_DTBO_CONFIG += imx8mn:imx8mn-edm-g-wb-sn65dsi84-vl15613676.dtbo
+TARGET_BOARD_DTBO_CONFIG += imx8mn:imx8mn-edm-g-wb-sn65dsi84-vl215192108.dtbo
+TARGET_BOARD_DTBO_CONFIG += imx8mn:imx8mn-edm-g-wb-tevi-ov5640.dtbo
+
 
 BOARD_SEPOLICY_DIRS := \
        device/nxp/imx8m/sepolicy \
