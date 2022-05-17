@@ -30,7 +30,8 @@ PRODUCT_MAKEFILES := \
   $(LOCAL_DIR)/evk_8mq/evk_8mq.mk \
   $(LOCAL_DIR)/evk_8mm/evk_8mm.mk \
   $(LOCAL_DIR)/evk_8mn/evk_8mn.mk \
-  $(LOCAL_DIR)/evk_8mp/evk_8mp.mk
+  $(LOCAL_DIR)/evk_8mp/evk_8mp.mk \
+  $(LOCAL_DIR)/edm_g_imx8mp/edm_g_imx8mp.mk
 
 COMMON_LUNCH_CHOICES := \
   evk_8mq-trunk_staging-user \
@@ -40,4 +41,6 @@ COMMON_LUNCH_CHOICES := \
   evk_8mn-trunk_staging-user \
   evk_8mn-trunk_staging-userdebug \
   evk_8mp-trunk_staging-user \
-  evk_8mp-trunk_staging-userdebug
+  evk_8mp-trunk_staging-userdebug \
+  edm_g_imx8mp-user \
+  edm_g_imx8mp-userdebug
