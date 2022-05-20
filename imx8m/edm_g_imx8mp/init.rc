@@ -117,8 +117,8 @@ on early-boot && property:vendor.skip.charger_not_need=0
 
     # Prepare for wifi
     setprop wifi.interface wlan0
+    setprop wifi.concurrent.interface p2p0
     setprop wifi.direct.interface p2p0
-    setprop wifi.concurrent.interface wlan1
 
     # Set tracefs permission to 755
     chmod 0755 /sys/kernel/debug/tracing
