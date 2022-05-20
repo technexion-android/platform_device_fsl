@@ -74,7 +74,7 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/net/ethernet/freescale/fec.ko
 else
 BOARD_VENDOR_KERNEL_MODULES +=     \
-    $(KERNEL_OUT)/drivers/input/touchscreen/synaptics_dsx/synaptics_dsx_i2c.ko
+    $(KERNEL_OUT)/drivers/net/wireless/qcacld-2.0/wlan.ko
 endif
 
 ifeq ($(POWERSAVE),true)

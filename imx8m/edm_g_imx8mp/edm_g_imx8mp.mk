@@ -365,11 +365,32 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     WifiOverlay
 
-# nxp 8997 wifi and bluetooth combo Firmware
+
+# qca9377 WiFi Firmware
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/wlan/cfg.dat))
 PRODUCT_COPY_FILES += \
-    vendor/nxp/imx-firmware/nxp/FwImage_8997/pcieuart8997_combo_v4.bin:vendor/firmware/pcieuart8997_combo_v4.bin \
-    vendor/nxp/imx-firmware/nxp/android_wifi_mod_para.conf:vendor/firmware/wifi_mod_para.conf \
-    vendor/nxp/imx-firmware/nxp/android_wifi_mod_para_powersave.conf:vendor/firmware/wifi_mod_para_powersave.conf
+    $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/wlan/cfg.dat:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/cfg.dat
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/wlan/qca9377/qcom_cfg.ini))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/wlan/qca9377/qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/qcom_cfg.ini
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/bdwlan30.bin))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/bdwlan30.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/bdwlan30.bin
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/otp30.bin))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/otp30.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/otp30.bin
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/qwlan30.bin))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/qwlan30.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qwlan30.bin
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/utf30.bin))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/wifi-firmware/qca9377/utf30.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/utf30.bin
+endif
 
 # Wifi regulatory
 PRODUCT_COPY_FILES += \
