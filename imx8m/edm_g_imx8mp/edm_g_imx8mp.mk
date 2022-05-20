@@ -399,14 +399,27 @@ PRODUCT_COPY_FILES += \
 
 # -------@block_bluetooth-------
 
+# QCA9377 Bluetooth Firmware
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/bluetooth/qca/rampatch_tlv_3.2.tlv))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/bluetooth/qca/rampatch_tlv_3.2.tlv:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/rampatch_tlv_tf_1.0.tlv \
+    $(IMX_DEVICE_PATH)/bluetooth/qca/rampatch_tlv_3.2.tlv:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtfw11.tlv
+endif
+ifneq (,$(wildcard $(IMX_DEVICE_PATH)/bluetooth/qca/nvm_tlv_3.2.bin))
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/bluetooth/qca/nvm_tlv_3.2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/nvm_tlv_tf_1.0.bin \
+    $(IMX_DEVICE_PATH)/bluetooth/qca/nvm_tlv_3.2.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca/tfbtnv11.bin
+endif
+
+# WCNSS execte binary
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/bluetooth/wcnss_filter_8mp:$(TARGET_COPY_OUT_VENDOR)/bin/wcnss_filter
+
+
 # Bluetooth HAL
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-impl \
     android.hardware.bluetooth@1.0-service
-
-#nxp 8997 Bluetooth vendor config
-PRODUCT_PACKAGES += \
-    bt_vendor.conf
 
 # -------@block_usb-------
 
