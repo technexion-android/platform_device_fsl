@@ -306,6 +306,16 @@ PRODUCT_PACKAGES += \
     libtinycompress \
     cplay
 
+# tn custom utils/apps
+PRODUCT_PACKAGES += \
+    libgpiod \
+    gpiodetect \
+    gpiofind \
+    gpioget \
+    gpioinfo \
+    gpiomon \
+    gpioset
+
 # -------@block_wifi-------
 PRODUCT_PACKAGES += \
     hostapd \
