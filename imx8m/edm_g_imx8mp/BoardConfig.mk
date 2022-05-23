@@ -141,6 +141,10 @@ BOARD_BOOTCONFIG += androidboot.vendor.sysrq=1
 endif
 
 TARGET_BOARD_DTS_CONFIG := imx8mp:imx8mp-edm-g-wb.dtb
+TARGET_BOARD_DTBO_CONFIG := imx8mp:imx8mp-edm-g-wb-lvds-vl10112880.dtbo
+TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wb-lvds-vl215192108.dtbo
+TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wb-tevi-ov5640.dtbo
+TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wb-tevi-ap1302.dtbo
 
 ALL_DEFAULT_INSTALLED_MODULES += $(BOARD_VENDOR_KERNEL_MODULES)
 
