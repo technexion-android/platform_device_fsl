@@ -328,6 +328,16 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_VENDOR_PROPERTIES += ro.config.ringtone=Ring_Synth_04.ogg
 
+# tn custom utils/apps
+PRODUCT_PACKAGES += \
+    libgpiod \
+    gpiodetect \
+    gpiofind \
+    gpioget \
+    gpioinfo \
+    gpiomon \
+    gpioset
+
 # -------@block_wifi-------
 PRODUCT_PACKAGES += \
     hostapd \
