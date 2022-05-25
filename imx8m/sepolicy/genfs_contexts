@@ -4,7 +4,6 @@ genfscon sysfs /class/typec                                             u:object
 genfscon sysfs /devices/virtual/power_supply/usb                  u:object_r:sysfs_batteryinfo:s0
 genfscon sysfs /devices/virtual/power_supply/battery              u:object_r:sysfs_batteryinfo:s0
 genfscon sysfs /devices/platform/soc@0/soc@0:bus@30000000/30370000.snvs   u:object_r:sysfs_rtc:s0
-genfscon sysfs /devices/platform/sound-ak4458/extcon              u:object_r:sysfs_extcon:s0
 genfscon sysfs /devices/platform/sound-wm8960/extcon              u:object_r:sysfs_extcon:s0
 genfscon sysfs /devices/platform/rpmsg_audio/imx-audio-rpmsg.0.auto/extcon          u:object_r:sysfs_extcon:s0
 genfscon sysfs /devices/platform/rpmsg_audio/imx-audio-rpmsg.1.auto/extcon          u:object_r:sysfs_extcon:s0
@@ -15,3 +14,11 @@ genfscon sysfs /devices/platform/soc@0/32c00000.bus/32c00000.hdmi/extcon        
 genfscon sysfs /devices/soc0   u:object_r:sysfs_soc:s0
 genfscon debugfs /dma_buf u:object_r:debugfs_dma:s0
 genfscon debugfs /sync/sw_sync u:object_r:debugfs_sw_sync:s0
+
+genfscon sysfs /devices/platform/soc@0/30000000.bus/30200000.gpio/gpiochip0         u:object_r:sysfs_gpio:s0
+genfscon sysfs /devices/platform/soc@0/30000000.bus/30210000.gpio/gpiochip1         u:object_r:sysfs_gpio:s0
+genfscon sysfs /devices/platform/soc@0/30000000.bus/30220000.gpio/gpiochip2         u:object_r:sysfs_gpio:s0
+genfscon sysfs /devices/platform/soc@0/30000000.bus/30230000.gpio/gpiochip3         u:object_r:sysfs_gpio:s0
+genfscon sysfs /devices/platform/soc@0/30000000.bus/30240000.gpio/gpiochip4         u:object_r:sysfs_gpio:s0
+genfscon sysfs /devices/platform/soc@0/30800000.bus/30a30000.i2c/i2c-1/1-0021/gpiochip5  u:object_r:sysfs_gpio:s0
+genfscon sysfs /devices/platform/soc@0/30800000.bus/30a30000.i2c/i2c-1/1-0023/gpiochip6  u:object_r:sysfs_gpio:s0
