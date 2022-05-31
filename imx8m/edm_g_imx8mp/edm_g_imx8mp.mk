@@ -247,11 +247,6 @@ PRODUCT_COPY_FILES += \
     $(CONFIG_REPO_PATH)/common/audio-json/btsco_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/btsco_config.json \
     $(CONFIG_REPO_PATH)/common/audio-json/readme.txt:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/readme.txt
 
-ifeq ($(POWERSAVE),true)
-PRODUCT_COPY_FILES += \
-    $(CONFIG_REPO_PATH)/common/audio-json/pcm512x_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/pcm512x_config.json
-endif
-
 PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
     $(IMX_DEVICE_PATH)/usb_audio_policy_configuration-direct-output.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration-direct-output.xml
@@ -476,10 +471,6 @@ PRODUCT_PACKAGES += \
     c2_component_register_dsp \
     c2_component_register_dsp_wma \
     c2_component_register_dsp_aacp
-
-
-PRODUCT_PACKAGES += \
-    DirectAudioPlayer
 
 ifeq ($(PREBUILT_FSL_IMX_CODEC),true)
 ifneq ($(IMX8_BUILD_32BIT_ROOTFS),true)
