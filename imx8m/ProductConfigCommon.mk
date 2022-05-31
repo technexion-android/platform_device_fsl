@@ -340,7 +340,8 @@ PRODUCT_PACKAGES += \
     gpioget \
     gpioinfo \
     gpiomon \
-    gpioset
+    gpioset \
+    GPIOD
 
 # -------@block_wifi-------
 PRODUCT_PACKAGES += \
