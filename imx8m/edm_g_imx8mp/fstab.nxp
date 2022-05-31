@@ -4,11 +4,11 @@
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
 # usb otg host mode
-/devices/platform/32f10100.usb/38100000.dwc3/* auto auto defaults voldmanaged=usb:auto
+/devices/platform/soc@0/32f10100.usb/38100000.dwc3/* auto auto defaults voldmanaged=usb:auto
 # usb host
-/devices/platform/32f10108.usb/38200000.dwc3/* auto auto defaults voldmanaged=usb:auto
+/devices/platform/soc@0/32f10108.usb/38200000.dwc3/* auto auto defaults voldmanaged=usb:auto
 # nvme ssd
-/devices/platform/33800000.pcie/pci0000:00/* auto auto defaults voldmanaged=nvme:auto
+/devices/platform/soc@0/33800000.pcie/pci0000:00/* auto auto defaults voldmanaged=nvme:auto
 # uSD
 /devices/platform/soc@0/30800000.bus/30b50000.mmc/mmc_host/mmc1/* auto auto defaults voldmanaged=sdcard:auto
 
