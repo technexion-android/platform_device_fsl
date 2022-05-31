@@ -140,11 +140,27 @@ ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
 BOARD_BOOTCONFIG += androidboot.vendor.sysrq=1
 endif
 
-TARGET_BOARD_DTS_CONFIG := imx8mp:imx8mp-edm-g-wb.dtb
-TARGET_BOARD_DTBO_CONFIG := imx8mp:imx8mp-edm-g-wb-lvds-vl10112880.dtbo
-TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wb-lvds-vl215192108.dtbo
-TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wb-tevi-ov5640.dtbo
-TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wb-tevi-ap1302.dtbo
+ifeq ($(EXPORT_BASEBOARD_NAME),WANDBOARD)
+  TARGET_BOARD_DTS_CONFIG := imx8mp:imx8mp-edm-g-wb.dtb
+  TARGET_BOARD_DTS_CONFIG += imx8mp-rpmsg:imx8mp-edm-g-wb-rpmsg.dtb
+  TARGET_BOARD_DTBO_CONFIG := imx8mp:imx8mp-edm-g-wb-lvds-vl10112880.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wb-lvds-vl15613676.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wb-lvds-vl215192108.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wb-tevi-ov5640.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wb-tevi-ap1302.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wb-vizionlink-tevi-ov5640.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wb-vizionlink-tevi-ap1302.dtbo
+else ifeq ($(EXPORT_BASEBOARD_NAME),WIZARD)
+  TARGET_BOARD_DTS_CONFIG := imx8mp:imx8mp-edm-g-wizard.dtb
+  TARGET_BOARD_DTS_CONFIG += imx8mp-rpmsg:imx8mp-edm-g-wizard-rpmsg.dtb
+  TARGET_BOARD_DTBO_CONFIG := imx8mp:imx8mp-edm-g-wizard-lvds-vl10112880.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wizard-lvds-vl15613676.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wizard-lvds-vl215192108.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wizard-tevi-ov5640.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wizard-tevi-ap1302.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wizard-vizionlink-tevi-ov5640.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wizard-vizionlink-tevi-ap1302.dtbo
+endif
 
 ALL_DEFAULT_INSTALLED_MODULES += $(BOARD_VENDOR_KERNEL_MODULES)
 
