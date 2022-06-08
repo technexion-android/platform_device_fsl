@@ -134,8 +134,6 @@ else ifeq ($(EXPORT_BASEBOARD_NAME),WIZARD)
   TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wizard-lvds-vl215192108.dtbo
   TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wizard-tevi-ov5640.dtbo
   TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wizard-tevi-ap1302.dtbo
-  TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wizard-vizionlink-tevi-ov5640.dtbo
-  TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-wizard-vizionlink-tevi-ap1302.dtbo
 endif
 
 ALL_DEFAULT_INSTALLED_MODULES += $(BOARD_VENDOR_KERNEL_MODULES)
