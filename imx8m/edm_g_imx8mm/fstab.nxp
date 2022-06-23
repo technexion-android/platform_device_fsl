@@ -4,6 +4,11 @@
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
 /devices/platform/soc@0/32c00000.bus/32e40000.usb/* auto auto defaults voldmanaged=usb:auto
+/devices/platform/soc@0/32c00000.bus/32e50000.usb/* auto auto defaults voldmanaged=usb:auto
+
+/devices/platform/soc@0/33800000.pcie/pci0000:00/* auto auto defaults voldmanaged=nvme:auto
+/devices/platform/soc@0/30800000.bus/30b50000.mmc/mmc_host/mmc1/* auto auto defaults voldmanaged=sdcard:auto
+
 /dev/block/by-name/userdata    /data        ext4    nosuid,nodev,nodiratime,noatime,noauto_da_alloc,errors=panic    latemount,wait,formattable,quota,fileencryption=aes-256-xts:aes-256-cts:v2,keydirectory=/metadata/vold/metadata_encryption,reservedsize=128M,checkpoint=block
 /dev/block/by-name/metadata    /metadata    ext4    noatime,nosuid,nodev,discard,sync                                                wait,formattable,first_stage_mount,check
 /dev/block/by-name/misc        /misc        emmc    defaults                                                                         defaults
