@@ -100,22 +100,14 @@ BOARD_USE_SENSOR_FUSION := true
 # -------@block_kernel_bootimg-------
 BOARD_KERNEL_BASE := 0x40400000
 
-CMASIZE=800M
-
 # NXP default config
-BOARD_KERNEL_CMDLINE := console=ttymxc1,115200 init=/init firmware_class.path=/vendor/firmware loop.max_part=7 bootconfig
 BOARD_BOOTCONFIG += androidboot.console=ttymxc1 androidboot.hardware=nxp androidboot.usb.debugging=1
-
-# memory config
-BOARD_KERNEL_CMDLINE += transparent_hugepage=never
 
 # display config
 BOARD_BOOTCONFIG += androidboot.lcd_density=240 androidboot.primary_display=imx-drm
 
 # wifi config
 BOARD_BOOTCONFIG += androidboot.wificountrycode=TW
-
-BOARD_KERNEL_CMDLINE += cma=$(CMASIZE)@0x400M-0xb80M
 
 ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
 BOARD_BOOTCONFIG += androidboot.vendor.sysrq=1
