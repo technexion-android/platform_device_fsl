@@ -122,7 +122,6 @@ ifeq ($(EXPORT_BASEBOARD_NAME),WANDBOARD)
   TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-edm-g-wb-tevi-ap1302.dtbo
 else ifeq ($(EXPORT_BASEBOARD_NAME),WIZARD)
   TARGET_BOARD_DTS_CONFIG := imx8mm:imx8mm-edm-g-wizard.dtb
-  TARGET_BOARD_DTS_CONFIG += imx8mm-rpmsg:imx8mm-edm-g-wizard-rpmsg.dtb
   TARGET_BOARD_DTBO_CONFIG := imx8mm:imx8mm-edm-g-wizard-sn65dsi84-vl10112880.dtbo
   TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-edm-g-wizard-sn65dsi84-vl215192108.dtbo
   TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-edm-g-wizard-tevi-ov5640.dtbo
