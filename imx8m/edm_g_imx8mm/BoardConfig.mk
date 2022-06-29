@@ -125,7 +125,6 @@ else ifeq ($(EXPORT_BASEBOARD_NAME),WIZARD)
   TARGET_BOARD_DTBO_CONFIG := imx8mm:imx8mm-edm-g-wizard-sn65dsi84-vl10112880.dtbo
   TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-edm-g-wizard-sn65dsi84-vl215192108.dtbo
   TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-edm-g-wizard-tevi-ov5640.dtbo
-  TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-edm-g-wizard-tevi-ap1302.dtbo
 endif
 
 ALL_DEFAULT_INSTALLED_MODULES += $(BOARD_VENDOR_KERNEL_MODULES)
