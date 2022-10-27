@@ -19,6 +19,7 @@ endif
 # Overrides
 PRODUCT_NAME := tep1_imx7
 PRODUCT_DEVICE := tep1_imx7
+BUILD_VERSION_TAGS += SELinux_Permissive
 
 ifneq ($(EXPORT_BASEBOARD_NAME),NYMPH)
 # Copy touch/keyboard related config file
