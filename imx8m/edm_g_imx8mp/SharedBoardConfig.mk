@@ -73,6 +73,7 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/pps/pps_core.ko \
     $(KERNEL_OUT)/drivers/net/ethernet/freescale/fec.ko
 else
+TARGET_IMX_KERNEL := true
 BOARD_VENDOR_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/net/wireless/qcacld-2.0/wlan.ko
 endif
