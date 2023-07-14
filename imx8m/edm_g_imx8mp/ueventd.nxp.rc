@@ -21,6 +21,19 @@
 /dev/dma_heap/reserved-uncached    0666   system     system
 /dev/dma_heap/secure      0666   system     system
 
+
+# nfc
+/dev/pn544                0666   nfc        nfc
+
+# gpiod bank
+/dev/gpiochip0            0666   system     system
+/dev/gpiochip1            0666   system     system
+/dev/gpiochip2            0666   system     system
+/dev/gpiochip3            0666   system     system
+/dev/gpiochip4            0666   system     system
+/dev/gpiochip5            0666   system     system
+/dev/gpiochip6            0666   system     system
+
 /sys/devices/virtual/thermal/thermal_zone* trip_point_0_temp 0660 system system
 /sys/devices/virtual/thermal/thermal_zone* trip_point_1_temp 0660 system system
 
