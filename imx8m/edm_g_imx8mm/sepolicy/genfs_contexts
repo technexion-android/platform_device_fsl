@@ -18,3 +18,6 @@ genfscon sysfs /devices/platform/soc@0/30800000.bus/30b50000.mmc/mmc_host/mmc1/m
 
 # for dumpstate to access the stat file
 genfscon sysfs /devices/platform/b8500000.pmem/ndbus0/region0/namespace0.0/block/pmem0                                            u:object_r:sysfs_block_devices:s0
+
+# lvds_backlight
+genfscon sysfs /devices/platform/soc@0/soc@0:bus@30400000/30670000.pwm/consumer:lvds_backlight/consumer/backlight u:object_r:sysfs_leds:s0

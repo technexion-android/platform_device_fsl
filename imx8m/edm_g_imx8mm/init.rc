@@ -2,19 +2,6 @@ import /vendor/etc/init/hw/init.${ro.hardware}.usb.rc
 import /vendor/etc/init/hw/init.${ro.hardware}.${ro.boot.soc_type}.rc
 import /vendor/etc/init/hw/init.${ro.hardware}.additional.rc
 
-service vendor.charger /system/bin/charger
-    class charger
-    user system
-    group system wakelock input
-    capabilities SYS_BOOT
-    file /dev/kmsg w
-    file /sys/fs/pstore/console-ramoops-0 r
-    file /sys/fs/pstore/console-ramoops r
-    file /proc/last_kmsg r
-
-on charger
-    start vendor.charger
-
 on early-init
     # mount the debugfs
     mount debugfs none /sys/kernel/debug/ mode=0755
@@ -92,6 +79,9 @@ on early-boot && property:vendor.skip.charger_not_need=0
     setprop ro.lmk.downgrade_pressure 95
     setprop ro.lmk.critical_upgrade true
 
+    # Set permission for IIM node
+    symlink /dev/mxs_viim /dev/mxc_mem
+
     setprop vendor.hwc.stretch.filter  1
 
     # Default g2d [dpu|pxp|viv] lib to be used
@@ -103,6 +93,9 @@ on early-boot && property:vendor.skip.charger_not_need=0
 
     setprop camera.disable_zsl_mode 1
 
+    #Enable GPU 2D do CSC on imx8mm platform
+    setprop vendor.camera.2d.enable true
+
    # Tweak the mmc device read ahead buffer size
     write /sys/block/mmcblk1/queue/read_ahead_kb 2048
     write /sys/block/mmcblk2/queue/read_ahead_kb 2048
@@ -110,6 +103,8 @@ on early-boot && property:vendor.skip.charger_not_need=0
     # Prepare for bluetooth
     chmod 665 /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+	# Notice:
+	# Below command may make wlan abnormal if bt not countrol with rfkill
     write /sys/class/rfkill/rfkill0/state 0
 
     setprop persist.service.bdroid.bdaddr 22:22:67:C6:69:73
@@ -117,18 +112,29 @@ on early-boot && property:vendor.skip.charger_not_need=0
     setprop vendor.qcom.bluetooth.soc rome_uart
     setprop vendor.wc_transport.start_hci false
 
+    # Prepare for wifi
+    setprop wifi.interface wlan0
+    setprop wifi.concurrent.interface p2p0
+    setprop wifi.direct.interface p2p0
+
     # Set tracefs permission to 755
     chmod 0755 /sys/kernel/debug/tracing
 
-    # Set sw_sync group to graphics and set permission to 664
-    chown root graphics /sys/kernel/debug/sync/sw_sync
-    chmod 0664 /sys/kernel/debug/sync/sw_sync
+#    # Default backlight device
+#    setprop vendor.hw.backlight.dev "32e10000.mipi_dsi.0"
+#    # Chmod/chown FSL specific sys entry
+#    chown system system /sys/class/backlight/32e10000.mipi_dsi.0/brightness
+#    chmod 0660 /sys/class/backlight/32e10000.mipi_dsi.0/brightness
 
-    # Default backlight device
+    # Default backlight device (TN)
     setprop vendor.hw.backlight.dev "lvds_backlight"
     # Chmod/chown FSL specific sys entry
     chown system system /sys/class/backlight/lvds_backlight/brightness
     chmod 0660 /sys/class/backlight/lvds_backlight/brightness
+
+#    # Set light sensor sysfs path and light sensor threshold lux value
+#    setprop ro.hardware.lightsensor "/sys/class/i2c-dev/i2c-0/device/0-0044/"
+#    setprop vendor.ro.lightsensor.threshold  20
 
     # Allow DSD file(duration larger than 10s) can play
     setprop audio.offload.min.duration.secs 10
@@ -136,19 +142,13 @@ on early-boot && property:vendor.skip.charger_not_need=0
     # Enlarge limition of audio buffer allocation
     setprop ro.af.client_heap_size_kbyte 32768
 
-    # Prepare for wifi hal
-    setprop wifi.interface wlan0
-    setprop wifi.concurrent.interface p2p0
-    setprop wifi.direct.interface p2p0
     start vendor.wifi_hal_legacy
+
 
 service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     -O/data/vendor/wifi/wpa/sockets -puse_p2p_group_interface=1 \
     -g@android:wpa_wlan0
-    interface android.hardware.wifi.supplicant@1.0::ISupplicant default
-    interface android.hardware.wifi.supplicant@1.1::ISupplicant default
-    interface android.hardware.wifi.supplicant@1.2::ISupplicant default
-    interface android.hardware.wifi.supplicant@1.3::ISupplicant default
+    interface aidl android.hardware.wifi.supplicant.ISupplicant/default
     class main
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
@@ -231,6 +231,22 @@ on property:ro.boot.vendor.sysrq=1 && property:vendor.skip.charger_not_need=0
 # setenv append_bootargs androidboot.usb.debugging=1
 on property:ro.boot.usb.debugging=1
     setprop persist.sys.usb.config adb
+
+# setenv append_bootargs androidboot.lpa.enable=1
+on property:ro.boot.lpa.enable=1
+    setprop vendor.audio.lpa.hold_second 20
+    setprop vendor.audio.lpa.period_ms 500
+    setprop vendor.audio.lpa.enable 1
+
+service confirmationui_ta_load /vendor/bin/trusty_apploader /vendor/firmware/tee/confirmationui.app
+    user root
+    group root system
+    disabled
+    oneshot
+
+on property:sys.boot_completed=1 && property:vendor.storageproxyd=trusty && property:vendor.skip.charger_not_need=0
+    start confirmationui_ta_load
+
 on property:vendor.wc_transport.start_hci=true
     start start_hci_filter
 
@@ -238,21 +254,6 @@ on property:vendor.wc_transport.start_hci=false
     stop start_hci_filter
 
 service start_hci_filter /vendor/bin/wcnss_filter
-    class late_start
-    user bluetooth
-    group bluetooth diag
-    disabled
-
-on property:vendor.wc_transport.start_root=true
-    start hci_filter_root
-
-on property:vendor.wc_transport.start_root=false
-    stop hci_filter_root
-
-on property:init.svc.bootanim=stopped
-    start tn_init
-
-service hci_filter_root /vendor/bin/wcnss_filter
     class late_start
     user bluetooth
     group bluetooth diag system
