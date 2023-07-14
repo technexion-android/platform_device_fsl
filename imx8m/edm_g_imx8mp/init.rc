@@ -1,19 +1,6 @@
 import /vendor/etc/init/hw/init.${ro.hardware}.usb.rc
 import /vendor/etc/init/hw/init.${ro.hardware}.${ro.boot.soc_type}.rc
 
-service vendor.charger /system/bin/charger
-    class charger
-    user system
-    group system wakelock input
-    capabilities SYS_BOOT
-    file /dev/kmsg w
-    file /sys/fs/pstore/console-ramoops-0 r
-    file /sys/fs/pstore/console-ramoops r
-    file /proc/last_kmsg r
-
-on charger
-    start vendor.charger
-
 on early-init
     # mount the debugfs
     mount debugfs none /sys/kernel/debug/ mode=0755
@@ -116,8 +103,10 @@ on early-boot && property:vendor.skip.charger_not_need=0
     write /sys/block/mmcblk2/queue/read_ahead_kb 2048
 
     # Prepare for bluetooth
-    chmod 665 /sys/class/rfkill/rfkill0/state
+    chmod 664 /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+	# Notice:
+	# Below command may make wlan abnormal if bt not countrol with rfkill
     write /sys/class/rfkill/rfkill0/state 0
 
     setprop persist.service.bdroid.bdaddr 22:22:67:C6:69:73
@@ -147,7 +136,7 @@ on early-boot && property:vendor.skip.charger_not_need=0
     setprop vendor.hw.backlight_backup.dev "lvds_backlight"
     # Chmod/chown FSL specific sys entry
     chown system system /sys/class/backlight/lvds_backlight/brightness
-    chmod 0660 /sys/class/backlight/lvds_backlight/brightness
+    chmod 0666 /sys/class/backlight/lvds_backlight/brightness
 
     # Allow DSD file(duration larger than 10s) can play
     setprop audio.offload.min.duration.secs 10
@@ -160,10 +149,7 @@ on early-boot && property:vendor.skip.charger_not_need=0
 service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     -O/data/vendor/wifi/wpa/sockets -puse_p2p_group_interface=1 \
     -g@android:wpa_wlan0
-    interface android.hardware.wifi.supplicant@1.0::ISupplicant default
-    interface android.hardware.wifi.supplicant@1.1::ISupplicant default
-    interface android.hardware.wifi.supplicant@1.2::ISupplicant default
-    interface android.hardware.wifi.supplicant@1.3::ISupplicant default
+    interface aidl android.hardware.wifi.supplicant.ISupplicant/default
     class main
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
@@ -254,11 +240,13 @@ on property:ro.boot.usb.debugging=1
 # setenv append_bootargs androidboot.powersave.usb=true
 on property:ro.boot.powersave.usb=true
     # enable platform/32f10100.usb runtime_pm
-    write /sys/devices/platform/soc@0/32f10100.usb/38100000.dwc3/power/control auto
+    write /sys/devices/platform/soc@0/32f10100.usb/38100000.usb/power/control auto
 
     #enable platform/32f10108.usb runtime_pm
-    write /sys/devices/platform/soc@0/32f10108.usb/38200000.dwc3/power/control auto
-    write /sys/devices/platform/soc@0/32f10108.usb/38200000.dwc3/xhci-hcd.0.auto/power/control auto
+    write /sys/devices/platform/soc@0/32f10108.usb/38200000.usb/power/control auto
+    write /sys/devices/platform/soc@0/32f10108.usb/38200000.usb/xhci-hcd.0.auto/power/control auto
+    write /sys/devices/platform/soc@0/32f10108.usb/38200000.usb/xhci-hcd.1.auto/power/control auto
+    write /sys/devices/platform/soc@0/32f10108.usb/38200000.usb/xhci-hcd.2.auto/power/control auto
 
 # setenv append_bootargs androidboot.lpa.enable=1
 on property:ro.boot.lpa.enable=1
@@ -269,6 +257,26 @@ on property:ro.boot.lpa.enable=1
 # setenv append_bootargs androidboot.powersave.lpa=true
 on property:ro.boot.lpa.enable=1 && property:ro.boot.powersave.lpa=true
     write /sys/lpa_ctrl/lpa 1
+
+# default is for dual os08a20
+on property:ro.boot.camera.layout=""
+    mount overlay overlay /vendor/etc/configs/isp ro lowerdir=/vendor/vendor_overlay_sensor/os08a20/vendor/etc/configs/isp:/vendor/etc/configs/isp,override_creds=off
+
+# setenv append_bootargs androidboot.camera.layout=basler-ov5640
+on property:ro.boot.camera.layout=basler-ov5640
+    setprop ro.media.xml_variant.profiles _8mp-ispsensor-ov5640
+    mount overlay overlay /vendor/etc/configs/isp ro lowerdir=/vendor/vendor_overlay_sensor/basler/vendor/etc/configs/isp:/vendor/etc/configs/isp,override_creds=off
+
+# setenv append_bootargs androidboot.camera.layout=only-ov5640
+on property:ro.boot.camera.layout=only-ov5640
+    setprop ro.media.xml_variant.profiles _8mp-ov5640
+
+on property:ro.boot.camera.layout=os08a20-ov5640
+    setprop ro.media.xml_variant.profiles _8mp-ispsensor-ov5640
+    mount overlay overlay /vendor/etc/configs/isp ro lowerdir=/vendor/vendor_overlay_sensor/os08a20/vendor/etc/configs/isp:/vendor/etc/configs/isp,override_creds=off
+
+on property:ro.boot.camera.layout=dual-basler
+    mount overlay overlay /vendor/etc/configs/isp ro lowerdir=/vendor/vendor_overlay_sensor/basler/vendor/etc/configs/isp:/vendor/etc/configs/isp,override_creds=off
 
 service confirmationui_ta_load /vendor/bin/trusty_apploader /vendor/firmware/tee/confirmationui.app
     user root
@@ -288,4 +296,5 @@ on property:vendor.wc_transport.start_hci=false
 service start_hci_filter /vendor/bin/wcnss_filter
     class late_start
     user bluetooth
-    group bluetooth diag
+    group bluetooth diag system
+    disabled

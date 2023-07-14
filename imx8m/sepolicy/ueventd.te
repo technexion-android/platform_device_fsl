@@ -1,4 +1,0 @@
-allow ueventd gpio_device:chr_file create;
-allow ueventd gpio_device:chr_file setattr;
-allow ueventd sysfs_gpio:chr_file create;
-allow ueventd sysfs_gpio:chr_file setattr;
