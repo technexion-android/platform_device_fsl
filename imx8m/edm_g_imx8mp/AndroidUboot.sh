@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "---->>> $0"
+
 # hardcode this one again in this shell script
 CONFIG_REPO_PATH=device/nxp
 
@@ -79,16 +81,24 @@ _error_exit() {
 }
 
 _do_cmd() {
-	#echo "CMD: '${1}'"
+	echo "CMD: '${1}'"
 	eval "${1}"
 	return $?
 }
 
 build_imx_uboot()
 {
+	echo -e "\n---->>> Building i.MX U-Boot with firmware - ${UBOOT_PLATFORM}"
+	echo " TARGET_BOOTLOADER_POSTFIX = ${1}"
+	echo " UBOOT_PLATFORM            = ${2}"
+	echo " UBOOT_CONFIG              = ${UBOOT_CONFIG}"
+	echo " UBOOT_OUT                 = ${UBOOT_OUT}"
+	echo " IMX_MKIMAGE_PATH          = ${IMX_MKIMAGE_PATH}"
+	echo " ATF_CROSS_COMPILE         = ${ATF_CROSS_COMPILE}"
+	echo "------------------------------------------------------------"
 	local _soc_type="imx8mp"
 	local _uboot_dtb="${_soc_type}-edm-g_android.dtb"
-#	local _opt="-v"
+	local _opt="-v"
 
 	cp ${_opt} ${UBOOT_OUT}/u-boot-nodtb.$1 ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/
 	cp ${_opt} ${UBOOT_OUT}/spl/u-boot-spl.bin  ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/
@@ -102,6 +112,7 @@ build_imx_uboot()
 	local _mkcmd="make -C ${IMX_PATH}/arm-trusted-firmware/ CROSS_COMPILE=${ATF_CROSS_COMPILE} PLAT=$(echo $2 | cut -d '-' -f1) bl31 -B LPA=${POWERSAVE_STATE} IMX_ANDROID_BUILD=true"
 	if [ "`echo $2 | cut -d '-' -f2`" = "trusty" ]; then
 		cp ${_opt} ${FSL_PROPRIETARY_PATH}/fsl-proprietary/uboot-firmware/imx8m/tee-imx8mp.bin ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/tee.bin
+		#_do_cmd "make -C ${IMX_PATH}/arm-trusted-firmware/ CROSS_COMPILE="${ATF_CROSS_COMPILE}" PLAT=`echo $2 | cut -d '-' -f1` bl31 -B SPD=trusty LPA=${POWERSAVE_STATE} IMX_ANDROID_BUILD=true 1>/dev/null" || exit 1
 		_mkcmd="${_mkcmd} SPD=trusty"
 	else
 		if [ -f ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/tee.bin ] ; then
@@ -110,6 +121,7 @@ build_imx_uboot()
 		if [ -f ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/tee.bin.lz4 ] ; then
 			rm -rf ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/tee.bin.lz4
 		fi
+		#_do_cmd "make -C ${IMX_PATH}/arm-trusted-firmware/ CROSS_COMPILE="${ATF_CROSS_COMPILE}" PLAT=`echo $2 | cut -d '-' -f1` bl31 -B LPA=${POWERSAVE_STATE} IMX_ANDROID_BUILD=true 1>/dev/null" || exit 1
 	fi
 
 	[[ ${_opt} =~ '-v' ]] || _addon="1>/dev/null"
@@ -131,6 +143,10 @@ build_imx_uboot()
 		_do_cmd "${_mkcmd} print_fit_hab" || _error_exit "print_fit_hab fail"
 		cp ${_opt} ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/flash.bin ${UBOOT_COLLECTION}/u-boot-$2.imx
 	fi
+
+	make savedefconfig ${UBOOT_CONFIG} && mv -v defconfig ${UBOOT_CONFIG}
+
+	echo -e "---->>> Building i.MX U-Boot with firmware - FINISH"
 
 	unset _mkcmd _opt _addon _soc_type _uboot_dtb
 }
