@@ -276,7 +276,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
  $(IMX_DEVICE_PATH)/camera_config_imx8mm-ov5640.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mm-ov5640.json\
- $(IMX_DEVICE_PATH)/camera_config_imx8mm-ar0144.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mm-ap1302.json\
+ $(IMX_DEVICE_PATH)/camera_config_imx8mm-ap1302.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mm-ap1302.json\
  $(IMX_DEVICE_PATH)/camera_config_imx8mm_tevi-uvc.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mm_tevi-uvc.json\
  $(IMX_DEVICE_PATH)/external_camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/external_camera_config.xml
 
