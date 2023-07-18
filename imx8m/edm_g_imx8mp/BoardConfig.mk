@@ -124,7 +124,7 @@ ifeq ($(WIFI_BT_DEV),QCA9377)
 # qca9377 wifi
 BOARD_WLAN_DEVICE := qcwcn
 # QCA qcacld wifi driver module
-BOARD_VENDOR_KERNEL_MODULES += $(KERNEL_OUT)/drivers/staging/qcacld-2.0/wlan.ko
+BOARD_VENDOR_KERNEL_MODULES += $(KERNEL_OUT)/drivers/net/wireless/qcacld-2.0/wlan.ko
 # Avoid Wifi reset on MAC Address change
 #WIFI_AVOID_IFACE_RESET_MAC_CHANGE := true
 
