@@ -67,7 +67,11 @@ BOARD_PREBUILT_DTBOIMAGE := $(OUT_DIR)/target/product/$(PRODUCT_DEVICE)/dtbo-${S
 BOARD_USES_METADATA_PARTITION := true
 BOARD_ROOT_EXTRA_FOLDERS += metadata
 
+#
+# Refer to NxP Android User Guide section 7.1.4 Building an OTA package for single-bootloader image
+ifneq (${SINGLE_BOOTLOADER},true)
 AB_OTA_PARTITIONS += bootloader
+endif
 
 # -------@block_security-------
 ENABLE_CFI=false
