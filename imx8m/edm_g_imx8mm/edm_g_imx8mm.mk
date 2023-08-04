@@ -42,6 +42,9 @@ WIFI_CFG_PATH := $(LOCAL_WIFI_PATH)/firmware/qca9377/wlan
 
 BT_FW_PATH := vendor/technexion/bt/qcom/firmware/qca
 
+SINGLE_BOOTLOADER := true
+
+
 # -------@block_treble-------
 PRODUCT_FULL_TREBLE_OVERRIDE := true
 
