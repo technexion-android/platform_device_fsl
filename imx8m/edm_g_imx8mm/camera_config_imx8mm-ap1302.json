@@ -14,7 +14,7 @@
       "bus_info": "platform:32e20000.csi1_bridge",
       "orientation": "0",
       "buffer_type": "mmap",
-      "v4l2_format" : "y12",
+      "v4l2_format" : "uyvy",
       "ActiveArrayWidth": "1280",
       "ActiveArrayHeight": "800",
       "PixelArrayWidth": "1280",
