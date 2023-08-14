@@ -84,7 +84,7 @@ IMX8_BUILD_32BIT_ROOTFS := false
 
 # Set permission for GMS packages
 PRODUCT_COPY_FILES += \
-    $(CONFIG_REPO_PATH)/imx8m/permissions/privapp-permissions-imx.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp.permissions-imx.xml
+ $(CONFIG_REPO_PATH)/imx8m/permissions/privapp-permissions-imx.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp.permissions-imx.xml
 
 PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/app_whitelist.xml:system/etc/sysconfig/app_whitelist.xml
@@ -146,7 +146,6 @@ endif
 IMX_NO_PRODUCT_PARTITION := false
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
-
 
 PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/fstab.nxp:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.nxp
@@ -274,14 +273,18 @@ PRODUCT_COPY_FILES += \
 
 # -------@block_camera-------
 
-PRODUCT_COPY_FILES += \
- $(IMX_DEVICE_PATH)/camera_config_imx8mm.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mm.json
-
-PRODUCT_COPY_FILES += \
- $(IMX_DEVICE_PATH)/camera_config_imx8mm-ov5640.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mm-ov5640.json\
- $(IMX_DEVICE_PATH)/camera_config_imx8mm-ap1302.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mm-ap1302.json\
- $(IMX_DEVICE_PATH)/camera_config_imx8mm_tevi-uvc.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mm_tevi-uvc.json\
+PRODUCT_COPY_FILES +=\
+ $(IMX_DEVICE_PATH)/camera_config_imx8mm.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mm.json\
  $(IMX_DEVICE_PATH)/external_camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/external_camera_config.xml
+
+PRODUCT_COPY_FILES +=\
+ $(IMX_DEVICE_PATH)/camera_config_imx8mm-ap1302.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mm-ap1302.json\
+ $(IMX_DEVICE_PATH)/camera_config_imx8mm_tevi-uvc.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mm_tevi-uvc.json
+
+# Add external medis profiles into /vendor/etc/
+PRODUCT_COPY_FILES +=\
+ vendor/technexion/multimedia/media_profiles_8mm-720p.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_720p.xml\
+ vendor/technexion/multimedia/media_profiles_8mm-480p.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_480p.xml
 
 PRODUCT_SOONG_NAMESPACES += hardware/google/camera
 PRODUCT_SOONG_NAMESPACES += vendor/nxp-opensource/imx/camera
