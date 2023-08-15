@@ -14,21 +14,20 @@
       "orientation": "0",
       "mplane": "1",
       "buffer_type": "dma",
-      "v4l2_format" : "uyvy",
-      "ActiveArrayWidth": "1280",
-      "ActiveArrayHeight": "800",
-      "PixelArrayWidth": "1280",
-      "PixelArrayHeight": "800",
+      "ActiveArrayWidth": "2592",
+      "ActiveArrayHeight": "1944",
+      "PixelArrayWidth": "2592",
+      "PixelArrayHeight": "1944",
       "PhysicalWidth": "2.688",
       "PhysicalHeight": "1.512",
       "FocalLength": "3.42",
       "MaxJpegSize": "8388608",
-      "MinFrameDuration": "33333333",
+      "MinFrameDuration": "33331760",
       "MaxFrameDuration": "300000000",
       "OmitFrame": [
           {
-              "width": "1280",
-              "height": "800",
+              "width": "2592",
+              "height": "1944",
               "omit_num": "2"
           }
       ]
@@ -39,21 +38,20 @@
       "orientation": "0",
       "mplane": "1",
       "buffer_type": "dma",
-      "v4l2_format" : "uyvy",
-      "ActiveArrayWidth": "1280",
-      "ActiveArrayHeight": "800",
-      "PixelArrayWidth": "1280",
-      "PixelArrayHeight": "800",
+      "ActiveArrayWidth": "2592",
+      "ActiveArrayHeight": "1944",
+      "PixelArrayWidth": "2592",
+      "PixelArrayHeight": "1944",
       "PhysicalWidth": "2.688",
       "PhysicalHeight": "1.512",
       "FocalLength": "3.42",
       "MaxJpegSize": "8388608",
-      "MinFrameDuration": "33333333",
+      "MinFrameDuration": "33331760",
       "MaxFrameDuration": "300000000",
       "OmitFrame": [
           {
-              "width": "1280",
-              "height": "800",
+              "width": "2592",
+              "height": "1944",
               "omit_num": "2"
           }
       ]
