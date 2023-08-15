@@ -278,6 +278,10 @@ on property:ro.boot.camera.layout=os08a20-ov5640
 on property:ro.boot.camera.layout=dual-basler
     mount overlay overlay /vendor/etc/configs/isp ro lowerdir=/vendor/vendor_overlay_sensor/basler/vendor/etc/configs/isp:/vendor/etc/configs/isp,override_creds=off
 
+# Setup media profile for TEVI-AR serials
+on property:ro.boot.camera.layout=ap1302
+    setprop ro.media.xml_variant.profiles _720p
+
 service confirmationui_ta_load /vendor/bin/trusty_apploader /vendor/firmware/tee/confirmationui.app
     user root
     group root system
