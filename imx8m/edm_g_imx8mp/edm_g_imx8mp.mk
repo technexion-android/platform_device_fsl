@@ -292,8 +292,15 @@ PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/external_camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/external_camera_config.xml
 
 PRODUCT_COPY_FILES += \
+ $(IMX_DEVICE_PATH)/camera_config_imx8mp-only-ov5640.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mp-only-ov5640.json \
  $(IMX_DEVICE_PATH)/camera_config_imx8mp-ov5640.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mp-ov5640.json\
  $(IMX_DEVICE_PATH)/camera_config_imx8mp-ap1302.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mp-ap1302.json
+
+# Add external medis profiles into /vendor/etc/
+PRODUCT_COPY_FILES +=\
+ vendor/technexion/multimedia/media_profiles_8mp-720p.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_720p.xml\
+ vendor/technexion/multimedia/media_profiles_8mp-480p.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_480p.xml
+
 PRODUCT_SOONG_NAMESPACES += hardware/google/camera
 PRODUCT_SOONG_NAMESPACES += vendor/nxp-opensource/imx/camera
 
