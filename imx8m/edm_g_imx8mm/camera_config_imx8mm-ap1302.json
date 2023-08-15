@@ -15,10 +15,10 @@
       "orientation": "0",
       "buffer_type": "mmap",
       "v4l2_format" : "uyvy",
-      "ActiveArrayWidth": "1280",
-      "ActiveArrayHeight": "720",
-      "PixelArrayWidth": "1280",
-      "PixelArrayHeight": "720",
+      "ActiveArrayWidth": "2592",
+      "ActiveArrayHeight": "1944",
+      "PixelArrayWidth": "2592",
+      "PixelArrayHeight": "1944",
       "PhysicalWidth": "2.688",
       "PhysicalHeight": "1.512",
       "FocalLength": "3.42",
@@ -27,8 +27,8 @@
       "MaxFrameDuration": "300000000",
       "OmitFrame": [
           {
-              "width": "1280",
-              "height": "720",
+              "width": "2592",
+              "height": "1944",
               "omit_num": "6"
           }
       ]
