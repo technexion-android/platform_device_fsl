@@ -274,17 +274,25 @@ PRODUCT_COPY_FILES += \
 # -------@block_camera-------
 
 PRODUCT_COPY_FILES +=\
- $(IMX_DEVICE_PATH)/camera_config_imx8mm.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mm.json\
+ $(IMX_DEVICE_PATH)/camera_config_$(SOC_MODEL_LT).json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT).json\
  $(IMX_DEVICE_PATH)/external_camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/external_camera_config.xml
 
+VENDOR_MULTIMEDIA_PATH := vendor/technexion/multimedia
 PRODUCT_COPY_FILES +=\
- $(IMX_DEVICE_PATH)/camera_config_imx8mm-ap1302.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mm-ap1302.json\
- $(IMX_DEVICE_PATH)/camera_config_imx8mm_tevi-uvc.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mm_tevi-uvc.json
+ $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar0144.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar0144.json\
+ $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar0234.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar0234.json\
+ $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar0521.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar0521.json\
+ $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar0522.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar0522.json\
+ $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar0821.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar0821.json\
+ $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar0822.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar0822.json\
+ $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar1335.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar1335.json\
+ $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)_tevi-uvc.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)_tevi-uvc.json
+
 
 # Add external medis profiles into /vendor/etc/
 PRODUCT_COPY_FILES +=\
- vendor/technexion/multimedia/media_profiles_8mm-720p.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_720p.xml\
- vendor/technexion/multimedia/media_profiles_8mm-480p.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_480p.xml
+ $(VENDOR_MULTIMEDIA_PATH)/media_profiles_8mm-720p_30fps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles-720p_30fps.xml\
+ $(VENDOR_MULTIMEDIA_PATH)/media_profiles_8mm-480p_30fps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles-480p_30fps.xml
 
 PRODUCT_SOONG_NAMESPACES += hardware/google/camera
 PRODUCT_SOONG_NAMESPACES += vendor/nxp-opensource/imx/camera
