@@ -305,8 +305,9 @@ PRODUCT_COPY_FILES +=\
 
 # Add external medis profiles into /vendor/etc/
 PRODUCT_COPY_FILES +=\
- vendor/technexion/multimedia/media_profiles_8mp-720p.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_720p.xml\
- vendor/technexion/multimedia/media_profiles_8mp-480p.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_480p.xml
+ $(VENDOR_MULTIMEDIA_PATH)/media_profiles_8mp-1080p_30fps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles-1080p_30fps.xml\
+ $(VENDOR_MULTIMEDIA_PATH)/media_profiles_8mp-720p_30fps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles-720p_30fps.xml\
+ $(VENDOR_MULTIMEDIA_PATH)/media_profiles_8mp-480p_30fps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles-480p_30fps.xml
 
 PRODUCT_SOONG_NAMESPACES += hardware/google/camera
 PRODUCT_SOONG_NAMESPACES += vendor/nxp-opensource/imx/camera
