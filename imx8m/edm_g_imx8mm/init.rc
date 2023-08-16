@@ -239,8 +239,9 @@ on property:ro.boot.lpa.enable=1
     setprop vendor.audio.lpa.enable 1
 
 # Setup media profile for TEVI-AR serials
-on property:ro.boot.camera.layout=ap1302
-    setprop ro.media.xml_variant.profiles _720p
+on property:ro.boot.camera.layout=ar0144
+    setprop ro.media.xml_variant.profiles -720p_30fps
+
 
 service confirmationui_ta_load /vendor/bin/trusty_apploader /vendor/firmware/tee/confirmationui.app
     user root
