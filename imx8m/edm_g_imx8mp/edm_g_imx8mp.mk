@@ -287,14 +287,21 @@ PRODUCT_COPY_FILES += \
 
 # -------@block_camera-------
 
-PRODUCT_COPY_FILES += \
-    $(IMX_DEVICE_PATH)/camera_config_imx8mp.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mp.json \
+PRODUCT_COPY_FILES +=\
+    $(IMX_DEVICE_PATH)/camera_config_$(SOC_MODEL_LT).json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT).json\
     $(IMX_DEVICE_PATH)/external_camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/external_camera_config.xml
 
-PRODUCT_COPY_FILES += \
- $(IMX_DEVICE_PATH)/camera_config_imx8mp-only-ov5640.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mp-only-ov5640.json \
- $(IMX_DEVICE_PATH)/camera_config_imx8mp-ov5640.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mp-ov5640.json\
- $(IMX_DEVICE_PATH)/camera_config_imx8mp-ap1302.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mp-ap1302.json
+VENDOR_MULTIMEDIA_PATH := vendor/technexion/multimedia
+PRODUCT_COPY_FILES +=\
+ $(IMX_DEVICE_PATH)/camera_config_$(SOC_MODEL_LT)-only-ov5640.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-only-ov5640.json \
+ $(IMX_DEVICE_PATH)/camera_config_$(SOC_MODEL_LT)-ov5640.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ov5640.json\
+ $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar0144.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar0144.json\
+ $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar0234.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar0234.json\
+ $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar0521.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar0521.json\
+ $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar0522.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar0522.json\
+ $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar0821.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar0821.json\
+ $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar0822.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar0822.json\
+ $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar1335.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar1335.json
 
 # Add external medis profiles into /vendor/etc/
 PRODUCT_COPY_FILES +=\
