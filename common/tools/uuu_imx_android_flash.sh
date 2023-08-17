@@ -815,11 +815,12 @@ if [ ${dryrun} -eq 1 ]; then
 fi
 
 echo "uuu script generated, start to invoke uuu with the generated uuu script"
+UUU=${UUU:-"./uuu"}
 if [ ${daemon_mode} -eq 1 ]; then
-    uuu ${usb_paths} -d /tmp/uuu.lst${randome_part} || clean_tmp_files
+    ${UUU} ${usb_paths} -d /tmp/uuu.lst${randome_part} || clean_tmp_files
     clean_tmp_files
 else
-    uuu ${usb_paths} /tmp/uuu.lst${randome_part} || clean_tmp_files
+    ${UUU} ${usb_paths} /tmp/uuu.lst${randome_part} || clean_tmp_files
     clean_tmp_files
 fi
 
