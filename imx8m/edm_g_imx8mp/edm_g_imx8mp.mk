@@ -785,3 +785,6 @@ PRODUCT_PACKAGES += \
 
 # make sure /vendor/etc/configs/isp/ is created
 PRODUCT_PACKAGES += hollow
+
+# sets vendor.battery.status.msg to true to show the battery status message
+PRODUCT_VENDOR_PROPERTIES += vendor.battery.status.msg=false
