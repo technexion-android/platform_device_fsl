@@ -556,3 +556,5 @@ PRODUCT_COPY_FILES += \
 $(call inherit-product-if-exists, vendor/partner_gms/products/gms.mk)
 PRODUCT_SOONG_NAMESPACES += vendor/partner_gms
 
+# sets vendor.battery.status.msg to true to show the battery status message
+PRODUCT_VENDOR_PROPERTIES += vendor.battery.status.msg=false
