@@ -312,10 +312,6 @@ PRODUCT_COPY_FILES +=\
 PRODUCT_SOONG_NAMESPACES += hardware/google/camera
 PRODUCT_SOONG_NAMESPACES += vendor/nxp-opensource/imx/camera
 
-PRODUCT_PACKAGES += \
-    media_profiles_8mp-ov5640.xml \
-    media_profiles_8mp-ispsensor-ov5640.xml
-
 
 # -------@block_display-------
 
