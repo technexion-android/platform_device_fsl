@@ -339,11 +339,6 @@ PRODUCT_PACKAGES += \
     libgpuhelper \
 
 
-#LPDDR4 board, NXP wifi supplicant overlay
-PRODUCT_COPY_FILES += \
-    $(IMX_DEVICE_PATH)/init.imx8mm.lpddr4.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.nxp.additional.rc
-
-
 # -------@block_wifi-------
 
 PRODUCT_COPY_FILES += \
