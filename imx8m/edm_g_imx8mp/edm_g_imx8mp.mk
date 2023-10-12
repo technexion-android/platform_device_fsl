@@ -293,8 +293,6 @@ PRODUCT_COPY_FILES +=\
 
 VENDOR_MULTIMEDIA_PATH := vendor/technexion/multimedia
 PRODUCT_COPY_FILES +=\
- $(IMX_DEVICE_PATH)/camera_config_$(SOC_MODEL_LT)-only-ov5640.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-only-ov5640.json \
- $(IMX_DEVICE_PATH)/camera_config_$(SOC_MODEL_LT)-ov5640.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ov5640.json\
  $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar0144.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar0144.json\
  $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar0234.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar0234.json\
  $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar0521.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar0521.json\
@@ -305,7 +303,6 @@ PRODUCT_COPY_FILES +=\
 
 # Add external medis profiles into /vendor/etc/
 PRODUCT_COPY_FILES +=\
- $(VENDOR_MULTIMEDIA_PATH)/media_profiles_8mp-1080p_30fps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles-1080p_30fps.xml\
  $(VENDOR_MULTIMEDIA_PATH)/media_profiles_8mp-720p_30fps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles-720p_30fps.xml\
  $(VENDOR_MULTIMEDIA_PATH)/media_profiles_8mp-480p_30fps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles-480p_30fps.xml
 
