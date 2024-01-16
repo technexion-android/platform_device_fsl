@@ -216,6 +216,7 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/remoteproc/imx_dsp_rproc.ko \
     $(KERNEL_OUT)/drivers/phy/freescale/phy-fsl-imx8q-pcie.ko \
     $(KERNEL_OUT)/drivers/pci/controller/dwc/pci-imx6.ko \
+    $(KERNEL_OUT)/drivers/net/phy/realtek.ko \
     $(KERNEL_OUT)/drivers/net/phy/at803x.ko \
     $(KERNEL_OUT)/drivers/pps/pps_core.ko \
     $(KERNEL_OUT)/drivers/ptp/ptp.ko \
