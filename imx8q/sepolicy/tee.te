@@ -18,3 +18,5 @@ allow tee dmabuf_system_heap_device:chr_file { open read ioctl };
 
 allow tee dek_extractor_service:service_manager { add };
 allow tee servicemanager:binder { call transfer };
+
+allow tee video_device:chr_file { open read write };
