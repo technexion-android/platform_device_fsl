@@ -156,7 +156,7 @@ PRODUCT_COPY_FILES += \
 
 # A/B OTA
 PRODUCT_PACKAGES += \
-    android.hardware.boot-service.default \
+    com.android.hardware.boot \
     android.hardware.boot-service.default_recovery \
     update_engine \
     update_engine_client \
