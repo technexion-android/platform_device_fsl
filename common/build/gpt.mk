@@ -14,8 +14,8 @@
 
 ifdef BOARD_BPT_INPUT_FILES
 
-IMX_BUILT_BPTIMAGE_TARGET := $(PRODUCT_OUT)/partition-table-default.img
-IMX_BUILT_BPTJSON_TARGET := $(PRODUCT_OUT)/partition-table-default.bpt
+IMX_BUILT_BPTIMAGE_TARGET := $(PRODUCT_OUT)/partition-table.img
+IMX_BUILT_BPTJSON_TARGET := $(PRODUCT_OUT)/partition-table.bpt
 
 IMX_INTERNAL_BVBTOOL_MAKE_TABLE_ARGS := \
 	--output_gpt $(IMX_BUILT_BPTIMAGE_TARGET) \
