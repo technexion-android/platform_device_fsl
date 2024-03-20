@@ -35,14 +35,10 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl">
+    <hal format="aidl">
         <name>android.hardware.media.c2</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IComponentStore</name>
-            <instance>default</instance>
-        </interface>
+        <version>1</version>
+        <fqname>IComponentStore/default</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.audio</name>

@@ -130,7 +130,7 @@ PRODUCT_PACKAGES += \
 
 # imx c2 codec binary
 PRODUCT_PACKAGES += \
-    android.hardware.media.c2@1.0-service \
+    android.hardware.media.c2-default-service \
     codec2.vendor.base.policy \
     codec2.vendor.ext.policy \
     libsfplugin_ccodec \

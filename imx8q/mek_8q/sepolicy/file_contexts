@@ -20,7 +20,7 @@
 /vendor/bin/hw/android\.hardware\.thermal-service\.imx             u:object_r:hal_thermal_default_exec:s0
 
 #Hardware Media C2 service
-/vendor/bin/hw/android\.hardware\.media\.c2@1\.0-service    u:object_r:mediacodec_exec:s0
+/vendor/bin/hw/android\.hardware\.media\.c2\.service\.imx    u:object_r:mediacodec_exec:s0
 
 # android.system.suspend@1.0-service
 /sys/devices/platform/sc-powerkey/wakeup                                                                                             u:object_r:sysfs_wakeup:s0
