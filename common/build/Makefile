@@ -17,6 +17,7 @@ include ${product_path}/UbootKernelBoardConfig.mk
 include ${product_path}/partition_table.mk
 
 include ${nxp_git_path}/common/build/kernel.mk
+include ${nxp_git_path}/common/build/qcacld.mk
 include ${nxp_git_path}/common/build/uboot.mk
 include ${nxp_git_path}/common/build/gpt.mk
 include ${nxp_git_path}/common/build/gbl.mk
