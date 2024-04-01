@@ -74,6 +74,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/pinctrl/freescale/pinctrl-scu.ko \
     $(KERNEL_OUT)/drivers/pinctrl/freescale/pinctrl-imx8qxp.ko \
     $(KERNEL_OUT)/drivers/pinctrl/freescale/pinctrl-imx8qm.ko \
+    $(KERNEL_OUT)/drivers/power/reset/imx-sm-reset.ko \
     $(KERNEL_OUT)/drivers/trusty/trusty-core.ko \
     $(KERNEL_OUT)/drivers/trusty/trusty-log.ko \
     $(KERNEL_OUT)/drivers/trusty/trusty-virtio.ko \
