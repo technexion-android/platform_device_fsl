@@ -330,14 +330,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     mali_csffw.bin \
     gpu.xml \
-    arm.graphics-V4-ndk \
     arm.graphics-V5-ndk \
-    arm.graphics-V2-ndk \
-    arm.graphics-V3-ndk \
-    arm.graphics-V1-ndk \
-    arm.mali.platform-V1-ndk \
     arm.mali.platform-V2-ndk \
-    arm.mali.platform-V3-ndk \
     libarm_egl_properties_sysprop \
     libarm_gralloc_properties_sysprop \
     libarm_mali_config_sysprops \
