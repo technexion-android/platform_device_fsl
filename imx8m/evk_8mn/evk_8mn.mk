@@ -273,10 +273,6 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@4.0-impl.imx \
     android.hardware.graphics.allocator-service.imx
 
-# RenderScript HAL
-PRODUCT_PACKAGES += \
-    android.hardware.renderscript@1.0-impl
-
 # 2d test
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
 PRODUCT_PACKAGES += 2d-test

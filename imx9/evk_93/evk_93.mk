@@ -286,10 +286,6 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@4.0-impl.imx \
     android.hardware.graphics.allocator-service.imx
 
-# RenderScript HAL
-PRODUCT_PACKAGES += \
-    android.hardware.renderscript@1.0-impl
-
 # -------@block_gpu-------
 # ANGLE OpenGL implementation based on SwiftShader Vulkan
 PRODUCT_PACKAGES += \
