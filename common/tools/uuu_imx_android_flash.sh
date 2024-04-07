@@ -52,7 +52,7 @@ options:
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx93        │  dual trusty-dual evk-uuu                                                                            │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
-                           │   imx95        │  dual trusty-dual evk-uuu                                                                            │
+                           │   imx95        │  dual trusty-dual titan trusty-titan-dual titan-uuu evk-uuu                                          │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx7ulp      │  evk-uuu                                                                                             │
                            └────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────┘
@@ -84,7 +84,7 @@ options:
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx93        │                                                                                                      │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
-                           │   imx95        │  mipi-lvds1 mipi-panel lvds0 lvds-dualdisp lvds-panel                                        │
+                           │   imx95        │  mipi-lvds1 mipi-panel lvds0 lvds-dualdisp lvds-panel titan titan-hdmi                               │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx7ulp      │  evk-mipi evk mipi                                                                                   │
                            └────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────┘
@@ -467,7 +467,7 @@ imx8qxp_uboot_feature=(dual trusty-dual mek-uuu trusty-secure-unlock-dual secure
 imx8qm_uboot_feature=(dual trusty-dual mek-uuu trusty-secure-unlock-dual secure-unlock md hdmi xen)
 imx7ulp_uboot_feature=(evk-uuu)
 imx93_uboot_feature=(dual trusty-dual evk-uuu)
-imx95_uboot_feature=(dual trusty-dual evk-uuu)
+imx95_uboot_feature=(dual trusty-dual evk-uuu titan trusty-titan-dual titan-uuu)
 
 imx8mm_dtb_feature=(ddr4 m4 mipi-panel mipi-panel-rm67191 8mic)
 imx8mn_dtb_feature=(mipi-panel mipi-panel-rm67191 rpmsg ddr4 ddr4-mipi-panel ddr4-mipi-panel-rm67191 ddr4-rpmsg 8mic)
@@ -477,7 +477,7 @@ imx8qxp_dtb_feature=(sof mipi-panel mipi-panel-rm67191 lvds0-panel)
 imx8qm_dtb_feature=(hdmi hdmi-rx mipi-panel mipi-panel-rm67191 md xen sof lvds1-panel revd mipi-panel-revd mipi-panel-rm67191-revd hdmi-revd hdmi-rx-revd md-revd lvds1-panel-revd sof-revd)
 imx8ulp_dtb_feature=(hdmi epdc 9x9 9x9-hdmi sof lpa lpd)
 imx93_dtb_feature=()
-imx95_dtb_feature=(mipi-lvds1 mipi-panel lvds0 lvds-dualdisp lvds-panel)
+imx95_dtb_feature=(mipi-lvds1 mipi-panel lvds0 lvds-dualdisp lvds-panel titan titan-hdmi)
 imx7ulp_dtb_feature=(evk-mipi evk mipi)
 
 tmp_files_before_uuu=()
@@ -809,6 +809,11 @@ if [ "${soc_name}" = imx8ulp ]; then
     fi
 fi
 
+if [ "${soc_name}" = imx95 ]; then
+    if [[ "${uboot_feature}" = *"titan"* ]]; then
+        bootloader_used_by_uuu=u-boot-${soc_name}-titan-uuu.imx
+    fi
+fi
 
 uuu_load_uboot
 
