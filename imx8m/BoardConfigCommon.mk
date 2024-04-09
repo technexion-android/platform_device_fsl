@@ -86,7 +86,7 @@ TARGET_BOARD_KERNEL_HEADERS := $(CONFIG_REPO_PATH)/common/kernel-headers
 
 TARGET_IMX_KERNEL ?= false
 ifeq ($(TARGET_IMX_KERNEL),false)
-BOARD_PREBUILT_BOOTIMAGE := vendor/nxp/fsl-proprietary/gki/boot.img
+BOARD_PREBUILT_BOOTIMAGE := vendor/nxp-opensource/imx-gki/boot.img
 TARGET_NO_KERNEL := true
 endif
 
@@ -144,7 +144,7 @@ TARGET_COPY_OUT_VENDOR_DLKM := vendor_dlkm
 BOARD_USES_SYSTEM_DLKMIMAGE := true
 BOARD_SYSTEM_DLKMIMAGE_FILE_SYSTEM_TYPE := erofs
 TARGET_COPY_OUT_SYSTEM_DLKM := system_dlkm
-BOARD_SYSTEM_KERNEL_MODULES += $(wildcard vendor/nxp/fsl-proprietary/gki/system_dlkm_staging/flatten/lib/modules/*.ko)
+BOARD_SYSTEM_KERNEL_MODULES += $(wildcard vendor/nxp-opensource/imx-gki/system_dlkm_staging/flatten/lib/modules/*.ko)
 
 BOARD_FLASH_BLOCK_SIZE := 4096
 
