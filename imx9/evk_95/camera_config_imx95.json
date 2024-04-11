@@ -11,7 +11,7 @@
   "camera_metadata": [
     {
       "camera_type": "back",
-      "camera_name": "mxc_isi.0.capture",
+      "camera_name": "ap1302_mipi",
       "orientation": "0",
       "mplane": "1",
       "buffer_type": "dma",
