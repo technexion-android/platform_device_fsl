@@ -57,8 +57,12 @@ on post-fs-data
     # for libcamera
     chmod 0660 /dev/media0
     chmod 0660 /dev/media1
+    chmod 0660 /dev/media2
+    chmod 0660 /dev/media3
     chown system camera /dev/media0
     chown system camera /dev/media1
+    chown system camera /dev/media2
+    chown system camera /dev/media3
     chmod 0660 /dev/v4l-subdev0
     chmod 0660 /dev/v4l-subdev1
     chmod 0660 /dev/v4l-subdev2
@@ -71,6 +75,11 @@ on post-fs-data
     chmod 0660 /dev/v4l-subdev9
     chmod 0660 /dev/v4l-subdev10
     chmod 0660 /dev/v4l-subdev11
+    chmod 0660 /dev/v4l-subdev12
+    chmod 0660 /dev/v4l-subdev13
+    chmod 0660 /dev/v4l-subdev14
+    chmod 0660 /dev/v4l-subdev15
+    chmod 0660 /dev/v4l-subdev16
     chown system camera /dev/v4l-subdev0
     chown system camera /dev/v4l-subdev1
     chown system camera /dev/v4l-subdev2
@@ -83,3 +92,8 @@ on post-fs-data
     chown system camera /dev/v4l-subdev9
     chown system camera /dev/v4l-subdev10
     chown system camera /dev/v4l-subdev11
+    chown system camera /dev/v4l-subdev12
+    chown system camera /dev/v4l-subdev13
+    chown system camera /dev/v4l-subdev14
+    chown system camera /dev/v4l-subdev15
+    chown system camera /dev/v4l-subdev16
