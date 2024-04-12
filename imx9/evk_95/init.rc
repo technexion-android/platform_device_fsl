@@ -136,9 +136,6 @@ on early-boot && property:vendor.skip.charger_not_need=0
     # Enlarge limition of audio buffer allocation
     setprop ro.af.client_heap_size_kbyte 32768
 
-    # Set external camera mjpeg decoder type
-    setprop vendor.camera.mjpg.decoder hardware
-
     start vendor.wifi_hal_legacy
 
 service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
