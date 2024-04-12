@@ -6,7 +6,6 @@
   "hal_version": "3",
   "cam_blit_copy": "G3D",
   "cam_blit_csc": "G3D",
-  "hw_jpeg_enc": "mxc-jpeg-enc",
 
   "camera_metadata": [
     {
