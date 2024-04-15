@@ -150,6 +150,9 @@ if [ -n "${build_kernel_modules}" ] && [ ${TARGET_PRODUCT} = "mek_8q" ]; then
     make -f ${nxp_git_path}/common/build/encrypt_and_sign_firmware.mk manifest build encrypt sign clean< /dev/null || exit
 fi
 
+if [ -n "${build_kernel}" ] && [ ${TARGET_PRODUCT} = "evk_95" ]; then
+    make -f ${nxp_git_path}/common/build/encrypt_and_sign_firmware.mk manifest build encrypt sign clean< /dev/null || exit
+fi
 
 # if uboot is to be compiled, remove the UBOOT_COLLECTION directory
 if [ -n "${build_bootloader}" ]; then
