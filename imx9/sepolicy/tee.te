@@ -18,3 +18,5 @@ allow tee gsi_metadata_file:dir { search };
 
 allow tee dek_extractor_service:service_manager { add };
 allow tee servicemanager:binder { call transfer };
+
+allow tee video_device:chr_file { open read write };

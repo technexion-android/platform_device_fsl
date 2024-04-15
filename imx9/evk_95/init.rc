@@ -56,6 +56,12 @@ on init && property:vendor.skip.charger_not_need=0
     write /dev/cpuctl/rt/cpu.uclamp.latency_sensitive 1
     write /dev/cpuctl/background/cpu.uclamp.max 50
 
+service vpu_firmware_load /vendor/bin/firmware_loader /vendor/firmware/wave633c_codec_fw.bin.signed
+    user root
+    group root system
+    disabled
+    oneshot
+
 # setenv append_bootargs androidboot.powersave.uclamp=true
 on init && property:vendor.skip.charger_not_need=0 && property:ro.boot.powersave.uclamp=true
     write /dev/cpuctl/foreground/cpu.uclamp.min 0
@@ -80,6 +86,7 @@ on late-fs && property:vendor.skip.charger_not_need=0
     exec_start wait_for_keymaster
 
     mount_all /vendor/etc/fstab.nxp --late
+    start vpu_firmware_load
 
 on early-boot && property:vendor.skip.charger_not_need=0
     # For evk_8mp, when swap used about 400M, upgrade the level.
