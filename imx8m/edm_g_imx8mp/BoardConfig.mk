@@ -159,7 +159,7 @@ WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 # -------@block_bluetooth-------
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(IMX_DEVICE_PATH)/bluetooth
 
-ifeq ($(WIFI_BT_DEV),QCA9377)
+#ifeq ($(WIFI_BT_DEV),QCA9377)
 
 # QCA9377 BT
 BOARD_HAVE_BLUETOOTH_QCOM := true
@@ -168,12 +168,12 @@ BOARD_HAVE_BLUETOOTH_BLUEZ := false
 QCOM_BT_USE_SIBS := true
 WIFI_BT_STATUS_SYNC := false
 
-else
+#else
 
 # NXP 8997 BT
 BOARD_HAVE_BLUETOOTH_NXP := true
 
-endif
+#endif
 
 
 # -------@block_sensor-------
