@@ -391,7 +391,7 @@ PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
     wificond
 
-ifeq ($(WIFI_BT_DEV),QCA9377)
+#ifeq ($(WIFI_BT_DEV),QCA9377)
 
 PRODUCT_PACKAGES += WifiOverlay_qca9377
 
@@ -421,7 +421,7 @@ PRODUCT_COPY_FILES += \
     $(WIFI_FW_PATH)/utf30.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca9377/utf30.bin
 endif
 
-else
+#else #($(WIFI_BT_DEV),QCA9377)
 
 # WiFi RRO
 PRODUCT_PACKAGES += \
@@ -431,8 +431,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     vendor/nxp/imx-firmware/nxp/FwImage_IW416_SD/sdiouartiw416_combo_v0.bin:vendor/firmware/sdiouartiw416_combo_v0.bin \
     vendor/nxp/imx-firmware/nxp/android_wifi_mod_para.conf:vendor/firmware/nxp/android_wifi_mod_para.conf
-
-endif
+#endif
 
 # Wifi regulatory
 PRODUCT_COPY_FILES += \
