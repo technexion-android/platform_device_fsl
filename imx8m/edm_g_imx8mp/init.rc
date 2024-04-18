@@ -7,6 +7,7 @@ on early-init
 
 on early-init
     start early_init_sh
+    start btattach
     # Set the host name which used in console
     export HOSTNAME edm_g_imx8mp
 
@@ -221,6 +222,14 @@ service early_init_sh /vendor/bin/init.insmod.sh /vendor/etc/early.init.cfg vend
     group root system
     disabled
     oneshot
+
+service btattach /vendor/bin/btattach.sh
+    class main
+    user root
+    group root system
+    disabled
+    oneshot
+
 
 on post-fs-data && property:vendor.storageproxyd=trusty && property:vendor.skip.charger_not_need=0
     # create temp node for secure storage proxy
