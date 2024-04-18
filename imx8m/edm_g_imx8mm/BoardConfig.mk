@@ -223,5 +223,3 @@ SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += vendor/technexion/sepolicy/system
 # PRODUCT_COPY_FILES directives.
 # Install wcnss_filter need this
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
-
-BOARD_VENDOR_KERNEL_MODULES += $(KERNEL_OUT)/drivers/input/touchscreen/exc3000.ko
