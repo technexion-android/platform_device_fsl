@@ -90,8 +90,12 @@
 /vendor/bin/hw/imx_dek_extractor u:object_r:tee_exec:s0
 /postinstall/bin/imx_dek_inserter u:object_r:system_file:s0
 
+#early_init_sh service
 /vendor/bin/init\.insmod\.sh                u:object_r:init-insmod-sh_exec:s0
 /vendor/etc/early\.init\.cfg                  u:object_r:init-insmod-sh_exec:s0
+
+# btattach service
+/vendor/bin/btattach.sh     u:object_r:btattach-sh_exec:s0
 
 /vendor/bin/hw/android\.hardware\.drm\-service\.widevine u:object_r:hal_drm_widevine_aidl_exec:s0
 /vendor/bin/hw/android\.hardware\.drm\-service\.clearkey u:object_r:hal_drm_clearkey_aidl_exec:s0
