@@ -26,13 +26,13 @@ if [ -f $cfg_file ]; then
                      cat /vendor/lib/modules/modules.load | while IFS=" " read -r module
                      do
                       case $module in
-                        "wlan.ko") 
-                          modprobe -a -d /vendor/lib/modules $module 
-                          ;;
-                        "moal.ko")
+                        "moal.ko"|"mlan.ko")
                           if [ $(cat /sys/bus/mmc/devices/mmc?\:0001/device) != "0x0701" ]; then
                             modprobe -a -d /vendor/lib/modules $module mod_para=nxp/android_wifi_mod_para.conf
                           fi
+                          ;;
+                        *)
+                          modprobe -a -d /vendor/lib/modules $module
                           ;;
                       esac
                      done
