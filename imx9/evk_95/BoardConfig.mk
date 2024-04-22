@@ -162,9 +162,9 @@ TARGET_BOARD_DTS_CONFIG += imx95-lvds0:imx95-19x19-evk-it6263-lvds0.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-lvds-dualdisp:imx95-19x19-evk-it6263-lvds-two-disp.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-lvds-panel:imx95-19x19-evk-jdi-wuxga-lvds-panel.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-cs42888:imx95-19x19-evk-adv7535-ap1302-cs42888.dtb
-TARGET_BOARD_DTS_CONFIG += imx95-titan:imx95-19x19-titan-lt8912-ap1302.dtb
-TARGET_BOARD_DTS_CONFIG += imx95-titan-adv7535:imx95-19x19-titan-adv7535-ap1302.dtb
-TARGET_BOARD_DTS_CONFIG += imx95-titan-lvds-panel:imx95-19x19-titan-lt8912-lvds-panel-ap1302.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-verdin:imx95-19x19-verdin-lt8912-ap1302.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-verdin-adv7535:imx95-19x19-verdin-adv7535-ap1302.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-verdin-lvds-panel:imx95-19x19-verdin-lt8912-lvds-panel-ap1302.dtb
 
 ALL_DEFAULT_INSTALLED_MODULES += $(BOARD_VENDOR_KERNEL_MODULES)
 
