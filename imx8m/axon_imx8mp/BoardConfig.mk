@@ -175,6 +175,8 @@ BOARD_HAVE_BLUETOOTH_NXP := true
 
 endif
 
+# -------@block_Audio-------
+BOARD_VENDOR_KERNEL_MODULES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/sound/soc/codecs/snd-soc-tlv320aic31xx.ko
 
 # -------@block_sensor-------
 BOARD_USE_SENSOR_FUSION := false
