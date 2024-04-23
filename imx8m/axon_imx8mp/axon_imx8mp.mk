@@ -260,7 +260,7 @@ $(call inherit-product-if-exists, vendor/nxp-private/widevine/nxp_widevine_tee_8
 
 # Audio card json
 PRODUCT_COPY_FILES += \
-    $(CONFIG_REPO_PATH)/common/audio-json/wm8960_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/wm8960_config.json \
+    $(CONFIG_REPO_PATH)/common/audio-json/tlv320aic3x_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/tlv320aic3x_config.json \
     $(CONFIG_REPO_PATH)/common/audio-json/hdmi_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/hdmi_config.json \
     $(CONFIG_REPO_PATH)/common/audio-json/readme.txt:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/readme.txt
 
@@ -278,9 +278,6 @@ PRODUCT_COPY_FILES += $(IMX_DEVICE_PATH)/audio_effects.xml:$(TARGET_COPY_OUT_VEN
 
 # Audio SOF firmware and tplg files
 PRODUCT_COPY_FILES += \
-    $(FSL_PROPRIETARY_PATH)/fsl-proprietary/sof/sof-tplg/sof-imx8mp-wm8960.tplg:$(TARGET_COPY_OUT_VENDOR)/firmware/imx/sof-tplg/sof-imx8mp-pcm-wm8960.tplg \
-    $(FSL_PROPRIETARY_PATH)/fsl-proprietary/sof/sof-tplg/sof-imx8mp-compr-mp3-wm8960.tplg:$(TARGET_COPY_OUT_VENDOR)/firmware/imx/sof-tplg/sof-imx8mp-wm8960.tplg \
-    $(FSL_PROPRIETARY_PATH)/fsl-proprietary/sof/sof-tplg/sof-imx8mp-compr-aac-wm8960.tplg:$(TARGET_COPY_OUT_VENDOR)/firmware/imx/sof-tplg/sof-imx8mp-compr-aac-wm8960.tplg \
     $(FSL_PROPRIETARY_PATH)/fsl-proprietary/sof/sof-gcc/sof-imx8m.ldc:$(TARGET_COPY_OUT_VENDOR)/firmware/imx/sof/sof-imx8m.ldc \
     $(FSL_PROPRIETARY_PATH)/fsl-proprietary/sof/sof-gcc/sof-imx8m.ri:$(TARGET_COPY_OUT_VENDOR)/firmware/imx/sof/sof-imx8m.ri
 
