@@ -238,6 +238,8 @@ ifeq ($(WITH_EXT_DTBO),true)
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-axon-$(BASEBOARD_TAG)-tevi-ap1302.dtbo
 #	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-axon-$(BASEBOARD_TAG)-vizionlink-tevi-ov5640.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-axon-$(BASEBOARD_TAG)-vizionlink-tevi-ap1302.dtbo
+	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-axon-$(BASEBOARD_TAG)-tevs.dtbo
+	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-axon-$(BASEBOARD_TAG)-vls.dtbo
 endif
 
 ALL_DEFAULT_INSTALLED_MODULES += $(BOARD_VENDOR_KERNEL_MODULES)
