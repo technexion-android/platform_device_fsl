@@ -8,6 +8,14 @@
         </interface>
     </hal>
     <hal format="aidl" optional="true">
+        <name>nxp.hardware.ele</name>
+        <version>1</version>
+        <interface>
+            <name>ISecureEnclave</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
         <name>nxp.hardware.imx_dek_extractor</name>
         <version>1</version>
         <interface>
