@@ -6,7 +6,7 @@
     ],
     "Sensors":[
         {
-            "Name":"cpu-thermal0",
+            "Name":"cpu0-thermal",
             "Type":"CPU",
             "HotThreshold":[
                 "NAN",
@@ -31,7 +31,7 @@
             "Monitor":true
         },
         {
-            "Name":"cpu-thermal1",
+            "Name":"cpu1-thermal",
             "Type":"CPU",
             "HotThreshold":[
                 "NAN",
@@ -56,7 +56,7 @@
             "Monitor":true
         },
         {
-            "Name":"gpu-thermal0",
+            "Name":"gpu0-thermal",
             "Type":"GPU",
             "HotThreshold":[
                 "NAN",
@@ -81,7 +81,7 @@
             "Monitor":true
         },
         {
-            "Name":"gpu-thermal1",
+            "Name":"gpu1-thermal",
             "Type":"GPU",
             "HotThreshold":[
                 "NAN",
@@ -106,7 +106,7 @@
             "Monitor":true
         },
         {
-            "Name":"drc-thermal0",
+            "Name":"drc0-thermal",
             "Type":"UNKNOWN",
             "HotThreshold":[
                 "NAN",
