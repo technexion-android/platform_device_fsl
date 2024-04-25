@@ -236,6 +236,10 @@ ifeq ($(WITH_EXT_DTBO),true)
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-tevi-ap1302.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-vizionlink-tevi-ov5640.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-vizionlink-tevi-ap1302.dtbo
+ifeq ($(EXPORT_BASEBOARD_NAME),WANDBOARD)
+	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-tevs.dtbo
+	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-vls.dtbo
+endif
 endif
 
 ALL_DEFAULT_INSTALLED_MODULES += $(BOARD_VENDOR_KERNEL_MODULES)
