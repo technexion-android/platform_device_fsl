@@ -36,7 +36,7 @@ PRODUCT_VENDOR_PROPERTIES += ro.crypto.metadata_init_delete_all_keys.enabled=tru
 WIFI_BT_DEV := QCA9377
 LOCAL_WIFI_PATH := vendor/technexion/wifi/qcom
 WIFI_FW_PATH := $(LOCAL_WIFI_PATH)/firmware/qca9377
-WIFI_CFG_PATH := $(LOCAL_WIFI_PATH)/firmware/qca9377/wlan
+WIFI_CFG_PATH := $(LOCAL_WIFI_PATH)/firmware/wlan
 #WIFI_FW_PATH := vendor/technexion/wifi-firmware/CNSS.LEA.NRT_3.0/qca_firmware/qca9377/
 #WIFI_CFG_PATH := vendor/technexion/wifi-firmware/CNSS.LEA.NRT_3.0/qca_firmware/wlan/
 
@@ -361,23 +361,23 @@ PRODUCT_COPY_FILES += \
 endif
 ifneq (,$(wildcard $(WIFI_CFG_PATH)/qca9377/qcom_cfg.ini))
 PRODUCT_COPY_FILES += \
-   $(WIFI_CFG_PATH)/qca9377/qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/qcom_cfg.ini
+   $(WIFI_CFG_PATH)/qca9377/qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/qca9377/qcom_cfg.ini
 endif
 ifneq (,$(wildcard $(WIFI_FW_PATH)/bdwlan30.bin))
 PRODUCT_COPY_FILES += \
-    $(WIFI_FW_PATH)/bdwlan30.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/bdwlan30.bin
+    $(WIFI_FW_PATH)/bdwlan30.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca9377/bdwlan30.bin
 endif
 ifneq (,$(wildcard $(WIFI_FW_PATH)/otp30.bin))
 PRODUCT_COPY_FILES += \
-    $(WIFI_FW_PATH)/otp30.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/otp30.bin
+    $(WIFI_FW_PATH)/otp30.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca9377/otp30.bin
 endif
 ifneq (,$(wildcard $(WIFI_FW_PATH)/qwlan30.bin))
 PRODUCT_COPY_FILES += \
-    $(WIFI_FW_PATH)/qwlan30.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qwlan30.bin
+    $(WIFI_FW_PATH)/qwlan30.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca9377/qwlan30.bin
 endif
 ifneq (,$(wildcard $(WIFI_FW_PATH)/utf30.bin))
 PRODUCT_COPY_FILES += \
-    $(WIFI_FW_PATH)/utf30.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/utf30.bin
+    $(WIFI_FW_PATH)/utf30.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/qca9377/utf30.bin
 endif
 
 else
