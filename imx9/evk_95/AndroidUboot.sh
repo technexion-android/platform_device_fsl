@@ -38,8 +38,13 @@ build_m4_image()
 build_imx_uboot()
 {
 	echo Building i.MX U-Boot with firmware
-	cp ${FSL_PROPRIETARY_PATH}/fsl-proprietary/uboot-firmware/imx95/oei-m33-ddr.bin ${BOARD_MKIMAGE_PATH}
+	if echo "$2" | grep -q "15x15" ; then
+		cp ${FSL_PROPRIETARY_PATH}/fsl-proprietary/uboot-firmware/imx95/oei-m33-ddr-lp4x.bin ${BOARD_MKIMAGE_PATH}/oei-m33-ddr.bin
+	else
+		cp ${FSL_PROPRIETARY_PATH}/fsl-proprietary/uboot-firmware/imx95/oei-m33-ddr-lp5.bin ${BOARD_MKIMAGE_PATH}/oei-m33-ddr.bin
+	fi
 	cp ${FSL_PROPRIETARY_PATH}/fsl-proprietary/uboot-firmware/imx95/oei-m33-tcm.bin ${BOARD_MKIMAGE_PATH}
+
 	if [ `echo $2 | cut -d '-' -f2` = "trusty" ]; then
 		cp ${FSL_PROPRIETARY_PATH}/fsl-proprietary/uboot-firmware/imx95/m33_image_tee.bin ${BOARD_MKIMAGE_PATH}/m33_image.bin
 	else
@@ -75,7 +80,12 @@ build_imx_uboot()
 	# codebase, so mkimage_imx8 will be generated under Android codebase top dir.
 	pwd_backup=${PWD}
 	PWD=${PWD}/${IMX_MKIMAGE_PATH}/imx-mkimage/
-	make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ SOC=${MKIMAGE_SOC} flash_all LPDDR_TYPE=lpddr5 OEI=YES || exit 1
+	if echo "$2" | grep -q "15x15" ; then
+		make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ SOC=${MKIMAGE_SOC} flash_all LPDDR_TYPE=lpddr4x OEI=YES || exit 1
+	else
+		make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ SOC=${MKIMAGE_SOC} flash_all LPDDR_TYPE=lpddr5 OEI=YES || exit 1
+	fi
+
 	PWD=${pwd_backup}
 
 	if [ `echo $2 | rev | cut -d '-' -f1 | rev` != "dual" ]; then
