@@ -400,7 +400,7 @@ PRODUCT_COPY_FILES += \
 
 # -------@block_bluetooth-------
 
-ifeq ($(WIFI_BT_DEV),QCA9377)
+#ifeq ($(WIFI_BT_DEV),QCA9377)
 # QCA9377 Bluetooth Firmware
 ifneq (,$(wildcard $(BT_FW_PATH)/rampatch_tlv_3.2.tlv))
 PRODUCT_COPY_FILES += \
@@ -416,11 +416,11 @@ endif
 # Qcom 1PJ Bluetooth Firmware
 # Install Qcom BT HAL wcnss_filter
 PRODUCT_COPY_FILES += $(IMX_DEVICE_PATH)/bluetooth/wcnss_filter_8mm_ttymxc2:$(TARGET_COPY_OUT_VENDOR)/bin/wcnss_filter
-else	# ($(WIFI_BT_DEV),QCA9377)
+#else	# ($(WIFI_BT_DEV),QCA9377)
 # NXP 8987 Bluetooth vendor config
 PRODUCT_PACKAGES += \
     bt_vendor.conf
-endif	# ($(WIFI_BT_DEV),QCA9377)
+#endif	# ($(WIFI_BT_DEV),QCA9377)
 
 # Bluetooth HAL
 PRODUCT_PACKAGES += \
