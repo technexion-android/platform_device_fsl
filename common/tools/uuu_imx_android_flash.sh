@@ -52,7 +52,8 @@ options:
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx93        │  dual trusty-dual evk-uuu                                                                            │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
-                           │   imx95        │  dual trusty-dual verdin trusty-verdin-dual verdin-uuu evk-uuu                                       │
+                           │   imx95        │  dual trusty-dual verdin trusty-verdin-dual 15x15 15x15-dual trusty-15x15-dual                       │
+                           │                │  verdin-uuu evk-uuu 15x15-evk-uuu                                                                    │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx7ulp      │  evk-uuu                                                                                             │
                            └────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────┘
@@ -77,14 +78,15 @@ options:
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx8qxp      │  sof mipi-panel mipi-panel-rm67191 lvds0-panel                                                       │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
-                           │   imx8qm       │  hdmi mipi-panel mipi-panel-rm67191 md xen sof lvds1-panel                                           │
-                           │                │  revd mipi-panel-revd mipi-panel-rm67191-revd hdmi-revd hdmi-rx-revd md-revd lvds1-panel-revd sof-revd │
+                           │   imx8qm       │  hdmi mipi-panel mipi-panel-rm67191 md xen sof lvds1-panel revd                                      │
+                           │                │  mipi-panel-revd mipi-panel-rm67191-revd hdmi-revd hdmi-rx-revd md-revd lvds1-panel-revd sof-revd    │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx8ulp      │  hdmi epdc 9x9 9x9-hdmi sof lpa lpd                                                                  │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx93        │                                                                                                      │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx95        │  mipi-lvds1 mipi-panel lvds0 lvds-dualdisp lvds-panel cs42888 verdin verdin-adv7535 verdin-lvds-panel│
+                           │                │  15x15                                                                                               │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx7ulp      │  evk-mipi evk mipi                                                                                   │
                            └────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────┘
@@ -467,7 +469,7 @@ imx8qxp_uboot_feature=(dual trusty-dual mek-uuu trusty-secure-unlock-dual secure
 imx8qm_uboot_feature=(dual trusty-dual mek-uuu trusty-secure-unlock-dual secure-unlock md hdmi xen)
 imx7ulp_uboot_feature=(evk-uuu)
 imx93_uboot_feature=(dual trusty-dual evk-uuu)
-imx95_uboot_feature=(dual trusty-dual evk-uuu verdin trusty-verdin-dual verdin-uuu)
+imx95_uboot_feature=(dual trusty-dual evk-uuu verdin trusty-verdin-dual verdin-uuu 15x15 15x15-dual trusty-15x15-dual 15x15-evk-uuu)
 
 imx8mm_dtb_feature=(ddr4 m4 mipi-panel mipi-panel-rm67191 8mic)
 imx8mn_dtb_feature=(mipi-panel mipi-panel-rm67191 rpmsg ddr4 ddr4-mipi-panel ddr4-mipi-panel-rm67191 ddr4-rpmsg 8mic)
@@ -477,7 +479,7 @@ imx8qxp_dtb_feature=(sof mipi-panel mipi-panel-rm67191 lvds0-panel)
 imx8qm_dtb_feature=(hdmi hdmi-rx mipi-panel mipi-panel-rm67191 md xen sof lvds1-panel revd mipi-panel-revd mipi-panel-rm67191-revd hdmi-revd hdmi-rx-revd md-revd lvds1-panel-revd sof-revd)
 imx8ulp_dtb_feature=(hdmi epdc 9x9 9x9-hdmi sof lpa lpd)
 imx93_dtb_feature=()
-imx95_dtb_feature=(mipi-lvds1 mipi-panel lvds0 lvds-dualdisp lvds-panel cs42888 verdin verdin-adv7535 verdin-lvds-panel)
+imx95_dtb_feature=(mipi-lvds1 mipi-panel lvds0 lvds-dualdisp lvds-panel cs42888 verdin verdin-adv7535 verdin-lvds-panel 15x15)
 imx7ulp_dtb_feature=(evk-mipi evk mipi)
 
 tmp_files_before_uuu=()
@@ -812,6 +814,12 @@ fi
 if [ "${soc_name}" = imx95 ]; then
     if [[ "${uboot_feature}" = *"verdin"* ]]; then
         bootloader_used_by_uuu=u-boot-${soc_name}-verdin-uuu.imx
+    fi
+fi
+
+if [ "${soc_name}" = imx95 ]; then
+    if [[ "${uboot_feature}" = *"15x15"* ]]; then
+        bootloader_used_by_uuu=u-boot-${soc_name}-15x15-evk-uuu.imx
     fi
 fi
 
