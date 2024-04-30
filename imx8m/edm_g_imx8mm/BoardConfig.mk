@@ -105,20 +105,20 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(IMX_DEVICE_PATH)/device_framewor
 
 
 # -------@block_wifi-------
-ifeq ($(WIFI_BT_DEV),QCA9377)
+#ifeq ($(WIFI_BT_DEV),QCA9377)
 # qca9377 wifi
 BOARD_WLAN_DEVICE := qcwcn
 # QCA qcacld wifi driver module
 BOARD_VENDOR_KERNEL_MODULES += $(TARGET_OUT_INTERMEDIATES)/QCACLD_OBJ/wlan.ko
 # Avoid Wifi reset on MAC Address change
 #WIFI_AVOID_IFACE_RESET_MAC_CHANGE := true
-else
+#else
 # NXP 8987 wifi driver module
 BOARD_WLAN_DEVICE := nxp
 BOARD_VENDOR_KERNEL_MODULES += \
     $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/mlan.ko \
     $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/moal.ko
-endif
+#endif
 
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
