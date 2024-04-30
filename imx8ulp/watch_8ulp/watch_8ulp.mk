@@ -40,7 +40,7 @@ PRODUCT_SOONG_NAMESPACES += vendor/nxp-opensource/imx/power
 PRODUCT_SOONG_NAMESPACES += hardware/google/pixel
 
 PRODUCT_COPY_FILES += \
-    $(IMX_DEVICE_PATH)/powerhint_imx8ulp.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/powerhint_imx8ulp.json
+    $(IMX_DEVICE_PATH)/powerhint_imx8ulp.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/powerhint_${ro.boot.soc_type}.json
 
 # Do not skip charger_not_need trigger by default
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
