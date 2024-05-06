@@ -86,7 +86,11 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/net/phy/realtek.ko \
     $(KERNEL_OUT)/drivers/pps/pps_core.ko \
     $(KERNEL_OUT)/drivers/ptp/ptp.ko \
-    $(KERNEL_OUT)/drivers/net/ethernet/freescale/fec.ko
+    $(KERNEL_OUT)/drivers/net/ethernet/freescale/fec.ko \
+    $(KERNEL_OUT)/drivers/net/pcs/pcs_xpcs.ko \
+    $(KERNEL_OUT)/drivers/net/ethernet/stmicro/stmmac/stmmac.ko \
+    $(KERNEL_OUT)/drivers/net/ethernet/stmicro/stmmac/stmmac-platform.ko \
+    $(KERNEL_OUT)/drivers/net/ethernet/stmicro/stmmac/dwmac-imx.ko
 ifeq ($(POWERSAVE),true)
 BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/soc/imx/lpa_ctrl.ko \
