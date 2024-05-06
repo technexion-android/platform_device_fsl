@@ -371,6 +371,7 @@ PRODUCT_PACKAGES += \
 # nxp 8997 wifi and bluetooth combo Firmware
 PRODUCT_COPY_FILES += \
     vendor/nxp/imx-firmware/nxp/FwImage_9098_PCIE/pcieuart9098_combo_v1.bin:vendor/firmware/pcieuart9098_combo_v1.bin \
+    vendor/nxp/imx-firmware/nxp/FwImage_IW612_SD/sduart_nw61x_v1.bin.se:vendor/firmware/sduart_nw61x_v1.bin.se \
     vendor/nxp/imx-firmware/nxp/android_wifi_mod_para.conf:vendor/firmware/wifi_mod_para.conf
 
 # Wifi regulatory
