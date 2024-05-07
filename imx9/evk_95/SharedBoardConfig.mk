@@ -106,6 +106,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/mux/mux-core.ko \
     $(KERNEL_OUT)/drivers/mux/mux-mmio.ko \
     $(KERNEL_OUT)/drivers/phy/freescale/phy-fsl-imx9-dphy-rx.ko \
+    $(KERNEL_OUT)/drivers/phy/freescale/phy-fsl-imx8mp-lvds.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/drm_dma_helper.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/bridge/it6161.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/bridge/max96752-lvds.ko \
@@ -138,6 +139,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/media/i2c/os08a20/os08a20_mipi.ko \
     $(KERNEL_OUT)/drivers/media/v4l2-core/v4l2-jpeg.ko \
     $(KERNEL_OUT)/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-encdec.ko \
+    $(KERNEL_OUT)/drivers/media/platform/nxp/neoisp/neoisp.ko \
     $(KERNEL_OUT)/sound/soc/fsl/imx-pcm-dma.ko \
     $(KERNEL_OUT)/sound/soc/fsl/imx-pcm-rpmsg.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-utils.ko \
