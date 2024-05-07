@@ -537,3 +537,9 @@ else
 $(call inherit-product-if-exists, vendor/partner_gms/products/gms.mk)
 endif
 PRODUCT_SOONG_NAMESPACES += vendor/partner_gms
+
+ifeq ($(PRODUCT_IMX_TRUSTY),true)
+PRODUCT_COPY_FILES += \
+    $(CONFIG_REPO_PATH)/common/security/firmware_encrypt_key.bin:firmware_test_keys/firmware_encrypt_key.bin  \
+    $(CONFIG_REPO_PATH)/common/security/firmware_public_key.der:firmware_test_keys/firmware_public_key.der
+endif
