@@ -42,3 +42,4 @@
 /sys/devices/platform/system-controller/system-controller:rtc/rtc/rtc[0-9]/alarmtimer.[0-9].auto/wakeup                              u:object_r:sysfs_wakeup:s0
 /sys/devices/platform/system-controller/system-controller:rtc/rtc/rtc[0-9]/alarmtimer.[0-9].auto/wakeup/wakeup[0-9]*(/.*)?           u:object_r:sysfs_wakeup:s0
 /sys/devices/platform/i2c-rpbus-1/i2c-1/1-0050/power_supply/tcpm-source-psy-1-0050/wakeup[0-9]*(/.*)?                                u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/bus@5f000000/5f000000.pcie/wakeup[0-9]*(/.*)?                                                                  u:object_r:sysfs_wakeup:s0
