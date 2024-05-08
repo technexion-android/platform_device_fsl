@@ -302,7 +302,7 @@ PRODUCT_PACKAGES += \
     libyaml
 
 PRODUCT_SOONG_NAMESPACES += hardware/google/camera
-PRODUCT_SOONG_NAMESPACES += vendor/nxp-opensource/imx/camera-hal
+PRODUCT_SOONG_NAMESPACES += vendor/nxp-opensource/imx/camera
 
 # -------@block_display-------
 
