@@ -29,7 +29,6 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/firmware/arm_scmi/imx-sm-misc.ko \
     $(KERNEL_OUT)/drivers/firmware/arm_scmi/scmi_pm_domain.ko \
     $(KERNEL_OUT)/drivers/firmware/arm_scmi/scmi_power_control.ko \
-    $(KERNEL_OUT)/drivers/firmware/arm_scmi/scmi_perf_domain.ko \
     $(KERNEL_OUT)/drivers/iommu/arm/arm-smmu/arm_smmu.ko \
     $(KERNEL_OUT)/drivers/clk/clk-scmi.ko \
     $(KERNEL_OUT)/drivers/clk/imx/mxc-clk.ko \
@@ -53,7 +52,6 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/firmware/imx/sm-misc.ko \
     $(KERNEL_OUT)/drivers/video/backlight/led_bl.ko \
     $(KERNEL_OUT)/drivers/video/backlight/pwm_bl.ko \
-    $(KERNEL_OUT)/drivers/cpufreq/scmi-cpufreq.ko \
     $(KERNEL_OUT)/drivers/cpufreq/cpufreq-dt.ko \
     $(KERNEL_OUT)/drivers/power/supply/dummy_battery.ko \
     $(KERNEL_OUT)/drivers/dma-buf/heaps/system_heap.ko \
@@ -179,6 +177,7 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/net/ethernet/freescale/enetc/fsl-enetc-ptp.ko \
     $(KERNEL_OUT)/drivers/net/pcs/pcs-lynx.ko \
     $(KERNEL_OUT)/drivers/net/pcs/pcs_xpcs.ko \
+    $(KERNEL_OUT)/lib/dim/dimlib.ko \
     $(KERNEL_OUT)/drivers/net/ethernet/freescale/enetc/fsl-enetc-mdio.ko \
     $(KERNEL_OUT)/drivers/net/ethernet/freescale/enetc/fsl-enetc-core.ko \
     $(KERNEL_OUT)/lib/crc-itu-t.ko \
