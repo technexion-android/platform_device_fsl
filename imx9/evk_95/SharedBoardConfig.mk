@@ -29,7 +29,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/firmware/arm_scmi/imx-sm-misc.ko \
     $(KERNEL_OUT)/drivers/firmware/arm_scmi/scmi_pm_domain.ko \
     $(KERNEL_OUT)/drivers/firmware/arm_scmi/scmi_power_control.ko \
-    $(KERNEL_OUT)/drivers/iommu/arm/arm-smmu/arm_smmu.ko \
+    $(KERNEL_OUT)/drivers/iommu/arm/arm-smmu-v3/arm_smmu_v3.ko \
     $(KERNEL_OUT)/drivers/clk/clk-scmi.ko \
     $(KERNEL_OUT)/drivers/clk/imx/mxc-clk.ko \
     $(KERNEL_OUT)/drivers/clk/imx/imx95-blk-ctrl.ko \
