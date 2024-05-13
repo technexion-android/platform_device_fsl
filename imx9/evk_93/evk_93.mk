@@ -288,11 +288,11 @@ PRODUCT_PACKAGES += \
 
 # -------@block_gpu-------
 # ANGLE OpenGL implementation based on SwiftShader Vulkan
-PRODUCT_PACKAGES += \
-    libEGL_angle \
-    libGLESv1_CM_angle \
-    libGLESv2_angle \
-    vulkan.pastel
+$(call inherit-product, build/make/target/product/angle_default.mk)
+
+# TODO(b/65201432): Swiftshader needs to create executable memory.
+PRODUCT_REQUIRES_INSECURE_EXECMEM_FOR_SWIFTSHADER := true
+PRODUCT_PACKAGES += vulkan.pastel
 
 # pxp g2d
 PRODUCT_PACKAGES += \

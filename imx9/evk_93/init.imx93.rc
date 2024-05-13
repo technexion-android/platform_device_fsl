@@ -4,7 +4,6 @@ on early-boot
     setprop ro.opengles.version 196609
 
     # ANGLE OpenGL implementation based on SwiftShader Vulkan
-    setprop ro.hardware.egl angle
     setprop ro.hardware.vulkan pastel
 
     # Set NN reject model by weights md5

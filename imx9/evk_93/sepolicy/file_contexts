@@ -28,7 +28,7 @@
 /sys/devices/platform/soc@0/29800000.bus/298f0000.mmc/mmc_host/mmc2/mmc2:0001/mmc2:0001:1/wakeup          u:object_r:sysfs_wakeup:s0
 /sys/devices/platform/soc@0/29800000.bus/298f0000.mmc/mmc_host/mmc2/mmc2:0001/mmc2:0001:1/wakeup/wakeup[0-9]*(/.*)?          u:object_r:sysfs_wakeup:s0
 
-/vendor/lib(64)?/libEGL_angle\.so              u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/libGLESv1_CM_angle\.so        u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/libGLESv2_angle\.so           u:object_r:same_process_hal_file:s0
-/vendor/lib(64)?/hw/vulkan.pastel.so           u:object_r:same_process_hal_file:s0
+/vendor/lib(64)?/egl/libEGL_angle\.so              u:object_r:same_process_hal_file:s0
+/vendor/lib(64)?/egl/libGLESv1_CM_angle\.so        u:object_r:same_process_hal_file:s0
+/vendor/lib(64)?/egl/libGLESv2_angle\.so           u:object_r:same_process_hal_file:s0
+/vendor/lib(64)?/hw/vulkan.pastel.so               u:object_r:same_process_hal_file:s0
