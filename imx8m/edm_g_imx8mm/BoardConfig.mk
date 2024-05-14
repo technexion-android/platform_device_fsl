@@ -203,11 +203,10 @@ ifeq ($(WITH_EXT_DTBO),true)
 	TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-edm-g-$(BASEBOARD_TAG)-tevi-ov5640.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-edm-g-$(BASEBOARD_TAG)-tevi-ap1302.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-edm-g-$(BASEBOARD_TAG)-hdmi2mipi-tc358743.dtbo
-	TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-edm-g-$(BASEBOARD_TAG)-vizionlink-tevi-ov5640.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-edm-g-$(BASEBOARD_TAG)-vizionlink-tevi-ap1302.dtbo
 ifeq ($(EXPORT_BASEBOARD_NAME),WANDBOARD)
-	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mm-edm-g-$(BASEBOARD_TAG)-tevs.dtbo
-	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mm-edm-g-$(BASEBOARD_TAG)-vls.dtbo
+	TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-edm-g-$(BASEBOARD_TAG)-tevs.dtbo
+	TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-edm-g-$(BASEBOARD_TAG)-vls.dtbo
 endif
 endif
 
