@@ -456,7 +456,8 @@ endif
 # Neural Network HAL and lib
 PRODUCT_PACKAGES += \
     NeutronFirmware.elf \
-    NeutronKernels.bin
+    NeutronKernels.bin \
+    android.hardware.neuralnetworks-shell-service-imx
 
 # Tensorflow lite camera demo
 PRODUCT_PACKAGES += \

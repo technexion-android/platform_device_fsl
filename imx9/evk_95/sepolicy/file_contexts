@@ -10,6 +10,9 @@
 /vendor/bin/hw/android\.hardware\.thermal@2\.0-service.imx         u:object_r:hal_thermal_default_exec:s0
 /vendor/bin/hw/android\.hardware\.thermal-service\.imx             u:object_r:hal_thermal_default_exec:s0
 
+#Neural Network HAL service
+/vendor/bin/hw/android\.hardware\.neuralnetworks-shell-service-imx             u:object_r:hal_neuralnetworks_imx_exec:s0
+
 # Media Codec2 service
 /vendor/bin/hw/android\.hardware\.media\.c2\.service\.imx    u:object_r:mediacodec_exec:s0
 
