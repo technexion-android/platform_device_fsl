@@ -53,15 +53,12 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/video/backlight/led_bl.ko \
     $(KERNEL_OUT)/drivers/video/backlight/pwm_bl.ko \
     $(KERNEL_OUT)/drivers/cpufreq/cpufreq-dt.ko \
-    $(KERNEL_OUT)/drivers/power/supply/dummy_battery.ko \
     $(KERNEL_OUT)/drivers/dma-buf/heaps/system_heap.ko \
     $(KERNEL_OUT)/drivers/dma-buf/heaps/dsp_heap.ko \
     $(KERNEL_OUT)/drivers/dma-buf/heaps/cma_heap.ko \
     $(KERNEL_OUT)/drivers/dma-buf/dma-buf-imx.ko \
     $(KERNEL_OUT)/drivers/dma/fsl-edma-v3.ko \
-    $(KERNEL_OUT)/drivers/perf/fsl_imx9_ddr_perf.ko \
     $(KERNEL_OUT)/drivers/watchdog/imx7ulp_wdt.ko \
-    $(KERNEL_OUT)/drivers/iio/adc/imx93_adc.ko \
     $(KERNEL_OUT)/drivers/firmware/imx/sec_enclave.ko \
     $(KERNEL_OUT)/drivers/mmc/host/cqhci.ko \
     $(KERNEL_OUT)/drivers/soc/imx/busfreq-imx8mq.ko \
@@ -69,23 +66,11 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/nvmem/nvmem-imx-ocotp.ko \
     $(KERNEL_OUT)/drivers/nvmem/nvmem-imx-ocotp-fsb-s400.ko \
     $(KERNEL_OUT)/drivers/mmc/core/pwrseq_simple.ko \
-    $(KERNEL_OUT)/drivers/reset/gpio-reset.ko \
-    $(KERNEL_OUT)/drivers/power/reset/imx-sm-reset.ko \
     $(KERNEL_OUT)/drivers/pwm/pwm-imx-tpm.ko \
-    $(KERNEL_OUT)/drivers/pci/controller/dwc/pci-imx6.ko \
     $(KERNEL_OUT)/drivers/soc/imx/soc-imx9.ko \
-    $(KERNEL_OUT)/drivers/spi/spidev.ko \
-    $(KERNEL_OUT)/drivers/spi/spi-bitbang.ko \
-    $(KERNEL_OUT)/drivers/spi/spi-nxp-fspi.ko \
-    $(KERNEL_OUT)/drivers/spi/spi-fsl-lpspi.ko \
-    $(KERNEL_OUT)/drivers/mtd/mtd.ko \
-    $(KERNEL_OUT)/drivers/mtd/spi-nor/spi-nor.ko \
     $(KERNEL_OUT)/drivers/gpio/gpio-adp5585.ko \
     $(KERNEL_OUT)/drivers/gpio/gpio-pca953x.ko \
     $(KERNEL_OUT)/drivers/gpio/gpio-vf610.ko \
-    $(KERNEL_OUT)/drivers/leds/leds-gpio.ko \
-    $(KERNEL_OUT)/drivers/leds/leds-pca995x.ko \
-    $(KERNEL_OUT)/drivers/leds/leds-pca963x.ko \
     $(KERNEL_OUT)/drivers/mfd/maxim_serdes.ko \
     $(KERNEL_OUT)/drivers/mfd/max96752-core.ko \
     $(KERNEL_OUT)/drivers/mfd/max96752-i2c.ko \
@@ -128,7 +113,30 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/gpu/drm/panel/panel-raydium-rm692c9.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/panel/panel-rocktech-hx8394f.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/imx/dpu95/imx95-dpu-drm.ko \
-    $(KERNEL_OUT)/drivers/gpu/drm/imx/display-imx-rpmsg.ko \
+    $(KERNEL_OUT)/drivers/gpu/drm/imx/display-imx-rpmsg.ko
+
+BOARD_VENDOR_KERNEL_MODULES += \
+    $(KERNEL_OUT)/mm/zsmalloc.ko \
+    $(KERNEL_OUT)/drivers/block/zram/zram.ko \
+    $(KERNEL_OUT)/net/rfkill/rfkill.ko \
+    $(KERNEL_OUT)/net/wireless/cfg80211.ko \
+    $(KERNEL_OUT)/lib/crypto/libarc4.ko \
+    $(KERNEL_OUT)/net/mac80211/mac80211.ko \
+    $(KERNEL_OUT)/drivers/power/supply/dummy_battery.ko \
+    $(KERNEL_OUT)/drivers/perf/fsl_imx9_ddr_perf.ko \
+    $(KERNEL_OUT)/drivers/iio/adc/imx93_adc.ko \
+    $(KERNEL_OUT)/drivers/reset/gpio-reset.ko \
+    $(KERNEL_OUT)/drivers/power/reset/imx-sm-reset.ko \
+    $(KERNEL_OUT)/drivers/pci/controller/dwc/pci-imx6.ko \
+    $(KERNEL_OUT)/drivers/spi/spidev.ko \
+    $(KERNEL_OUT)/drivers/spi/spi-bitbang.ko \
+    $(KERNEL_OUT)/drivers/spi/spi-nxp-fspi.ko \
+    $(KERNEL_OUT)/drivers/spi/spi-fsl-lpspi.ko \
+    $(KERNEL_OUT)/drivers/mtd/mtd.ko \
+    $(KERNEL_OUT)/drivers/mtd/spi-nor/spi-nor.ko \
+    $(KERNEL_OUT)/drivers/leds/leds-gpio.ko \
+    $(KERNEL_OUT)/drivers/leds/leds-pca995x.ko \
+    $(KERNEL_OUT)/drivers/leds/leds-pca963x.ko \
     $(KERNEL_OUT)/drivers/mxc/vpu/wave6/wave6-vpu-ctrl.ko \
     $(KERNEL_OUT)/drivers/mxc/vpu/wave6/wave6.ko \
     $(KERNEL_OUT)/drivers/media/platform/nxp/imx-csi-formatter.ko \
@@ -158,15 +166,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-wm8962.ko \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-wm8904.ko \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-cs42xx8.ko \
-    $(KERNEL_OUT)/sound/soc/codecs/snd-soc-cs42xx8-i2c.ko
-
-BOARD_VENDOR_KERNEL_MODULES += \
-    $(KERNEL_OUT)/mm/zsmalloc.ko \
-    $(KERNEL_OUT)/drivers/block/zram/zram.ko \
-    $(KERNEL_OUT)/net/rfkill/rfkill.ko \
-    $(KERNEL_OUT)/net/wireless/cfg80211.ko \
-    $(KERNEL_OUT)/lib/crypto/libarc4.ko \
-    $(KERNEL_OUT)/net/mac80211/mac80211.ko \
+    $(KERNEL_OUT)/sound/soc/codecs/snd-soc-cs42xx8-i2c.ko \
     $(KERNEL_OUT)/drivers/net/phy/aquantia.ko \
     $(KERNEL_OUT)/drivers/pps/pps_core.ko \
     $(KERNEL_OUT)/drivers/ptp/ptp.ko \
