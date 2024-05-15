@@ -35,6 +35,8 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/clk/imx/imx95-blk-ctrl.ko \
     $(KERNEL_OUT)/drivers/clocksource/timer-imx-sysctr.ko \
     $(KERNEL_OUT)/drivers/mailbox/imx-mailbox.ko \
+    $(KERNEL_OUT)/drivers/rpmsg/rpmsg_ns.ko \
+    $(KERNEL_OUT)/drivers/rpmsg/virtio_rpmsg_bus.ko \
     $(KERNEL_OUT)/drivers/remoteproc/imx_rproc.ko \
     $(KERNEL_OUT)/drivers/pinctrl/freescale/pinctrl-imx.ko \
     $(KERNEL_OUT)/drivers/pinctrl/pinctrl-scmi.ko \
@@ -161,6 +163,7 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-imx-rpmsg.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-asoc-card.ko \
     $(KERNEL_OUT)/sound/soc/fsl/imx-audio-rpmsg.ko \
+    $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-rpmsg.ko \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-ak4458.ko \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-ak5558.ko \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-wm8962.ko \
