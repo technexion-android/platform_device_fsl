@@ -59,6 +59,7 @@ on early-boot
     /config/usb_gadget/g1/functions/uvc.0/control/class/fs/h
     symlink /config/usb_gadget/g1/functions/uvc.0/control/header/h \
     /config/usb_gadget/g1/functions/uvc.0/control/class/ss/h
+    mkdir /config/usb_gadget/g1/functions/uvc.0/streaming/mjpeg/m
     # 30 fps support for 720p.
     mkdir /config/usb_gadget/g1/functions/uvc.0/streaming/mjpeg/m/720p
     write /config/usb_gadget/g1/functions/uvc.0/streaming/mjpeg/m/720p/wWidth 1280
