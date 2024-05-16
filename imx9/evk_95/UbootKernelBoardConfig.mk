@@ -11,6 +11,7 @@ TARGET_BOOTLOADER_CONFIG += imx95-15x15-dual:imx95_15x15_evk_android_dual_defcon
 TARGET_BOOTLOADER_CONFIG += imx95-trusty-dual:imx95_19x19_evk_android_trusty_dual_defconfig
 TARGET_BOOTLOADER_CONFIG += imx95-trusty-verdin-dual:imx95_19x19_verdin_android_trusty_dual_defconfig
 TARGET_BOOTLOADER_CONFIG += imx95-trusty-15x15-dual:imx95_15x15_evk_android_trusty_dual_defconfig
+TARGET_BOOTLOADER_CONFIG += imx95-rpmsg:imx95_19x19_evk_android_rpmsg_defconfig
 TARGET_BOOTLOADER_CONFIG += imx95-evk-uuu:imx95_19x19_evk_android_uuu_defconfig
 TARGET_BOOTLOADER_CONFIG += imx95-verdin-uuu:imx95_19x19_verdin_android_uuu_defconfig
 TARGET_BOOTLOADER_CONFIG += imx95-15x15-evk-uuu:imx95_15x15_evk_android_uuu_defconfig
