@@ -80,8 +80,6 @@ PRODUCT_PACKAGES += \
     media_codecs_c2_ra.xml \
     media_codecs_c2_rv.xml \
     media_codecs_c2_dsp.xml \
-    media_codecs_c2_dsp_aacp.xml \
-    media_codecs_c2_dsp_wma.xml \
     media_profiles_V1_0.xml \
     media_codecs_c2.xml \
     media_codecs_performance_c2.xml \
@@ -112,16 +110,13 @@ PRODUCT_PACKAGES += \
     lib_asf_parser_arm11_elinux.3.0 \
     lib_ddpd_wrap_arm12_elinux_android \
     lib_ddplus_dec_v2_arm12_elinux \
-    lib_dsp_aac_dec \
     lib_dsp_bsac_dec \
     lib_dsp_codec_wrap \
     lib_dsp_mp3_dec \
     lib_dsp_mp3_dec_ext \
     lib_dsp_codec_wrap_ext \
     lib_dsp_wrap_arm12_android \
-    lib_aacd_wrap_dsp \
     lib_mp3d_wrap_dsp \
-    lib_wma10d_wrap_dsp \
     lib_realad_wrap_arm11_elinux_android \
     lib_realaudio_dec_v2_arm11_elinux \
     lib_rm_parser_arm11_elinux.3.0 \
@@ -168,9 +163,7 @@ PRODUCT_PACKAGES += \
     c2_component_register_wmv9 \
     c2_component_register_rv \
     c2_component_register_ra \
-    c2_component_register_dsp \
-    c2_component_register_dsp_wma \
-    c2_component_register_dsp_aacp
+    c2_component_register_dsp
 
 # Set c2 codec in default
 PRODUCT_PROPERTY_OVERRIDES += \

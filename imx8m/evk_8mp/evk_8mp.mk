@@ -476,21 +476,14 @@ PRODUCT_PACKAGES += \
 # dsp decoder
 PRODUCT_PACKAGES += \
     media_codecs_c2_dsp.xml \
-    media_codecs_c2_dsp_aacp.xml \
-    media_codecs_c2_dsp_wma.xml \
-    lib_dsp_aac_dec \
     lib_dsp_bsac_dec \
     lib_dsp_codec_wrap \
     lib_dsp_mp3_dec \
     lib_dsp_wrap_arm12_android \
     lib_dsp_mp3_dec_ext \
     lib_dsp_codec_wrap_ext \
-    lib_aacd_wrap_dsp \
     lib_mp3d_wrap_dsp \
-    lib_wma10d_wrap_dsp \
-    c2_component_register_dsp \
-    c2_component_register_dsp_wma \
-    c2_component_register_dsp_aacp
+    c2_component_register_dsp
 
 
 PRODUCT_PACKAGES += \
