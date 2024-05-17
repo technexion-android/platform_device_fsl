@@ -30,7 +30,7 @@ fi
 MKIMAGE_SOC=iMX8ULP
 BOARD_MKIMAGE_PATH=${IMX_MKIMAGE_PATH}/imx-mkimage/${MKIMAGE_SOC}
 
-build_m4_image()
+build_pre_image()
 {
 	:
 }

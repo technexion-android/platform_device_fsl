@@ -27,30 +27,51 @@ else
 	exit 1
 fi
 
+if [ "${AARCH32_GCC_CROSS_COMPILE}" != "" ]; then
+	SM_OEI_CROSS_COMPILE=`eval echo ${AARCH32_GCC_CROSS_COMPILE}`
+else
+	echo ERROR: \*\*\* env AARCH32_GCC_CROSS_COMPILE is not set
+	exit 1
+fi
+
 MKIMAGE_SOC=iMX95
 BOARD_MKIMAGE_PATH=${IMX_MKIMAGE_PATH}/imx-mkimage/${MKIMAGE_SOC}
+BOARD_SM_PATH=${IMX_PATH}/imx-sm
+BOARD_OEI_PATH=${IMX_PATH}/imx-oei
 
-build_m4_image()
+build_pre_image()
 {
-	:
+	echo Building imx-sm ...
+	make -C ${BOARD_SM_PATH} really-clean
+	make -C ${BOARD_SM_PATH} SM_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" cfg config=mx95evk 1>/dev/null || exit 1
+	make -C ${BOARD_SM_PATH} SM_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" all config=mx95evk 1>/dev/null || exit 1
+	make -C ${BOARD_SM_PATH} SM_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" cfg config=mx95alt 1>/dev/null || exit 1
+	make -C ${BOARD_SM_PATH} SM_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" all config=mx95alt 1>/dev/null || exit 1
+	make -C ${BOARD_SM_PATH} SM_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" cfg config=mx95evk-android 1>/dev/null || exit 1
+	make -C ${BOARD_SM_PATH} SM_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" all config=mx95evk-android 1>/dev/null || exit 1
+	echo Building imx-oei ...
+	make -C ${BOARD_OEI_PATH} really-clean
+	make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=mx95lp5 oei=ddr DEBUG=1 1>/dev/null || exit 1
+	make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=mx95lp5 oei=tcm DEBUG=1 1>/dev/null || exit 1
+	make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=mx95lp4x-15 oei=ddr DEBUG=1 1>/dev/null || exit 1
 }
 
 build_imx_uboot()
 {
 	echo Building i.MX U-Boot with firmware
 	if echo "$2" | grep -q "15x15" ; then
-		cp ${FSL_PROPRIETARY_PATH}/fsl-proprietary/uboot-firmware/imx95/oei-m33-ddr-lp4x.bin ${BOARD_MKIMAGE_PATH}/oei-m33-ddr.bin
+		cp ${BOARD_OEI_PATH}/build/mx95lp4x-15/ddr/oei-m33-ddr.bin ${BOARD_MKIMAGE_PATH}/oei-m33-ddr.bin
 	else
-		cp ${FSL_PROPRIETARY_PATH}/fsl-proprietary/uboot-firmware/imx95/oei-m33-ddr-lp5.bin ${BOARD_MKIMAGE_PATH}/oei-m33-ddr.bin
+		cp ${BOARD_OEI_PATH}/build/mx95lp5/ddr/oei-m33-ddr.bin ${BOARD_MKIMAGE_PATH}/oei-m33-ddr.bin
 	fi
-	cp ${FSL_PROPRIETARY_PATH}/fsl-proprietary/uboot-firmware/imx95/oei-m33-tcm.bin ${BOARD_MKIMAGE_PATH}
+	cp ${BOARD_OEI_PATH}/build/mx95lp5/tcm/oei-m33-tcm.bin ${BOARD_MKIMAGE_PATH}
 
 	if [ `echo $2 | cut -d '-' -f2` = "trusty" ]; then
-		cp ${FSL_PROPRIETARY_PATH}/fsl-proprietary/uboot-firmware/imx95/m33_image_tee.bin ${BOARD_MKIMAGE_PATH}/m33_image.bin
+		cp ${BOARD_SM_PATH}/build/mx95evk-android/m33_image.bin ${BOARD_MKIMAGE_PATH}/m33_image.bin
 	elif [ `echo $2 | cut -d '-' -f2` = "rpmsg" ]; then
-		cp ${FSL_PROPRIETARY_PATH}/fsl-proprietary/uboot-firmware/imx95/m33_image_rpmsg.bin ${BOARD_MKIMAGE_PATH}/m33_image.bin
+		cp ${BOARD_SM_PATH}/build/mx95alt/m33_image.bin ${BOARD_MKIMAGE_PATH}/m33_image.bin
 	else
-		cp ${FSL_PROPRIETARY_PATH}/fsl-proprietary/uboot-firmware/imx95/m33_image.bin ${BOARD_MKIMAGE_PATH}/m33_image.bin
+		cp ${BOARD_SM_PATH}/build/mx95evk/m33_image.bin ${BOARD_MKIMAGE_PATH}/m33_image.bin
 	fi
 	cp ${FSL_PROPRIETARY_PATH}/fsl-proprietary/mcu-sdk/imx95/imx95_mcu_demo.img ${BOARD_MKIMAGE_PATH}/m7_image.bin
 	cp ${FSL_PROPRIETARY_PATH}/ele/mx95a0-ahab-container.img ${BOARD_MKIMAGE_PATH}/mx95a0-ahab-container.img

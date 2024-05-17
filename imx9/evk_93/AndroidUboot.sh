@@ -27,7 +27,7 @@ else
 	exit 1
 fi
 
-build_m4_image()
+build_pre_image()
 {
 	:
 }

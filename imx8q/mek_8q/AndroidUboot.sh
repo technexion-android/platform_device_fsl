@@ -56,7 +56,7 @@ if [ "${PRODUCT_IMX_CAR_M4}" = "true" ]; then
 		exit 1
 	fi
 
-	build_m4_image()
+	build_pre_image()
 	{
 		rm -rf ${UBOOT_M4_OUT}
 		mkdir -p ${UBOOT_M4_OUT}
@@ -70,7 +70,7 @@ if [ "${PRODUCT_IMX_CAR_M4}" = "true" ]; then
 		build_m4_image_core ${MCU_SDK_IMX8QX_DEMO_PATH} MIMX8QX ${UBOOT_M4_BUILD_TYPE} ${MCU_SDK_IMX8QX_CMAKE_FILE} ${MCU_SDK_IMX8QX_EXTRA_CONFIG}
 	}
 else
-	build_m4_image()
+	build_pre_image()
 	{
 		echo "android build without building M4 image"
 	}
