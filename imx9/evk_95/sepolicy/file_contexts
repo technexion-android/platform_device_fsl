@@ -23,8 +23,8 @@
 /sys/devices/virtual/wakeup/wakeup[0-9]*(/.*)?                                                                                                        u:object_r:sysfs_wakeup:s0
 /sys/devices/virtual/power_supply/battery/wakeup[0-9]*(/.*)?                                                                                          u:object_r:sysfs_wakeup:s0
 /sys/devices/virtual/power_supply/usb/wakeup[0-9]*(/.*)?                                                                                              u:object_r:sysfs_wakeup:s0
-/sys/devices/platform/firmware:scmi/scmi_dev.11/wakeup[0-9]*(/.*)?                                                                                    u:object_r:sysfs_wakeup:s0
-/sys/devices/platform/firmware:scmi/scmi_dev.11/rtc/rtc0/alarmtimer.0.auto/wakeup[0-9]*(/.*)?                                                         u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/firmware:scmi/scmi_dev.[0-9]*(/.*)?/wakeup[0-9]*(/.*)?                                                                          u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/firmware:scmi/scmi_dev.[0-9]*(/.*)?/rtc/rtc[0-9]*(/.*)?/alarmtimer.[0-9]*(/.*)?.auto/wakeup[0-9]*(/.*)?                         u:object_r:sysfs_wakeup:s0
 /sys/devices/platform/soc/42000000.bus/426d0000.i2c/i2c-6/6-0050/power_supply/tcpm-source-psy-6-0050/wakeup[0-9]*(/.*)?                               u:object_r:sysfs_wakeup:s0
 /sys/devices/platform/soc/4c300000.pcie/pci0000:00/0000:00:00.0/0000:01:00.[0-9]*(/.*)?/wakeup[0-9]*(/.*)?                                            u:object_r:sysfs_wakeup:s0
 
