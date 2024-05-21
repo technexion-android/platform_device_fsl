@@ -129,7 +129,7 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(IMX_DEVICE_PATH)/bluetooth
 # -------@block_kernel_bootimg-------
 BOARD_KERNEL_BASE := 0x90400000
 
-CMASIZE=1184M
+CMASIZE=1024M
 # NXP default config
 BOARD_KERNEL_CMDLINE := init=/init firmware_class.path=/vendor/firmware loop.max_part=7 bootconfig
 BOARD_BOOTCONFIG += androidboot.console=ttyLP0 androidboot.hardware=nxp
@@ -137,7 +137,7 @@ BOARD_BOOTCONFIG += androidboot.console=ttyLP0 androidboot.hardware=nxp
 # memory config
 BOARD_KERNEL_CMDLINE += transparent_hugepage=never
 BOARD_KERNEL_CMDLINE += swiotlb=65536
-BOARD_KERNEL_CMDLINE += cma=$(CMASIZE)@0xB50M-0xFF0M
+BOARD_KERNEL_CMDLINE += cma=$(CMASIZE)@0xBF0M-0xFF0M
 
 # display config
 BOARD_BOOTCONFIG += androidboot.lcd_density=240 androidboot.dpu_composition=1
