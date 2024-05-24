@@ -3,24 +3,6 @@ KERNEL_NAME := Image.lz4
 TARGET_KERNEL_ARCH := arm64
 LOADABLE_KERNEL_MODULE ?= true
 
-#NXP 8997 wifi driver module
-BOARD_VENDOR_KERNEL_MODULES += \
-    $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/mlan.ko \
-    $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/moal.ko
-
-#ARM GPU driver module
-BOARD_VENDOR_KERNEL_MODULES += \
-    $(KERNEL_OUT)/drivers/gpu/arm/midgard/mali_kbase.ko
-
-#neutron driver module
-BOARD_VENDOR_KERNEL_MODULES += \
-    $(KERNEL_OUT)/drivers/remoteproc/imx_neutron_rproc.ko \
-    $(KERNEL_OUT)/drivers/staging/neutron/neutron.ko
-
-#AP1302 driver module
-BOARD_VENDOR_KERNEL_MODULES += \
-    $(KERNEL_OUT)/drivers/media/i2c/ap130x.ko
-
 ifeq ($(LOADABLE_KERNEL_MODULE),true)
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/hwmon/hwmon.ko \
@@ -188,6 +170,24 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/net/ethernet/freescale/enetc/fsl-enetc4.ko \
     $(KERNEL_OUT)/drivers/net/phy/realtek.ko
 endif
+
+#NXP 8997 wifi driver module
+BOARD_VENDOR_KERNEL_MODULES += \
+    $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/mlan.ko \
+    $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/moal.ko
+
+#ARM GPU driver module
+BOARD_VENDOR_KERNEL_MODULES += \
+    $(KERNEL_OUT)/drivers/gpu/arm/midgard/mali_kbase.ko
+
+#neutron driver module
+BOARD_VENDOR_KERNEL_MODULES += \
+    $(KERNEL_OUT)/drivers/remoteproc/imx_neutron_rproc.ko \
+    $(KERNEL_OUT)/drivers/staging/neutron/neutron.ko
+
+#AP1302 driver module
+BOARD_VENDOR_KERNEL_MODULES += \
+    $(KERNEL_OUT)/drivers/media/i2c/ap130x.ko
 
 # -------@block_memory-------
 #Enable this to config 1GB ddr on evk_95
