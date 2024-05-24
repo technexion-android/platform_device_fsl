@@ -39,7 +39,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/rpmsg/virtio_rpmsg_bus.ko \
     $(KERNEL_OUT)/drivers/remoteproc/imx_rproc.ko \
     $(KERNEL_OUT)/drivers/pinctrl/freescale/pinctrl-imx.ko \
-    $(KERNEL_OUT)/drivers/pinctrl/pinctrl-scmi.ko \
+    $(KERNEL_OUT)/drivers/pinctrl/freescale/pinctrl-imx-scmi.ko \
     $(KERNEL_OUT)/drivers/tty/serial/fsl_lpuart.ko \
     $(KERNEL_OUT)/drivers/trusty/trusty-core.ko \
     $(KERNEL_OUT)/drivers/trusty/trusty-log.ko \
