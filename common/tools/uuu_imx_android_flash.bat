@@ -1,7 +1,7 @@
 :: Do not output the command
 @echo off
 
-echo This script is validated with uuu 1.4.182 version, it is recommended to align with this version.
+echo This script is validated with uuu 1.5.179 version, it is recommended to align with this version.
 
 ::---------------------------------------------------------------------------------
 ::Variables

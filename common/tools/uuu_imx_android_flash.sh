@@ -488,7 +488,7 @@ tmp_files_before_uuu=()
 tmp_files_in_uuu=()
 all_cmd_options=(-h -f -c -u -d -a -b -m -mo -e -D -t -y -p -i -daemon -dryrun -usb)
 
-echo -e This script is validated with ${RED}uuu 1.4.182${STD} version, it is recommended to align with this version.
+echo -e This script is validated with ${RED}uuu 1.5.179${STD} version, it is recommended to align with this version.
 
 if [ $# -eq 0 ]; then
     echo -e >&2 ${RED}please provide more information with command script options${STD}
