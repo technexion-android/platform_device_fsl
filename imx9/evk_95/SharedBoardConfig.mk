@@ -97,9 +97,13 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/gpu/drm/panel/panel-raydium-rm692c9.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/panel/panel-rocktech-hx8394f.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/imx/dpu95/imx95-dpu-drm.ko \
-    $(KERNEL_OUT)/drivers/gpu/drm/imx/display-imx-rpmsg.ko
+    $(KERNEL_OUT)/drivers/gpu/drm/imx/display-imx-rpmsg.ko \
+    $(KERNEL_OUT)/drivers/media/platform/nxp/imx8-isi/imx8-isi.ko \
+    $(KERNEL_OUT)/drivers/media/platform/nxp/imx-csi-formatter.ko \
+    $(KERNEL_OUT)/drivers/media/platform/nxp/dwc-mipi-csi2.ko
 
 BOARD_VENDOR_KERNEL_MODULES += \
+    $(KERNEL_OUT)/drivers/media/i2c/ap130x.ko \
     $(KERNEL_OUT)/mm/zsmalloc.ko \
     $(KERNEL_OUT)/drivers/block/zram/zram.ko \
     $(KERNEL_OUT)/net/rfkill/rfkill.ko \
@@ -123,9 +127,6 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/leds/leds-pca963x.ko \
     $(KERNEL_OUT)/drivers/mxc/vpu/wave6/wave6-vpu-ctrl.ko \
     $(KERNEL_OUT)/drivers/mxc/vpu/wave6/wave6.ko \
-    $(KERNEL_OUT)/drivers/media/platform/nxp/imx8-isi/imx8-isi.ko \
-    $(KERNEL_OUT)/drivers/media/platform/nxp/imx-csi-formatter.ko \
-    $(KERNEL_OUT)/drivers/media/platform/nxp/dwc-mipi-csi2.ko \
     $(KERNEL_OUT)/drivers/media/i2c/os08a20/os08a20_mipi.ko \
     $(KERNEL_OUT)/drivers/media/v4l2-core/v4l2-jpeg.ko \
     $(KERNEL_OUT)/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-encdec.ko \
@@ -184,10 +185,6 @@ BOARD_VENDOR_KERNEL_MODULES += \
 BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/remoteproc/imx_neutron_rproc.ko \
     $(KERNEL_OUT)/drivers/staging/neutron/neutron.ko
-
-#AP1302 driver module
-BOARD_VENDOR_KERNEL_MODULES += \
-    $(KERNEL_OUT)/drivers/media/i2c/ap130x.ko
 
 # -------@block_memory-------
 #Enable this to config 1GB ddr on evk_95
