@@ -451,3 +451,7 @@ endif
 # vndservicemanager
 PRODUCT_PACKAGES += \
     vndservicemanager
+
+PRODUCT_HIDL_ENABLED := true
+PRODUCT_PACKAGES += \
+    hwservicemanager
