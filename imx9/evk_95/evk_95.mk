@@ -343,7 +343,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
         android.hardware.graphics.allocator-service \
         android.hardware.graphics.allocator-V2-arm \
-        android.hardware.graphics.mapper@4.0-impl-arm
+        mapper.arm
 
 PRODUCT_VENDOR_PROPERTIES += \
     ro.hardware.egl = mali \

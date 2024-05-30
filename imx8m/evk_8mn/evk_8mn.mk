@@ -270,8 +270,8 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 # Gralloc HAL
 PRODUCT_PACKAGES += \
-    android.hardware.graphics.mapper@4.0-impl.imx \
-    android.hardware.graphics.allocator-service.imx
+    android.hardware.graphics.allocator-service.imx \
+    mapper.imx
 
 # 2d test
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
