@@ -31,8 +31,6 @@ else
 $(info "use restricted-codec firmware")
 ifeq ("$(TARGET_PRODUCT)", "mek_8q")
 $(shell cp $(FSL_RESTRICTED_CODEC_PATH)/vpu_fw_imx8_dec.bin vendor/nxp/linux-firmware-imx/firmware/vpu/vpu_fw_imx8_dec.bin)
-else
-$(shell cp $(FSL_RESTRICTED_CODEC_PATH/wave633c_codec_fw.bin vendor/nxp/linux-firmware-imx/firmware/vpu/wave633c_codec_fw.bin)
 endif
 endif
 
