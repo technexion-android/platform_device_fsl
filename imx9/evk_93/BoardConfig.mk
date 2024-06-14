@@ -3,6 +3,7 @@
 # Product-specific compile-time definitions.
 #
 
+TARGET_IMX_KERNEL := true
 include $(CONFIG_REPO_PATH)/imx9/BoardConfigCommon.mk
 
 # -------@block_common_config-------
