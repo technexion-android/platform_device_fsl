@@ -351,6 +351,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/input-port-associations.xml:$(TARGET_COPY_OUT_VENDOR)/etc/input-port-associations.xml
 
+# Display Device Config
+PRODUCT_COPY_FILES += \
+    device/nxp/imx9/displayconfig/display_id_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_id_0.xml
+
 # -------@block_gpu-------
 # include wsialloc gralloc device config
 -include $(IMX_WSI_ALLOC_PATH)/android/gralloc.device.mk
