@@ -129,6 +129,8 @@ build_imx_uboot()
 		_do_cmd "${_mkcmd} flash_evk" || _error_exit "make flash_evk fail"
 		_do_cmd "${_mkcmd} print_fit_hab" || _error_exit "print_fit_hab fail"
 		cp ${_opt} ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/flash.bin ${UBOOT_COLLECTION}/u-boot-$2.imx
+		_do_cmd "${_mkcmd} flash_evk_flexspi" || _error_exit "make flash_evk_flexspi fail"
+		cp ${_opt} ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/flash.bin ${UBOOT_COLLECTION}/u-boot-$2-fspi.imx
 	fi
 
 	unset _mkcmd _opt _addon _soc_type _uboot_dtb
