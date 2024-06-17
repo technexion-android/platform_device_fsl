@@ -41,7 +41,7 @@ options:
                            │                │  trusty-wevk-rbidx-blob-dual wevk-uuu trusty-secure-unlock-wevk-dual                                 │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx8mp       │  dual trusty-dual trusty-rbidx-blob-dual evk-uuu trusty-secure-unlock-dual powersave                 │
-                           │                │  trusty-powersave-dual                                                                               │
+                           │                │  trusty-powersave-dual fspi                                                                          │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx8ulp      │  dual trusty-dual trusty-dualboot-dual evk-uuu trusty-secure-unlock-dual 9x9-evk-uuu 9x9 9x9-dual    │
                            │                │  trusty-9x9-dual trusty-9x9-rbidx-blob-dual trusty-lpa-dual                                          │
@@ -139,6 +139,44 @@ function whether_in_array
             return 0
         fi
     done
+}
+
+# refer uuu -bshow qspi
+function uuu_load_uboot_fspi
+{
+    while [ -f /tmp/uuu.lst${randome_part} ]; do
+        randome_part=$RANDOM
+    done
+
+    echo uuu_version 1.4.182 > /tmp/uuu.lst${randome_part}
+    tmp_files_in_uuu+=(uuu.lst${randome_part})
+
+    ln -sf ${sym_link_directory}${bootloader_used_by_uuu} /tmp/${bootloader_used_by_uuu}${randome_part}
+
+    echo ${sdp}: boot -f ${bootloader_used_by_uuu}${randome_part} -skipfhdr >> /tmp/uuu.lst${randome_part}
+    tmp_files_in_uuu+=(${bootloader_used_by_uuu}${randome_part})
+
+    echo FB: ucmd setenv fastboot_buffer \${loadaddr} >> /tmp/uuu.lst${randome_part}
+    echo FB: download -f ${bootloader_used_by_uuu}${randome_part} >> /tmp/uuu.lst${randome_part}
+
+    echo "FB: ucmd if test ! -n "\$fastboot_bytes"; then setenv fastboot_bytes \$filesize; else true; fi" >> /tmp/uuu.lst${randome_part}
+
+    # Check Image if include flexspi header
+    echo "FB: ucmd if qspihdr dump \${fastboot_buffer}; then setenv qspihdr_exist yes; else setenv qspihdr_exist no; fi;" >> /tmp/uuu.lst${randome_part}
+
+    echo "FB[-t 60000]: ucmd if test \${qspihdr_exist} = yes; then qspihdr init \${fastboot_buffer} \${fastboot_bytes} safe; else true; fi;" >> /tmp/uuu.lst${randome_part}
+
+    #if uboot can't support qspihdr command, use uboot image to write qspi image, which require image include qspi flash header
+    echo "FB: ucmd if test \${qspihdr_exist} = no; then sf probe; else true; fi;" >> /tmp/uuu.lst${randome_part}
+    echo "FB[-t 40000]: ucmd if test \${qspihdr_exist} = no; then sf erase 0 +\${fastboot_bytes}; else true; fi;" >> /tmp/uuu.lst${randome_part}
+    echo "FB[-t 20000]: ucmd if test \${qspihdr_exist} = no; then sf write \${fastboot_buffer} 0 \${fastboot_bytes}; else true; fi;" >> /tmp/uuu.lst${randome_part}
+
+    if [[ ${intervene} -eq 1 ]]; then
+        echo FB: done >> /tmp/uuu.lst${randome_part}
+        ${UUU} ${usb_paths} /tmp/uuu.lst${randome_part}
+        exit 0
+    fi
+
 }
 
 function uuu_load_uboot
@@ -471,7 +509,7 @@ randome_part=
 imx8mm_uboot_feature=(dual trusty-dual trusty-rbidx-blob-dual 4g-evk-uuu 4g ddr4-evk-uuu ddr4 evk-uuu trusty-secure-unlock-dual)
 imx8mn_uboot_feature=(dual trusty-dual trusty-rbidx-blob-dual evk-uuu trusty-secure-unlock-dual ddr4-evk-uuu ddr4)
 imx8mq_uboot_feature=(dual trusty-dual evk-uuu trusty-secure-unlock-dual wevk wevk-dual trusty-wevk-dual trusty-wevk-rbidx-blob-dual wevk-uuu trusty-secure-unlock-wevk-dual)
-imx8mp_uboot_feature=(dual trusty-dual trusty-rbidx-blob-dual evk-uuu trusty-secure-unlock-dual powersave trusty-powersave-dual)
+imx8mp_uboot_feature=(dual trusty-dual trusty-rbidx-blob-dual evk-uuu trusty-secure-unlock-dual powersave trusty-powersave-dual fspi)
 imx8ulp_uboot_feature=(dual trusty-dual trusty-dualboot-dual evk-uuu trusty-secure-unlock-dual 9x9-evk-uuu 9x9 9x9-dual trusty-9x9-dual trusty-9x9-rbidx-blob-dual trusty-lpa-dual)
 imx8qxp_uboot_feature=(dual trusty-dual trusty-rbidx-blob-dual mek-uuu trusty-secure-unlock-dual secure-unlock c0 c0-dual trusty-c0-dual mek-c0-uuu)
 imx8qm_uboot_feature=(dual trusty-dual trusty-rbidx-blob-dual mek-uuu trusty-secure-unlock-dual secure-unlock md hdmi xen)
@@ -842,7 +880,13 @@ if [ "${soc_name}" = imx943 ]; then
     fi
 fi
 
-uuu_load_uboot
+if [[ "${uboot_feature}" = *"fspi"* ]]; then
+    bootloader_flashed_to_board="u-boot-${soc_name}.imx"
+    bootloader_used_by_uuu=u-boot-${soc_name}-${board}-uuu${uboot_feature}.imx
+    uuu_load_uboot_fspi
+else
+    uuu_load_uboot
+fi
 
 flash_android
 
