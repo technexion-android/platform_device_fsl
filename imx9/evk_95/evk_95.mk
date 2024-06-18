@@ -311,7 +311,6 @@ PRODUCT_PACKAGES += \
 
 PREBUILT_LIBCAMERA := false
 PRODUCT_PACKAGES += \
-    capture \
     libcamera-base \
     libcamera \
     libyaml \
