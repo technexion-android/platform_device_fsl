@@ -206,6 +206,7 @@ PRODUCT_PACKAGES += \
     libgooglecamerahal \
     libgooglecamerahalutils \
     lib_profiler \
+    libimxcamerahwl_impl \
     libimageprocess
 
 # external camera, AIDL
