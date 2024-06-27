@@ -15,6 +15,9 @@
 
 /dev/block/pmem0  u:object_r:rebootescrow_device:s0
 
+#Bluetootn HAL service
+/vendor/bin/hw/android\.hardware\.bluetooth-service.default.nxp            u:object_r:hal_bluetooth_default_exec:s0
+
 # android.system.suspend@1.0-service
 /sys/devices/virtual/power_supply/battery/wakeup[0-9]*(/.*)?                                                                                  u:object_r:sysfs_wakeup:s0
 /sys/devices/virtual/power_supply/usb/wakeup[0-9]*(/.*)?                                                                                      u:object_r:sysfs_wakeup:s0

@@ -428,8 +428,8 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth HAL
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth@1.0-impl \
-    android.hardware.bluetooth@1.0-service
+    android.hardware.bluetooth \
+    android.hardware.bluetooth-service.default.nxp
 
 #nxp 8997 Bluetooth vendor config
 PRODUCT_PACKAGES += \

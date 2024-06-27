@@ -22,6 +22,9 @@
 #Hardware Media C2 service
 /vendor/bin/hw/android\.hardware\.media\.c2\.service\.imx    u:object_r:mediacodec_exec:s0
 
+#Bluetootn HAL service
+/vendor/bin/hw/android\.hardware\.bluetooth-service.default.nxp            u:object_r:hal_bluetooth_default_exec:s0
+
 # android.system.suspend@1.0-service
 /sys/devices/platform/sc-powerkey/wakeup                                                                                             u:object_r:sysfs_wakeup:s0
 /sys/devices/platform/sc-powerkey/wakeup/wakeup[0-9]*(/.*)?                                                                          u:object_r:sysfs_wakeup:s0
