@@ -186,6 +186,8 @@ BOARD_USE_SENSOR_FUSION := false
 
 # -------@block_touch-------
 BOARD_VENDOR_KERNEL_MODULES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/drivers/input/touchscreen/exc3000.ko
+SOONG_CONFIG_IMXPLUGIN += TN_MD_TOUCH
+SOONG_CONFIG_IMXPLUGIN_TN_MD_TOUCH = true
 
 # -------@block_kernel_bootimg-------
 BOARD_KERNEL_BASE := 0x40400000
