@@ -339,6 +339,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/input-port-associations.xml:$(TARGET_COPY_OUT_VENDOR)/etc/input-port-associations.xml
 
+PRODUCT_PROPERTY_OVERRIDES += persist.vendor.hwc.device.primary=LVDS
+
 # -------@block_gpu-------
 PRODUCT_PACKAGES += \
     libEGL_VIVANTE \
