@@ -184,6 +184,8 @@ endif
 # -------@block_sensor-------
 BOARD_USE_SENSOR_FUSION := false
 
+# -------@block_touch-------
+BOARD_VENDOR_KERNEL_MODULES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/drivers/input/touchscreen/exc3000.ko
 
 # -------@block_kernel_bootimg-------
 BOARD_KERNEL_BASE := 0x40400000
