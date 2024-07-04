@@ -242,7 +242,6 @@ ifeq ($(WITH_EXT_DTBO),true)
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-tep-vizionpanel-vl10112880.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-tep-vizionpanel-vl15010276.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-tep-vizionpanel-vl15613676.dtbo
-	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-tep-vizionpanel-vl215192108.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-tep-vizionlink-tevi-ov5640.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-tep-vizionlink-tevi-ap1302.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-tep-vls.dtbo
