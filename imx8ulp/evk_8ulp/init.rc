@@ -224,3 +224,12 @@ on property:sys.boot_completed=1 && property:vendor.storageproxyd=trusty
 on property:sys.boot_completed=1
     # Turn on swap
     swapon_all /vendor/etc/fstab.nxp
+
+    setprop vendor.sensor.trigger "hrtimer_trigger"
+    chown system system /config/iio/triggers/hrtimer
+    chmod 0770 /config/iio/triggers/hrtimer
+
+    chown system  system /sys/devices/iio_sysfs_trigger/add_trigger
+    chmod 0660 /sys/devices/iio_sysfs_trigger/add_trigger
+    chown system  system /sys/devices/iio_sysfs_trigger/remove_trigger
+    chmod 0660 /sys/devices/iio_sysfs_trigger/remove_trigger

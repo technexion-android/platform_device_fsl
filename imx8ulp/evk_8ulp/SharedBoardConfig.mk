@@ -224,6 +224,10 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/iio/buffer/kfifo_buf.ko \
     $(KERNEL_OUT)/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.ko \
     $(KERNEL_OUT)/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.ko \
+    $(KERNEL_OUT)/drivers/iio/industrialio-configfs.ko \
+    $(KERNEL_OUT)/drivers/iio/industrialio-sw-trigger.ko \
+    $(KERNEL_OUT)/drivers/iio/trigger/iio-trig-hrtimer.ko \
+    $(KERNEL_OUT)/drivers/iio/trigger/iio-trig-sysfs.ko \
     $(KERNEL_OUT)/drivers/iio/buffer/industrialio-triggered-buffer.ko \
     $(KERNEL_OUT)/drivers/iio/pressure/mpl3115.ko \
     $(KERNEL_OUT)/drivers/iio/imu/rpmsg_iio_pedometer.ko \
