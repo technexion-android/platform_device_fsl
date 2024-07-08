@@ -25,6 +25,7 @@ options:
                            │ imx8mm/imx8mq              │      33k      │
                            ├────────────────────────────┼───────────────┤
                            │imx8qm/imx8qxp/imx8mn/imx8mp│      32k      │
+                           │imx95                       │               │
                            └────────────────────────────┴───────────────┘
   -a                only flash image to slot_a
   -b                only flash image to slot_b
@@ -118,7 +119,7 @@ if [ ${card_size} -ne 0 ] && [ ${card_size} -ne 7 ] && [ ${card_size} -ne 14 ] &
 fi
 
 # imx8qxp RevB0 chips, imx8qm RevB0 chips, imx8mp and imx8mn chips, bootloader offset is 32KB on SD card
-if [ "${soc_name}" = "imx8qxp" -o "${soc_name}" = "imx8qm" -o "${soc_name}" = "imx8mn" -o "${soc_name}" = "imx8mp" ]; then
+if [ "${soc_name}" = "imx8qxp" -o "${soc_name}" = "imx8qm" -o "${soc_name}" = "imx8mn" -o "${soc_name}" = "imx8mp" -o "${soc_name}" = "imx95" ]; then
     bootloader_offset=32
 fi
 
