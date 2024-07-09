@@ -194,6 +194,7 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/video/fbdev/core/cfbfillrect.ko \
     $(KERNEL_OUT)/drivers/video/fbdev/core/cfbimgblt.ko \
     $(KERNEL_OUT)/drivers/video/fbdev/core/fb_notify.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/fb_io_fops.ko \
     $(KERNEL_OUT)/drivers/video/fbdev/core/fb.ko \
     $(KERNEL_OUT)/drivers/video/fbdev/mxc/fb_fence.ko \
     $(KERNEL_OUT)/drivers/video/fbdev/mxc/mxc_epdc_v2_fb.ko \
