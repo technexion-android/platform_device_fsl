@@ -156,7 +156,8 @@ ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
 BOARD_BOOTCONFIG += androidboot.vendor.sysrq=1
 endif
 
-TARGET_BOARD_DTS_CONFIG := imx95:imx95-19x19-evk-adv7535-ap1302.dtb
+TARGET_BOARD_DTS_CONFIG := imx95:imx95-19x19-evk-os08a20-isp-it6263-lvds0.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-ap1302:imx95-19x19-evk-adv7535-ap1302.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-mipi-lvds1:imx95-19x19-evk-adv7535-it6263-lvds1-ap1302.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-mipi-panel:imx95-19x19-evk-rm692c9.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-lvds0:imx95-19x19-evk-it6263-lvds0.dtb
