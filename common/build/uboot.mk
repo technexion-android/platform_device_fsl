@@ -147,6 +147,7 @@ $(UBOOT_BIN): $(UBOOTENVSH) | $(UBOOT_COLLECTION) $(UBOOT_OUT)
 		fi; \
 		install -D $(UBOOT_COLLECTION)/u-boot-$$UBOOT_PLATFORM.imx $(UBOOT_BIN); \
 	done
+	$(MAKE) -C $(UBOOT_IMX_PATH)/uboot-imx/ CROSS_COMPILE="$(UBOOT_CROSS_COMPILE_WRAPPER)" O=$(realpath $(UBOOT_OUT)) envtools
 
 .PHONY: bootloader $(UBOOT_BIN) $(UBOOTENVSH)
 
