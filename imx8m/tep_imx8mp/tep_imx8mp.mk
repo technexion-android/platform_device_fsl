@@ -780,3 +780,13 @@ PRODUCT_PACKAGES += hollow
 
 # sets vendor.battery.status.msg to true to show the battery status message
 PRODUCT_VENDOR_PROPERTIES += vendor.battery.status.msg=false
+
+# fw_printenv
+FW_ENV_SUPPORT := true
+ifneq ($(FW_ENV_SUPPORT),)
+PRODUCT_COPY_FILES += \
+    $(OUT_DIR)/target/product/$(firstword $(PRODUCT_DEVICE))/obj/UBOOT_OBJ/tools/env/fw_printenv:$(TARGET_COPY_OUT_VENDOR)/bin/fw_printenv \
+    $(OUT_DIR)/target/product/$(firstword $(PRODUCT_DEVICE))/obj/UBOOT_OBJ/tools/env/fw_printenv:$(TARGET_COPY_OUT_VENDOR)/bin/fw_setenv \
+    $(ARM_TOOLCAIN)/aarch64-none-linux-gnu/libc/lib64/ld-2.30.so:$(TARGET_COPY_OUT_VENDOR)/lib64/ld-linux-aarch64.so.1 \
+    $(ARM_TOOLCAIN)/aarch64-none-linux-gnu/libc/lib64/libc-2.30.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libc.so.6
+endif
