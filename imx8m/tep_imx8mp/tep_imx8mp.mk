@@ -788,5 +788,6 @@ PRODUCT_COPY_FILES += \
     $(OUT_DIR)/target/product/$(firstword $(PRODUCT_DEVICE))/obj/UBOOT_OBJ/tools/env/fw_printenv:$(TARGET_COPY_OUT_VENDOR)/bin/fw_printenv \
     $(OUT_DIR)/target/product/$(firstword $(PRODUCT_DEVICE))/obj/UBOOT_OBJ/tools/env/fw_printenv:$(TARGET_COPY_OUT_VENDOR)/bin/fw_setenv \
     $(ARM_TOOLCAIN)/aarch64-none-linux-gnu/libc/lib64/ld-2.30.so:$(TARGET_COPY_OUT_VENDOR)/lib64/ld-linux-aarch64.so.1 \
-    $(ARM_TOOLCAIN)/aarch64-none-linux-gnu/libc/lib64/libc-2.30.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libc.so.6
+    $(ARM_TOOLCAIN)/aarch64-none-linux-gnu/libc/lib64/libc-2.30.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libc.so.6 \
+    $(CONFIG_REPO_PATH)/common/init/tn-u-boot-fw-env.sh:$(TARGET_COPY_OUT_VENDOR)/bin/tn-u-boot-fw-env.sh
 endif
