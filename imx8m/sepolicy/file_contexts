@@ -135,3 +135,6 @@
 
 /dev/dmabuf_imx                               u:object_r:ion_device:s0
 /dev/dma_heap/secure                          u:object_r:dmabuf_system_secure_heap_device:s0
+
+# fw-env service
+/vendor/bin/tn-u-boot-fw-env.sh                u:object_r:fw-env_exec:s0

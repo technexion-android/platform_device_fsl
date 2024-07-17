@@ -1,0 +1,10 @@
+type fw-env, domain;
+type fw-env_exec, exec_type, vendor_file_type, file_type;
+
+# transfer domain from init domain to fw-env domain
+init_daemon_domain(fw-env)
+
+allow fw-env proc_cmdline:file { open read };
+allow fw-env vendor_data_file:dir { add_name write };
+allow fw-env vendor_data_file:file { create getattr open read setattr write };
+allow fw-env vendor_toolbox_exec:file execute_no_trans;
