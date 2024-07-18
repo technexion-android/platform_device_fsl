@@ -127,7 +127,7 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/leds/leds-pca963x.ko \
     $(KERNEL_OUT)/drivers/mxc/vpu/wave6/wave6-vpu-ctrl.ko \
     $(KERNEL_OUT)/drivers/mxc/vpu/wave6/wave6.ko \
-    $(KERNEL_OUT)/drivers/media/i2c/os08a20/os08a20_mipi.ko \
+    $(KERNEL_OUT)/drivers/media/i2c/ox05b1s/ox05b1s_mipi.ko \
     $(KERNEL_OUT)/drivers/media/v4l2-core/v4l2-jpeg.ko \
     $(KERNEL_OUT)/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-encdec.ko \
     $(KERNEL_OUT)/drivers/media/platform/nxp/neoisp/neoisp.ko \
