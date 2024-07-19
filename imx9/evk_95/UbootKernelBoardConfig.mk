@@ -24,10 +24,6 @@ else
 TARGET_KERNEL_GKI_DEFCONF:= imx_v8_android_defconfig
 endif
 
-ifeq ($(POWERSAVE),true)
-TARGET_KERNEL_ADDITION_DEFCONF := android_addition_defconfig
-endif
-
 # absolute path is used, not the same as relative path used in AOSP make
 TARGET_DEVICE_DIR := $(patsubst %/, %, $(dir $(realpath $(lastword $(MAKEFILE_LIST)))))
 

@@ -199,7 +199,6 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 # -------@block_camera-------
 ifneq ($(PRODUCT_IMX_CAR),true)
-ifneq ($(POWERSAVE),true)
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.7-service-google \
     android.hardware.camera.provider@2.7-impl-google \
@@ -222,7 +221,6 @@ PRODUCT_PACKAGES += \
 # external camera feature demo
 PRODUCT_PACKAGES += \
      Camera2Basic
-endif
 endif
 
 # -------@block_display-------

@@ -33,7 +33,6 @@ SOONG_CONFIG_IMXPLUGIN_BOARD_HAVE_VPU = true
 SOONG_CONFIG_IMXPLUGIN_BOARD_VPU_TYPE = wave6
 SOONG_CONFIG_IMXPLUGIN_BOARD_VPU_ONLY = false
 SOONG_CONFIG_IMXPLUGIN_PREBUILT_FSL_IMX_CODEC = true
-SOONG_CONFIG_IMXPLUGIN_POWERSAVE = $(POWERSAVE)
 SOONG_CONFIG_IMXPLUGIN_CFG_SECURE_IOCTRL_REGS = true
 SOONG_CONFIG_IMXPLUGIN_ENABLE_SEC_DMABUF_HEAP = true
 SOONG_CONFIG_IMXPLUGIN_MEDIA_PIPELINE = NEOISP
@@ -107,11 +106,7 @@ BOARD_AVB_SYSTEM_DLKM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 
 # -------@block_treble-------
 # Vendor Interface manifest and compatibility
-ifeq ($(POWERSAVE),true)
-    DEVICE_MANIFEST_FILE := $(IMX_DEVICE_PATH)/manifest_powersave.xml
-else
-    DEVICE_MANIFEST_FILE := $(IMX_DEVICE_PATH)/manifest.xml
-endif
+DEVICE_MANIFEST_FILE := $(IMX_DEVICE_PATH)/manifest.xml
 
 DEVICE_MATRIX_FILE := $(IMX_DEVICE_PATH)/compatibility_matrix.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(IMX_DEVICE_PATH)/device_framework_matrix.xml
@@ -149,11 +144,6 @@ BOARD_BOOTCONFIG += androidboot.lcd_density=240 androidboot.dpu_composition=1
 # wifi config
 BOARD_BOOTCONFIG += androidboot.wificountrycode=CN
 BOARD_KERNEL_CMDLINE +=  moal.mod_para=wifi_mod_para.conf
-
-# powersave config
-ifeq ($(POWERSAVE),true)
-    BOARD_BOOTCONFIG += androidboot.powersave.usb=true androidboot.powersave.uclamp=true androidboot.powersave.lpa=true
-endif
 
 ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
 BOARD_BOOTCONFIG += androidboot.vendor.sysrq=1
