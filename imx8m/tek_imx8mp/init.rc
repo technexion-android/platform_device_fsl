@@ -282,3 +282,14 @@ service start_hci_filter /vendor/bin/wcnss_filter
     user bluetooth
     group bluetooth diag system
     disabled
+
+on post-fs-data
+    mkdir /data/vendor/fw_env 0775 system system
+    start fw-env
+
+# envtools for create config file
+service fw-env /vendor/bin/tn-u-boot-fw-env.sh
+    user root
+    group root system
+    disabled
+    oneshot
