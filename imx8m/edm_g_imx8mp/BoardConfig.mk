@@ -239,15 +239,13 @@ ifeq ($(WITH_EXT_DTBO),true)
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-tevi-ap1302.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-vizionlink-tevi-ov5640.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-vizionlink-tevi-ap1302.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-tevs.dtbo
+	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-vls.dtbo
 ifeq ($(EXPORT_BASEBOARD_NAME),WIZARD)
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-vizionpanel-vl10112880.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-vizionpanel-vl15010276.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-vizionpanel-vl15613676.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-vizionpanel-vl215192108.dtbo
-endif
-ifeq ($(EXPORT_BASEBOARD_NAME),WANDBOARD)
-	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-tevs.dtbo
-	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-vls.dtbo
 endif
 endif
 
