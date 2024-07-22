@@ -1,0 +1,13 @@
+{
+  "driver_name": "wm8904-audio",
+  "bus_name": "bus1_system_sound_out",
+  "supported_out_devices": ["speaker", "wired_headphone", "wired_headset", "bus", "line"],
+  "supported_in_devices": ["builtin_mic", "wired_headset"],
+  "support_lpa": 1,
+  "support_compress": 1,
+
+  "init_ctl": [
+    {"name": "Capture Volume", "type": "int", "val": 24},
+    {"name": "Capture Switch", "type": "int", "val": 1}
+  ]
+}
