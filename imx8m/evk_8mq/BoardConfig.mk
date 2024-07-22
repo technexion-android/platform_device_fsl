@@ -151,6 +151,8 @@ ifeq ($(TARGET_USE_DYNAMIC_PARTITIONS),true)
     ifeq ($(LOADABLE_KERNEL_MODULE),true)
       # imx8mq gki with HDMI display
       TARGET_BOARD_DTS_CONFIG ?= imx8mq:imx8mq-evk-pcie1-m2-gki.dtb
+      # imx8mq gki with SDIO WiFi/BT module support
+      TARGET_BOARD_DTS_CONFIG += imx8mq-sdio:imx8mq-evk-usdhc2-m2-gki.dtb
       # imx8mq gki with HDMI display on WEVK board
       TARGET_BOARD_DTS_CONFIG += imx8mq-wevk:imx8mq-evk-gki.dtb
       # imx8mq with MIPI-HDMI display
