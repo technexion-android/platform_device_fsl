@@ -292,9 +292,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 # -------@block_audio-------
 PRODUCT_PACKAGES += \
-    android.hardware.audio@7.1-impl \
-    android.hardware.audio.service \
-    android.hardware.audio.effect@7.0-impl:32
+    com.android.hardware.audio
 
 ifneq ($(PRODUCT_IMX_CAR),true)
 PRODUCT_PACKAGES += \
@@ -302,7 +300,6 @@ PRODUCT_PACKAGES += \
 endif
 
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth.audio-impl \
     audio.bluetooth.default \
     audio.primary.imx \
     audio.r_submix.default \
@@ -314,6 +311,7 @@ PRODUCT_PACKAGES += \
 
 
 PRODUCT_COPY_FILES += \
+    hardware/interfaces/audio/aidl/default/audio_effects_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects_config.xml \
     frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_volumes.xml \
     frameworks/av/services/audiopolicy/config/default_volume_tables.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default_volume_tables.xml \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \

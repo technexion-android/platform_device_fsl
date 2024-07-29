@@ -295,10 +295,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 # -------@block_audio-------
 PRODUCT_PACKAGES += \
-    android.hardware.audio@7.1-impl \
-    android.hardware.audio.service \
-    android.hardware.audio.effect@7.0-impl:32 \
-    android.hardware.bluetooth.audio@2.1-impl
+    com.android.hardware.audio
 
 ifneq ($(PRODUCT_IMX_CAR),true)
 PRODUCT_PACKAGES += \
@@ -306,7 +303,6 @@ PRODUCT_PACKAGES += \
 endif
 
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth.audio-impl \
     audio.bluetooth.default \
     audio.primary.imx \
     audio.r_submix.default \
@@ -324,6 +320,7 @@ PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/a2dp_in_audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_in_audio_policy_configuration_7_0.xml \
     frameworks/av/services/audiopolicy/config/bluetooth_audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration_7_0.xml \
     frameworks/av/services/audiopolicy/config/bluetooth_with_le_audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_with_le_audio_policy_configuration_7_0.xml \
+    hardware/interfaces/audio/aidl/default/audio_effects_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects_config.xml \
     frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml \
     device/nxp/imx8m/evk_8mm/le_audio_codec_capabilities.xml:$(TARGET_COPY_OUT_VENDOR)/etc/le_audio_codec_capabilities.xml
 
