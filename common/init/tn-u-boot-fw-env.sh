@@ -1,9 +1,5 @@
 #! /vendor/bin/sh
 
-cp /vendor/lib64/ld-linux-aarch64.so.1 /data/vendor/fw_env
-cp /vendor/lib64/libc.so.6 /data/vendor/fw_env
-chmod a+x /data/vendor/fw_env/ld-linux-aarch64.so.1
-
 MMC_TAR=$(cat /proc/cmdline | grep -io "mmcblk[[:digit:]]")
 QSPI_BOOT=$(cat /proc/cmdline  |grep -oi "qspi_boot=yes")
 ARCH=$(uname -m)
