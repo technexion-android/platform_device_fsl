@@ -120,6 +120,7 @@ BOARD_BOOTCONFIG += androidboot.console=ttymxc1 androidboot.hardware=nxp
 
 # memory config
 BOARD_KERNEL_CMDLINE += transparent_hugepage=never
+BOARD_KERNEL_CMDLINE += swiotlb=512
 
 # display config
 BOARD_BOOTCONFIG += androidboot.lcd_density=240 androidboot.primary_display=imx-drm

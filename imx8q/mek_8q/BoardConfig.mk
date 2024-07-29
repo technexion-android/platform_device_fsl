@@ -125,6 +125,7 @@ BOARD_BOOTCONFIG += androidboot.fbTileSupport=enable
 
 # memory config
 BOARD_KERNEL_CMDLINE += cma=928M@0x960M-0xfc0M transparent_hugepage=never
+BOARD_KERNEL_CMDLINE += swiotlb=768
 
 # display config
 BOARD_BOOTCONFIG += androidboot.lcd_density=240 androidboot.primary_display=imx-drm

@@ -131,6 +131,7 @@ BOARD_BOOTCONFIG += androidboot.hardware=nxp
 
 # memory config
 BOARD_KERNEL_CMDLINE += cma=640M transparent_hugepage=never
+BOARD_KERNEL_CMDLINE += swiotlb=256
 
 # display config
 BOARD_BOOTCONFIG += androidboot.lcd_density=240
