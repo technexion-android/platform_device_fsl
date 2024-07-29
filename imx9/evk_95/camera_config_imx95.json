@@ -4,8 +4,8 @@
   ],
 
   "hal_version": "3",
-  "cam_blit_copy": "G3D",
-  "cam_blit_csc": "G3D",
+  "cam_blit_copy": "DPU",
+  "cam_blit_csc": "DPU",
 
   "camera_metadata": [
     {
