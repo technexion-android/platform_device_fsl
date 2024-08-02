@@ -63,6 +63,9 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/mfd/max96789-i2c.ko \
     $(KERNEL_OUT)/drivers/pwm/pwm-adp5585.ko \
     $(KERNEL_OUT)/drivers/phy/freescale/phy-fsl-imx8mq-usb.ko \
+    $(KERNEL_OUT)/drivers/input/touchscreen/focaltech_ts.ko \
+    $(KERNEL_OUT)/drivers/input/touchscreen/ilitek_ts_i2c.ko \
+    $(KERNEL_OUT)/drivers/input/touchscreen/exc3000.ko \
     $(KERNEL_OUT)/drivers/usb/chipidea/usbmisc_imx.ko \
     $(KERNEL_OUT)/drivers/usb/common/ulpi.ko \
     $(KERNEL_OUT)/drivers/usb/chipidea/ci_hdrc_imx.ko \
@@ -82,8 +85,10 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/gpu/drm/bridge/fsl-imx-ldb.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/bridge/max96789-dsi.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/bridge/it6263.ko \
+    $(KERNEL_OUT)/drivers/gpu/drm/bridge/ti-sn65dsi83.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/bridge/nwl-dsi.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/bridge/lontium-lt8912b.ko \
+    $(KERNEL_OUT)/drivers/gpu/drm/bridge/lontium-lt9611uxc.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/bridge/imx/imx95-pixel-link.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/bridge/imx/imx95-pixel-interleaver.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/bridge/imx/imx-ldb-helper.ko \
@@ -96,6 +101,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/gpu/drm/panel/panel-simple.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/panel/panel-raydium-rm692c9.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/panel/panel-rocktech-hx8394f.ko \
+    $(KERNEL_OUT)/drivers/gpu/drm/panel/panel-lvds.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/imx/dpu95/imx95-dpu-drm.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/imx/display-imx-rpmsg.ko \
     $(KERNEL_OUT)/drivers/media/platform/nxp/imx8-isi/imx8-isi.ko \

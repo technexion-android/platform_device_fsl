@@ -163,11 +163,23 @@ TARGET_BOARD_DTS_CONFIG += imx95-lvds0:imx95-19x19-evk-it6263-lvds0.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-lvds-dualdisp:imx95-19x19-evk-it6263-lvds-two-disp.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-lvds-panel:imx95-19x19-evk-jdi-wuxga-lvds-panel.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-cs42888:imx95-19x19-evk-adv7535-ap1302-cs42888.dtb
-TARGET_BOARD_DTS_CONFIG += imx95-verdin:imx95-19x19-verdin-lt8912-ap1302.dtb
-TARGET_BOARD_DTS_CONFIG += imx95-verdin-adv7535:imx95-19x19-verdin-adv7535-ap1302.dtb
-TARGET_BOARD_DTS_CONFIG += imx95-verdin-lvds-panel:imx95-19x19-verdin-lt8912-lvds-panel-ap1302.dtb
-TARGET_BOARD_DTS_CONFIG += imx95-15x15:imx95-15x15-evk-adv7535-ap1302.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-rpmsg:imx95-19x19-evk-adv7535-rpmsg.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-mipi4k:imx95-19x19-evk-lt9611uxc-ap1302.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-dsi-serdes:imx95-19x19-evk-dsi-serdes.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-verdin:imx95-19x19-verdin-os08a20-isp-lt8912.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-verdin-ap1302:imx95-19x19-verdin-lt8912-ap1302.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-verdin-adv7535:imx95-19x19-verdin-adv7535-ap1302.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-verdin-10inch-panel-lvds:imx95-19x19-verdin-panel-cap-touch-10inch-lvds.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-verdin-10inch-panel-dsi:imx95-19x19-verdin-panel-cap-touch-10inch-dsi.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-verdin-mipi-panel:imx95-19x19-verdin-rm692c9.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-verdin-mipi4k:imx95-19x19-verdin-lt9611uxc-ap1302.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-15x15:imx95-15x15-evk-os08a20-isp-adv7535.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-15x15-ap1302:imx95-15x15-evk-adv7535-ap1302.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-15x15-mipi-panel:imx95-15x15-evk-rm692c9.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-15x15-aud-hat:imx95-15x15-evk-adv7535-aud-hat.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-15x15-mqs:imx95-15x15-evk-adv7535-mqs.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-15x15-mipi4k:imx95-15x15-evk-lt9611uxc-ap1302.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-15x15-boe-panel-lvds1:imx95-15x15-evk-boe-wxga-lvds1-panel.dtb
 
 ALL_DEFAULT_INSTALLED_MODULES += $(BOARD_VENDOR_KERNEL_MODULES)
 
