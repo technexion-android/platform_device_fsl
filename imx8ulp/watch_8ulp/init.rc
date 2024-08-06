@@ -97,9 +97,7 @@ on early-boot && property:vendor.skip.charger_not_need=0
     # Set tracefs permission to 755
     chmod 0755 /sys/kernel/debug/tracing
 
-    # Default backlight device
-    setprop vendor.hw.backlight.dev "backlight"
-    # Chmod/chown FSL specific sys entry
+    # Chmod/chown backlight specific sys entry
     chown system system /sys/class/backlight/backlight/brightness
     chmod 0660 /sys/class/backlight/backlight/brightness
 
