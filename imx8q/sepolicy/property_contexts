@@ -349,7 +349,6 @@ vendor.media.amphion_vpu.enable-tile       u:object_r:vendor_public_default_prop
 vendor.bluetooth.rfkill_initialized        u:object_r:vendor_public_default_prop:s0
 
 ro.boot.gui_resolution                     u:object_r:vendor_public_default_prop:s0
-ro.boot.primary_display                    u:object_r:vendor_public_default_prop:s0
 vendor.hwc.drm.device                      u:object_r:vendor_public_default_prop:s0
 ro.boot.displaymode                        u:object_r:vendor_public_default_prop:s0
 ro.hardware.lightsensor                    u:object_r:vendor_public_default_prop:s0

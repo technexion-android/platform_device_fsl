@@ -138,7 +138,7 @@ BOARD_BOOTCONFIG += androidboot.console=ttymxc1 androidboot.hardware=nxp
 BOARD_KERNEL_CMDLINE += transparent_hugepage=never
 
 # display config
-BOARD_BOOTCONFIG += androidboot.lcd_density=240 androidboot.primary_display=imx-drm
+BOARD_BOOTCONFIG += androidboot.lcd_density=240
 
 # wifi config
 BOARD_BOOTCONFIG += androidboot.wificountrycode=CN
