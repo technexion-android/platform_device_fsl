@@ -101,6 +101,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/gpu/drm/panel/panel-simple.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/panel/panel-raydium-rm692c9.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/panel/panel-rocktech-hx8394f.ko \
+    $(KERNEL_OUT)/drivers/gpu/drm/panel/panel-lvds.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/imx/dpu95/imx95-dpu-drm.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/imx/display-imx-rpmsg.ko \
     $(KERNEL_OUT)/drivers/media/platform/nxp/imx8-isi/imx8-isi.ko \
