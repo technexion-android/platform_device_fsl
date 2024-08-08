@@ -35,7 +35,8 @@ PRODUCT_MAKEFILES := \
   $(LOCAL_DIR)/edm_g_imx8mm/edm_g_imx8mm.mk \
   $(LOCAL_DIR)/axon_imx8mp/axon_imx8mp.mk \
   $(LOCAL_DIR)/tep_imx8mp/tep_imx8mp.mk \
-  $(LOCAL_DIR)/tek_imx8mp/tek_imx8mp.mk
+  $(LOCAL_DIR)/tek_imx8mp/tek_imx8mp.mk \
+  $(LOCAL_DIR)/pico_imx8mm/pico_imx8mm.mk
 
 COMMON_LUNCH_CHOICES := \
   evk_8mq-user \
@@ -55,4 +56,6 @@ COMMON_LUNCH_CHOICES := \
   tep_imx8mp-user \
   tep_imx8mp-userdebug \
   tek_imx8mp-user \
-  tek_imx8mp-userdebug
+  tek_imx8mp-userdebug \
+  pico_imx8mm-user \
+  pico_imx8mm-userdebug
