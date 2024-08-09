@@ -287,6 +287,9 @@ service imx_dek_extractor /vendor/bin/hw/imx_dek_extractor
 on property:sys.boot_completed=1 && property:vendor.storageproxyd=trusty
     start imx_dek_extractor
 
+on property:ro.boot.camera.layout=ap1302
+    setprop ro.media.xml_variant.profiles _95-ap1302
+
 on property:sys.boot_completed=1 && property:vendor.storageproxyd=trusty
     # create node for secure enclave
     mkdir /data/vendor/ele 0700 system system

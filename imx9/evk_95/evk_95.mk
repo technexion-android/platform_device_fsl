@@ -304,6 +304,9 @@ PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/external_camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/external_camera_config.xml
 
 PRODUCT_PACKAGES += \
+    media_profiles_95-ap1302.xml
+
+PRODUCT_PACKAGES += \
     ap130x_ar0144_single_fw.bin
 
 PREBUILT_LIBCAMERA := false
