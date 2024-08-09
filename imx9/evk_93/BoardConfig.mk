@@ -112,6 +112,11 @@ WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/staging/media/imx/imx8-media-dev.ko
 
+# Common net modules
+BOARD_VENDOR_KERNEL_MODULES += \
+    $(KERNEL_OUT)/net/rfkill/rfkill.ko \
+    $(KERNEL_OUT)/net/wireless/cfg80211.ko
+
 # NXP 8987 wifi driver module
 BOARD_VENDOR_KERNEL_MODULES += \
     $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/mlan.ko \
