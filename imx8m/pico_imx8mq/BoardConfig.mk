@@ -146,40 +146,30 @@ ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
 BOARD_BOOTCONFIG += androidboot.vendor.sysrq=1
 endif
 
-ifeq ($(TARGET_USE_DYNAMIC_PARTITIONS),true)
-  ifeq ($(IMX_NO_PRODUCT_PARTITION),true)
-    TARGET_BOARD_DTS_CONFIG ?= imx8mq:imx8mq-pico-no-product.dtb
-  else
-    ifeq ($(IMX8MQ_USES_GKI),true)
-      # imx8mq gki with HDMI display
-      TARGET_BOARD_DTS_CONFIG ?= imx8mq:imx8mq-pico-pcie1-m2-gki.dtb
-      # imx8mq with MIPI-HDMI display
-      TARGET_BOARD_DTS_CONFIG += imx8mq-mipi:imx8mq-pico-lcdif-adv7535-gki.dtb
-      # imx8mq with HDMI and MIPI-HDMI display
-      TARGET_BOARD_DTS_CONFIG += imx8mq-dual:imx8mq-pico-dual-display-gki.dtb
-      # imx8mq with rm67199 MIPI panel display
-      TARGET_BOARD_DTS_CONFIG += imx8mq-mipi-panel:imx8mq-pico-dcss-rm67199-gki.dtb
-      # imx8mq with rm67191 MIPI panel display
-      TARGET_BOARD_DTS_CONFIG += imx8mq-mipi-panel-rm67191:imx8mq-pico-dcss-rm67191-gki.dtb
-    else
-      # imx8mq with HDMI display
-      TARGET_BOARD_DTS_CONFIG ?= imx8mq:imx8mq-pico-pcie1-m2.dtb
-      # imx8mq with MIPI-HDMI display
-      TARGET_BOARD_DTS_CONFIG += imx8mq-mipi:imx8mq-pico-lcdif-adv7535.dtb
-      # imx8mq with HDMI and MIPI-HDMI display
-      TARGET_BOARD_DTS_CONFIG += imx8mq-dual:imx8mq-pico-dual-display.dtb
-      # imx8mq with rm67199 MIPI panel display
-      TARGET_BOARD_DTS_CONFIG += imx8mq-mipi-panel:imx8mq-pico-dcss-rm67199.dtb
-      # imx8mq with rm67191 MIPI panel display
-      TARGET_BOARD_DTS_CONFIG += imx8mq-mipi-panel-rm67191:imx8mq-pico-dcss-rm67191.dtb
-    endif
-  endif
-else # no dynamic parition feature
-  ifeq ($(IMX_NO_PRODUCT_PARTITION),true)
-    TARGET_BOARD_DTS_CONFIG ?= imx8mq:imx8mq-pico-no-product-no-dynamic_partition.dtb
-  else
-	TARGET_BOARD_DTS_CONFIG ?= imx8mq:imx8mq-pico-no-dynamic_partition.dtb
-  endif
+#
+# Configurations of device tree and it's overlay
+#
+ifeq ($(EXPORT_BASEBOARD_NAME),PI)
+	BASEBOARD_TAG := pi
+else ifeq ($(EXPORT_BASEBOARD_NAME),WIZARD)
+	BASEBOARD_TAG := wizard
+endif
+TARGET_BOARD_DTS_CONFIG := imx8mq:imx8mq-pico-$(BASEBOARD_TAG)_android.dtb
+
+WITH_EXT_DTBO ?= true
+ifeq ($(WITH_EXT_DTBO),true)
+	TARGET_BOARD_DTBO_CONFIG := imx8mq:imx8mq-pico-$(BASEBOARD_TAG)-ili9881c.dtbo
+	TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-$(BASEBOARD_TAG)-tevi-ov5640.dtbo
+ifeq ($(EXPORT_BASEBOARD_NAME),PI)
+	TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-$(BASEBOARD_TAG)-dual.dtbo
+	TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-$(BASEBOARD_TAG)-tevs.dtbo
+endif
+ifeq ($(EXPORT_BASEBOARD_NAME),WIZARD)
+	TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-$(BASEBOARD_TAG)-mipi2hdmi-adv7535.dtbo
+	TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-$(BASEBOARD_TAG)-sn65dsi84-vl10112880.dtbo
+	TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-$(BASEBOARD_TAG)-sn65dsi84-vl15613676.dtbo
+	TARGET_BOARD_DTBO_CONFIG += imx8mq:imx8mq-pico-$(BASEBOARD_TAG)-sn65dsi84-vl215192108.dtbo
+endif
 endif
 
 ALL_DEFAULT_INSTALLED_MODULES += $(BOARD_VENDOR_KERNEL_MODULES)
