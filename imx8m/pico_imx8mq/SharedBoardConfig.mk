@@ -185,8 +185,11 @@ endif
 
 # -------@block_security-------
 #Enable this to include trusty support
-PRODUCT_IMX_TRUSTY := true
+#PRODUCT_IMX_TRUSTY := true
+PRODUCT_IMX_TRUSTY := false
 
 # -------@block_storage-------
 # the bootloader image used in dual-bootloader OTA
-BOARD_OTA_BOOTLOADERIMAGE := bootloader-imx8mq-trusty-dual.img
+ifeq ($(PRODUCT_IMX_TRUSTY),true)
+BOARD_OTA_BOOTLOADERIMAGE := bootloader-imx8mm-trusty-dual.img
+endif
