@@ -1,16 +1,10 @@
 TARGET_BOOTLOADER_POSTFIX := bin
 UBOOT_POST_PROCESS := true
 
-# u-boot target for imx8mq_pico
-TARGET_BOOTLOADER_CONFIG := imx8mq:imx8mq_pico_android_defconfig
-TARGET_BOOTLOADER_CONFIG += imx8mq-dual:imx8mq_pico_android_dual_defconfig
-ifeq ($(PRODUCT_IMX_TRUSTY),true)
-  TARGET_BOOTLOADER_CONFIG += imx8mq-trusty-secure-unlock-dual:imx8mq_pico_android_trusty_secure_unlock_dual_defconfig
-  TARGET_BOOTLOADER_CONFIG += imx8mq-trusty-dual:imx8mq_pico_android_trusty_dual_defconfig
-endif
-
-# u-boot target used by uuu for imx8mq_pico
-TARGET_BOOTLOADER_CONFIG += imx8mq-pico-uuu:imx8mq_pico_android_uuu_defconfig
+# u-boot target
+TARGET_BOOTLOADER_CONFIG := imx8mq:pico-imx8mq_android_defconfig
+# u-boot target used by uuu
+TARGET_BOOTLOADER_CONFIG += imx8mq-evk-uuu:pico-imx8mq_android_defconfig
 
 ifeq ($(IMX8MQ_USES_GKI),true)
 TARGET_KERNEL_DEFCONFIG := gki_defconfig
