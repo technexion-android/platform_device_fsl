@@ -322,6 +322,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_SOONG_NAMESPACES += hardware/google/camera
 PRODUCT_SOONG_NAMESPACES += vendor/nxp-opensource/imx/camera
 
+PRODUCT_COPY_FILES += \
+    $(IMX_PATH)/libcamera/prebuilt-android/src/ipa/nxp/neo/ipa_nxp_neo.so.sign:$(TARGET_COPY_OUT_VENDOR)/lib64/ipa/ipa_nxp_neo.so.sign
+
 # -------@block_display-------
 
 PRODUCT_AAPT_CONFIG += xlarge large tvdpi hdpi xhdpi xxhdpi
