@@ -15,11 +15,13 @@ include $(CONFIG_REPO_PATH)/imx8m/ProductConfigCommon.mk
 # -------@block_common_config-------
 
 # Overrides
-PRODUCT_NAME := pico_imx8mq
-PRODUCT_DEVICE := pico_imx8mq
-PRODUCT_MODEL := PICO_8MQ
+SOC_MODEL := IMX8MQ
+SOC_MODEL_LT := imx8mq
+PRODUCT_NAME := pico_${SOC_MODEL_LT}
+PRODUCT_DEVICE := pico_${SOC_MODEL_LT}
+PRODUCT_MODEL := PICO-${SOC_MODEL}
 
-TARGET_BOOTLOADER_BOARD_NAME := PICO
+TARGET_BOOTLOADER_BOARD_NAME := $(PRODUCT_MODEL)
 
 PRODUCT_CHARACTERISTICS := tablet
 
@@ -28,7 +30,7 @@ DEVICE_PACKAGE_OVERLAYS := $(IMX_DEVICE_PATH)/overlay
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
 
 PRODUCT_VENDOR_PROPERTIES += ro.soc.manufacturer=nxp
-PRODUCT_VENDOR_PROPERTIES += ro.soc.model=IMX8MQ
+PRODUCT_VENDOR_PROPERTIES += ro.soc.model=${SOC_MODEL}
 PRODUCT_VENDOR_PROPERTIES += ro.crypto.metadata_init_delete_all_keys.enabled=true
 
 SINGLE_BOOTLOADER := true
@@ -243,7 +245,7 @@ PRODUCT_COPY_FILES += \
 
 # -------@block_camera-------
 PRODUCT_COPY_FILES += \
-    $(IMX_DEVICE_PATH)/camera_config_imx8mq.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mq.json \
+    $(IMX_DEVICE_PATH)/camera_config_$(SOC_MODEL_LT).json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT).json\
     $(IMX_DEVICE_PATH)/external_camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/external_camera_config.xml
 
 PRODUCT_SOONG_NAMESPACES += hardware/google/camera
