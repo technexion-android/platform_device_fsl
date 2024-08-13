@@ -90,6 +90,7 @@
 /vendor/bin/trusty_apploader u:object_r:tee_exec:s0
 /vendor/bin/hw/imx_dek_extractor u:object_r:tee_exec:s0
 /vendor/bin/firmware_loader u:object_r:tee_exec:s0
+/vendor/bin/secure_dpu       u:object_r:tee_exec:s0
 /postinstall/bin/imx_dek_inserter u:object_r:system_file:s0
 
 # ele target

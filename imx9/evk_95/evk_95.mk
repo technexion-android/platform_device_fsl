@@ -178,7 +178,8 @@ PRODUCT_PACKAGES += \
 # Confirmation UI
 ifeq ($(PRODUCT_IMX_TRUSTY),true)
 PRODUCT_PACKAGES += \
-    android.hardware.confirmationui-service.trusty
+    android.hardware.confirmationui-service.trusty \
+    secure_dpu
 endif
 
 # new gatekeeper HAL

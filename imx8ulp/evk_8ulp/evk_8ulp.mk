@@ -195,7 +195,8 @@ PRODUCT_PACKAGES += \
 # ConfirmationUi HAL
 ifeq ($(PRODUCT_IMX_TRUSTY),true)
 PRODUCT_PACKAGES += \
-    android.hardware.confirmationui-service.trusty
+    android.hardware.confirmationui-service.trusty \
+    secure_dpu
 endif
 
 # Add Trusty OS backed gatekeeper and secure storage proxy
