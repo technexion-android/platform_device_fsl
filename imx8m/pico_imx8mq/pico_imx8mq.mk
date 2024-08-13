@@ -30,6 +30,9 @@ PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
 PRODUCT_VENDOR_PROPERTIES += ro.soc.manufacturer=nxp
 PRODUCT_VENDOR_PROPERTIES += ro.soc.model=IMX8MQ
 PRODUCT_VENDOR_PROPERTIES += ro.crypto.metadata_init_delete_all_keys.enabled=true
+
+SINGLE_BOOTLOADER := true
+
 # -------@block_treble-------
 PRODUCT_FULL_TREBLE_OVERRIDE := true
 
@@ -60,7 +63,7 @@ PRODUCT_COPY_FILES += \
 IMX8_BUILD_32BIT_ROOTFS := false
 
 PRODUCT_COPY_FILES += \
-    $(IMX_DEVICE_PATH)/app_whitelist.xml:system/etc/sysconfig/app_whitelist.xml \
+    $(IMX_DEVICE_PATH)/app_whitelist.xml:system/etc/sysconfig/app_whitelist.xml
 
 # -------@block_kernel_bootimg-------
 # Enable this to support vendor boot and boot header v3, this would be a MUST for GKI
