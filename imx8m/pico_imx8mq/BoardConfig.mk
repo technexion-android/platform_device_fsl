@@ -149,7 +149,7 @@ BOARD_HAVE_BLUETOOTH_NXP := true
 endif
 
 # -------@block_sensor-------
-BOARD_USE_SENSOR_FUSION := true
+BOARD_USE_SENSOR_FUSION := false
 
 # -------@block_kernel_bootimg-------
 BOARD_KERNEL_BASE := 0x40400000
