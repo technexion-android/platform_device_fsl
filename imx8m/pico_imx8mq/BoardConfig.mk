@@ -107,7 +107,20 @@ DEVICE_MATRIX_FILE := $(IMX_DEVICE_PATH)/compatibility_matrix.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(IMX_DEVICE_PATH)/device_framework_matrix.xml
 
 # -------@block_wifi-------
+ifeq ($(WIFI_BT_DEV),QCA9377)
+# qca9377 wifi
+BOARD_WLAN_DEVICE := qcwcn
+# QCA qcacld wifi driver module
+BOARD_VENDOR_KERNEL_MODULES += $(TARGET_OUT_INTERMEDIATES)/QCACLD_OBJ/wlan.ko
+# Avoid Wifi reset on MAC Address change
+#WIFI_AVOID_IFACE_RESET_MAC_CHANGE := true
+else
+# NXP 8987 wifi driver module
 BOARD_WLAN_DEVICE            := nxp
+BOARD_VENDOR_KERNEL_MODULES += \
+    $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/mlan.ko \
+    $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/moal.ko
+endif
 WPA_SUPPLICANT_VERSION       := VER_0_8_X
 BOARD_WPA_SUPPLICANT_DRIVER  := NL80211
 BOARD_HOSTAPD_DRIVER         := NL80211
@@ -117,9 +130,23 @@ BOARD_WPA_SUPPLICANT_PRIVATE_LIB    := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 
 # -------@block_bluetooth-------
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(IMX_DEVICE_PATH)/bluetooth
+
+ifeq ($(WIFI_BT_DEV),QCA9377)
+
+# QCA9377 BT
+BOARD_HAVE_BLUETOOTH_QCOM := true
+BOARD_HAS_QCA_BT_ROME := true
+BOARD_HAVE_BLUETOOTH_BLUEZ := false
+QCOM_BT_USE_SIBS := true
+WIFI_BT_STATUS_SYNC := false
+
+else
+
 # NXP 8997 BT
 BOARD_HAVE_BLUETOOTH_NXP := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(IMX_DEVICE_PATH)/bluetooth
+
+endif
 
 # -------@block_sensor-------
 BOARD_USE_SENSOR_FUSION := true
@@ -143,7 +170,7 @@ BOARD_KERNEL_CMDLINE += transparent_hugepage=never cma=$(CMASIZE)
 BOARD_BOOTCONFIG += androidboot.lcd_density=240 androidboot.primary_display=imx-dcss androidboot.gui_resolution=1080p
 
 # wifi config
-BOARD_BOOTCONFIG += androidboot.wificountrycode=CN
+BOARD_BOOTCONFIG += androidboot.wificountrycode=TW
 BOARD_KERNEL_CMDLINE += moal.mod_para=wifi_mod_para.conf pci=nomsi
 
 ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
@@ -186,3 +213,12 @@ BOARD_SEPOLICY_DIRS := \
 ifeq ($(IMX8MQ_USES_GKI),true)
     BOARD_KERNEL_CMDLINE += cpuidle.off=1
 endif
+
+BOARD_SEPOLICY_DIRS += vendor/technexion/sepolicy/vendor vendor/technexion/sepolicy/$(SOC_MODEL_LT)
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += vendor/technexion/sepolicy/system
+
+
+# -------@block_others-------
+# PRODUCT_COPY_FILES directives.
+# Install wcnss_filter need this
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
