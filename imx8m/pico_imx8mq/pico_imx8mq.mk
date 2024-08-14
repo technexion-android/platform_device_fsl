@@ -540,3 +540,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # trusty loadable apps
 PRODUCT_COPY_FILES += \
     vendor/nxp/fsl-proprietary/uboot-firmware/imx8m/confirmationui-imx8mq.app:/vendor/firmware/tee/confirmationui.app
+
+# sets vendor.battery.status.msg to true to show the battery status message
+PRODUCT_VENDOR_PROPERTIES += vendor.battery.status.msg=false
