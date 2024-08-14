@@ -7,11 +7,6 @@ ifneq ($(IMX8MM_USES_GKI),true)
 	TARGET_IMX_KERNEL := true
 endif
 
-#NXP 8997 wifi driver module
-BOARD_VENDOR_KERNEL_MODULES += \
-    $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/mlan.ko \
-    $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/moal.ko
-
 # CONFIG_SND_SOC_WM8524: snd-soc-wm8524.ko, wm8524 audio codec
 # CONFIG_IMX_LCDIF_CORE: imx-lcdif-core.ko
 # CONFIG_PHY_FSL_IMX8MQ_USB: phy-fsl-imx8mq-usb.ko
