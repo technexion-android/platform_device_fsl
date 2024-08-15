@@ -124,7 +124,7 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(IMX_DEVICE_PATH)/bluetooth
 BOARD_KERNEL_BASE := 0x80400000
 
 # NXP default config
-BOARD_KERNEL_CMDLINE := init=/init firmware_class.path=/vendor/firmware loop.max_part=7 bootconfig
+BOARD_KERNEL_CMDLINE := init=/init firmware_class.path=/vendor/firmware,/ loop.max_part=7 bootconfig
 BOARD_BOOTCONFIG += androidboot.hardware=nxp
 
 # memory config
