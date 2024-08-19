@@ -266,7 +266,7 @@ PRODUCT_COPY_FILES += \
 
 # LPA demo
 PRODUCT_COPY_FILES += \
-    $(FSL_PROPRIETARY_PATH)/fsl-proprietary/mcu-sdk/imx95/imx95_mcu_demo_lpa.img:imx95_mcu_demo.img
+    $(FSL_PROPRIETARY_PATH)/fsl-proprietary/mcu-sdk/imx95/imx95_19x19_mcu_demo_lpa.img:imx95_mcu_demo.img
 
 ifeq ($(POWERSAVE),true)
 PRODUCT_COPY_FILES += \
