@@ -57,6 +57,7 @@ build_imx_uboot()
 	cp ${_opt} ${UBOOT_OUT}/tools/mkimage  ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/mkimage_uboot
 	#cp ${UBOOT_OUT}/arch/arm/dts/imx8mq-evk.dtb ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/
 	_do_cmd "cp ${_opt} -f ${UBOOT_OUT}/arch/arm/dts/${_uboot_dtb} ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/${_soc_type}-evk.dtb" || _error_exit "Copy ${_uboot_dtb} to ${_soc_type}-evk.dtb fail"
+	cp ${_opt} ${FSL_PROPRIETARY_PATH}/linux-firmware-imx/firmware/hdmi/cadence/signed_hdmi_imx8m.bin  ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/
 	cp ${_opt} ${FSL_PROPRIETARY_PATH}/linux-firmware-imx/firmware/ddr/synopsys/lpddr4_pmu_train* ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/
 
 	# build ATF based on whether tee is involved
@@ -72,7 +73,7 @@ build_imx_uboot()
 		if [ -f ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/tee.bin.lz4 ] ; then
 			rm -rf ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/tee.bin.lz4
 		fi
-		#_do_cmd "make -C ${IMX_PATH}/arm-trusted-firmware/ CROSS_COMPILE="${ATF_CROSS_COMPILE}" PLAT=`echo $2 | cut -d '-' -f1` bl31 -B LPA=${POWERSAVE_STATE} IMX_ANDROID_BUILD=true 1>/dev/null" || exit 1
+		_do_cmd "make -C ${IMX_PATH}/arm-trusted-firmware/ CROSS_COMPILE="${ATF_CROSS_COMPILE}" PLAT=`echo $2 | cut -d '-' -f1` bl31 -B IMX_ANDROID_BUILD=true 1>/dev/null" || exit 1
 	fi
 
 	[[ ${_opt} =~ '-v' ]] || _addon="1>/dev/null"
@@ -88,10 +89,10 @@ build_imx_uboot()
 		make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ SOC=iMX8MQ TEE_LOAD_ADDR=0xfe000000 flash_spl_uboot || exit 1
 		make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ SOC=iMX8MQ print_fit_hab || exit 1
 	elif [ `echo $2 | rev | cut -d '-' -f1 | rev` != "dual" ]; then
-		make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ SOC=iMX8MQ flash_spl_uboot || exit 1
+		make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ SOC=iMX8MQ flash_hdmi_spl_uboot || exit 1
 		make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ SOC=iMX8MQ print_fit_hab || exit 1
 	else
-		make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ SOC=iMX8MQ flash_evk_no_hdmi_dual_bootloader || exit 1
+		make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ SOC=iMX8MQ flash_evk_dual_bootloader || exit 1
 		make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ SOC=iMX8MQ PRINT_FIT_HAB_OFFSET=0x0 print_fit_hab || exit 1
 	fi
 
@@ -99,8 +100,6 @@ build_imx_uboot()
 	if [ `echo $2 | rev | cut -d '-' -f1 | rev` != "dual" ]; then
 		cp ${_opt} ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/flash.bin ${UBOOT_COLLECTION}/u-boot-$2.imx
 	else
-		_do_cmd "${_mkcmd} flash_evk_no_hdmi_dual_bootloader" || _error_exit "make flash_evk_no_hdmi_dual_bootloader fail"
-		_do_cmd "${_mkcmd} PRINT_FIT_HAB_OFFSET=0x0 print_fit_hab" || _error_exit "print_fit_hab fail"
 		cp ${_opt} ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/flash.bin ${UBOOT_COLLECTION}/spl-$2.bin
 		cp ${_opt} ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/u-boot-ivt.itb ${UBOOT_COLLECTION}/bootloader-$2.img
 	fi
