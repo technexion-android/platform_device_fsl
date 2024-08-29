@@ -30,6 +30,9 @@ PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
 PRODUCT_VENDOR_PROPERTIES += ro.soc.manufacturer=nxp
 PRODUCT_VENDOR_PROPERTIES += ro.soc.model=IMX95
 PRODUCT_VENDOR_PROPERTIES += ro.crypto.metadata_init_delete_all_keys.enabled=true
+
+PRODUCT_MAX_PAGE_SIZE_SUPPORTED := 16384
+PRODUCT_NO_BIONIC_PAGE_SIZE_MACRO := true
 # -------@block_treble-------
 PRODUCT_FULL_TREBLE_OVERRIDE := true
 
