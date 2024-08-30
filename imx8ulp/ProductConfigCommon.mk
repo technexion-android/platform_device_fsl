@@ -243,8 +243,6 @@ PRODUCT_PACKAGES += \
     libdisplayutils \
     libfsldisplay
 
-PRODUCT_SOONG_NAMESPACES += external/mesa3d
-
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.sf.color_saturation=1.0 \
     ro.hw_timeout_multiplier=2

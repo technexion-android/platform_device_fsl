@@ -190,6 +190,9 @@ TARGET_RECOVERY_UI_LIB := librecovery_ui_imx
 # Indicate use vivante drm based egl and gralloc
 BOARD_GPU_DRIVERS := vivante
 
+# Not build mesa3d to avoid conflict with imx
+BOARD_USE_CUSTOMIZED_MESA := true
+
 # Indicate use NXP libdrm-imx or Android external/libdrm
 BOARD_GPU_LIBDRM := libdrm_imx
 
