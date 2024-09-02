@@ -255,6 +255,11 @@ PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/camera_config_$(SOC_MODEL_LT).json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT).json\
     $(IMX_DEVICE_PATH)/external_camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/external_camera_config.xml
 
+VENDOR_MULTIMEDIA_PATH := vendor/technexion/multimedia
+PRODUCT_COPY_FILES +=\
+    $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-tevs.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-tevs.json\
+
+
 PRODUCT_SOONG_NAMESPACES += hardware/google/camera
 PRODUCT_SOONG_NAMESPACES += vendor/nxp-opensource/imx/camera
 
