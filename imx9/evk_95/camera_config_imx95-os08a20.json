@@ -23,7 +23,9 @@
       "FocalLength": "4.0",
       "MaxJpegSize": "4000000",
       "MinFrameDuration": "33333333",
-      "MaxFrameDuration": "300000000"
+      "MaxFrameDuration": "300000000",
+      "exposure_ns_min": "116000",
+      "exposure_ns_max": "33216000"
     }
   ]
 }
