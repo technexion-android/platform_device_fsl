@@ -5,6 +5,9 @@ on early-boot
 
     setprop ro.hardware.hwcomposer drm_mappermetadata
 
+    # Hwui RenderPipelineType default is skiagl, change to use skiavk
+    setprop debug.hwui.renderer skiavk
+
     # change for FSL specific service
     chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
     chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
