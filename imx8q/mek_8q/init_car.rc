@@ -48,6 +48,9 @@ on early-boot
     # Default g2d [dpu|pxp|viv] lib to be used
     setprop vendor.imx.default-g2d dpu
 
+    #viv sdk dir
+    setprop vendor.VIVANTE_SDK_DIR /vendor/etc/viv_sdk
+
     # Prepare for wifi
     setprop wifi.interface wlan0
     setprop wifi.direct.interface p2p0
