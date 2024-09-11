@@ -54,10 +54,6 @@ BOARD_ROOT_EXTRA_FOLDERS += metadata
 # -------@block_infrastructure-------
 include $(CONFIG_REPO_PATH)/imx8q/BoardConfigCommon.mk
 
-# -------@block_memory-------
-USE_ION_ALLOCATOR := true
-USE_GPU_ALLOCATOR := false
-
 # -------@block_security-------
 BOARD_AVB_ENABLE := true
 

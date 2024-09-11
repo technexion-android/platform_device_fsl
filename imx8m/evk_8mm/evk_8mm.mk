@@ -302,14 +302,6 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator-service.imx \
     mapper.imx
 
-# 2d test
-ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
-PRODUCT_PACKAGES += 2d-test
-endif
-
-PRODUCT_PACKAGES += \
-    libg2d-opencl
-
 # -------@block_gpu-------
 
 PRODUCT_PACKAGES += \
@@ -322,17 +314,11 @@ PRODUCT_PACKAGES += \
     libVSC \
     libCLC \
     libLLVM_viv \
-    libOpenCL \
     libg2d-viv \
-    libgpuhelper \
-    libSPIRV_viv \
+    libgpuhelper
 
 PRODUCT_VENDOR_PROPERTIES += \
     ro.hardware.egl = VIVANTE
-
-# GPU openCL g2d
-PRODUCT_COPY_FILES += \
-    $(IMX_PATH)/imx/opencl-2d/cl_g2d.cl:$(TARGET_COPY_OUT_VENDOR)/etc/cl_g2d.cl
 
 # -------@block_wifi-------
 

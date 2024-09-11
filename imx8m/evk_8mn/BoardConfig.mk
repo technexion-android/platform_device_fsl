@@ -23,10 +23,6 @@ SOONG_CONFIG_IMXPLUGIN_BOARD_VPU_ONLY = false
 SOONG_CONFIG_IMXPLUGIN_PREBUILT_FSL_IMX_CODEC = true
 SOONG_CONFIG_IMXPLUGIN_POWERSAVE = false
 
-# -------@block_memory-------
-USE_ION_ALLOCATOR := true
-USE_GPU_ALLOCATOR := false
-
 # -------@block_storage-------
 TARGET_USERIMAGES_USE_EXT4 := true
 
