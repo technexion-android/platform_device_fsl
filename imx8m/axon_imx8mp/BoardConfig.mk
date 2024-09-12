@@ -236,6 +236,9 @@ ifeq ($(WITH_EXT_DTBO),true)
 	TARGET_BOARD_DTBO_CONFIG := imx8mp:imx8mp-axon-$(BASEBOARD_TAG)-lvds-vl10112880.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-axon-$(BASEBOARD_TAG)-lvds-vl15613676.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-axon-$(BASEBOARD_TAG)-lvds-vl215192108.dtbo
+	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-axon-$(BASEBOARD_TAG)-vizionpanel-vl10112880.dtbo
+	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-axon-$(BASEBOARD_TAG)-vizionpanel-vl15010276.dtbo
+	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-axon-$(BASEBOARD_TAG)-vizionpanel-vl15613676.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-axon-$(BASEBOARD_TAG)-tevi-ov5640.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-axon-$(BASEBOARD_TAG)-tevi-ap1302.dtbo
 #	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-axon-$(BASEBOARD_TAG)-vizionlink-tevi-ov5640.dtbo
