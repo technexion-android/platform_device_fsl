@@ -206,9 +206,6 @@ ifeq ($(EXPORT_BASEBOARD_NAME),PI)
 endif
 ifeq ($(EXPORT_BASEBOARD_NAME),WIZARD)
 	TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-$(BASEBOARD_TAG)-mipi2hdmi-adv7535.dtbo
-	TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-$(BASEBOARD_TAG)-sn65dsi84-vl10112880.dtbo
-	TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-$(BASEBOARD_TAG)-sn65dsi84-vl15613676.dtbo
-	TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-$(BASEBOARD_TAG)-sn65dsi84-vl215192108.dtbo
 endif
 endif
 
