@@ -126,6 +126,9 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/regulator/pca9450-regulator.ko \
     $(KERNEL_OUT)/drivers/gpio/gpio-mxc.ko \
     $(KERNEL_OUT)/drivers/perf/fsl_imx8_ddr_perf.ko \
+    $(KERNEL_OUT)/drivers/mfd/rohm-bd718x7.ko \
+    $(KERNEL_OUT)/drivers/regulator/rohm-regulator.ko \
+    $(KERNEL_OUT)/drivers/regulator/bd718x7-regulator.ko \
     $(KERNEL_OUT)/drivers/cpufreq/cpufreq-dt.ko \
     $(KERNEL_OUT)/drivers/cpufreq/imx-cpufreq-dt.ko \
     $(KERNEL_OUT)/drivers/nvmem/nvmem-imx-ocotp.ko \
