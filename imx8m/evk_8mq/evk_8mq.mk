@@ -234,7 +234,6 @@ $(call  inherit-product-if-exists, vendor/nxp-private/security/nxp_security.mk)
 PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey \
     libwvdrmcryptoplugin \
-    libwvaidl \
     liboemcrypto
 
 TARGET_BUILD_WIDEVINE :=

@@ -238,8 +238,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #DRM Widevine 1.4 L3 support
 PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey \
-    libwvdrmcryptoplugin \
-    libwvaidl
+    libwvdrmcryptoplugin
 
 TARGET_BUILD_WIDEVINE :=
 TARGET_BUILD_WIDEVINE_USE_PREBUILT := true
