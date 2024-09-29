@@ -93,13 +93,13 @@
             </devicePorts>
             <routes>
                 <route type="mix" sink="Speaker"
-                       sources="direct output,primary output"/>
+                       sources="primary output"/>
                 <route type="mix" sink="Wired Headphones"
                        sources="primary output"/>
                 <route type="mix" sink="Wired Headset"
                        sources="primary output"/>
                 <route type="mix" sink="Line-Out"
-                       sources="compressed_offload,hi-res output,lpa output,primary output"/>
+                       sources="direct output,compressed_offload,hi-res output,lpa output,primary output"/>
                 <route type="mix" sink="HDMI Out"
                        sources="passthrough output,hdmi output"/>
                 <route type="mix" sink="BT SCO Headset"

@@ -29,7 +29,7 @@
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                              samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
                 </mixPort>
-                <mixPort name="esai output" role="source" flags="AUDIO_OUTPUT_FLAG_DIRECT">
+                <mixPort name="direct output" role="source" flags="AUDIO_OUTPUT_FLAG_DIRECT">
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                              samplingRates="48000 96000 192000" channelMasks="AUDIO_CHANNEL_OUT_QUAD AUDIO_CHANNEL_OUT_5POINT1 AUDIO_CHANNEL_OUT_7POINT1"/>
                 </mixPort>
@@ -78,7 +78,7 @@
             </devicePorts>
             <routes>
                 <route type="mix" sink="Speaker"
-                       sources="esai output,primary output"/>
+                       sources="primary output"/>
                 <route type="mix" sink="Wired Headphones"
                        sources="primary output"/>
                 <route type="mix" sink="Wired Headset"
@@ -92,7 +92,7 @@
                 <route type="mix" sink="BT SCO"
                        sources="bt sco output"/>
                 <route type="mix" sink="Line-Out"
-                       sources="compressed_offload,primary output"/>
+                       sources="direct output,compressed_offload,primary output"/>
 
                 <route type="mix" sink="primary input"
                        sources="Built-In Mic,Wired Headset Mic,BT SCO Headset Mic"/>
