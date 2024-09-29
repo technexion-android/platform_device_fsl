@@ -83,8 +83,6 @@
                 </devicePort>
                 <devicePort tagName="Wired Headset Mic" type="AUDIO_DEVICE_IN_WIRED_HEADSET" role="source">
                 </devicePort>
-                <devicePort tagName="Spdif-In" type="AUDIO_DEVICE_IN_AUX_DIGITAL" role="source">
-                </devicePort>
                 <devicePort tagName="BT SCO Headset Mic" type="AUDIO_DEVICE_IN_BLUETOOTH_SCO_HEADSET" role="source">
                 </devicePort>
             </devicePorts>
@@ -107,7 +105,7 @@
                        sources="bt sco output"/>
 
                 <route type="mix" sink="primary input"
-                       sources="Wired Headset Mic,Built-In Mic,Spdif-In,BT SCO Headset Mic"/>
+                       sources="Wired Headset Mic,Built-In Mic,BT SCO Headset Mic"/>
             </routes>
         </module>
 
