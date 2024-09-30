@@ -1,1 +1,2 @@
 type sysfs_mali_gpu, fs_type, sysfs_type;
+type ipa_proxy_exec, vendor_file_type, exec_type, file_type;
