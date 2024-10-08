@@ -677,3 +677,6 @@ PRODUCT_PACKAGES += \
 
 # make sure /vendor/etc/configs/isp/ is created
     PRODUCT_PACKAGES += hollow
+
+# Add Virtualization support
+$(call inherit-product, packages/modules/Virtualization/apex/product_packages.mk)

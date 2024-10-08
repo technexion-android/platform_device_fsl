@@ -730,3 +730,5 @@ PRODUCT_PACKAGES += \
 endif
 endif
 
+# Add Virtualization support
+$(call inherit-product, packages/modules/Virtualization/apex/product_packages.mk)

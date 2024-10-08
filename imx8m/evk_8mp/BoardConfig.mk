@@ -148,6 +148,9 @@ else
 BOARD_KERNEL_CMDLINE += cma=$(CMASIZE)@0x400M-0x1000M
 endif
 
+# Add KVM support
+BOARD_KERNEL_CMDLINE += androidboot.hypervisor.vm.supported=true
+
 # powersave config
 ifeq ($(POWERSAVE),true)
     BOARD_BOOTCONFIG += androidboot.powersave.usb=true androidboot.powersave.uclamp=true androidboot.powersave.lpa=true

@@ -136,6 +136,9 @@ endif
 # Disable fw_devlink.strict
 BOARD_KERNEL_CMDLINE += fw_devlink.strict=0
 
+# Add KVM support
+BOARD_KERNEL_CMDLINE += androidboot.hypervisor.vm.supported=true
+
 ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
 BOARD_BOOTCONFIG += androidboot.vendor.sysrq=1
 endif

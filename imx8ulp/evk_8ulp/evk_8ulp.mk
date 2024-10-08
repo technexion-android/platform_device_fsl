@@ -531,3 +531,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     vendor/nxp/ele/mx8ulpa2ext-ahab-container.img:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/lib/firmware/imx/ele/mx8ulpa2ext-ahab-container.img \
     vendor/nxp/ele/mx8ulpa2-ahab-container.img:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/lib/firmware/imx/ele/mx8ulpa2-ahab-container.img
+
+# Add Virtualization support
+$(call inherit-product, packages/modules/Virtualization/apex/product_packages.mk)
