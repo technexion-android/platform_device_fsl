@@ -293,19 +293,17 @@ PREBUILT_LIBCAMERA := false
 PRODUCT_PACKAGES += \
     libcamera-base \
     libcamera \
+    libcamera_ipa_sign \
     libyaml \
     libnxp_ipa_cam_helper \
     ipa_nxp_neo \
     config.yaml \
     os08a20.yaml \
-    nxpneo_ipa_proxy \
-    ipa_nxp_neo.so.sign
+    nxpneo_ipa_proxy
 
 PRODUCT_SOONG_NAMESPACES += hardware/google/camera
 PRODUCT_SOONG_NAMESPACES += vendor/nxp-opensource/imx/camera
 
-PRODUCT_COPY_FILES += \
-    $(IMX_PATH)/libcamera/prebuilt-android/src/ipa/nxp/neo/ipa_nxp_neo.so.sign:$(TARGET_COPY_OUT_VENDOR)/lib64/ipa/ipa_nxp_neo.so.sign
 
 # -------@block_display-------
 
