@@ -31,7 +31,7 @@ PRODUCT_MAKEFILES := \
   $(LOCAL_DIR)/evk_95/evk_95.mk
 
 COMMON_LUNCH_CHOICES := \
-  evk_93-trunk_staging-user \
-  evk_93-trunk_staging-userdebug \
-  evk_95-trunk_staging-user \
-  evk_95-trunk_staging-userdebug
+  evk_93-nxp_stable-user \
+  evk_93-nxp_stable-userdebug \
+  evk_95-nxp_stable-user \
+  evk_95-nxp_stable-userdebug

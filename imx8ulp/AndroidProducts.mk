@@ -31,7 +31,7 @@ PRODUCT_MAKEFILES := \
   $(LOCAL_DIR)/evk_8ulp/evk_8ulp.mk
 
 COMMON_LUNCH_CHOICES := \
-  watch_8ulp-trunk_staging-user \
-  watch_8ulp-trunk_staging-userdebug \
-  evk_8ulp-trunk_staging-user \
-  evk_8ulp-trunk_staging-userdebug
+  watch_8ulp-nxp_stable-user \
+  watch_8ulp-nxp_stable-userdebug \
+  evk_8ulp-nxp_stable-user \
+  evk_8ulp-nxp_stable-userdebug

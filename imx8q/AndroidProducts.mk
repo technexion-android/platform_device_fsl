@@ -32,9 +32,9 @@ PRODUCT_MAKEFILES := \
   $(LOCAL_DIR)/mek_8q/mek_8q_car2.mk
 
 COMMON_LUNCH_CHOICES := \
-  mek_8q-trunk_staging-user \
-  mek_8q-trunk_staging-userdebug \
-  mek_8q_car-trunk_staging-user \
-  mek_8q_car-trunk_staging-userdebug \
-  mek_8q_car2-trunk_staging-user \
-  mek_8q_car2-trunk_staging-userdebug
+  mek_8q-nxp_stable-user \
+  mek_8q-nxp_stable-userdebug \
+  mek_8q_car-nxp_stable-user \
+  mek_8q_car-nxp_stable-userdebug \
+  mek_8q_car2-nxp_stable-user \
+  mek_8q_car2-nxp_stable-userdebug

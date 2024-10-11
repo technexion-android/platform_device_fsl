@@ -33,11 +33,11 @@ PRODUCT_MAKEFILES := \
   $(LOCAL_DIR)/evk_8mp/evk_8mp.mk
 
 COMMON_LUNCH_CHOICES := \
-  evk_8mq-trunk_staging-user \
-  evk_8mq-trunk_staging-userdebug \
-  evk_8mm-trunk_staging-user \
-  evk_8mm-trunk_staging-userdebug \
-  evk_8mn-trunk_staging-user \
-  evk_8mn-trunk_staging-userdebug \
-  evk_8mp-trunk_staging-user \
-  evk_8mp-trunk_staging-userdebug
+  evk_8mq-nxp_stable-user \
+  evk_8mq-nxp_stable-userdebug \
+  evk_8mm-nxp_stable-user \
+  evk_8mm-nxp_stable-userdebug \
+  evk_8mn-nxp_stable-user \
+  evk_8mn-nxp_stable-userdebug \
+  evk_8mp-nxp_stable-user \
+  evk_8mp-nxp_stable-userdebug
