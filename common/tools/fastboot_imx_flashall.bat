@@ -147,7 +147,7 @@ if not [%uboot_feature_test:dual=%] == [%uboot_feature_test%] set /A support_dua
 :: If sdcard size is not correctly set, exit
 if %card_size% neq 0 set /A statisc+=1
 if %card_size% neq 7 set /A statisc+=1
-if %card_size% neq 14 set /A statisc+=1
+if %card_size% neq 13 set /A statisc+=1
 if %card_size% neq 28 set /A statisc+=1
 if %statisc% == 4 echo card_size is not a legal value & goto :eof
 
@@ -246,11 +246,10 @@ echo  -h                displays this help message
 echo  -f soc_name       flash android image file with soc_name
 echo  -a                only flash image to slot_a
 echo  -b                only flash image to slot_b
-echo  -c card_size      optional setting: 14 / 28
-echo                        If not set, use partition-table.img/partition-table-dual.img (default)
-echo                        If set to 14, use partition-table-14GB.img for 16GB SD card
+echo  -c card_size      optional setting: 13 / 28
+echo                        If not set, use partition-table.img/partition-table-dual.img
+echo                        If set to 13, use partition-table-13GB.img/partition-table-13GB-dual.img for 16GB SD card
 echo                        If set to 28, use partition-table-28GB.img/partition-table-28GB-dual.img for 32GB SD card
-echo                    Make sure the corresponding file exist for your platform
 echo  -m                flash mcu image
 echo  -u uboot_feature  flash uboot or spl&bootloader image with "uboot_feature" in their names
 echo                        For Standard Android:
