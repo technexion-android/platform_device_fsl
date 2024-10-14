@@ -141,7 +141,7 @@ BOARD_KERNEL_CMDLINE += galcore.contiguousSize=33554432
 endif
 
 # Add KVM support
-BOARD_KERNEL_CMDLINE += androidboot.hypervisor.vm.supported=true
+BOARD_BOOTCONFIG += androidboot.hypervisor.vm.supported=true
 
 ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
 BOARD_BOOTCONFIG += androidboot.vendor.sysrq=1

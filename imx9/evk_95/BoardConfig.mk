@@ -143,7 +143,7 @@ BOARD_BOOTCONFIG += androidboot.wificountrycode=CN
 BOARD_KERNEL_CMDLINE +=  moal.mod_para=wifi_mod_para.conf
 
 # Add KVM support
-BOARD_KERNEL_CMDLINE += androidboot.hypervisor.vm.supported=true
+BOARD_BOOTCONFIG += androidboot.hypervisor.vm.supported=true
 
 ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
 BOARD_BOOTCONFIG += androidboot.vendor.sysrq=1
