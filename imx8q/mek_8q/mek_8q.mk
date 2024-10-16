@@ -712,6 +712,9 @@ else
 $(call inherit-product-if-exists, vendor/partner_gms/products/gms.mk)
 endif
 PRODUCT_SOONG_NAMESPACES += vendor/partner_gms
+
+PRODUCT_PACKAGES += \
+    privapp_whitelist_com.android.emergency
 else
 # Included GAS package
 ifeq ($(filter TRUE true 1,$(IMX_BUILD_32BIT_ROOTFS) $(IMX_BUILD_32BIT_64BIT_ROOTFS)),)
