@@ -276,9 +276,6 @@ PRODUCT_PACKAGES += \
     WallpaperPicker
 endif
 
-PRODUCT_PACKAGES += \
-    libedid
-
 ifneq ($(PRODUCT_IMX_CAR),true)
 PRODUCT_COPY_FILES += \
    $(IMX_DEVICE_PATH)/display_settings.xml:$(TARGET_COPY_OUT_VENDOR)/etc/display_settings.xml
@@ -289,8 +286,6 @@ endif
 
 PRODUCT_PACKAGES += \
     libdrm_android \
-    libdisplayutils \
-    libfsldisplay
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.sf.color_saturation=1.0

@@ -240,12 +240,7 @@ PRODUCT_PACKAGES += \
 endif
 
 PRODUCT_PACKAGES += \
-    libedid
-
-PRODUCT_PACKAGES += \
     libdrm_android \
-    libdisplayutils \
-    libfsldisplay
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.sf.color_saturation=1.0 \
