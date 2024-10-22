@@ -27,7 +27,7 @@ endif
 TARGET_KERNEL_ARCH := arm64
 
 # NXP 8997 mxmdriver wifi driver module
-BOARD_VENDOR_KERNEL_MODULES += \
+#BOARD_VENDOR_KERNEL_MODULES += \
     $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/mlan.ko \
     $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/moal.ko
 
@@ -57,13 +57,14 @@ ifeq ($(PRODUCT_IMX_CAR),)
   LOADABLE_KERNEL_MODULE ?= true
 endif
 
+
+#   $(KERNEL_OUT)/drivers/firmware/imx/seco_mu.ko \   need update lf/next  LF-13910: arm64: dts: imx8dxl: modify the node name
 ifeq ($(LOADABLE_KERNEL_MODULE),true)
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/mailbox/imx-mailbox.ko \
     $(KERNEL_OUT)/drivers/firmware/imx/imx-scu-firmware.ko \
     $(KERNEL_OUT)/drivers/rpmsg/rpmsg_ns.ko \
     $(KERNEL_OUT)/drivers/rpmsg/virtio_rpmsg_bus.ko \
-    $(KERNEL_OUT)/drivers/firmware/imx/seco_mu.ko \
     $(KERNEL_OUT)/drivers/pmdomain/imx/scu-pd.ko \
     $(KERNEL_OUT)/drivers/clk/imx/mxc-clk.ko \
     $(KERNEL_OUT)/drivers/clk/imx/clk-imx-scu.ko \
@@ -75,10 +76,6 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/pinctrl/freescale/pinctrl-imx8qxp.ko \
     $(KERNEL_OUT)/drivers/pinctrl/freescale/pinctrl-imx8qm.ko \
     $(KERNEL_OUT)/drivers/power/reset/imx-sm-reset.ko \
-    $(KERNEL_OUT)/drivers/trusty/trusty-core.ko \
-    $(KERNEL_OUT)/drivers/trusty/trusty-log.ko \
-    $(KERNEL_OUT)/drivers/trusty/trusty-virtio.ko \
-    $(KERNEL_OUT)/drivers/trusty/trusty-ipc.ko \
     $(KERNEL_OUT)/drivers/iommu/arm/arm-smmu/arm_smmu.ko \
     $(KERNEL_OUT)/drivers/cpufreq/cpufreq-dt.ko \
     $(KERNEL_OUT)/drivers/cpufreq/cpufreq-dt-platdev.ko \
@@ -164,7 +161,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/media/i2c/ov5640.ko \
     $(KERNEL_OUT)/drivers/staging/media/imx/gmsl-max9286.ko \
     $(KERNEL_OUT)/drivers/staging/media/imx/imx8-mipi-csi2.ko \
-    $(KERNEL_OUT)/drivers/staging/media/imx/imx8-parallel-csi.ko \
+    $(KERNEL_OUT)/drivers/media/platform/nxp/imx-parallel-csi.ko \
     $(KERNEL_OUT)/drivers/staging/media/imx/imx8-capture.ko \
     $(KERNEL_OUT)/drivers/staging/media/imx/imx8-isi-hw.ko \
     $(KERNEL_OUT)/drivers/staging/media/imx/imx8-isi-capture.ko \
@@ -191,7 +188,7 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-encdec.ko \
     $(KERNEL_OUT)/drivers/media/platform/amphion/amphion-vpu.ko \
     $(KERNEL_OUT)/drivers/power/supply/dummy_battery.ko \
-    $(KERNEL_OUT)/drivers/dma/fsl-edma-v3.ko \
+    $(KERNEL_OUT)/drivers/dma/fsl-edma.ko \
     $(KERNEL_OUT)/sound/soc/fsl/imx-pcm-dma.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-imx-audmux.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-audmix.ko \
@@ -212,12 +209,11 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-hdmi-codec.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-imx-hdmi.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-spdif.ko \
-    $(KERNEL_OUT)/sound/soc/fsl/snd-soc-imx-spdif.ko \
     $(KERNEL_OUT)/drivers/remoteproc/imx_dsp_rproc.ko \
-    $(KERNEL_OUT)/drivers/phy/freescale/phy-fsl-imx8q-pcie.ko \
     $(KERNEL_OUT)/drivers/pci/controller/dwc/pci-imx6.ko \
     $(KERNEL_OUT)/drivers/net/phy/realtek.ko \
-    $(KERNEL_OUT)/drivers/net/phy/at803x.ko \
+    $(KERNEL_OUT)/drivers/net/phy/qcom/qcom-phy-lib.ko \
+    $(KERNEL_OUT)/drivers/net/phy/qcom/at803x.ko \
     $(KERNEL_OUT)/drivers/pps/pps_core.ko \
     $(KERNEL_OUT)/drivers/ptp/ptp.ko \
     $(KERNEL_OUT)/drivers/net/ethernet/freescale/fec.ko \
@@ -227,6 +223,7 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/mtd/nand/raw/gpmi-nand/gpmi-nand.ko \
     $(KERNEL_OUT)/drivers/perf/fsl_imx8_ddr_perf.ko \
     $(KERNEL_OUT)/drivers/iio/adc/imx8qxp-adc.ko \
+    $(KERNEL_OUT)/drivers/net/can/dev/can-dev.ko \
     $(KERNEL_OUT)/drivers/net/can/flexcan/flexcan.ko \
     $(KERNEL_OUT)/drivers/watchdog/imx_sc_wdt.ko \
     $(KERNEL_OUT)/drivers/rtc/rtc-imx-sc.ko \

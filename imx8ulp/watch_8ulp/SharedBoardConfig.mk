@@ -76,7 +76,7 @@ ifeq ($(LOADABLE_KERNEL_MODULE),true)
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/hwmon/hwmon.ko \
     $(KERNEL_OUT)/drivers/hwmon/scmi-hwmon.ko \
-    $(KERNEL_OUT)/drivers/firmware/arm_scmi/scmi_pm_domain.ko \
+    $(KERNEL_OUT)/drivers/pmdomain/arm/scmi_pm_domain.ko \
     $(KERNEL_OUT)/drivers/clk/imx/mxc-clk.ko \
     $(KERNEL_OUT)/drivers/clk/imx/clk-imx8ulp.ko \
     $(KERNEL_OUT)/drivers/mailbox/imx-mailbox.ko \
@@ -209,7 +209,8 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/sound/soc/fsl/imx-pcm-dma.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-utils.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-spdif.ko \
-    $(KERNEL_OUT)/sound/soc/fsl/snd-soc-imx-spdif.ko \
+    $(KERNEL_OUT)/sound/soc/fsl/snd-soc-imx-audmux.ko \
+    $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-asoc-card.ko \
     $(KERNEL_OUT)/sound/soc/generic/snd-soc-simple-card-utils.ko \
     $(KERNEL_OUT)/sound/soc/generic/snd-soc-simple-card.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-sai.ko \

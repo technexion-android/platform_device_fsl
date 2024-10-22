@@ -199,21 +199,19 @@ else
       TARGET_BOARD_DTS_CONFIG += imx8qxp:imx8qxp-mek-ov5640-rpmsg-no-product.dtb
     else
       # imx8qm standard android; MIPI-HDMI display
-      TARGET_BOARD_DTS_CONFIG := imx8qm:imx8qm-mek-ov5640.dtb
+      TARGET_BOARD_DTS_CONFIG := imx8qm:imx8qm-mek-rpmsg.dtb
       # imx8qm standard android; MIPI panel display
       TARGET_BOARD_DTS_CONFIG += imx8qm-mipi-panel:imx8qm-mek-dsi-rm67199.dtb
       TARGET_BOARD_DTS_CONFIG += imx8qm-mipi-panel-rm67191:imx8qm-mek-dsi-rm67191.dtb
       # imx8qm standard android; HDMI display
       TARGET_BOARD_DTS_CONFIG += imx8qm-hdmi:imx8qm-mek-hdmi.dtb
       # imx8qm standard android; HDMI and HDMI RX
-      TARGET_BOARD_DTS_CONFIG += imx8qm-hdmi-rx:imx8qm-mek-hdmi-rx-ov5640.dtb
-      # imx8qm standard android; Multiple display
-      TARGET_BOARD_DTS_CONFIG += imx8qm-md:imx8qm-mek-md.dtb
+      TARGET_BOARD_DTS_CONFIG += imx8qm-hdmi-rx:imx8qm-mek-hdmi.dtb
       # imx8qm standard android; LVDS1 panel display
       TARGET_BOARD_DTS_CONFIG += imx8qm-lvds1-panel:imx8qm-mek-jdi-wuxga-lvds1-panel.dtb
       # imx8qxp standard android; MIPI-HDMI display
-      TARGET_BOARD_DTS_CONFIG += imx8qxp:imx8qxp-mek-ov5640-rpmsg.dtb
-      TARGET_BOARD_DTS_CONFIG += imx8dx:imx8dx-mek-ov5640.dtb
+      TARGET_BOARD_DTS_CONFIG += imx8qxp:imx8qxp-mek-rpmsg.dtb
+      TARGET_BOARD_DTS_CONFIG += imx8dx:imx8dx-mek.dtb
       # imx8qxp standard android; MIPI panel display
       TARGET_BOARD_DTS_CONFIG += imx8qxp-mipi-panel:imx8qxp-mek-dsi-rm67199-rpmsg.dtb
       TARGET_BOARD_DTS_CONFIG += imx8qxp-mipi-panel-rm67191:imx8qxp-mek-dsi-rm67191-rpmsg.dtb
@@ -224,16 +222,14 @@ else
       # imx8qxp support SOF
       TARGET_BOARD_DTS_CONFIG += imx8qxp-sof:imx8qxp-mek-sof-wm8960.dtb
       # imx8qm standard android; MIPI-HDMI display on revd
-      TARGET_BOARD_DTS_CONFIG += imx8qm-revd:imx8qm-mek-revd-ov5640.dtb
+      TARGET_BOARD_DTS_CONFIG += imx8qm-revd:imx8qm-mek-revd-rpmsg.dtb
       # imx8qm standard android; MIPI panel display on revd
       TARGET_BOARD_DTS_CONFIG += imx8qm-mipi-panel-revd:imx8qm-mek-revd-dsi-rm67199.dtb
       TARGET_BOARD_DTS_CONFIG += imx8qm-mipi-panel-rm67191-revd:imx8qm-mek-revd-dsi-rm67191.dtb
       # imx8qm standard android; HDMI display on revd
       TARGET_BOARD_DTS_CONFIG += imx8qm-hdmi-revd:imx8qm-mek-revd-hdmi.dtb
       # imx8qm standard android; HDMI and HDMI RX on revd
-      TARGET_BOARD_DTS_CONFIG += imx8qm-hdmi-rx-revd:imx8qm-mek-revd-hdmi-rx-ov5640.dtb
-      # imx8qm standard android; Multiple display on revd
-      TARGET_BOARD_DTS_CONFIG += imx8qm-md-revd:imx8qm-mek-revd-md.dtb
+      TARGET_BOARD_DTS_CONFIG += imx8qm-hdmi-rx-revd:imx8qm-mek-revd-hdmi.dtb
       # imx8qm standard android; LVDS1 panel display on revd
       TARGET_BOARD_DTS_CONFIG += imx8qm-lvds1-panel-revd:imx8qm-mek-revd-jdi-wuxga-lvds1-panel.dtb
       # imx8qm support SOF on revd

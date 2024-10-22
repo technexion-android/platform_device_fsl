@@ -4,7 +4,7 @@ TARGET_KERNEL_ARCH := arm64
 LOADABLE_KERNEL_MODULE ?= true
 
 # NXP 8987 wifi driver module
-BOARD_VENDOR_KERNEL_MODULES += \
+#BOARD_VENDOR_KERNEL_MODULES += \
     $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/mlan.ko \
     $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/moal.ko
 
@@ -50,18 +50,18 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-easrc.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-sai.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-spdif.ko \
-    $(KERNEL_OUT)/sound/soc/fsl/snd-soc-imx-spdif.ko \
+    $(KERNEL_OUT)/sound/soc/fsl/snd-soc-imx-audmux.ko \
+    $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-asoc-card.ko \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-wm8524.ko \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-ak5558.ko \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-ak4458.ko \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-bt-sco.ko \
     $(KERNEL_OUT)/sound/soc/generic/snd-soc-simple-card.ko \
     $(KERNEL_OUT)/sound/soc/generic/snd-soc-simple-card-utils.ko \
-    $(KERNEL_OUT)/sound/soc/fsl/snd-soc-imx-audmux.ko \
-    $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-asoc-card.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-imx-card.ko \
     $(KERNEL_OUT)/drivers/rtc/rtc-snvs.ko \
-    $(KERNEL_OUT)/drivers/net/phy/at803x.ko \
+    $(KERNEL_OUT)/drivers/net/phy/qcom/qcom-phy-lib.ko \
+    $(KERNEL_OUT)/drivers/net/phy/qcom/at803x.ko \
     $(KERNEL_OUT)/drivers/net/phy/realtek.ko \
     $(KERNEL_OUT)/drivers/pps/pps_core.ko \
     $(KERNEL_OUT)/drivers/ptp/ptp.ko \
@@ -170,10 +170,6 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/staging/media/imx/imx8-isi-mem2mem.ko \
     $(KERNEL_OUT)/drivers/staging/media/imx/imx8-mipi-csi2-sam.ko \
     $(KERNEL_OUT)/drivers/dma/imx-sdma.ko \
-    $(KERNEL_OUT)/drivers/trusty/trusty-ipc.ko \
-    $(KERNEL_OUT)/drivers/trusty/trusty-core.ko \
-    $(KERNEL_OUT)/drivers/trusty/trusty-log.ko \
-    $(KERNEL_OUT)/drivers/trusty/trusty-virtio.ko \
     $(KERNEL_OUT)/drivers/staging/media/imx/imx8-media-dev.ko
 else
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \

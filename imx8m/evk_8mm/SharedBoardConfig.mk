@@ -47,7 +47,8 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-easrc.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-sai.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-spdif.ko \
-    $(KERNEL_OUT)/sound/soc/fsl/snd-soc-imx-spdif.ko \
+    $(KERNEL_OUT)/sound/soc/fsl/snd-soc-imx-audmux.ko \
+    $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-asoc-card.ko \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-wm8524.ko \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-ak4458.ko \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-ak5558.ko \
@@ -68,7 +69,8 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/mxc/hantro_845_h1/hx280enc.ko \
     $(KERNEL_OUT)/drivers/mxc/hantro_v4l2/vsiv4l2.ko \
     $(KERNEL_OUT)/drivers/rtc/rtc-snvs.ko \
-    $(KERNEL_OUT)/drivers/net/phy/at803x.ko \
+    $(KERNEL_OUT)/drivers/net/phy/qcom/qcom-phy-lib.ko \
+    $(KERNEL_OUT)/drivers/net/phy/qcom/at803x.ko \
     $(KERNEL_OUT)/drivers/net/phy/realtek.ko \
     $(KERNEL_OUT)/drivers/pps/pps_core.ko \
     $(KERNEL_OUT)/drivers/ptp/ptp.ko \
@@ -166,11 +168,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/usb/chipidea/ci_hdrc.ko \
     $(KERNEL_OUT)/drivers/usb/phy/phy-generic.ko \
     $(KERNEL_OUT)/drivers/power/supply/dummy_battery.ko \
-    $(KERNEL_OUT)/drivers/dma/imx-sdma.ko \
-    $(KERNEL_OUT)/drivers/trusty/trusty-ipc.ko \
-    $(KERNEL_OUT)/drivers/trusty/trusty-core.ko \
-    $(KERNEL_OUT)/drivers/trusty/trusty-log.ko \
-    $(KERNEL_OUT)/drivers/trusty/trusty-virtio.ko
+    $(KERNEL_OUT)/drivers/dma/imx-sdma.ko
 else
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/input/touchscreen/goodix_ts.ko \

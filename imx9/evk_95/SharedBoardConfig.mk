@@ -7,14 +7,14 @@ ifeq ($(LOADABLE_KERNEL_MODULE),true)
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/hwmon/hwmon.ko \
     $(KERNEL_OUT)/drivers/hwmon/scmi-hwmon.ko \
-    $(KERNEL_OUT)/drivers/firmware/arm_scmi/imx-sm-bbm.ko \
-    $(KERNEL_OUT)/drivers/firmware/arm_scmi/imx-sm-misc.ko \
-    $(KERNEL_OUT)/drivers/firmware/arm_scmi/scmi_pm_domain.ko \
+    $(KERNEL_OUT)/drivers/firmware/arm_scmi/vendors/imx/imx-sm-bbm.ko \
+    $(KERNEL_OUT)/drivers/firmware/arm_scmi/vendors/imx/imx-sm-misc.ko \
+    $(KERNEL_OUT)/drivers/pmdomain/arm/scmi_pm_domain.ko \
     $(KERNEL_OUT)/drivers/firmware/arm_scmi/scmi_power_control.ko \
     $(KERNEL_OUT)/drivers/iommu/arm/arm-smmu-v3/arm_smmu_v3.ko \
     $(KERNEL_OUT)/drivers/clk/clk-scmi.ko \
     $(KERNEL_OUT)/drivers/clk/imx/mxc-clk.ko \
-    $(KERNEL_OUT)/drivers/clk/imx/imx95-blk-ctrl.ko \
+    $(KERNEL_OUT)/drivers/clk/imx/clk-imx95-blk-ctl.ko \
     $(KERNEL_OUT)/drivers/clocksource/timer-imx-sysctr.ko \
     $(KERNEL_OUT)/drivers/mailbox/imx-mailbox.ko \
     $(KERNEL_OUT)/drivers/rpmsg/rpmsg_ns.ko \
@@ -22,18 +22,14 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/remoteproc/imx_rproc.ko \
     $(KERNEL_OUT)/drivers/pinctrl/freescale/pinctrl-imx.ko \
     $(KERNEL_OUT)/drivers/pinctrl/freescale/pinctrl-imx-scmi.ko \
-    $(KERNEL_OUT)/drivers/dma/fsl-edma-v3.ko \
+    $(KERNEL_OUT)/drivers/dma/fsl-edma.ko \
     $(KERNEL_OUT)/drivers/tty/serial/fsl_lpuart.ko \
-    $(KERNEL_OUT)/drivers/trusty/trusty-core.ko \
-    $(KERNEL_OUT)/drivers/trusty/trusty-log.ko \
-    $(KERNEL_OUT)/drivers/trusty/trusty-ipc.ko \
-    $(KERNEL_OUT)/drivers/trusty/trusty-virtio.ko \
     $(KERNEL_OUT)/drivers/i2c/busses/i2c-imx-lpi2c.ko \
     $(KERNEL_OUT)/drivers/i2c/i2c-dev.ko \
     $(KERNEL_OUT)/drivers/i2c/busses/i2c-rpmsg-imx.ko \
     $(KERNEL_OUT)/drivers/i2c/i2c-mux.ko \
     $(KERNEL_OUT)/drivers/irqchip/irq-imx-irqsteer.ko \
-    $(KERNEL_OUT)/drivers/firmware/imx/sm-bbm.ko \
+    $(KERNEL_OUT)/drivers/rtc/rtc-imx-sm-bbm.ko \
     $(KERNEL_OUT)/drivers/firmware/imx/sm-misc.ko \
     $(KERNEL_OUT)/drivers/video/backlight/led_bl.ko \
     $(KERNEL_OUT)/drivers/video/backlight/pwm_bl.ko \
@@ -67,6 +63,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/input/touchscreen/focaltech_ts.ko \
     $(KERNEL_OUT)/drivers/input/touchscreen/ilitek_ts_i2c.ko \
     $(KERNEL_OUT)/drivers/input/touchscreen/exc3000.ko \
+    $(KERNEL_OUT)/drivers/input/keyboard/imx-sm-bbm-key.ko \
     $(KERNEL_OUT)/drivers/usb/chipidea/usbmisc_imx.ko \
     $(KERNEL_OUT)/drivers/usb/common/ulpi.ko \
     $(KERNEL_OUT)/drivers/usb/chipidea/ci_hdrc_imx.ko \
@@ -103,6 +100,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/gpu/drm/panel/panel-raydium-rm692c9.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/panel/panel-rocktech-hx8394f.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/panel/panel-lvds.ko \
+    $(KERNEL_OUT)/drivers/gpu/drm/display/drm_display_helper.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/imx/dpu95/imx95-dpu-drm.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/imx/display-imx-rpmsg.ko \
     $(KERNEL_OUT)/drivers/media/platform/nxp/imx8-isi/imx8-isi.ko \
@@ -110,7 +108,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/media/platform/nxp/dwc-mipi-csi2.ko
 
 BOARD_VENDOR_KERNEL_MODULES += \
-    $(KERNEL_OUT)/drivers/media/i2c/ap130x.ko \
+    $(KERNEL_OUT)/drivers/media/i2c/ap1302.ko \
     $(KERNEL_OUT)/mm/zsmalloc.ko \
     $(KERNEL_OUT)/drivers/block/zram/zram.ko \
     $(KERNEL_OUT)/net/rfkill/rfkill.ko \
@@ -159,17 +157,16 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-wm8904.ko \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-cs42xx8.ko \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-cs42xx8-i2c.ko \
-    $(KERNEL_OUT)/drivers/net/phy/aquantia.ko \
+    $(KERNEL_OUT)/drivers/net/phy/aquantia/aquantia.ko \
     $(KERNEL_OUT)/drivers/pps/pps_core.ko \
     $(KERNEL_OUT)/drivers/ptp/ptp.ko \
-    $(KERNEL_OUT)/drivers/net/ethernet/freescale/enetc/fsl-ntmp.ko \
-    $(KERNEL_OUT)/drivers/net/ethernet/freescale/enetc/fsl-netc-prb-ierb.ko \
+    $(KERNEL_OUT)/drivers/net/ethernet/freescale/enetc/nxp-netc-lib.ko \
+    $(KERNEL_OUT)/drivers/net/ethernet/freescale/enetc/nxp-netc-blk-ctrl.ko \
     $(KERNEL_OUT)/drivers/ptp/ptp_netc.ko \
     $(KERNEL_OUT)/drivers/ptp/ptp-qoriq.ko \
     $(KERNEL_OUT)/drivers/net/ethernet/freescale/enetc/fsl-enetc-ptp.ko \
     $(KERNEL_OUT)/drivers/net/pcs/pcs-lynx.ko \
     $(KERNEL_OUT)/drivers/net/pcs/pcs_xpcs.ko \
-    $(KERNEL_OUT)/lib/dim/dimlib.ko \
     $(KERNEL_OUT)/drivers/net/ethernet/freescale/enetc/fsl-enetc-mdio.ko \
     $(KERNEL_OUT)/drivers/net/ethernet/freescale/enetc/fsl-enetc-core.ko \
     $(KERNEL_OUT)/lib/crc-itu-t.ko \
@@ -179,7 +176,7 @@ BOARD_VENDOR_KERNEL_MODULES += \
 endif
 
 #NXP 8997 wifi driver module
-BOARD_VENDOR_KERNEL_MODULES += \
+#BOARD_VENDOR_KERNEL_MODULES += \
     $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/mlan.ko \
     $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/moal.ko
 

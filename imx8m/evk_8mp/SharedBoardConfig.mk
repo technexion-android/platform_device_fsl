@@ -4,7 +4,7 @@ TARGET_KERNEL_ARCH := arm64
 LOADABLE_KERNEL_MODULE ?= true
 
 #NXP 8997 wifi driver module
-BOARD_VENDOR_KERNEL_MODULES += \
+#BOARD_VENDOR_KERNEL_MODULES += \
     $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/mlan.ko \
     $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/moal.ko
 
@@ -72,7 +72,6 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/sound/soc/fsl/imx-audio-rpmsg.ko \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-rpmsg-wm8960.ko \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-rpmsg-wm8960-i2c.ko \
-    $(KERNEL_OUT)/sound/soc/fsl/snd-soc-imx-pcm512x-rpmsg.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-imx-rpmsg.ko \
     $(KERNEL_OUT)/drivers/firmware/imx/imx-dsp.ko \
     $(KERNEL_OUT)/sound/soc/sof/snd-sof-utils.ko \
@@ -163,10 +162,6 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/clk/imx/clk-imx8mp.ko \
     $(KERNEL_OUT)/drivers/clk/imx/clk-imx8mp-audiomix.ko \
     $(KERNEL_OUT)/drivers/soc/imx/soc-imx8m.ko \
-    $(KERNEL_OUT)/drivers/trusty/trusty-core.ko \
-    $(KERNEL_OUT)/drivers/trusty/trusty-log.ko \
-    $(KERNEL_OUT)/drivers/trusty/trusty-virtio.ko \
-    $(KERNEL_OUT)/drivers/trusty/trusty-ipc.ko \
     $(KERNEL_OUT)/drivers/pmdomain/imx/imx8m-blk-ctrl.ko \
     $(KERNEL_OUT)/drivers/pmdomain/imx/imx8mp-blk-ctrl.ko \
     $(KERNEL_OUT)/drivers/soc/imx/imx8m_pm_domains.ko \
@@ -233,22 +228,12 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/staging/media/imx/imx8-isi-mem2mem.ko \
     $(KERNEL_OUT)/drivers/staging/media/imx/imx8-mipi-csi2-sam.ko \
     $(KERNEL_OUT)/drivers/dma/imx-sdma.ko \
-    $(TARGET_OUT_INTERMEDIATES)/VVCAM_OBJ/basler-camera-driver-vvcam.ko \
-    $(TARGET_OUT_INTERMEDIATES)/VVCAM_OBJ/os08a20.ko \
-    $(KERNEL_OUT)/drivers/staging/media/imx/imx8-media-dev.ko \
-    $(TARGET_OUT_INTERMEDIATES)/VVCAM_OBJ/vvcam-dwe.ko \
-    $(TARGET_OUT_INTERMEDIATES)/VVCAM_OBJ/vvcam-isp.ko \
-    $(TARGET_OUT_INTERMEDIATES)/VVCAM_OBJ/vvcam-video.ko
+    $(KERNEL_OUT)/drivers/staging/media/imx/imx8-media-dev.ko
 else
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/remoteproc/imx_dsp_rproc.ko \
     $(KERNEL_OUT)/drivers/input/touchscreen/goodix_ts.ko \
     $(KERNEL_OUT)/drivers/input/touchscreen/synaptics_dsx/synaptics_dsx_i2c.ko \
-    $(TARGET_OUT_INTERMEDIATES)/VVCAM_OBJ/basler-camera-driver-vvcam.ko \
-    $(TARGET_OUT_INTERMEDIATES)/VVCAM_OBJ/os08a20.ko \
-    $(TARGET_OUT_INTERMEDIATES)/VVCAM_OBJ/vvcam-video.ko \
-    $(TARGET_OUT_INTERMEDIATES)/VVCAM_OBJ/vvcam-dwe.ko \
-    $(TARGET_OUT_INTERMEDIATES)/VVCAM_OBJ/vvcam-isp.ko \
     $(KERNEL_OUT)/drivers/staging/media/imx/imx8-media-dev.ko
 endif
 
