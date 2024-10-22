@@ -24,6 +24,7 @@
       "MaxJpegSize": "8388608",
       "MinFrameDuration": "33331760",
       "MaxFrameDuration": "300000000",
+      "v4l2_format": "nv12",
       "OmitFrame": [
           {
               "width": "2592",
@@ -48,6 +49,7 @@
       "MaxJpegSize": "8388608",
       "MinFrameDuration": "33331760",
       "MaxFrameDuration": "300000000",
+      "v4l2_format": "nv12",
       "OmitFrame": [
           {
               "width": "2592",

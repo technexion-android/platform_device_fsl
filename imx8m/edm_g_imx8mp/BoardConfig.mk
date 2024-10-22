@@ -79,15 +79,12 @@ BOARD_PREBUILT_DTBOIMAGE := $(OUT_DIR)/target/product/$(PRODUCT_DEVICE)/dtbo-${S
 BOARD_USES_METADATA_PARTITION := true
 BOARD_ROOT_EXTRA_FOLDERS += metadata
 
-#
-# Refer to NxP Android User Guide section 7.1.4 Building an OTA package for single-bootloader image
-ifneq (${SINGLE_BOOTLOADER},true)
-AB_OTA_PARTITIONS += bootloader
+ifneq ($(BUILD_ENCRYPTED_BOOT),true)
+  AB_OTA_PARTITIONS += bootloader
 endif
 
-
 # -------@block_security-------
-ENABLE_CFI=false
+ENABLE_CFI=true
 
 BOARD_AVB_ENABLE := true
 BOARD_AVB_ALGORITHM := SHA256_RSA4096
@@ -109,7 +106,7 @@ BOARD_AVB_SYSTEM_EXT_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_PRODUCT_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_VENDOR_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_VENDOR_DLKM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
-
+BOARD_AVB_SYSTEM_DLKM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 
 # -------@block_treble-------
 # Vendor Interface manifest and compatibility
@@ -175,10 +172,6 @@ BOARD_HAVE_BLUETOOTH_NXP := true
 
 #endif
 
-
-# -------@block_sensor-------
-BOARD_USE_SENSOR_FUSION := false
-
 # -------@block_touch-------
 BOARD_VENDOR_KERNEL_MODULES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/drivers/input/touchscreen/exc3000.ko
 
@@ -195,7 +188,7 @@ BOARD_BOOTCONFIG += androidboot.console=ttymxc1 androidboot.hardware=nxp
 #BOARD_KERNEL_CMDLINE += swiotlb=65536
 
 # display config
-BOARD_BOOTCONFIG += androidboot.lcd_density=240 androidboot.primary_display=imx-drm
+BOARD_BOOTCONFIG += androidboot.lcd_density=240
 
 # wifi config
 BOARD_BOOTCONFIG += androidboot.wificountrycode=CN
