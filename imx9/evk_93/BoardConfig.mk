@@ -154,6 +154,7 @@ BOARD_BOOTCONFIG += androidboot.vendor.sysrq=1
 endif
 
 TARGET_BOARD_DTS_CONFIG += imx93:imx93-11x11-evk.dtb
+TARGET_BOARD_DTS_CONFIG += imx93-frdm-iw612:imx93-11x11-frdm-iw612-otbr.dtb
 
 ALL_DEFAULT_INSTALLED_MODULES += $(BOARD_VENDOR_KERNEL_MODULES)
 
