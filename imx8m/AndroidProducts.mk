@@ -48,17 +48,17 @@ COMMON_LUNCH_CHOICES := \
   evk_8mn-trunk_staging-userdebug \
   evk_8mp-trunk_staging-user \
   evk_8mp-trunk_staging-userdebug \
-  edm_g_imx8mp-user \
-  edm_g_imx8mp-userdebug \
-  edm_g_imx8mm-user \
-  edm_g_imx8mm-userdebug \
-  axon_imx8mp-user \
-  axon_imx8mp-userdebug \
-  tep_imx8mp-user \
-  tep_imx8mp-userdebug \
-  tek_imx8mp-user \
-  tek_imx8mp-userdebug \
-  pico_imx8mm-user \
-  pico_imx8mm-userdebug \
-  pico_imx8mq-user \
-  pico_imx8mq-userdebug
+  edm_g_imx8mp-trunk_staging-user \
+  edm_g_imx8mp-trunk_staging-userdebug \
+  edm_g_imx8mm-trunk_staging-user \
+  edm_g_imx8mm-trunk_staging-userdebug \
+  axon_imx8mp-trunk_staging-user \
+  axon_imx8mp-trunk_staging-userdebug \
+  tep_imx8mp-trunk_staging-user \
+  tep_imx8mp-trunk_staging-userdebug \
+  tek_imx8mp-trunk_staging-user \
+  tek_imx8mp-trunk_staging-userdebug \
+  pico_imx8mm-trunk_staging-user \
+  pico_imx8mm-trunk_staging-userdebug \
+  pico_imx8mq-trunk_staging-user \
+  pico_imx8mq-trunk_staging-userdebug
