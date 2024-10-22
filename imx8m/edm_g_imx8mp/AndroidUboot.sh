@@ -50,7 +50,7 @@ if [ "${POWERSAVE}" = "true" ]; then
 		exit 1
 	fi
 
-	build_m4_image()
+	build_pre_image()
 	{
 		rm -rf ${UBOOT_MCU_OUT}
 		mkdir -p ${UBOOT_MCU_OUT}
@@ -66,7 +66,7 @@ if [ "${POWERSAVE}" = "true" ]; then
 		cp ${MCU_SDK_IMX8MP_DEMO_PATH}/${UBOOT_MCU_BUILD_TYPE}/*.bin ${PRODUCT_OUT}/imx8mp_mcu_demo.bin
 	}
 else
-	build_m4_image()
+	build_pre_image()
 	{
 		echo "android build without building MCU image"
 	}
