@@ -25,7 +25,9 @@
       "MinFrameDuration": "33333333",
       "MaxFrameDuration": "300000000",
       "exposure_ns_min": "116000",
-      "exposure_ns_max": "33216000"
+      "exposure_ns_max": "33216000",
+      "PreviewBuffers": 5,
+      "LibcameraBuffers": 5
     }
   ]
 }
