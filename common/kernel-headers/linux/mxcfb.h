@@ -69,7 +69,6 @@ struct mxcfb_rect {
 #define EPDC_FLAG_USE_ALT_BUFFER 0x100
 #define EPDC_FLAG_TEST_COLLISION 0x200
 #define EPDC_FLAG_GROUP_UPDATE 0x400
-#define EPDC_FLAG_FB_FROM_USERSPACE 0x800
 #define EPDC_FLAG_USE_DITHERING_Y1 0x2000
 #define EPDC_FLAG_USE_DITHERING_Y4 0x4000
 #define EPDC_FLAG_USE_REGAL 0x8000
@@ -98,7 +97,6 @@ struct mxcfb_update_data {
   int dither_mode;
   int quant_bit;
   struct mxcfb_alt_buffer_data alt_buffer_data;
-  unsigned long userspace_buffer;
 };
 struct mxcfb_update_marker_data {
   __u32 update_marker;
@@ -114,12 +112,6 @@ struct mxcfb_waveform_modes {
 };
 struct mxcfb_csc_matrix {
   int param[5][3];
-};
-struct mxcfb_datainfo {
-  struct fb_var_screeninfo screeninfo;
-  unsigned long smem_start;
-  __s32 fence_fd;
-  __s64 fence_ptr;
 };
 #define MXCFB_WAIT_FOR_VSYNC _IOW('F', 0x20, u_int32_t)
 #define MXCFB_SET_GBL_ALPHA _IOW('F', 0x21, struct mxcfb_gbl_alpha)
@@ -148,5 +140,4 @@ struct mxcfb_datainfo {
 #define MXCFB_GET_WORK_BUFFER _IOWR('F', 0x34, unsigned long)
 #define MXCFB_DISABLE_EPDC_ACCESS _IO('F', 0x35)
 #define MXCFB_ENABLE_EPDC_ACCESS _IO('F', 0x36)
-#define MXCFB_PRESENT_SCREEN _IOW('F', 0x102, struct mxcfb_datainfo)
 #endif

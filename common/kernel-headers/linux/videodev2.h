@@ -82,8 +82,6 @@ enum v4l2_colorspace {
   V4L2_COLORSPACE_BT2020 = 10,
   V4L2_COLORSPACE_RAW = 11,
   V4L2_COLORSPACE_DCI_P3 = 12,
-  V4L2_COLORSPACE_GENERIC_FILM = 13,
-  V4L2_COLORSPACE_ST428 = 14,
 };
 #define V4L2_MAP_COLORSPACE_DEFAULT(is_sdtv,is_hdtv) ((is_sdtv) ? V4L2_COLORSPACE_SMPTE170M : ((is_hdtv) ? V4L2_COLORSPACE_REC709 : V4L2_COLORSPACE_SRGB))
 enum v4l2_xfer_func {
@@ -95,13 +93,6 @@ enum v4l2_xfer_func {
   V4L2_XFER_FUNC_NONE = 5,
   V4L2_XFER_FUNC_DCI_P3 = 6,
   V4L2_XFER_FUNC_SMPTE2084 = 7,
-  V4L2_XFER_FUNC_LINEAR = 8,
-  V4L2_XFER_FUNC_GAMMA22 = 9,
-  V4L2_XFER_FUNC_GAMMA28 = 10,
-  V4L2_XFER_FUNC_HLG = 11,
-  V4L2_XFER_FUNC_XVYCC = 12,
-  V4L2_XFER_FUNC_BT1361 = 13,
-  V4L2_XFER_FUNC_ST428 = 14,
 };
 #define V4L2_MAP_XFER_FUNC_DEFAULT(colsp) ((colsp) == V4L2_COLORSPACE_OPRGB ? V4L2_XFER_FUNC_OPRGB : ((colsp) == V4L2_COLORSPACE_SMPTE240M ? V4L2_XFER_FUNC_SMPTE240M : ((colsp) == V4L2_COLORSPACE_DCI_P3 ? V4L2_XFER_FUNC_DCI_P3 : ((colsp) == V4L2_COLORSPACE_RAW ? V4L2_XFER_FUNC_NONE : ((colsp) == V4L2_COLORSPACE_SRGB || (colsp) == V4L2_COLORSPACE_JPEG ? V4L2_XFER_FUNC_SRGB : V4L2_XFER_FUNC_709)))))
 enum v4l2_ycbcr_encoding {
@@ -114,7 +105,6 @@ enum v4l2_ycbcr_encoding {
   V4L2_YCBCR_ENC_BT2020 = 6,
   V4L2_YCBCR_ENC_BT2020_CONST_LUM = 7,
   V4L2_YCBCR_ENC_SMPTE240M = 8,
-  V4L2_YCBCR_ENC_BT470_6M = 9,
 };
 enum v4l2_hsv_encoding {
   V4L2_HSV_ENC_180 = 128,
@@ -183,6 +173,7 @@ struct v4l2_capability {
 #define V4L2_CAP_SDR_OUTPUT 0x00400000
 #define V4L2_CAP_META_CAPTURE 0x00800000
 #define V4L2_CAP_READWRITE 0x01000000
+#define V4L2_CAP_EDID 0x02000000
 #define V4L2_CAP_STREAMING 0x04000000
 #define V4L2_CAP_META_OUTPUT 0x08000000
 #define V4L2_CAP_TOUCH 0x10000000
@@ -247,6 +238,8 @@ struct v4l2_pix_format {
 #define V4L2_PIX_FMT_ARGB2101010 v4l2_fourcc('A', 'R', '3', '0')
 #define V4L2_PIX_FMT_RGBA v4l2_fourcc('R', 'G', 'B', 'A')
 #define V4L2_PIX_FMT_BGR48_12 v4l2_fourcc('B', '3', '1', '2')
+#define V4L2_PIX_FMT_BGR48 v4l2_fourcc('B', 'G', 'R', '6')
+#define V4L2_PIX_FMT_RGB48 v4l2_fourcc('R', 'G', 'B', '6')
 #define V4L2_PIX_FMT_ABGR64_12 v4l2_fourcc('B', '4', '1', '2')
 #define V4L2_PIX_FMT_GREY v4l2_fourcc('G', 'R', 'E', 'Y')
 #define V4L2_PIX_FMT_Y4 v4l2_fourcc('Y', '0', '4', ' ')
@@ -260,6 +253,8 @@ struct v4l2_pix_format {
 #define V4L2_PIX_FMT_Y10BPACK v4l2_fourcc('Y', '1', '0', 'B')
 #define V4L2_PIX_FMT_Y10P v4l2_fourcc('Y', '1', '0', 'P')
 #define V4L2_PIX_FMT_IPU3_Y10 v4l2_fourcc('i', 'p', '3', 'y')
+#define V4L2_PIX_FMT_Y12P v4l2_fourcc('Y', '1', '2', 'P')
+#define V4L2_PIX_FMT_Y14P v4l2_fourcc('Y', '1', '4', 'P')
 #define V4L2_PIX_FMT_PAL8 v4l2_fourcc('P', 'A', 'L', '8')
 #define V4L2_PIX_FMT_UV8 v4l2_fourcc('U', 'V', '8', ' ')
 #define V4L2_PIX_FMT_YUYV v4l2_fourcc('Y', 'U', 'Y', 'V')
@@ -429,10 +424,21 @@ struct v4l2_pix_format {
 #define V4L2_PIX_FMT_QC08C v4l2_fourcc('Q', '0', '8', 'C')
 #define V4L2_PIX_FMT_QC10C v4l2_fourcc('Q', '1', '0', 'C')
 #define V4L2_PIX_FMT_AJPG v4l2_fourcc('A', 'J', 'P', 'G')
+#define V4L2_PIX_FMT_HEXTILE v4l2_fourcc('H', 'X', 'T', 'L')
 #define V4L2_PIX_FMT_IPU3_SBGGR10 v4l2_fourcc('i', 'p', '3', 'b')
 #define V4L2_PIX_FMT_IPU3_SGBRG10 v4l2_fourcc('i', 'p', '3', 'g')
 #define V4L2_PIX_FMT_IPU3_SGRBG10 v4l2_fourcc('i', 'p', '3', 'G')
 #define V4L2_PIX_FMT_IPU3_SRGGB10 v4l2_fourcc('i', 'p', '3', 'r')
+#define V4L2_PIX_FMT_PISP_COMP1_RGGB v4l2_fourcc('P', 'C', '1', 'R')
+#define V4L2_PIX_FMT_PISP_COMP1_GRBG v4l2_fourcc('P', 'C', '1', 'G')
+#define V4L2_PIX_FMT_PISP_COMP1_GBRG v4l2_fourcc('P', 'C', '1', 'g')
+#define V4L2_PIX_FMT_PISP_COMP1_BGGR v4l2_fourcc('P', 'C', '1', 'B')
+#define V4L2_PIX_FMT_PISP_COMP1_MONO v4l2_fourcc('P', 'C', '1', 'M')
+#define V4L2_PIX_FMT_PISP_COMP2_RGGB v4l2_fourcc('P', 'C', '2', 'R')
+#define V4L2_PIX_FMT_PISP_COMP2_GRBG v4l2_fourcc('P', 'C', '2', 'G')
+#define V4L2_PIX_FMT_PISP_COMP2_GBRG v4l2_fourcc('P', 'C', '2', 'g')
+#define V4L2_PIX_FMT_PISP_COMP2_BGGR v4l2_fourcc('P', 'C', '2', 'B')
+#define V4L2_PIX_FMT_PISP_COMP2_MONO v4l2_fourcc('P', 'C', '2', 'M')
 #define V4L2_SDR_FMT_CU8 v4l2_fourcc('C', 'U', '0', '8')
 #define V4L2_SDR_FMT_CU16LE v4l2_fourcc('C', 'U', '1', '6')
 #define V4L2_SDR_FMT_CS8 v4l2_fourcc('C', 'S', '0', '8')
@@ -452,6 +458,8 @@ struct v4l2_pix_format {
 #define V4L2_META_FMT_VIVID v4l2_fourcc('V', 'I', 'V', 'D')
 #define V4L2_META_FMT_RK_ISP1_PARAMS v4l2_fourcc('R', 'K', '1', 'P')
 #define V4L2_META_FMT_RK_ISP1_STAT_3A v4l2_fourcc('R', 'K', '1', 'S')
+#define V4L2_META_FMT_RK_ISP1_EXT_PARAMS v4l2_fourcc('R', 'K', '1', 'E')
+#define V4L2_META_FMT_RPI_BE_CFG v4l2_fourcc('R', 'P', 'B', 'C')
 #define V4L2_META_FMT_NEO_ISP_PARAMS v4l2_fourcc('N', 'N', 'I', 'P')
 #define V4L2_META_FMT_NEO_ISP_STATS v4l2_fourcc('N', 'N', 'I', 'S')
 #define V4L2_PIX_FMT_PRIV_MAGIC 0xfeedcafe
@@ -476,6 +484,7 @@ struct v4l2_fmtdesc {
 #define V4L2_FMT_FLAG_CSC_YCBCR_ENC 0x0080
 #define V4L2_FMT_FLAG_CSC_HSV_ENC V4L2_FMT_FLAG_CSC_YCBCR_ENC
 #define V4L2_FMT_FLAG_CSC_QUANTIZATION 0x0100
+#define V4L2_FMT_FLAG_META_LINE_BASED 0x0200
 enum v4l2_frmsizetypes {
   V4L2_FRMSIZE_TYPE_DISCRETE = 1,
   V4L2_FRMSIZE_TYPE_CONTINUOUS = 2,
@@ -574,6 +583,8 @@ struct v4l2_requestbuffers {
 #define V4L2_BUF_CAP_SUPPORTS_ORPHANED_BUFS (1 << 4)
 #define V4L2_BUF_CAP_SUPPORTS_M2M_HOLD_CAPTURE_BUF (1 << 5)
 #define V4L2_BUF_CAP_SUPPORTS_MMAP_CACHE_HINTS (1 << 6)
+#define V4L2_BUF_CAP_SUPPORTS_MAX_NUM_BUFFERS (1 << 7)
+#define V4L2_BUF_CAP_SUPPORTS_REMOVE_BUFS (1 << 8)
 struct v4l2_plane {
   __u32 bytesused;
   __u32 length;
@@ -629,7 +640,6 @@ struct v4l2_buffer {
 #define V4L2_BUF_FLAG_TSTAMP_SRC_EOF 0x00000000
 #define V4L2_BUF_FLAG_TSTAMP_SRC_SOE 0x00010000
 #define V4L2_BUF_FLAG_LAST 0x00100000
-#define V4L2_BUF_FLAG_HEADERS_ONLY 0x00200000
 #define V4L2_BUF_FLAG_REQUEST_FD 0x00800000
 struct v4l2_exportbuffer {
   __u32 type;
@@ -924,7 +934,7 @@ struct v4l2_ext_control {
     __s64  * p_s64;
     struct v4l2_area  * p_area;
     struct v4l2_ctrl_h264_sps  * p_h264_sps;
-    struct v4l2_ctrl_h264_pps * p_h264_pps;
+    struct v4l2_ctrl_h264_pps  * p_h264_pps;
     struct v4l2_ctrl_h264_scaling_matrix  * p_h264_scaling_matrix;
     struct v4l2_ctrl_h264_pred_weights  * p_h264_pred_weights;
     struct v4l2_ctrl_h264_slice_params  * p_h264_slice_params;
@@ -945,8 +955,10 @@ struct v4l2_ext_control {
     struct v4l2_ctrl_av1_tile_group_entry  * p_av1_tile_group_entry;
     struct v4l2_ctrl_av1_frame  * p_av1_frame;
     struct v4l2_ctrl_av1_film_grain  * p_av1_film_grain;
+    struct v4l2_ctrl_hdr10_cll_info  * p_hdr10_cll_info;
+    struct v4l2_ctrl_hdr10_mastering_display  * p_hdr10_mastering_display;
     void  * ptr;
-  };
+  } __attribute__((packed));
 } __attribute__((packed));
 struct v4l2_ext_controls {
   union {
@@ -1321,6 +1333,9 @@ struct v4l2_sdr_format {
 struct v4l2_meta_format {
   __u32 dataformat;
   __u32 buffersize;
+  __u32 width;
+  __u32 height;
+  __u32 bytesperline;
 } __attribute__((packed));
 struct v4l2_format {
   __u32 type;
@@ -1409,11 +1424,11 @@ struct v4l2_event_subscription {
   __u32 reserved[5];
 };
 #define V4L2_CHIP_MATCH_BRIDGE 0
-#define V4L2_CHIP_MATCH_SUBDEV 4
 #define V4L2_CHIP_MATCH_HOST V4L2_CHIP_MATCH_BRIDGE
 #define V4L2_CHIP_MATCH_I2C_DRIVER 1
 #define V4L2_CHIP_MATCH_I2C_ADDR 2
 #define V4L2_CHIP_MATCH_AC97 3
+#define V4L2_CHIP_MATCH_SUBDEV 4
 struct v4l2_dbg_match {
   __u32 type;
   union {
@@ -1426,6 +1441,11 @@ struct v4l2_dbg_register {
   __u32 size;
   __u64 reg;
   __u64 val;
+} __attribute__((packed));
+struct v4l2_dbg_chip_ident {
+  struct v4l2_dbg_match match;
+  __u32 ident;
+  __u32 revision;
 } __attribute__((packed));
 #define V4L2_CHIP_FL_READABLE (1 << 0)
 #define V4L2_CHIP_FL_WRITABLE (1 << 1)
@@ -1442,7 +1462,14 @@ struct v4l2_create_buffers {
   struct v4l2_format format;
   __u32 capabilities;
   __u32 flags;
-  __u32 reserved[6];
+  __u32 max_num_buffers;
+  __u32 reserved[5];
+};
+struct v4l2_remove_buffers {
+  __u32 index;
+  __u32 count;
+  __u32 type;
+  __u32 reserved[13];
 };
 #define VIDIOC_QUERYCAP _IOR('V', 0, struct v4l2_capability)
 #define VIDIOC_ENUM_FMT _IOWR('V', 2, struct v4l2_fmtdesc)
@@ -1508,6 +1535,7 @@ struct v4l2_create_buffers {
 #define VIDIOC_TRY_ENCODER_CMD _IOWR('V', 78, struct v4l2_encoder_cmd)
 #define VIDIOC_DBG_S_REGISTER _IOW('V', 79, struct v4l2_dbg_register)
 #define VIDIOC_DBG_G_REGISTER _IOWR('V', 80, struct v4l2_dbg_register)
+#define VIDIOC_DBG_G_CHIP_IDENT _IOWR('V', 81, struct v4l2_dbg_chip_ident)
 #define VIDIOC_S_HW_FREQ_SEEK _IOW('V', 82, struct v4l2_hw_freq_seek)
 #define VIDIOC_S_DV_TIMINGS _IOWR('V', 87, struct v4l2_dv_timings)
 #define VIDIOC_G_DV_TIMINGS _IOWR('V', 88, struct v4l2_dv_timings)
@@ -1526,6 +1554,7 @@ struct v4l2_create_buffers {
 #define VIDIOC_ENUM_FREQ_BANDS _IOWR('V', 101, struct v4l2_frequency_band)
 #define VIDIOC_DBG_G_CHIP_INFO _IOWR('V', 102, struct v4l2_dbg_chip_info)
 #define VIDIOC_QUERY_EXT_CTRL _IOWR('V', 103, struct v4l2_query_ext_ctrl)
+#define VIDIOC_REMOVE_BUFS _IOWR('V', 104, struct v4l2_remove_buffers)
 #define BASE_VIDIOC_PRIVATE 192
 #define V4L2_PIX_FMT_HM12 V4L2_PIX_FMT_NV12_16L16
 #define V4L2_PIX_FMT_SUNXI_TILED_NV12 V4L2_PIX_FMT_NV12_32L32
