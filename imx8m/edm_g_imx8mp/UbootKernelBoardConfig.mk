@@ -16,10 +16,11 @@ TARGET_BOOTLOADER_CONFIG += imx8mp-evk-uuu:edm-g-imx8mp_android_defconfig
 
 TARGET_KERNEL_DEFCONFIG := gki_defconfig
 ifeq ($(LOADABLE_KERNEL_MODULE),true)
-TARGET_KERNEL_GKI_DEFCONF:= tn_imx8mp_gki.fragment
+TARGET_KERNEL_GKI_DEFCONF:= imx8mp_gki.fragment
 else
-TARGET_KERNEL_GKI_DEFCONF := tn_imx8_android_defconfig
+TARGET_KERNEL_GKI_DEFCONF := imx_v8_android_defconfig
 endif
+TARGET_KERNEL_VENDOR_DEFCONF := tn_imx8_android_defconfig
 
 ifeq ($(SIM8202_MODEM_ACTIVE),true)
 TARGET_KERNEL_ADDITION_DEFCONF := android_sim8202_addition_defconfig
