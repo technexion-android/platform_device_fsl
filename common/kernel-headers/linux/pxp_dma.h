@@ -9,7 +9,6 @@
 #include <linux/posix_types.h>
 #include <linux/types.h>
 typedef unsigned long dma_addr_t;
-typedef unsigned char bool;
 #define fourcc(a,b,c,d) (((__u32) (a) << 0) | ((__u32) (b) << 8) | ((__u32) (c) << 16) | ((__u32) (d) << 24))
 #define PXP_PIX_FMT_RGB332 fourcc('R', 'G', 'B', '1')
 #define PXP_PIX_FMT_RGB444 fourcc('R', '4', '4', '4')
@@ -157,14 +156,14 @@ struct pxp_layer_param {
   unsigned short stride;
   unsigned int pixel_fmt;
   unsigned int flag;
-  bool combine_enable;
+  unsigned char combine_enable;
   unsigned int color_key_enable;
   unsigned int color_key;
-  bool global_alpha_enable;
-  bool global_override;
+  unsigned char global_alpha_enable;
+  unsigned char global_override;
   unsigned char global_alpha;
-  bool alpha_invert;
-  bool local_alpha_enable;
+  unsigned char alpha_invert;
+  unsigned char local_alpha_enable;
   int comp_mask;
   struct pxp_alpha alpha;
   struct rect crop;
@@ -195,21 +194,21 @@ struct pxp_proc_data {
   int overlay_state;
   int lut_transform;
   unsigned char * lut_map;
-  bool lut_map_updated;
-  bool combine_enable;
+  unsigned char lut_map_updated;
+  unsigned char combine_enable;
   enum pxp_op_type op_type;
   __u64 lut_sels;
   enum pxp_working_mode working_mode;
   enum pxp_engine_ctrl engine_enable;
-  bool partial_update;
-  bool alpha_en;
-  bool lut_update;
-  bool reagl_en;
-  bool reagl_d_en;
-  bool detection_only;
-  bool pxp_legacy;
+  unsigned char partial_update;
+  unsigned char alpha_en;
+  unsigned char lut_update;
+  unsigned char reagl_en;
+  unsigned char reagl_d_en;
+  unsigned char detection_only;
+  unsigned char pxp_legacy;
   int lut;
-  bool lut_cleanup;
+  unsigned char lut_cleanup;
   unsigned int lut_status_1;
   unsigned int lut_status_2;
   int dither_mode;
