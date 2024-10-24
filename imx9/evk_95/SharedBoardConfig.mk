@@ -4,7 +4,7 @@ TARGET_KERNEL_ARCH := arm64
 LOADABLE_KERNEL_MODULE ?= true
 
 ifeq ($(LOADABLE_KERNEL_MODULE),true)
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
+IMX_ANDROID_FIRST_STAGE_MODULES += \
     $(KERNEL_OUT)/drivers/hwmon/hwmon.ko \
     $(KERNEL_OUT)/drivers/hwmon/scmi-hwmon.ko \
     $(KERNEL_OUT)/drivers/firmware/arm_scmi/vendors/imx/imx-sm-lmm.ko \
@@ -38,13 +38,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/irqchip/irq-imx-irqsteer.ko \
     $(KERNEL_OUT)/drivers/rtc/rtc-imx-sm-bbm.ko \
     $(KERNEL_OUT)/drivers/firmware/imx/sm-misc.ko \
-    $(KERNEL_OUT)/drivers/video/backlight/led_bl.ko \
-    $(KERNEL_OUT)/drivers/video/backlight/pwm_bl.ko \
     $(KERNEL_OUT)/drivers/cpufreq/cpufreq-dt.ko \
-    $(KERNEL_OUT)/drivers/dma-buf/heaps/system_heap.ko \
-    $(KERNEL_OUT)/drivers/dma-buf/heaps/dsp_heap.ko \
-    $(KERNEL_OUT)/drivers/dma-buf/heaps/cma_heap.ko \
-    $(KERNEL_OUT)/drivers/dma-buf/dma-buf-imx.ko \
     $(KERNEL_OUT)/drivers/watchdog/imx7ulp_wdt.ko \
     $(KERNEL_OUT)/drivers/firmware/imx/sec_enclave.ko \
     $(KERNEL_OUT)/drivers/mmc/host/cqhci.ko \
@@ -57,7 +51,15 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/soc/imx/soc-imx9.ko \
     $(KERNEL_OUT)/drivers/gpio/gpio-adp5585.ko \
     $(KERNEL_OUT)/drivers/gpio/gpio-pca953x.ko \
-    $(KERNEL_OUT)/drivers/gpio/gpio-vf610.ko \
+    $(KERNEL_OUT)/drivers/gpio/gpio-vf610.ko
+
+IMX_RECOVERY_FIRST_STAGE_ADDITION_MODULES += \
+    $(KERNEL_OUT)/drivers/video/backlight/led_bl.ko \
+    $(KERNEL_OUT)/drivers/video/backlight/pwm_bl.ko \
+    $(KERNEL_OUT)/drivers/dma-buf/heaps/system_heap.ko \
+    $(KERNEL_OUT)/drivers/dma-buf/heaps/dsp_heap.ko \
+    $(KERNEL_OUT)/drivers/dma-buf/heaps/cma_heap.ko \
+    $(KERNEL_OUT)/drivers/dma-buf/dma-buf-imx.ko \
     $(KERNEL_OUT)/drivers/mfd/maxim_serdes.ko \
     $(KERNEL_OUT)/drivers/mfd/max96752-core.ko \
     $(KERNEL_OUT)/drivers/mfd/max96752-i2c.ko \
@@ -117,6 +119,11 @@ ifeq ($(ENABLE_CONTEXTHUB), true)
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=  \
     $(KERNEL_OUT)/drivers/rpmsg/imx_rpmsg_chre.ko
 endif
+
+
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
+    $(IMX_ANDROID_FIRST_STAGE_MODULES) \
+    $(IMX_RECOVERY_FIRST_STAGE_ADDITION_MODULES)
 
 BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/media/i2c/ap1302.ko \
@@ -199,6 +206,21 @@ BOARD_VENDOR_KERNEL_MODULES += \
 BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/remoteproc/imx_neutron_rproc.ko \
     $(KERNEL_OUT)/drivers/staging/neutron/neutron.ko
+
+ifeq ($(LOADABLE_KERNEL_MODULE),true)
+    BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := \
+        $(foreach m,$(IMX_ANDROID_FIRST_STAGE_MODULES),$(notdir $(m)))
+    BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := \
+        $(foreach m,$(BOARD_VENDOR_RAMDISK_KERNEL_MODULES),$(notdir $(m)))
+
+    BOARD_VENDOR_KERNEL_MODULES_LOAD := \
+        $(foreach m,$(IMX_RECOVERY_FIRST_STAGE_ADDITION_MODULES),$(notdir $(m))) \
+        $(foreach m,$(BOARD_VENDOR_KERNEL_MODULES),$(notdir $(m)))
+
+    BOARD_VENDOR_KERNEL_MODULES += \
+        $(IMX_RECOVERY_FIRST_STAGE_ADDITION_MODULES)
+endif
+
 
 # -------@block_memory-------
 #Enable this to config 1GB ddr on evk_95
