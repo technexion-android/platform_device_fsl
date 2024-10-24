@@ -144,10 +144,7 @@ BOARD_BOOTCONFIG += androidboot.lcd_density=240
 BOARD_BOOTCONFIG += androidboot.wificountrycode=CN
 BOARD_KERNEL_CMDLINE += moal.mod_para=wifi_mod_para_sd612.conf
 
-# low memory device build config
-ifeq ($(LOW_MEMORY),true)
 BOARD_BOOTCONFIG += androidboot.displaymode=720p
-endif
 
 ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
 BOARD_BOOTCONFIG += androidboot.vendor.sysrq=1
