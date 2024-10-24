@@ -1,7 +1,8 @@
 QCACLD_PATH ?= $(ANDROID_BUILD_TOP)/vendor/nxp-opensource/qcacld-2.0
 QCACLD_OUT  ?= $(TARGET_OUT_INTERMEDIATES)/QCACLD_OBJ
 CROSS_COMPILE := aarch64-linux-gnu-
-KERNEL_CFLAGS += -Wno-error
+KERNEL_CFLAGS += -Wno-error \
+                 -Wno-strict-prototypes
 
 qcacld_build_make_env = KERNEL_SRC=$(KERNEL_OUT) ARCH=$(KERNEL_ARCH) \
 	CROSS_COMPILE=$(CROSS_COMPILE) $(CLANG_TO_COMPILE) KCFLAGS="$(KERNEL_CFLAGS)" \
