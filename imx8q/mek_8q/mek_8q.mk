@@ -732,6 +732,3 @@ PRODUCT_PACKAGES += \
     CarMapsPlaceholder
 endif
 endif
-
-# Add Virtualization support
-$(call inherit-product, packages/modules/Virtualization/apex/product_packages.mk)
