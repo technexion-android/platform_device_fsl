@@ -183,9 +183,9 @@ build_imx_uboot()
 	if [ "$2" != "imx8qm-xen" ]; then
 		make -C ${IMX_PATH}/arm-trusted-firmware/ PLAT=$ATF_PLATFORM clean
 		if [ "${PRODUCT_IMX_CAR}" = "true" -a `echo $2 | rev | cut -d '-' -f1` != "uuu" -o `echo $2 | cut -d '-' -f2` = "trusty" ]; then
-			make -C ${IMX_PATH}/arm-trusted-firmware/ CROSS_COMPILE="${ATF_CROSS_COMPILE}" PLAT=$ATF_PLATFORM bl31 SPD=trusty -B 1>/dev/null || exit 1
+			make -C ${IMX_PATH}/arm-trusted-firmware/ CROSS_COMPILE="${ATF_CROSS_COMPILE}" PLAT=$ATF_PLATFORM bl31 SPD=trusty -B IMX_ANDROID_BUILD=true 1>/dev/null || exit 1
 		else
-			make -C ${IMX_PATH}/arm-trusted-firmware/ CROSS_COMPILE="${ATF_CROSS_COMPILE}" PLAT=$ATF_PLATFORM bl31 -B 1>/dev/null || exit 1
+			make -C ${IMX_PATH}/arm-trusted-firmware/ CROSS_COMPILE="${ATF_CROSS_COMPILE}" PLAT=$ATF_PLATFORM bl31 -B IMX_ANDROID_BUILD=true 1>/dev/null || exit 1
 		fi
 		cp ${IMX_PATH}/arm-trusted-firmware/build/$ATF_PLATFORM/release/bl31.bin ${IMX_MKIMAGE_PATH}/imx-mkimage/$MKIMAGE_PLATFORM/bl31.bin
 		cp  ${UBOOT_OUT}/u-boot.$1 ${IMX_MKIMAGE_PATH}/imx-mkimage/$MKIMAGE_PLATFORM/u-boot.bin
