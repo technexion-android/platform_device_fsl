@@ -287,6 +287,12 @@ PRODUCT_PACKAGES += \
     android.hardware.oemlock-service-software.imx
 endif
 
+# Secretkeeper HAL
+ifeq ($(PRODUCT_IMX_TRUSTY),true)
+PRODUCT_PACKAGES += \
+    android.hardware.security.secretkeeper.trusty
+endif
+
 # Copy firmware encrypt key and public verify key
 ifeq ($(PRODUCT_IMX_TRUSTY),true)
 PRODUCT_COPY_FILES += \

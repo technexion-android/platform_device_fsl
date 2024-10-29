@@ -217,6 +217,12 @@ PRODUCT_PACKAGES += \
     imx_dek_inserter
 endif
 
+# Secretkeeper HAL
+ifeq ($(PRODUCT_IMX_TRUSTY),true)
+PRODUCT_PACKAGES += \
+    android.hardware.security.secretkeeper.trusty
+endif
+
 # Specify rollback index for boot and vbmeta partitions
 ifneq ($(AVB_RBINDEX),)
 BOARD_AVB_ROLLBACK_INDEX := $(AVB_RBINDEX)

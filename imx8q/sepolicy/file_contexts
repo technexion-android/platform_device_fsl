@@ -79,6 +79,7 @@
 /(vendor|system/vendor)/bin/hw/android\.hardware\.security\.keymint-service\.rust\.trusty u:object_r:hal_keymint_default_exec:s0
 /vendor/bin/hw/android\.hardware\.gatekeeper-service-imx    u:object_r:hal_gatekeeper_default_exec:s0
 /vendor/bin/hw/android\.hardware\.gatekeeper-service\.trusty    u:object_r:hal_gatekeeper_default_exec:s0
+/vendor/bin/hw/android\.hardware\.security\.secretkeeper\.trusty            u:object_r:hal_secretkeeper_default_exec:s0
 
 # trusty ipc target
 /dev/trusty-ipc-dev0        u:object_r:tee_device:s0

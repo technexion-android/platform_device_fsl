@@ -280,3 +280,6 @@ on property:sys.boot_completed=1 && property:vendor.storageproxyd=trusty
     mkdir /data/vendor/ele 0700 system system
     start nvmd
     start vendor.secure-enclave
+
+on property:sys.boot_completed=1 && property:vendor.storageproxyd=trusty
+    start vendor.secretkeeper.trusty
