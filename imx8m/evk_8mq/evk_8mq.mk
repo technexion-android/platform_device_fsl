@@ -286,7 +286,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 # disable frame rate override
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.surface_flinger.enable_frame_rate_override=false
+    ro.surface_flinger.game_default_frame_rate_override=60
 
 # Gralloc HAL
 PRODUCT_PACKAGES += \
