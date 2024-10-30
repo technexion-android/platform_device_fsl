@@ -1,6 +1,10 @@
 /dev/block/mmcblk0boot0                      u:object_r:emmc_boot0:s0
 /dev/pxp_device                              u:object_r:pxp_device:s0
 
+#ThreadNetwork
+/dev/gpiochip[4-5]                           u:object_r:threadnetwork_chr:s0
+/dev/spidev0.0                               u:object_r:threadnetwork_chr:s0
+
 #peripheral
 /dev/ttyLP[0-9]*               u:object_r:tty_device:s0
 /dev/sda[0-8]*                  u:object_r:fuse:s0

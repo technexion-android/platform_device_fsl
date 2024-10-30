@@ -414,6 +414,7 @@ endif
 
 # ONLY devices that meet the CDD's requirements may declare these features
 PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.thread_network.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.thread_network.xml \
     frameworks/native/data/etc/android.hardware.audio.output.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.audio.output.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.camera.external.xml:vendor/etc/permissions/android.hardware.camera.external.xml \
@@ -459,3 +460,8 @@ PRODUCT_PACKAGES += \
     nxp.hardware.secureime-service
 
 IMX-DEFAULT-G2D-LIB := libg2d-pxp
+
+# Thread Network support
+PRODUCT_PACKAGES += \
+    com.android.hardware.threadnetwork \
+    ThreadNetworkDemoApp
