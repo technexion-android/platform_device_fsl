@@ -495,9 +495,14 @@ PRODUCT_COPY_FILES += \
 # ONLY devices that meet the CDD's requirements may declare these features
 
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.camera.external.xml:vendor/etc/permissions/android.hardware.camera.external.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.camera.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.xml
+
+PERMISSION_EXTCAM ?= true
+ifeq ($(PERMISSION_EXTCAM),true)
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.camera.external.xml:vendor/etc/permissions/android.hardware.camera.external.xml
+endif
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.output.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.audio.output.xml \
