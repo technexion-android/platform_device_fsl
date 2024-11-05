@@ -218,6 +218,9 @@ PRODUCT_PACKAGES += \
 endif
 
 # Secretkeeper HAL
+PRODUCT_PACKAGES += \
+    com.android.hardware.security.secretkeeper
+
 ifeq ($(PRODUCT_IMX_TRUSTY),true)
 PRODUCT_PACKAGES += \
     android.hardware.security.secretkeeper.trusty

@@ -281,5 +281,5 @@ on property:sys.boot_completed=1 && property:vendor.storageproxyd=trusty
     start nvmd
     start vendor.secure-enclave
 
-on property:sys.boot_completed=1 && property:vendor.storageproxyd=trusty
-    start vendor.secretkeeper.trusty
+on property:sys.boot_completed=1
+    start vendor.secretkeeper.${ro.boot.keystore}
