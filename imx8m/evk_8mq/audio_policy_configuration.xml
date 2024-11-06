@@ -78,7 +78,7 @@
                 <route type="mix" sink="Wired Headphones"
                        sources="dsd output,esai output,primary output"/>
                 <route type="mix" sink="HDMI Out"
-                       sources="hdmi output,primary output"/>
+                       sources="passthrough output,primary output"/>
                 <route type="mix" sink="BT SCO Headset"
                        sources="bt sco output"/>
                 <route type="mix" sink="BT SCO CarKit"
