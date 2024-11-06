@@ -153,6 +153,7 @@ endif
 TARGET_BOARD_DTS_CONFIG += imx93:imx93-11x11-evk.dtb
 TARGET_BOARD_DTS_CONFIG += imx93-iw612:imx93-11x11-evk-iw612-otbr.dtb
 TARGET_BOARD_DTS_CONFIG += imx93-frdm-iw612:imx93-11x11-frdm-iw612-otbr.dtb
+TARGET_BOARD_DTS_CONFIG += imx93-frdm-iw612-tianma-wvga:imx93-11x11-frdm-tianma-wvga-panel.dtb
 
 ALL_DEFAULT_INSTALLED_MODULES += $(BOARD_VENDOR_KERNEL_MODULES)
 

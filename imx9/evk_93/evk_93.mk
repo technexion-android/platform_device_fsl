@@ -473,3 +473,8 @@ IMX-DEFAULT-G2D-LIB := libg2d-pxp
 PRODUCT_PACKAGES += \
     com.android.hardware.threadnetwork \
     ThreadNetworkDemoApp
+
+
+PRODUCT_COPY_FILES += \
+    ${CONFIG_REPO_PATH}/imx9/evk_93/Microchip_Technology_Inc__AR1100_HID-DIGITIZER.idc:${TARGET_COPY_OUT_VENDOR}/usr/idc/Microchip_Technology_Inc__AR1100_HID-DIGITIZER.idc
+
