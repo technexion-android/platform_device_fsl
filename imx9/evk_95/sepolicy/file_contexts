@@ -21,7 +21,6 @@
 # libcamera related
 /dev/v4l-subdev[0-9]*                       u:object_r:video_device:s0
 /dev/media[0-9]*                            u:object_r:video_device:s0
-/vendor/bin/nxpneo_ipa_proxy                u:object_r:ipa_proxy_exec:s0
 
 #Bluetootn HAL service
 /vendor/bin/hw/android\.hardware\.bluetooth-service.default.nxp            u:object_r:hal_bluetooth_default_exec:s0
