@@ -349,7 +349,7 @@ PRODUCT_PACKAGES += \
 TARGET_BUILD_WIDEVINE :=
 TARGET_BUILD_WIDEVINE_USE_PREBUILT := true
 
-$(call inherit-product-if-exists, vendor/nxp-private/widevine/nxp_widevine_tee_8qm.mk)
+$(call inherit-product-if-exists, vendor/nxp-private/widevine/nxp_widevine_tee_8q.mk)
 $(call inherit-product-if-exists, vendor/nxp-private/widevine/apex/device.mk)
 
 # -------@block_audio-------
