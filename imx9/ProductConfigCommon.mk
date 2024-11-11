@@ -19,6 +19,8 @@ endif
 $(call inherit-product, $(TOPDIR)frameworks/base/data/sounds/AllAudio.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
+include $(CONFIG_REPO_PATH)/common/soong/imx_namespaces.mk
+
 # Installs gsi keys into ramdisk.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
 PRODUCT_PACKAGES += \
@@ -230,8 +232,6 @@ PRODUCT_PACKAGES += \
     LiveWallpapersPicker \
     WallpaperPicker
 endif
-
-PRODUCT_SOONG_NAMESPACES += external/mesa3d
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.sf.color_saturation=1.0
