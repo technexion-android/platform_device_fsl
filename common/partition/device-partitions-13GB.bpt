@@ -1,6 +1,6 @@
 {
     "settings": {
-        "disk_size": "14 GiB",
+        "disk_size": "13 GiB",
         "disk_alignment": 2097152,
         "partitions_offset_begin": 8388608
     },
@@ -49,7 +49,7 @@
         },
         {
             "label": "metadata",
-            "size": "64 MiB",
+            "size": "256 MiB",
             "guid": "auto",
             "type_guid": "b598858a-5fe3-418e-b8c4-824b41f4adfc"
         },
