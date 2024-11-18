@@ -1,6 +1,6 @@
 {
   "driver_name": "cs42448",
-  "supported_out_devices": ["speaker"],
+  "supported_out_devices": ["speaker", "line"],
   "supported_in_devices": ["builtin_mic"],
   "support_multi_chn": 1,
 
