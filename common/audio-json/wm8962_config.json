@@ -8,12 +8,13 @@
   "init_ctl": [
     {"name": "Speaker Volume", "type": "int", "val": 114},
     {"name": "Headphone Volume", "type": "int", "val": 114},
+    {"name": "ADC Monomix Switch", "type": "int", "val": 1},
     {"name": "MIXINR IN3R Switch", "type": "int", "val": 1}
   ],
 
   "builtin_mic_ctl": [
     {"name": "Capture Switch", "type": "int", "val": 1},
-    {"name": "Capture Volume", "type": "int", "val": 40},
+    {"name": "Capture Volume", "type": "int", "val": 63},
     {"name": "Digital Capture Volume", "type": "int", "val": 108}
   ],
 
