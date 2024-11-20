@@ -237,7 +237,7 @@ ifeq ($(WITH_EXT_DTBO),true)
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-lvds-vl215192108.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-tevi-ov5640.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-tevi-ap1302.dtbo
-	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-vizionlink-tevi-ov5640.dtbo
+	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-vizionlink-tevi-ov5640-dual.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-vizionlink-tevi-ap1302.dtbo
   TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-tevs.dtbo
 	TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-vls.dtbo
