@@ -570,3 +570,6 @@ endif
 
 # Add Virtualization support
 $(call inherit-product, packages/modules/Virtualization/apex/product_packages.mk)
+
+# Add imx private apps
+$(call inherit-product-if-exists, vendor/nxp-private/imx-apps/imx-private-app.mk)

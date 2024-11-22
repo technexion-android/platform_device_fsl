@@ -478,3 +478,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     ${CONFIG_REPO_PATH}/imx9/evk_93/Microchip_Technology_Inc__AR1100_HID-DIGITIZER.idc:${TARGET_COPY_OUT_VENDOR}/usr/idc/Microchip_Technology_Inc__AR1100_HID-DIGITIZER.idc
 
+
+# Add imx private apps
+$(call inherit-product-if-exists, vendor/nxp-private/imx-apps/imx-private-app.mk)

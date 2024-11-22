@@ -517,3 +517,5 @@ PRODUCT_SOONG_NAMESPACES += vendor/partner_gms
 PRODUCT_PACKAGES += \
     privapp_whitelist_com.android.emergency
 
+# Add imx private apps
+$(call inherit-product-if-exists, vendor/nxp-private/imx-apps/imx-private-app.mk)

@@ -747,3 +747,6 @@ PRODUCT_PACKAGES += \
     CarMapsPlaceholder
 endif
 endif
+
+# Add imx private apps
+$(call inherit-product-if-exists, vendor/nxp-private/imx-apps/imx-private-app.mk)
