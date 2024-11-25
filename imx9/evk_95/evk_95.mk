@@ -346,7 +346,7 @@ PRODUCT_COPY_FILES += \
 
 # Display Device Config
 PRODUCT_COPY_FILES += \
-    device/nxp/imx9/displayconfig/display_id_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_id_0.xml
+    device/nxp/imx9/displayconfig/display_port_1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_port_1.xml
 
 # -------@block_gpu-------
 # include wsialloc gralloc device config
