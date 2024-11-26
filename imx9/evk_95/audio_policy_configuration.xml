@@ -38,23 +38,9 @@
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                              samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
                 </mixPort>
-                <mixPort name="hdmi output" role="source">
-                    <profile name="" format="AUDIO_FORMAT_PCM_8_24_BIT"
-                             samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
-                </mixPort>
                 <mixPort name="bt sco output" role="source">
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                              samplingRates="16000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
-                </mixPort>
-                <mixPort name="passthrough output" role="source" flags="AUDIO_OUTPUT_FLAG_DIRECT">
-                </mixPort>
-                <mixPort name="compressed_offload" role="source"
-                         flags="AUDIO_OUTPUT_FLAG_DIRECT AUDIO_OUTPUT_FLAG_COMPRESS_OFFLOAD">
-                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
-                             samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
-                    <profile name="" format="AUDIO_FORMAT_MP3"
-                             samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000"
-                             channelMasks="AUDIO_CHANNEL_OUT_STEREO AUDIO_CHANNEL_OUT_MONO"/>
                 </mixPort>
 
                 <mixPort name="primary input" role="sink">
@@ -71,8 +57,6 @@
                 <devicePort tagName="Wired Headset" type="AUDIO_DEVICE_OUT_WIRED_HEADSET" role="sink">
                 </devicePort>
                 <devicePort tagName="Line-Out" type="AUDIO_DEVICE_OUT_LINE" role="sink">
-                </devicePort>
-                <devicePort tagName="HDMI Out" type="AUDIO_DEVICE_OUT_AUX_DIGITAL" role="sink">
                 </devicePort>
                 <devicePort tagName="BT SCO Headset" type="AUDIO_DEVICE_OUT_BLUETOOTH_SCO_HEADSET" role="sink">
                 </devicePort>
@@ -95,9 +79,7 @@
                 <route type="mix" sink="Wired Headset"
                        sources="primary output"/>
                 <route type="mix" sink="Line-Out"
-                       sources="direct output,compressed_offload,lpa output,primary output"/>
-                <route type="mix" sink="HDMI Out"
-                       sources="passthrough output,hdmi output"/>
+                       sources="direct output,lpa output,primary output"/>
                 <route type="mix" sink="BT SCO Headset"
                        sources="bt sco output"/>
                 <route type="mix" sink="BT SCO CarKit"
