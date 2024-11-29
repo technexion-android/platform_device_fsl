@@ -337,6 +337,7 @@ ro.hardware.gralloc_viv             u:object_r:vendor_public_default_prop:s0
 vendor.media.fsl_codec.flag         u:object_r:vendor_public_default_prop:s0
 vendor.gki.enable                   u:object_r:vendor_public_default_prop:s0
 vendor.hwc.debug.dump_refresh_rate  u:object_r:vendor_public_default_prop:s0
+vendor.hwc.debug.dump_frame         u:object_r:vendor_public_default_prop:s0
 vendor.hwc.drm.fbTileSupport        u:object_r:vendor_public_default_prop:s0
 
 ro.boot.gui_resolution              u:object_r:vendor_public_default_prop:s0

@@ -157,6 +157,8 @@ on post-fs && property:vendor.skip.charger_not_need=0
 
 on post-fs-data && property:vendor.skip.charger_not_need=0
     setprop vold.post_fs_data_done 1
+    # HWC data
+    mkdir /data/vendor/hwc 0771 system graphics
 
 on zygote-start && property:vendor.skip.charger_not_need=0
     # Create the directories used by the Wireless subsystem
