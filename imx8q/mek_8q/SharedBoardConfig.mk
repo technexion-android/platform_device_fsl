@@ -46,7 +46,7 @@ BOARD_VENDOR_KERNEL_MODULES += \
 ifeq ($(PRODUCT_IMX_CAR_M4),true)
 #BOARD_VENDOR_KERNEL_MODULES += \
                             $(KERNEL_OUT)/drivers/staging/media/imx/gmsl-max9286.ko \
-                            $(KERNEL_OUT)/drivers/staging/media/imx/imx8-mipi-csi2.ko \
+                            $(KERNEL_OUT)/drivers/media/platform/nxp/imx8mq-mipi-csi2.ko \
                             $(KERNEL_OUT)/drivers/staging/media/imx/imx8-media-dev.ko \
                             $(KERNEL_OUT)/drivers/staging/media/imx/imx8-capture.ko
 
@@ -160,7 +160,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/gpu/drm/panel/panel-raydium-rm67191.ko \
     $(KERNEL_OUT)/drivers/media/i2c/ov5640.ko \
     $(KERNEL_OUT)/drivers/staging/media/imx/gmsl-max9286.ko \
-    $(KERNEL_OUT)/drivers/staging/media/imx/imx8-mipi-csi2.ko \
+    $(KERNEL_OUT)/drivers/media/platform/nxp/imx8mq-mipi-csi2.ko \
     $(KERNEL_OUT)/drivers/media/platform/nxp/imx-parallel-csi.ko \
     $(KERNEL_OUT)/drivers/staging/media/imx/imx8-capture.ko \
     $(KERNEL_OUT)/drivers/staging/media/imx/imx8-isi-hw.ko \
@@ -210,6 +210,7 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-imx-hdmi.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-spdif.ko \
     $(KERNEL_OUT)/drivers/remoteproc/imx_dsp_rproc.ko \
+    $(KERNEL_OUT)/drivers/phy/freescale/phy-fsl-imx8qm-hsio.ko \
     $(KERNEL_OUT)/drivers/pci/controller/dwc/pci-imx6.ko \
     $(KERNEL_OUT)/drivers/net/phy/realtek.ko \
     $(KERNEL_OUT)/drivers/net/phy/qcom/qcom-phy-lib.ko \

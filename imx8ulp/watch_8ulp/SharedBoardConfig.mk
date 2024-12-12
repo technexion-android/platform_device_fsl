@@ -66,7 +66,7 @@ PRODUCT_IMX_TRUSTY := true
 # CONFIG_VIDEO_OV5640: ov5640.ko
 # CONFIG_IMX8_ISI_CAPTURE: imx8-capture.ko
 # CONFIG_IMX8_ISI_CORE: imx8-isi-hw.ko, imx8-isi-cap.ko, imx8-isi-m2m.ko
-# CONFIG_IMX8_MIPI_CSI2: imx8-mipi-csi2.ko
+# CONFIG_IMX8_MIPI_CSI2: imx8mq-mipi-csi2.ko
 # CONFIG_IMX8_MEDIA_DEVICE: imx8-media-dev.ko
 # CONFIG_TRUSTY: trusty-core.ko, trusty-irq.ko, trusty-log.ko, trusty-virtio.ko, trusty-ipc.ko
 # CONFIG_CFG80211: cfg80211.ko
@@ -140,7 +140,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/staging/media/imx/imx8-isi-capture.ko \
     $(KERNEL_OUT)/drivers/staging/media/imx/imx8-isi-mem2mem.ko \
     $(KERNEL_OUT)/drivers/staging/media/imx/imx8-capture.ko \
-    $(KERNEL_OUT)/drivers/staging/media/imx/imx8-mipi-csi2.ko \
+    $(KERNEL_OUT)/drivers/media/platform/nxp/imx8mq-mipi-csi2.ko \
     $(KERNEL_OUT)/drivers/staging/media/imx/imx8-media-dev.ko \
     $(KERNEL_OUT)/drivers/trusty/trusty-core.ko \
     $(KERNEL_OUT)/drivers/trusty/trusty-log.ko \
