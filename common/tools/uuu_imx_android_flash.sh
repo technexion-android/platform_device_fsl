@@ -129,7 +129,7 @@ function uuu_load_uboot_fspi
         randome_part=$RANDOM
     done
 
-    echo uuu_version 1.4.182 > /tmp/uuu.lst${randome_part}
+    echo uuu_version ${uuu_ver} > /tmp/uuu.lst${randome_part}
     tmp_files_in_uuu+=(uuu.lst${randome_part})
 
     ln -sf ${sym_link_directory}${bootloader_used_by_uuu} /tmp/${bootloader_used_by_uuu}${randome_part}
@@ -167,7 +167,7 @@ function uuu_load_uboot
         randome_part=$RANDOM
     done
 
-    echo uuu_version 1.4.182 > /tmp/uuu.lst${randome_part}
+    echo uuu_version ${uuu_ver} > /tmp/uuu.lst${randome_part}
     tmp_files_in_uuu+=(uuu.lst${randome_part})
 
     ln -sf ${sym_link_directory}${bootloader_used_by_uuu} /tmp/${bootloader_used_by_uuu}${randome_part}
@@ -383,6 +383,11 @@ function clean_tmp_files
     fi
 }
 
+function get_uuu_ver
+{
+    uuu_ver=$(${UUU} | head -n1 | awk -F'libuuu_' '{print $2}' | awk -F'-' '{print $1}')
+}
+
 # parse command line
 soc_name=""
 uboot_feature=""
@@ -447,6 +452,11 @@ result_value=0
 usb_paths=""
 randome_part=0
 
+# get uuu version
+UUU=${UUU:-"./uuu"}
+uuu_ver="1.5.109"
+get_uuu_ver
+
 # We want to detect illegal feature input to some extent. Here it's based on SoC names. Since an SoC may be on a
 # board running different set of images(android and automative for a example), so misuse the features of one set of
 # images when flash another set of images can not be detect early with this scenario.
@@ -474,7 +484,7 @@ tmp_files_before_uuu=()
 tmp_files_in_uuu=()
 
 
-echo -e This script is validated with ${RED}uuu 1.4.182${STD} version, it is recommended to align with this version.
+echo -e This script is validated with ${RED}uuu ${uuu_ver}${STD} version, it is recommended to align with this version.
 
 if [ $# -eq 0 ]; then
     echo -e >&2 ${RED}please provide more information with command script options${STD}
@@ -858,7 +868,6 @@ if [ ${dryrun} -eq 1 ]; then
 fi
 
 echo "uuu script generated, start to invoke uuu with the generated uuu script"
-UUU=${UUU:-"./uuu"}
 if [ ${daemon_mode} -eq 1 ]; then
     ${UUU} ${usb_paths} -d /tmp/uuu.lst${randome_part} || clean_tmp_files
     clean_tmp_files
