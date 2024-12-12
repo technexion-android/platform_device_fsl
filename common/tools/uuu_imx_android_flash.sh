@@ -162,7 +162,7 @@ function uuu_load_uboot_fspi
         randome_part=$RANDOM
     done
 
-    echo uuu_version 1.4.182 > /tmp/uuu.lst${randome_part}
+    echo uuu_version ${uuu_ver} > /tmp/uuu.lst${randome_part}
     tmp_files_in_uuu+=(uuu.lst${randome_part})
 
     ln -sf ${sym_link_directory}${bootloader_used_by_uuu} /tmp/${bootloader_used_by_uuu}${randome_part}
@@ -201,7 +201,7 @@ function uuu_load_uboot
         done
     fi
 
-    echo uuu_version 1.4.182 > /tmp/uuu.lst${randome_part}
+    echo uuu_version ${uuu_ver} > /tmp/uuu.lst${randome_part}
     tmp_files_in_uuu+=(uuu.lst${randome_part})
 
     file_exist "${sym_link_directory}"${bootloader_used_by_uuu}
@@ -471,6 +471,11 @@ function clean_tmp_files
 }
 trap clean_tmp_files EXIT
 
+function get_uuu_ver
+{
+    uuu_ver=$(${UUU} | head -n1 | awk -F'libuuu_' '{print $2}' | awk -F'-' '{print $1}')
+}
+
 # parse command line
 soc_name=""
 uboot_feature=""
@@ -538,6 +543,11 @@ result_value=0
 usb_paths=""
 randome_part=
 
+# get uuu version
+UUU=${UUU:-"./uuu"}
+uuu_ver="1.5.201"
+get_uuu_ver
+
 # We want to detect illegal feature input to some extent. Here it's based on SoC names. Since an SoC may be on a
 # board running different set of images(android and automative for a example), so misuse the features of one set of
 # images when flash another set of images can not be detect early with this scenario.
@@ -569,7 +579,7 @@ tmp_files_before_uuu=()
 tmp_files_in_uuu=()
 all_cmd_options=(-h -f -c -u -d -a -b -m -mo -e -D -t -y -p -i -daemon -dryrun -usb)
 
-echo -e This script is validated with ${RED}uuu 1.5.201${STD} version, it is recommended to align with this version.
+echo -e This script is validated with ${RED}uuu ${uuu_ver}${STD} version, it is recommended to align with this version.
 
 if [ $# -eq 0 ]; then
     echo -e >&2 ${RED}please provide more information with command script options${STD}

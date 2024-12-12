@@ -1,7 +1,11 @@
 :: Do not output the command
 @echo off
 
-echo This script is validated with uuu 1.5.201 version, it is recommended to align with this version.
+:: get uuu version
+set uuu_ver=1.5.201
+call :get_uuu_ver %uuu_ver%
+
+echo This script is validated with uuu %uuu_ver% version, it is recommended to align with this version.
 
 ::---------------------------------------------------------------------------------
 ::Variables
@@ -767,6 +771,18 @@ echo  -dryrun           only generate the uuu script under /tmp direcbory but no
 echo  -usb usb_path     specify a usb path like 1:1 to monitor. It can be used multiple times to specify more than one path
 goto :eof
 
+:: get uuu tool version
+:get_uuu_ver
+for /f "tokens=1 delims=" %%a in ('uuu') do (
+    set first_line=%%a
+    goto :next_step
+)
+
+:next_step
+for /f "tokens=2 delims=_-" %%a in ("%first_line%") do (
+    set %1=%%a
+)
+goto :eof
 
 :: this function checks whether the value of first parameter is in the array value of second parameter.
 :: pass the name of the (array)variable to this function. the first is potential element, the second one is array,
@@ -822,7 +838,7 @@ goto :eof
 
 :: refer uuu -bshow qspi
 :uuu_load_uboot_fspi
-echo uuu_version 1.4.182 > %tmp_dir%uuu.lst
+echo uuu_version %uuu_ver% > %tmp_dir%uuu.lst
 
 if exist %tmp_dir%%bootloader_used_by_uuu%.link (
     del %tmp_dir%%bootloader_used_by_uuu%.link
@@ -854,7 +870,7 @@ if %intervene% == 1 (
 goto :eof
 
 :uuu_load_uboot
-echo uuu_version 1.4.182 > %tmp_dir%uuu.lst
+echo uuu_version %uuu_ver% > %tmp_dir%uuu.lst
 
 if exist %tmp_dir%%bootloader_used_by_uuu%.link (
     del %tmp_dir%%bootloader_used_by_uuu%.link
