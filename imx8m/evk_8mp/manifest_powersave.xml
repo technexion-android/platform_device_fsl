@@ -34,4 +34,9 @@
         <name>android.hardware.oemlock</name>
         <fqname>IOemLock/default</fqname>
     </hal>
+    <hal format="aidl">
+       <name>android.hardware.security.secretkeeper</name>
+       <version>1</version>
+       <fqname>ISecretkeeper/default</fqname>
+    </hal>
 </manifest>
