@@ -130,13 +130,10 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/gpu/drm/display/drm_display_helper.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/imx/dcnano/imx-dcnano-drm.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/panel/panel-rocktech-hx8394f.ko \
-    $(KERNEL_OUT)/drivers/media/i2c/ov5640.ko \
-    $(KERNEL_OUT)/drivers/staging/media/imx/imx8-isi-hw.ko \
-    $(KERNEL_OUT)/drivers/staging/media/imx/imx8-isi-capture.ko \
-    $(KERNEL_OUT)/drivers/staging/media/imx/imx8-isi-mem2mem.ko \
-    $(KERNEL_OUT)/drivers/staging/media/imx/imx8-capture.ko \
+    $(KERNEL_OUT)/drivers/reset/reset-imx8ulp-csr.ko \
+    $(KERNEL_OUT)/drivers/media/platform/nxp/imx8-isi/imx8-isi.ko \
     $(KERNEL_OUT)/drivers/media/platform/nxp/imx8mq-mipi-csi2.ko \
-    $(KERNEL_OUT)/drivers/staging/media/imx/imx8-media-dev.ko
+    $(KERNEL_OUT)/drivers/media/i2c/ov5640.ko
 else
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/input/touchscreen/goodix_ts.ko

@@ -34,9 +34,9 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/net/mac80211/mac80211.ko \
     $(KERNEL_OUT)/drivers/mxc/gpu-viv/galcore.ko \
     $(KERNEL_OUT)/drivers/thermal/imx8mm_thermal.ko \
-    $(KERNEL_OUT)/drivers/media/platform/mxc/capture/mx6s_capture.ko \
-    $(KERNEL_OUT)/drivers/media/platform/mxc/capture/mxc_mipi_csi.ko \
-    $(KERNEL_OUT)/drivers/media/platform/mxc/capture/ov5640_camera_mipi_v2.ko \
+    $(KERNEL_OUT)/drivers/media/platform/nxp/imx7-media-csi.ko \
+    $(KERNEL_OUT)/drivers/media/platform/nxp/imx-mipi-csis.ko \
+    $(KERNEL_OUT)/drivers/media/i2c/ov5640.ko \
     $(KERNEL_OUT)/drivers/leds/leds-gpio.ko \
     $(KERNEL_OUT)/drivers/leds/leds-pca995x.ko \
     $(KERNEL_OUT)/drivers/gpio/gpio-pca953x.ko \
