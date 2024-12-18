@@ -163,7 +163,11 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/usb/phy/phy-generic.ko \
     $(KERNEL_OUT)/drivers/power/supply/dummy_battery.ko \
     $(KERNEL_OUT)/drivers/media/rc/gpio-ir-recv.ko \
-    $(KERNEL_OUT)/drivers/dma/imx-sdma.ko
+    $(KERNEL_OUT)/drivers/dma/imx-sdma.ko \
+    $(KERNEL_OUT)/drivers/trusty/trusty-core.ko \
+    $(KERNEL_OUT)/drivers/trusty/trusty-log.ko \
+    $(KERNEL_OUT)/drivers/trusty/trusty-ipc.ko \
+    $(KERNEL_OUT)/drivers/trusty/trusty-virtio.ko
 else
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/input/touchscreen/goodix_ts.ko \

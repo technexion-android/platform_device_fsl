@@ -80,6 +80,10 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/cpufreq/cpufreq-dt.ko \
     $(KERNEL_OUT)/drivers/cpufreq/cpufreq-dt-platdev.ko \
     $(KERNEL_OUT)/drivers/tty/serial/fsl_lpuart.ko \
+    $(KERNEL_OUT)/drivers/trusty/trusty-core.ko \
+    $(KERNEL_OUT)/drivers/trusty/trusty-log.ko \
+    $(KERNEL_OUT)/drivers/trusty/trusty-ipc.ko \
+    $(KERNEL_OUT)/drivers/trusty/trusty-virtio.ko \
     $(KERNEL_OUT)/drivers/reset/gpio-reset.ko \
     $(KERNEL_OUT)/drivers/gpio/gpio-max732x.ko \
     $(KERNEL_OUT)/drivers/gpio/gpio-pca953x.ko \
