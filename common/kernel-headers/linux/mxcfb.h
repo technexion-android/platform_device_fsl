@@ -112,14 +112,14 @@ struct mxcfb_waveform_modes {
   int mode_gc16;
   int mode_gc32;
 };
+struct mxcfb_csc_matrix {
+  int param[5][3];
+};
 struct mxcfb_datainfo {
   struct fb_var_screeninfo screeninfo;
   unsigned long smem_start;
   __s32 fence_fd;
   __s64 fence_ptr;
-};
-struct mxcfb_csc_matrix {
-  int param[5][3];
 };
 #define MXCFB_WAIT_FOR_VSYNC _IOW('F', 0x20, u_int32_t)
 #define MXCFB_SET_GBL_ALPHA _IOW('F', 0x21, struct mxcfb_gbl_alpha)
