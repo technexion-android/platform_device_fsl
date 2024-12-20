@@ -25,3 +25,7 @@
 
 /dev/dmabuf_imx           0664   system     system
 /sys/class/backlight/* brightness 0660 system system
+
+# for libcamera
+/dev/media* 0660 system camera
+/dev/v4l-subdev* 0660 system camera
