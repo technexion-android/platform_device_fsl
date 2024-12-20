@@ -255,6 +255,12 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.audio.usb.period_us=25000
 
+# libcamera
+PRODUCT_PACKAGES += \
+    libcamera-base \
+    libcamera \
+    libyaml
+
 # -------@block_camera-------
 PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/camera_config_imx8mn.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx8mn.json
