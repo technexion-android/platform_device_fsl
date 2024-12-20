@@ -186,7 +186,7 @@ fi
 if [ ${build_kernel_oot_module_flag} -eq 1 ] || [ -n "${build_kernel_modules}" ]; then
     soc_path=${soc_path} product_path=${product_path} nxp_git_path=${nxp_git_path} clean_build=${clean_build} \
         skip_config_or_clean=${skip_config_or_clean} make -C ./ -f ${nxp_git_path}/common/build/Makefile ${parallel_option} \
-        ${build_galcore} </dev/null || exit
+        ${build_vvcam} ${build_galcore} </dev/null || exit
 fi
 
 if [ ${build_android_flag} -eq 1 ] || [ ${build_whole_android_flag} -eq 1 ]; then
