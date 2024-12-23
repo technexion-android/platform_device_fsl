@@ -4,7 +4,7 @@
 <config identifier="1" />
 
 <!-- Display settings for 2nd Home -->
-<display name="port:1"
+<display name="port:2"
     shouldShowSystemDecors="true"
     shouldShowIme="true" />
 
