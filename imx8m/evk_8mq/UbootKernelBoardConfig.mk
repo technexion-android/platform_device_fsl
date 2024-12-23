@@ -11,6 +11,7 @@ ifeq ($(PRODUCT_IMX_TRUSTY),true)
   TARGET_BOOTLOADER_CONFIG += imx8mq-trusty-dual:imx8mq_evk_android_trusty_dual_defconfig
   TARGET_BOOTLOADER_CONFIG += imx8mq-trusty-secure-unlock-wevk-dual:imx8mq_wevk_android_trusty_secure_unlock_dual_defconfig
   TARGET_BOOTLOADER_CONFIG += imx8mq-trusty-wevk-dual:imx8mq_wevk_android_trusty_dual_defconfig
+  TARGET_BOOTLOADER_CONFIG += imx8mq-trusty-wevk-rbidx-blob-dual:imx8mq_wevk_android_trusty_rbidx_blob_dual_defconfig
 endif
 
 # u-boot target used by uuu for imx8mq_evk

@@ -7,6 +7,7 @@ TARGET_BOOTLOADER_CONFIG := imx8mp:imx8mp_evk_android_defconfig
 TARGET_BOOTLOADER_CONFIG += imx8mp-trusty-secure-unlock-dual:imx8mp_evk_android_trusty_secure_unlock_dual_defconfig
 TARGET_BOOTLOADER_CONFIG += imx8mp-dual:imx8mp_evk_android_dual_defconfig
 TARGET_BOOTLOADER_CONFIG += imx8mp-trusty-dual:imx8mp_evk_android_trusty_dual_defconfig
+TARGET_BOOTLOADER_CONFIG += imx8mp-trusty-rbidx-blob-dual:imx8mp_evk_android_trusty_rbidx_blob_dual_defconfig
 ifeq ($(POWERSAVE),true)
 TARGET_BOOTLOADER_CONFIG += imx8mp-powersave:imx8mp_evk_android_powersave_defconfig
 TARGET_BOOTLOADER_CONFIG += imx8mp-trusty-powersave-dual:imx8mp_evk_android_trusty_powersave_dual_defconfig

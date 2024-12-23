@@ -14,6 +14,7 @@ TARGET_BOOTLOADER_CONFIG += imx8mm-4g:imx8mm_evk_4g_android_defconfig
 ifeq ($(PRODUCT_IMX_TRUSTY),true)
   TARGET_BOOTLOADER_CONFIG += imx8mm-trusty-secure-unlock-dual:imx8mm_evk_android_trusty_secure_unlock_dual_defconfig
   TARGET_BOOTLOADER_CONFIG += imx8mm-trusty-dual:imx8mm_evk_android_trusty_dual_defconfig
+  TARGET_BOOTLOADER_CONFIG += imx8mm-trusty-rbidx-blob-dual:imx8mm_evk_android_trusty_rbidx_blob_dual_defconfig
 endif
 
 # u-boot target used by uuu for imx8mm_evk with DDR4 on board
