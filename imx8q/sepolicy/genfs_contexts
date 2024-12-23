@@ -7,7 +7,6 @@ genfscon sysfs /devices/platform/scu/scu:rtc/rtc/rtc0/hctosys     u:object_r:sys
 genfscon sysfs /devices/platform/sound/extcon                     u:object_r:sysfs_extcon:s0
 genfscon sysfs /devices/platform/sound-wm8960/extcon              u:object_r:sysfs_extcon:s0
 genfscon sysfs /devices/platform/sound-wm8962/extcon              u:object_r:sysfs_extcon:s0
-genfscon sysfs /devices/platform/sound-cs42888/extcon              u:object_r:sysfs_extcon:s0
 genfscon sysfs /devices/platform/bus@56260000/56268000.hdmi/extcon      u:object_r:sysfs_extcon:s0
 genfscon sysfs /devices/platform/bus@59000000/596e8000.dsp/extcon u:object_r:sysfs_extcon:s0
 genfscon sysfs /devices/platform/bus@55000000/556e8000.dsp/extcon u:object_r:sysfs_extcon:s0

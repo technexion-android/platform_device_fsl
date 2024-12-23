@@ -79,7 +79,7 @@
             </devicePorts>
             <routes>
                 <route type="mix" sink="Speaker"
-                       sources="primary output"/>
+                       sources="direct output,primary output"/>
                 <route type="mix" sink="Wired Headphones"
                        sources="primary output"/>
                 <route type="mix" sink="Wired Headset"
@@ -93,7 +93,7 @@
                 <route type="mix" sink="BT SCO"
                        sources="bt sco output"/>
                 <route type="mix" sink="Line-Out"
-                       sources="direct output,compressed_offload,primary output"/>
+                       sources="compressed_offload,primary output"/>
 
                 <route type="mix" sink="primary input"
                        sources="Built-In Mic,Wired Headset Mic,BT SCO Headset Mic"/>

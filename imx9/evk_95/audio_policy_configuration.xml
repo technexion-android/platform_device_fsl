@@ -73,13 +73,13 @@
             </devicePorts>
             <routes>
                 <route type="mix" sink="Speaker"
-                       sources="primary output"/>
+                       sources="direct output,primary output"/>
                 <route type="mix" sink="Wired Headphones"
                        sources="primary output"/>
                 <route type="mix" sink="Wired Headset"
                        sources="primary output"/>
                 <route type="mix" sink="Line-Out"
-                       sources="direct output,lpa output,primary output"/>
+                       sources="lpa output,primary output"/>
                 <route type="mix" sink="BT SCO Headset"
                        sources="bt sco output"/>
                 <route type="mix" sink="BT SCO CarKit"
