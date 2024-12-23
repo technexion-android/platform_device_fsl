@@ -430,6 +430,11 @@ PRODUCT_PACKAGES += \
 # -------@block_display-------
 PRODUCT_AAPT_CONFIG += xlarge large tvdpi hdpi xhdpi xxhdpi
 
+# -----some limiataion of overlay/g2d in hwcomposer3 --------
+SOONG_CONFIG_NAMESPACES += nxp_hwc
+SOONG_CONFIG_nxp_hwc += g2d_ip
+SOONG_CONFIG_nxp_hwc_g2d_ip := DPU
+
 # HWC2 HAL
 PRODUCT_PACKAGES += \
     android.hardware.graphics.composer3-service.imx

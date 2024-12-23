@@ -323,8 +323,9 @@ PRODUCT_AAPT_CONFIG += xlarge large tvdpi hdpi xhdpi xxhdpi
 
 # -----some limiataion of overlay/g2d in hwcomposer3 --------
 SOONG_CONFIG_NAMESPACES += nxp_hwc
-SOONG_CONFIG_nxp_hwc += overlay_ip
-SOONG_CONFIG_nxp_hwc_overlay_ip := DPU
+SOONG_CONFIG_nxp_hwc += overlay_ip g2d_ip
+SOONG_CONFIG_nxp_hwc_overlay_ip := DPU95
+SOONG_CONFIG_nxp_hwc_g2d_ip := DPU95
 
 PRODUCT_PACKAGES += \
         android.hardware.graphics.composer3-service.imx \
