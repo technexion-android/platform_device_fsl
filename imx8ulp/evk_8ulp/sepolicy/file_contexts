@@ -29,3 +29,7 @@
 /sys/devices/platform/rtc-rpmsg/rtc/rtc0/alarmtimer.[0-9].auto/wakeup/wakeup[0-9]*(/.*)?                  u:object_r:sysfs_wakeup:s0
 /sys/devices/platform/soc@0/29800000.bus/298f0000.mmc/mmc_host/mmc2/mmc2:0001/mmc2:0001:1/wakeup          u:object_r:sysfs_wakeup:s0
 /sys/devices/platform/soc@0/29800000.bus/298f0000.mmc/mmc_host/mmc2/mmc2:0001/mmc2:0001:1/wakeup/wakeup[0-9]*(/.*)?          u:object_r:sysfs_wakeup:s0
+
+# libcamera related
+/dev/v4l-subdev[0-9]*                       u:object_r:video_device:s0
+/dev/media[0-9]*                            u:object_r:video_device:s0
