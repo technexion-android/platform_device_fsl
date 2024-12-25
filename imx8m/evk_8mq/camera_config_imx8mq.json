@@ -11,7 +11,7 @@
   "camera_metadata": [
     {
       "camera_type": "back",
-      "camera_name": "mx6s-csi",
+      "camera_name": "ov5640",
       "bus_info": "platform:30b80000.csi2_bridge",
       "orientation": "0",
       "buffer_type": "mmap",

@@ -38,3 +38,7 @@
 /sys/devices/platform/soc@0/33c00000.pcie/pci0001:00/0001:00:00.0/0001:01:00.[0-9]*(/.*)?/wakeup                                                  u:object_r:sysfs_wakeup:s0
 /sys/devices/platform/soc@0/33c00000.pcie/pci0001:00/0001:00:00.0/0001:01:00.[0-9]*(/.*)?/wakeup/wakeup[0-9]*(/.*)?                               u:object_r:sysfs_wakeup:s0
 /sys/devices/platform/soc@0/33c00000.pcie/wakeup[0-9]*(/.*)?                                                                                      u:object_r:sysfs_wakeup:s0
+
+# libcamera related
+/dev/v4l-subdev[0-9]*                       u:object_r:video_device:s0
+/dev/media[0-9]*                            u:object_r:video_device:s0
