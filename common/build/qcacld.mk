@@ -17,6 +17,10 @@ qcacld: $(QCACLD_PATH)
 		rm -fv $(QCACLD_PATH)/wlan.ko $(QCACLD_OUT)/wlan.ko ; \
 		$(kernel_build_shell_env) $(MAKE) -C $(QCACLD_PATH) $(qcacld_build_make_env) clean ; \
 	fi
+
+#   workaround : fix build fail with needed stdarg.h on android 14
+	cp -v $(ANDROID_BUILD_TOP)/$(KERNEL_IMX_PATH)/kernel_imx/include/linux/stdarg.h $(QCACLD_PATH)/CORE/VOSS/inc/ ; \
+
 	$(kernel_build_shell_env) $(MAKE) -C $(QCACLD_PATH) $(qcacld_build_make_env) ; \
 	$(kernel_build_shell_env) llvm-strip --strip-debug \
 		$(QCACLD_PATH)/wlan.ko -o $(QCACLD_OUT)/wlan.ko
