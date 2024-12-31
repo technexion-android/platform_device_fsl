@@ -344,17 +344,14 @@ PRODUCT_PACKAGES += \
     libvulkan_VIVANTE \
     vulkan.$(TARGET_BOARD_PLATFORM) \
     libCLC \
-    libLLVM_viv \
     libOpenCL \
     libg2d-viv \
     libOpenVX \
     libOpenVXU \
     libNNVXCBinary-evis \
     libNNVXCBinary-evis2 \
-    libNNVXCBinary-lite \
     libOvx12VXCBinary-evis \
     libOvx12VXCBinary-evis2 \
-    libOvx12VXCBinary-lite \
     libNNGPUBinary-evis \
     libNNGPUBinary-evis2 \
     libNNGPUBinary-lite \
