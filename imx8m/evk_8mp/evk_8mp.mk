@@ -627,10 +627,6 @@ PRODUCT_PACKAGES += \
     libaflt \
     libaf \
     libahdr \
-    libappshell_ebase \
-    libappshell_hal \
-    libappshell_ibd \
-    libappshell_oslayer \
     libavs \
     libawb \
     libawdr3 \
