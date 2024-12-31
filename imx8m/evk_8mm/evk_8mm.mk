@@ -272,6 +272,11 @@ PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
     $(IMX_DEVICE_PATH)/usb_audio_policy_configuration-direct-output.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration-direct-output.xml
 
+# libcamera
+PRODUCT_PACKAGES += \
+    libcamera-base \
+    libcamera \
+    libyaml
 
 # -------@block_camera-------
 PRODUCT_COPY_FILES += \
