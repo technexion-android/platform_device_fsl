@@ -49,6 +49,11 @@
                              samplingRates="48000"
                              channelMasks="AUDIO_CHANNEL_IN_STEREO"/>
                 </mixPort>
+                <mixPort name="bt sco input" role="sink">
+                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                             samplingRates="16000"
+                             channelMasks="AUDIO_CHANNEL_IN_STEREO"/>
+                </mixPort>
             </mixPorts>
             <devicePorts>
                 <devicePort tagName="Speaker" type="AUDIO_DEVICE_OUT_SPEAKER" role="sink" >
@@ -94,7 +99,9 @@
                        sources="compressed_offload,primary output"/>
 
                 <route type="mix" sink="primary input"
-                       sources="Built-In Mic,Wired Headset Mic,BT SCO Headset Mic"/>
+                       sources="Built-In Mic,Wired Headset Mic"/>
+                <route type="mix" sink="bt sco input"
+                       sources="BT SCO Headset Mic"/>
             </routes>
         </module>
 
