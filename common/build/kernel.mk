@@ -54,7 +54,8 @@ TARGET_KERNEL_SRC := $(KERNEL_IMX_PATH)/kernel_imx
 CLANG_TO_COMPILE := LLVM=1
 
 # Uncomment below line to use prebuilt clang tool in android platform code
-#CLANG_PATH := $(realpath prebuilts/clang/host/linux-x86)
+CLANG_PATH := $(realpath prebuilts/clang/host/linux-x86)
+LIBCLANG_PATH := $(realpath prebuilts/clang/host/linux-x86/clang-r536225/lib)
 
 # Or use external clang
 ifeq ($(CLANG_PATH),)
@@ -62,7 +63,7 @@ $(error shell env CLANG_PATH is not set. Please follow user guide doc to set cor
 endif
 
 # This clang version need align with $(kernel_source)/build.config.common
-CLANG_BIN := $(CLANG_PATH)/clang-r510928/bin
+CLANG_BIN := $(CLANG_PATH)/clang-r536225/bin
 
 ifeq (,$(wildcard $(CLANG_BIN)))
 $(error CLANG_BIN:$(CLANG_BIN) does not exist. Please update clang to latest version: \
