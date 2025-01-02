@@ -80,7 +80,7 @@ build_vendordlkmimage=""
 parallel_option=""
 clean_build=0
 skip_config_or_clean=0
-enable_gki=${ENABLE_GKI:-1}
+enable_gki=${ENABLE_GKI:-0}
 
 # process of the arguments
 args=( "$@" )
