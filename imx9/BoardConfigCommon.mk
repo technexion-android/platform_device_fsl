@@ -198,14 +198,6 @@ ifneq (,$(filter ISP ALL,$(DISABLE_FSL_PREBUILT)))
     SOONG_CONFIG_IMXPLUGIN_PREBUILT_FSL_IMX_ISP = false
 endif
 
-# -------@block_sensor-------
-PREBUILT_FSL_IMX_SENSOR_FUSION := true
-
-# override some prebuilt setting if DISABLE_FSL_PREBUILT is define
-ifneq (,$(filter SENSOR_FUSION ALL,$(DISABLE_FSL_PREBUILT)))
-    PREBUILT_FSL_IMX_SENSOR_FUSION := false
-endif
-
 # -------@block_treble-------
 BOARD_VNDK_VERSION := current
 

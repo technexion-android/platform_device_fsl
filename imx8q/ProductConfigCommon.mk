@@ -396,10 +396,6 @@ PRODUCT_PACKAGES += \
     libldacBT_enc \
     libldacBT_abr
 
-# -------@block_sensor-------
-PRODUCT_PACKAGES += \
-    fsl_sensor_fusion
-
 # -------@block_input-------
 # Copy soc related config and binary to board
 PRODUCT_COPY_FILES += \

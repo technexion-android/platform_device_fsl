@@ -355,10 +355,6 @@ PRODUCT_PACKAGES += \
     libldacBT_enc \
     libldacBT_abr
 
-# -------@block_sensor-------
-PRODUCT_PACKAGES += \
-    fsl_sensor_fusion
-
 # -------@block_input-------
 
 PRODUCT_COPY_FILES += \
