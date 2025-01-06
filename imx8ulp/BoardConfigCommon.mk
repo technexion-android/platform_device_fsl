@@ -97,6 +97,7 @@ endif
 
 # -------@block_storage-------
 AB_OTA_UPDATER := true
+PRODUCT_VIRTUAL_AB_COMPRESSION_METHOD := lz4
 ifeq ($(IMX_NO_PRODUCT_PARTITION),true)
 AB_OTA_PARTITIONS += dtbo boot system system_dlkm system_ext vendor vendor_dlkm vbmeta
 else
