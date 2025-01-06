@@ -110,6 +110,10 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/media/platform/nxp/imx8-isi/imx8-isi.ko \
     $(KERNEL_OUT)/drivers/media/platform/nxp/imx-csi-formatter.ko \
     $(KERNEL_OUT)/drivers/media/platform/nxp/dwc-mipi-csi2.ko
+ifeq ($(ENABLE_CONTEXTHUB), true)
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=  \
+    $(KERNEL_OUT)/drivers/rpmsg/imx_rpmsg_chre.ko
+endif
 
 BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/media/i2c/ap1302.ko \
