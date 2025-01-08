@@ -1,0 +1,12 @@
+cc_library_static {
+    name: "librecovery_ui_imx",
+    srcs: ["recovery_ui.cpp"],
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+    include_dirs: [
+        "bootable/recovery",
+        "bootable/recovery/recovery_ui/include",
+    ],
+}
