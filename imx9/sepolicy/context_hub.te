@@ -1,0 +1,15 @@
+type hal_contexthub_aidl, domain;
+type nxp_chre_device, dev_type;
+
+hal_server_domain(hal_contexthub_aidl, hal_contexthub)
+
+type hal_contexthub_aidl_exec, exec_type, file_type, vendor_file_type;
+
+init_daemon_domain(hal_contexthub_aidl)
+
+binder_use(hal_contexthub_aidl)
+
+allow hal_contexthub_aidl nxp_chre_device:chr_file {open read write ioctl};
+allow hal_contexthub_aidl vendor_data_file:file {open read write};
+
+wakelock_use(hal_contexthub_aidl)
