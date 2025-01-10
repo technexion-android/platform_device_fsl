@@ -1,0 +1,11 @@
+type hal_contexthub_aidl, domain;
+hal_server_domain(hal_contexthub_aidl, hal_contexthub)
+
+type hal_contexthub_aidl_exec, exec_type, file_type, vendor_file_type;
+
+init_daemon_domain(hal_contexthub_aidl)
+
+binder_use(hal_contexthub_aidl)
+#allow hal_contexthub_aidl service_manager_type:service_manager add;
+allow hal_contexthub_aidl socket_device:sock_file { read write };
+allow hal_contexthub_aidl nxp_chre_daemon:unix_stream_socket {connectto};

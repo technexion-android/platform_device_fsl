@@ -592,3 +592,19 @@ $(call inherit-product, packages/modules/Virtualization/apex/product_packages.mk
 
 # Add imx private apps
 $(call inherit-product-if-exists, vendor/nxp-private/imx-apps/imx-private-app.mk)
+
+# -------@block_mcu_contexthub-------
+
+# context hub
+ifeq ($(ENABLE_CONTEXTHUB), true)
+PRODUCT_PACKAGES += \
+    android.hardware.contexthub-service.imx \
+    chre_daemon_nxp \
+    hello_world.so \
+    hello_world.napp_header \
+    IMXChreDemo
+
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.context_hub.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.context_hub.xml \
+    $(IMX_DEVICE_PATH)/chre/preloaded_nanoapps.json:$(TARGET_COPY_OUT_VENDOR)/etc/chre/preloaded_nanoapps.json
+endif

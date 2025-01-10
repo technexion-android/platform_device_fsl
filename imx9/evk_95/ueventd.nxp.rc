@@ -38,3 +38,4 @@
 /dev/dmabuf_imx           0664   system     system
 /dev/neutron0             0666   system     graphics
 /sys/class/backlight/* brightness 0660 system system
+/dev/rpmsg_chre           0666   system     system
