@@ -143,7 +143,10 @@ TARGET_COPY_OUT_VENDOR_DLKM := vendor_dlkm
 BOARD_USES_SYSTEM_DLKMIMAGE := false
 BOARD_SYSTEM_DLKMIMAGE_FILE_SYSTEM_TYPE := erofs
 TARGET_COPY_OUT_SYSTEM_DLKM := system_dlkm
+TARGET_GKI_SYSTEM_DLKM ?= true
+ifeq ($(TARGET_GKI_SYSTEM_DLKM),true)
 BOARD_SYSTEM_KERNEL_MODULES += $(wildcard vendor/nxp-opensource/imx-gki/system_dlkm_staging_95/flatten/lib/modules/*.ko)
+endif
 
 BOARD_FLASH_BLOCK_SIZE := 4096
 

@@ -4,6 +4,7 @@
 #
 
 TARGET_IMX_KERNEL := true
+TARGET_GKI_SYSTEM_DLKM := false
 include $(CONFIG_REPO_PATH)/imx9/BoardConfigCommon.mk
 
 # -------@block_common_config-------
