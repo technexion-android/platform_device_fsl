@@ -479,6 +479,7 @@ endif
 
 # Neural Network HAL and lib
 PRODUCT_PACKAGES += \
+    libNeutronConverter \
     libNeutronDriver \
     NeutronFirmware.elf \
     NeutronKernels.bin \
