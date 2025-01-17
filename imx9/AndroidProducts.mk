@@ -34,5 +34,7 @@ PRODUCT_MAKEFILES := \
 COMMON_LUNCH_CHOICES := \
   evk_93-nxp_stable-user \
   evk_93-nxp_stable-userdebug \
+  evk_943-nxp_stable-user \
+  evk_943-nxp_stable-userdebug \
   evk_95-nxp_stable-user \
   evk_95-nxp_stable-userdebug

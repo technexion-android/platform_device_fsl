@@ -28,7 +28,7 @@ DEVICE_PACKAGE_OVERLAYS := $(IMX_DEVICE_PATH)/overlay
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
 
 PRODUCT_VENDOR_PROPERTIES += ro.soc.manufacturer=nxp
-PRODUCT_VENDOR_PROPERTIES += ro.soc.model=IMX93
+PRODUCT_VENDOR_PROPERTIES += ro.soc.model=IMX94
 PRODUCT_VENDOR_PROPERTIES += ro.crypto.metadata_init_delete_all_keys.enabled=true
 # -------@block_treble-------
 PRODUCT_FULL_TREBLE_OVERRIDE := true
@@ -140,7 +140,7 @@ ifneq ($(filter TRUE true 1,$(IMX_OTA_POSTINSTALL)),)
     POSTINSTALL_OPTIONAL_vendor=false
 
   PRODUCT_COPY_FILES += \
-    $(OUT_DIR)/target/product/$(firstword $(PRODUCT_DEVICE))/obj/UBOOT_COLLECTION/spl-imx93-dual.bin:$(TARGET_COPY_OUT_VENDOR)/etc/bootloader0.img
+    $(OUT_DIR)/target/product/$(firstword $(PRODUCT_DEVICE))/obj/UBOOT_COLLECTION/spl-imx943-dual.bin:$(TARGET_COPY_OUT_VENDOR)/etc/bootloader0.img
 endif
 
 # fastboot_imx_flashall scripts, imx-sdcard-partition script uuu_imx_android_flash scripts
@@ -477,7 +477,7 @@ PRODUCT_PACKAGES += \
 
 
 PRODUCT_COPY_FILES += \
-    ${CONFIG_REPO_PATH}/imx9/evk_93/Microchip_Technology_Inc__AR1100_HID-DIGITIZER.idc:${TARGET_COPY_OUT_VENDOR}/usr/idc/Microchip_Technology_Inc__AR1100_HID-DIGITIZER.idc
+    ${CONFIG_REPO_PATH}/imx9/evk_943/Microchip_Technology_Inc__AR1100_HID-DIGITIZER.idc:${TARGET_COPY_OUT_VENDOR}/usr/idc/Microchip_Technology_Inc__AR1100_HID-DIGITIZER.idc
 
 
 # Add imx private apps
