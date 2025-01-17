@@ -16,4 +16,4 @@ PRODUCT_IMX_TRUSTY := true
 # -------@block_storage-------
 # the bootloader image used in dual-bootloader OTA
 # TODO use the correct name for OTA
-BOARD_OTA_BOOTLOADERIMAGE := bootloader-imx93-dual.img
+BOARD_OTA_BOOTLOADERIMAGE := bootloader-imx943-dual.img
