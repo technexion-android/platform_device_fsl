@@ -96,6 +96,7 @@ set imx8mq_uboot_feature=dual trusty-dual evk-uuu trusty-secure-unlock-dual wevk
 set imx8qxp_uboot_feature=dual trusty-dual mek-uuu trusty-secure-unlock-dual secure-unlock c0 c0-dual trusty-c0-dual mek-c0-uuu
 set imx8qm_uboot_feature=dual trusty-dual mek-uuu trusty-secure-unlock-dual secure-unlock md hdmi xen
 set imx93_uboot_feature=dual trusty-dual evk-uuu
+set imx943_uboot_feature=dual trusty-dual lpddr5 lpddr5-dual trusty-lpddr5-dual evk-uuu lpddr5-evk-uuu
 set imx95_uboot_feature=dual trusty-dual trusty-secure-unlock-dual evk-uuu verdin trusty-verdin-dual verdin-uuu 15x15 15x15-dual trusty-15x15-dual 15x15-evk-uuu rpmsg
 set imx7ulp_uboot_feature=evk-uuu
 
@@ -107,6 +108,7 @@ set imx8qxp_dtb_feature=sof mipi-panel mipi-panel-rm67191 lvds0-panel
 set imx8qm_dtb_feature=hdmi hdmi-rx mipi-panel mipi-panel-rm67191 md xen sof lvds1-panel revd mipi-panel-revd mipi-panel-rm67191-revd hdmi-revd hdmi-rx-revd md-revd lvds1-panel-revd sof-revd
 set imx8ulp_dtb_feature=hdmi epdc 9x9 9x9-hdmi sof lpa lpd
 set imx93_dtb_feature=frdm-iw612 iw612 frdm-iw612-tianma-wvga
+set imx943_dtb_feature=
 set imx95_dtb_feature=ap1302 mipi-lvds1 mipi-panel lvds0 lvds-dualdisp lvds-panel cs42888 rpmsg mipi4k dsi-serdes verdin verdin-ap1302 verdin-lt8912 verdin-10inch-panel-lvds verdin-10inch-panel-dsi verdin-mipi-panel verdin-mipi4k 15x15 15x15-ap1302 15x15-mipi-panel 15x15-aud-hat 15x15-mqs 15x15-mipi4k 15x15-boe-panel-lvds1
 set imx7ulp_dtb_feature=evk-mipi evk mipi
 
@@ -315,6 +317,13 @@ if not [%soc_name:imx93=%] == [%soc_name%] (
     set board=evk
     goto :device_info_end
 )
+if not [%soc_name:imx943=%] == [%soc_name%] (
+    set vid=0x1fc9& set pid=00x0152& set chip=MX943
+    set uboot_env_start=0x3800& set uboot_env_len=0x20
+    set emmc_num=0& set sd_num=1
+    set board=evk
+    goto :device_info_end
+)
 if not [%soc_name:imx95=%] == [%soc_name%] (
     set vid=0x1fc9& set pid=00x0152& set chip=MX95
     set uboot_env_start=0x3800& set uboot_env_len=0x20
@@ -413,6 +422,7 @@ if [%soc_name%] == [imx8mn] goto :with_sdps
 if [%soc_name%] == [imx8mp] goto :with_sdps
 if [%soc_name%] == [imx8ulp] goto :with_sdps
 if [%soc_name%] == [imx93] goto :with_sdps
+if [%soc_name%] == [imx943] goto :with_sdps
 if [%soc_name%] == [imx95] goto :with_sdps
 goto :without_sdps
 :with_sdps
@@ -468,6 +478,12 @@ if [%soc_name%] == [imx95] (
 if [%soc_name%] == [imx95] (
     if not [%uboot_feature_test:15x15=%] == [%uboot_feature_test%] (
         set bootloader_used_by_uuu=u-boot-%soc_name%-15x15-evk-uuu.imx
+    )
+)
+
+if [%soc_name%] == [imx943] (
+    if not [%uboot_feature_test:lpddr5=%] == [%uboot_feature_test%] (
+        set bootloader_used_by_uuu=u-boot-%soc_name%-lpddr5-evk-uuu.imx
     )
 )
 ::---------------------------------------------------------------------------------
@@ -634,6 +650,8 @@ echo                           ©¦   imx8qm       ©¦  dual trusty-dual mek-uuu tr
 echo                           ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È
 echo                           ©¦   imx93        ©¦  dual trusty-dual evk-uuu                                                                            ©¦
 echo                           ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È
+echo                           ©¦   imx943       ©¦  dual trusty-dual lpddr5 lpddr5-dual trusty-lpddr5-dual evk-uuu lpddr5-evk-uuu                       ©¦
+echo                           ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È
 echo                           ©¦   imx95        ©¦  dual trusty-dual trusty-secure-unlock-dual evk-uuu verdin trusty-verdin-dual verdin-uuu             ©¦
 echo                           ©¦                ©¦  15x15 15x15-dual trusty-15x15-dual 15x15-evk-uuu rpmsg                                              ©¦
 echo                           ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È
@@ -666,6 +684,8 @@ echo                           ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©
 echo                           ©¦   imx8ulp      ©¦  hdmi epdc 9x9 9x9-hdmi sof lpa lpd                                                                  ©¦
 echo                           ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È
 echo                           ©¦   imx93        ©¦  frdm-iw612 iw612 frdm-iw612-tianma-wvga                                                             ©¦
+echo                           ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È
+echo                           ©¦   imx943       ©¦                                                                                                      ©¦
 echo                           ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È
 echo                           ©¦   imx95        ©¦  ap1302 mipi-lvds1 mipi-panel lvds0 lvds-dualdisp lvds-panel cs42888 rpmsg mipi4k dsi-serdes verdin  ©¦
 echo                           ©¦                ©¦  verdin-ap1302 verdin-lt8912 verdin-10inch-panel-lvds verdin-10inch-panel-dsi verdin-mipi-panel      ©¦

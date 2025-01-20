@@ -51,6 +51,8 @@ options:
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx93        │  dual trusty-dual evk-uuu                                                                            │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
+                           │   imx943       │  dual trusty-dual lpddr5 lpddr5-dual trusty-lpddr5-dual evk-uuu lpddr5-evk-uuu                       │
+                           ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx95        │  dual trusty-dual trusty-secure-unlock-dual verdin trusty-verdin-dual 15x15 15x15-dual               │
                            |                |  trusty-15x15-dual                                                                                   │
                            │                │  verdin-uuu evk-uuu 15x15-evk-uuu rpmsg                                                              │
@@ -84,6 +86,8 @@ options:
                            │   imx8ulp      │  hdmi epdc 9x9 9x9-hdmi sof lpa lpd                                                                  │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx93        │  frdm-iw612 iw612 frdm-iw612-tianma-wvga                                                             │
+                           ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
+                           │   imx943       │                                                                                                      │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx95        │  ap1302 mipi-lvds1 mipi-panel lvds0 lvds-dualdisp lvds-panel cs42888 rpmsg mipi4k dsi-serdes verdin  │
                            │                │  verdin-ap1302 verdin-lt8912 verdin-10inch-panel-lvds verdin-10inch-panel-dsi verdin-mipi-panel      │
@@ -470,6 +474,7 @@ imx8qxp_uboot_feature=(dual trusty-dual mek-uuu trusty-secure-unlock-dual secure
 imx8qm_uboot_feature=(dual trusty-dual mek-uuu trusty-secure-unlock-dual secure-unlock md hdmi xen)
 imx7ulp_uboot_feature=(evk-uuu)
 imx93_uboot_feature=(dual trusty-dual evk-uuu)
+imx943_uboot_feature=(dual trusty-dual lpddr5 lpddr5-dual trusty-lpddr5-dual lpddr5-evk-uuu evk-uuu)
 imx95_uboot_feature=(dual trusty-dual trusty-secure-unlock-dual evk-uuu verdin trusty-verdin-dual verdin-uuu 15x15 15x15-dual trusty-15x15-dual 15x15-evk-uuu rpmsg)
 
 imx8mm_dtb_feature=(ddr4 m4 mipi-panel mipi-panel-rm67191)
@@ -480,6 +485,7 @@ imx8qxp_dtb_feature=(sof mipi-panel mipi-panel-rm67191 lvds0-panel)
 imx8qm_dtb_feature=(hdmi hdmi-rx mipi-panel mipi-panel-rm67191 md xen sof lvds1-panel revd mipi-panel-revd mipi-panel-rm67191-revd hdmi-revd hdmi-rx-revd md-revd lvds1-panel-revd sof-revd)
 imx8ulp_dtb_feature=(hdmi epdc 9x9 9x9-hdmi sof lpa lpd)
 imx93_dtb_feature=(frdm-iw612 iw612 frdm-iw612-tianma-wvga)
+imx943_dtb_feature=()
 imx95_dtb_feature=(ap1302 mipi-lvds1 mipi-panel lvds0 lvds-dualdisp lvds-panel cs42888 rpmsg mipi4k dsi-serdes verdin verdin-ap1302 verdin-lt8912 verdin-10inch-panel-lvds verdin-10inch-panel-dsi verdin-mipi-panel verdin-mipi4k 15x15 15x15-ap1302 15x15-mipi-panel 15x15-aud-hat 15x15-mqs 15x15-mipi4k 15x15-boe-panel-lvds1)
 imx7ulp_dtb_feature=(evk-mipi evk mipi)
 
@@ -690,6 +696,11 @@ case ${soc_name%%-*} in
             uboot_env_start=0x3800; uboot_env_len=0x20;
             emmc_num=0; sd_num=1;
             board=evk ;;
+    imx943)
+            vid=0x1fc9; pid=0x0152; chip=MX943;
+            uboot_env_start=0x3800; uboot_env_len=0x20;
+            emmc_num=0; sd_num=1;
+            board=evk ;;
     imx95)
             vid=0x1fc9; pid=0x0152; chip=MX95;
             uboot_env_start=0x3800; uboot_env_len=0x20;
@@ -777,7 +788,7 @@ if [ -n "${dtb_feature}" ]; then
 fi
 
 # set sdp command name based on soc_name
-if [[ ${soc_name#imx8q} != ${soc_name} ]] || [[ ${soc_name} == "imx8mn" ]] || [[ ${soc_name} == "imx8mp" ]] || [[ ${soc_name} == "imx8ulp" ]] || [[ ${soc_name} == "imx93" ]] || [[ ${soc_name} == "imx95" ]]; then
+if [[ ${soc_name#imx8q} != ${soc_name} ]] || [[ ${soc_name} == "imx8mn" ]] || [[ ${soc_name} == "imx8mp" ]] || [[ ${soc_name} == "imx8ulp" ]] || [[ ${soc_name} == "imx93" ]] || [[ ${soc_name} == "imx943" ]] || [[ ${soc_name} == "imx95" ]]; then
     sdp="SDPS"
 fi
 
@@ -821,6 +832,12 @@ fi
 if [ "${soc_name}" = imx95 ]; then
     if [[ "${uboot_feature}" = *"15x15"* ]]; then
         bootloader_used_by_uuu=u-boot-${soc_name}-15x15-evk-uuu.imx
+    fi
+fi
+
+if [ "${soc_name}" = imx943 ]; then
+    if [[ "${uboot_feature}" = *"lpddr5"* ]]; then
+        bootloader_used_by_uuu=u-boot-${soc_name}-lpddr5-evk-uuu.imx
     fi
 fi
 
