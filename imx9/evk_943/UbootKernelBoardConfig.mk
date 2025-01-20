@@ -2,10 +2,14 @@ TARGET_BOOTLOADER_POSTFIX := bin
 UBOOT_POST_PROCESS := true
 
 # u-boot target for imx943_evk board
-TARGET_BOOTLOADER_CONFIG := imx93:imx93_11x11_evk_android_defconfig
-TARGET_BOOTLOADER_CONFIG += imx93-dual:imx93_11x11_evk_android_dual_defconfig
-TARGET_BOOTLOADER_CONFIG += imx93-trusty-dual:imx93_11x11_evk_android_trusty_dual_defconfig
-TARGET_BOOTLOADER_CONFIG += imx93-evk-uuu:imx93_11x11_evk_android_uuu_defconfig
+TARGET_BOOTLOADER_CONFIG := imx943:imx943_evk_android_defconfig
+TARGET_BOOTLOADER_CONFIG += imx943-lpddr5:imx943_evk_android_defconfig
+TARGET_BOOTLOADER_CONFIG += imx943-dual:imx943_evk_android_dual_defconfig
+TARGET_BOOTLOADER_CONFIG += imx943-lpddr5-dual:imx943_evk_android_dual_defconfig
+TARGET_BOOTLOADER_CONFIG += imx943-trusty-dual:imx943_evk_android_trusty_dual_defconfig
+TARGET_BOOTLOADER_CONFIG += imx943-trusty-lpddr5-dual:imx943_evk_android_trusty_dual_defconfig
+TARGET_BOOTLOADER_CONFIG += imx943-evk-uuu:imx943_evk_android_uuu_defconfig
+TARGET_BOOTLOADER_CONFIG += imx943-lpddr5-evk-uuu:imx943_evk_android_uuu_defconfig
 
 # imx943 kernel defconfig
 TARGET_KERNEL_DEFCONFIG := gki_defconfig
