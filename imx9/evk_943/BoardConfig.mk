@@ -56,7 +56,7 @@ else
   endif
 endif
 
-BOARD_PREBUILT_DTBOIMAGE := $(OUT_DIR)/target/product/$(PRODUCT_DEVICE)/dtbo-imx93.img
+BOARD_PREBUILT_DTBOIMAGE := $(OUT_DIR)/target/product/$(PRODUCT_DEVICE)/dtbo-imx943.img
 
 BOARD_USES_METADATA_PARTITION := true
 BOARD_ROOT_EXTRA_FOLDERS += metadata
@@ -123,7 +123,7 @@ BOARD_HAVE_BLUETOOTH_NXP := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(IMX_DEVICE_PATH)/bluetooth
 
 # -------@block_kernel_bootimg-------
-BOARD_KERNEL_BASE := 0x80400000
+BOARD_KERNEL_BASE := 0x90400000
 
 # NXP default config
 BOARD_KERNEL_CMDLINE := init=/init firmware_class.path=/vendor/firmware loop.max_part=7 bootconfig
@@ -146,10 +146,7 @@ ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
 BOARD_BOOTCONFIG += androidboot.vendor.sysrq=1
 endif
 
-TARGET_BOARD_DTS_CONFIG += imx93:imx93-11x11-evk.dtb
-TARGET_BOARD_DTS_CONFIG += imx93-iw612:imx93-11x11-evk-iw612-otbr.dtb
-TARGET_BOARD_DTS_CONFIG += imx93-frdm-iw612:imx93-11x11-frdm-iw612-otbr.dtb
-TARGET_BOARD_DTS_CONFIG += imx93-frdm-iw612-tianma-wvga:imx93-11x11-frdm-tianma-wvga-panel.dtb
+TARGET_BOARD_DTS_CONFIG += imx943:imx943-evk.dtb
 
 ALL_DEFAULT_INSTALLED_MODULES += $(BOARD_VENDOR_KERNEL_MODULES)
 
