@@ -418,7 +418,6 @@ endif
 
 # ONLY devices that meet the CDD's requirements may declare these features
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.thread_network.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.thread_network.xml \
     frameworks/native/data/etc/android.hardware.audio.output.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.audio.output.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.front.xml \
@@ -469,12 +468,6 @@ PRODUCT_PACKAGES += \
     nxp.hardware.secureime-service
 
 IMX-DEFAULT-G2D-LIB := libg2d-pxp
-
-# Thread Network support
-PRODUCT_PACKAGES += \
-    com.android.hardware.threadnetwork \
-    ThreadNetworkDemoApp
-
 
 PRODUCT_COPY_FILES += \
     ${CONFIG_REPO_PATH}/imx9/evk_943/Microchip_Technology_Inc__AR1100_HID-DIGITIZER.idc:${TARGET_COPY_OUT_VENDOR}/usr/idc/Microchip_Technology_Inc__AR1100_HID-DIGITIZER.idc
