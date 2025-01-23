@@ -347,7 +347,7 @@ PRODUCT_PACKAGES += \
 
 # NXP 8987 WiFi Firmware
 PRODUCT_COPY_FILES += \
-    vendor/nxp/imx-firmware/nxp/FwImage_IW416_SD/sdiouartiw416_combo_v0.bin:vendor/firmware/sdiouartiw416_combo_v0.bin \
+    vendor/nxp/imx-firmware/nxp/FwImage_IW416_SD/sduartiw416_combo.bin:vendor/firmware/sduartiw416_combo.bin \
     vendor/nxp/imx-firmware/nxp/android_wifi_mod_para.conf:vendor/firmware/wifi_mod_para_sd416.conf
 
 # Wifi regulatory
