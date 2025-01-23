@@ -478,3 +478,10 @@ PRODUCT_COPY_FILES += \
 
 # Add imx private apps
 $(call inherit-product-if-exists, vendor/nxp-private/imx-apps/imx-private-app.mk)
+
+# Secure enclave
+PRODUCT_PACKAGES += \
+    nvmd \
+    nxp.hardware.secure-enclave \
+    SecureEnclaveDemo \
+    el2go_demo
