@@ -162,15 +162,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/gpu/drm/bridge/adv7511/adv7511.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/panel/panel-simple.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/panel/panel-raydium-rm67191.ko \
-    $(KERNEL_OUT)/drivers/media/i2c/ov5640.ko \
-    $(KERNEL_OUT)/drivers/staging/media/imx/gmsl-max9286.ko \
-    $(KERNEL_OUT)/drivers/media/platform/nxp/imx8mq-mipi-csi2.ko \
-    $(KERNEL_OUT)/drivers/media/platform/nxp/imx-parallel-csi.ko \
-    $(KERNEL_OUT)/drivers/staging/media/imx/imx8-capture.ko \
-    $(KERNEL_OUT)/drivers/staging/media/imx/imx8-isi-hw.ko \
-    $(KERNEL_OUT)/drivers/staging/media/imx/imx8-isi-capture.ko \
-    $(KERNEL_OUT)/drivers/staging/media/imx/imx8-isi-mem2mem.ko \
-    $(KERNEL_OUT)/drivers/staging/media/imx/imx8-media-dev.ko
+    $(KERNEL_OUT)/drivers/staging/media/imx/gmsl-max9286.ko
 
 BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/firmware/imx/imx-dsp.ko \
@@ -234,6 +226,10 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/rtc/rtc-imx-sc.ko \
     $(KERNEL_OUT)/drivers/nvmem/nvmem-imx-ocotp-scu.ko \
     $(KERNEL_OUT)/drivers/soc/imx/secvio/soc-imx-secvio-sc.ko \
+    $(KERNEL_OUT)/drivers/media/platform/nxp/imx8-isi/imx8-isi.ko \
+    $(KERNEL_OUT)/drivers/media/platform/nxp/imx8mq-mipi-csi2.ko \
+    $(KERNEL_OUT)/drivers/media/platform/nxp/imx-parallel-csi.ko \
+    $(KERNEL_OUT)/drivers/media/i2c/ov5640.ko \
     $(KERNEL_OUT)/drivers/staging/media/imx/hdmirx/cdns_mhdp_hdmirx.ko
 else
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
