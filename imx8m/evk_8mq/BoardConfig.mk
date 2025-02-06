@@ -199,6 +199,8 @@ BOARD_SEPOLICY_DIRS := \
        $(CONFIG_REPO_PATH)/imx8m/sepolicy \
        $(IMX_DEVICE_PATH)/sepolicy
 
+HAS_SYSTEM_EXT_SEPOLICY := true
+
 # As arm-trusted-firmware has the following patch:
 # MA-20469 Enable suspend/resume when GPC interrupt-controller is disabled in the kernel
 # In order to support suspend/resume on imx8mq board, this patch remove the

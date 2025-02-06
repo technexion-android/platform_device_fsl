@@ -243,3 +243,5 @@ BOARD_SEPOLICY_DIRS := \
        $(CONFIG_REPO_PATH)/imx8m/sepolicy \
        $(IMX_DEVICE_PATH)/sepolicy
 
+HAS_SYSTEM_EXT_SEPOLICY := true
+
