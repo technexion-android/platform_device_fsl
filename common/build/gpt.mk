@@ -14,7 +14,7 @@
 
 ifdef BOARD_BPT_INPUT_FILES
 
-BPTTOOL := $(HOST_OUT_EXECUTABLES)/bpttool$(HOST_EXECUTABLE_SUFFIX)
+BPTTOOL := system/tools/bpt/bpttool
 
 IMX_BUILT_BPTIMAGE_TARGET := $(PRODUCT_OUT)/partition-table.img
 IMX_BUILT_BPTJSON_TARGET := $(PRODUCT_OUT)/partition-table.bpt
@@ -29,7 +29,7 @@ IMX_INTERNAL_BVBTOOL_MAKE_TABLE_ARGS += --disk_size $(BOARD_BPT_DISK_SIZE)
 endif
 
 define imx_build-bptimage-target
-  $(call pretty,"Target partition table image: $(IMX_INSTALLED_BPTIMAGE_TARGET)")
+  @echo "Target partition table image: $(IMX_BUILT_BPTIMAGE_TARGET)"
   $(hide) $(BPTTOOL) make_table $(IMX_INTERNAL_BVBTOOL_MAKE_TABLE_ARGS) $(BOARD_BPT_MAKE_TABLE_ARGS)
   for addition_partition in $(ADDITION_BPT_PARTITION); do \
     PARTITION_OUT_IMAGE=`echo $$addition_partition | cut -d":" -f1`; \
@@ -40,10 +40,10 @@ define imx_build-bptimage-target
    done
 endef
 
-IMX_INSTALLED_BPTIMAGE_TARGET := $(IMX_BUILT_BPTIMAGE_TARGET)
-$(IMX_INSTALLED_BPTIMAGE_TARGET): $(BPTTOOL) $(BOARD_BPT_INPUT_FILES)
+partition_imgs: $(BPTTOOL) $(BOARD_BPT_INPUT_FILES)
+	$(hide)mkdir -p $(PRODUCT_OUT)
 	$(imx_build-bptimage-target)
 
-ALL_DEFAULT_INSTALLED_MODULES += $(IMX_INSTALLED_BPTIMAGE_TARGET)
+.PHONY: partition_imgs
 
 endif # BOARD_BPT_INPUT_FILES

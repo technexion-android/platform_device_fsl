@@ -14,9 +14,11 @@ include ${nxp_git_path}/common/imx_path/ImxPathConfig.mk
 include ${soc_path}/UbootKernelCommonConfig.mk
 include ${product_path}/SharedBoardConfig.mk
 include ${product_path}/UbootKernelBoardConfig.mk
+include ${product_path}/partition_table.mk
 
 include ${nxp_git_path}/common/build/kernel.mk
 include ${nxp_git_path}/common/build/uboot.mk
+include ${nxp_git_path}/common/build/gpt.mk
 -include ${product_path}/AndroidTee.mk
 -include ${GPU_VIV6_PATH}/gpu-viv6/driver/hal/kernel/galcore.mk
 -include ${VVCAM_PATH}/vvcam/vvcam.mk

@@ -267,3 +267,23 @@ ifneq ($(TARGET_PRODUCT),mek_8q_car2)
     endif
   endif
 endif
+
+#Enable this to disable product partition build.
+IMX_NO_PRODUCT_PARTITION := false
+
+ifeq ($(TARGET_PRODUCT),mek_8q)
+  #Enable this to use dynamic partitions for the readonly partitions not touched by bootloader
+  TARGET_USE_DYNAMIC_PARTITIONS ?= true
+endif
+
+ifeq ($(TARGET_PRODUCT),mek_8q_car)
+  # Android Auto with M4 EVS does not use dynamic partition
+  TARGET_USE_DYNAMIC_PARTITIONS ?= false
+endif
+ifeq ($(TARGET_PRODUCT),mek_8q_car2)
+  # Android Auto without M4 EVS uses dynamic partition
+  TARGET_USE_DYNAMIC_PARTITIONS ?= true
+endif
+
+# -------@block_infrastructure-------
+CONFIG_REPO_PATH := device/nxp

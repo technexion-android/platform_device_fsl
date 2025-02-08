@@ -262,3 +262,12 @@ PRODUCT_IMX_TRUSTY := true
 # -------@block_storage-------
 # the bootloader image used in dual-bootloader OTA
 BOARD_OTA_BOOTLOADERIMAGE := bootloader-imx8mp-trusty-dual.img
+
+#Enable this to use dynamic partitions for the readonly partitions not touched by bootloader
+TARGET_USE_DYNAMIC_PARTITIONS ?= true
+
+#Enable this to disable product partition build.
+IMX_NO_PRODUCT_PARTITION := false
+
+# -------@block_infrastructure-------
+CONFIG_REPO_PATH := device/nxp

@@ -13,6 +13,7 @@ cat << EOF
            -j[<num>]               specify the number of parallel jobs when build the target, the number after -j should be greater than 0
            bootloader              bootloader will be compiled
            kernel                  kernel, include the kernel modules and device tree files will be compiled
+           partition_imgs          generate partition table images
            galcore                 galcore.ko in GPU repo will be compiled
            vvcam                   vvcam.ko, the ISP driver will be compiled
            mxmwifi                 mlan.ko moal.ko, the MXMWifi driver will be compiled
@@ -67,6 +68,7 @@ build_android_flag=0
 build_whole_android_flag=0
 build_bootloader=""
 build_kernel=""
+build_partition_imgs=""
 build_kernel_modules=""
 build_kernel_dts=""
 build_kernel_oot_module_flag=0
@@ -93,6 +95,7 @@ for arg in ${args[*]} ; do
         kernel) build_kernel="${OUT}/kernel";
                     build_kernel_modules="KERNEL_MODULES";
                     build_kernel_dts="KERNEL_DTB";;
+        partition_imgs) build_partition_imgs="partition_imgs";;
         galcore) build_kernel_oot_module_flag=1;
                     build_galcore="galcore";;
         vvcam) build_kernel_oot_module_flag=1
@@ -120,10 +123,12 @@ done
 
 # if bootloader and kernel not in arguments, all need to be made
 if [ "${build_bootloader}" = "" ] && [ "${build_kernel}" = "" ] && \
+        [ "${build_partition_imgs}" = "" ] && \
         [ "${build_kernel_modules}" = "" ] && [ "${build_kernel_dts}" = "" ] && \
         [ ${build_kernel_oot_module_flag} -eq 0 ] && [ ${build_android_flag} -eq 0 ]; then
     build_bootloader="bootloader";
     build_kernel="${OUT}/kernel";
+    build_partition_imgs="partition_imgs"
     build_kernel_modules="KERNEL_MODULES";
     build_kernel_dts="KERNEL_DTB";
     build_whole_android_flag=1
@@ -162,7 +167,7 @@ fi
 # redirect standard input to /dev/null to avoid manually input in kernel configuration stage
 soc_path=${soc_path} product_path=${product_path} nxp_git_path=${nxp_git_path} clean_build=${clean_build} \
     make -C ./ -f ${nxp_git_path}/common/build/Makefile ${parallel_option} \
-    ${build_bootloader} ${build_kernel} </dev/null || exit
+    ${build_bootloader} ${build_kernel} ${build_partition_imgs} </dev/null || exit
 # in the execution of this script, if the kernel build env is cleaned or configured, do not trigger that again
 if [ -n "${build_kernel}" ]; then
     skip_config_or_clean=1

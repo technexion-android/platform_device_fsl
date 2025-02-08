@@ -1,6 +1,4 @@
 # -------@block_infrastructure-------
-
-CONFIG_REPO_PATH := device/nxp
 CURRENT_FILE_PATH :=  $(lastword $(MAKEFILE_LIST))
 IMX_DEVICE_PATH := $(strip $(patsubst %/, %, $(dir $(CURRENT_FILE_PATH))))
 
@@ -116,9 +114,6 @@ PRODUCT_COPY_FILES += \
     $(IMX_PATH)/imx/sensor/config/sensor_hal_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/sensor_hal_configuration.xml \
     $(IMX_PATH)/imx/sensor/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
 
-#Enable this to use dynamic partitions for the readonly partitions not touched by bootloader
-TARGET_USE_DYNAMIC_PARTITIONS ?= true
-
 ifeq ($(TARGET_USE_DYNAMIC_PARTITIONS),true)
   ifeq ($(TARGET_USE_VENDOR_BOOT),true)
     $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression_with_xor.mk)
@@ -129,9 +124,6 @@ ifeq ($(TARGET_USE_DYNAMIC_PARTITIONS),true)
   BOARD_BUILD_SUPER_IMAGE_BY_DEFAULT := true
   BOARD_SUPER_IMAGE_IN_UPDATE_PACKAGE := true
 endif
-
-#Enable this to disable product partition build.
-IMX_NO_PRODUCT_PARTITION := false
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 

@@ -30,10 +30,6 @@ TARGET_USERIMAGES_USE_EXT4 := true
 # use sparse image
 TARGET_USERIMAGES_SPARSE_EXT_DISABLED := false
 
-# Support gpt
-BOARD_BPT_INPUT_FILES += $(CONFIG_REPO_PATH)/common/partition/device-partitions-7GB-ab_super.bpt
-ADDITION_BPT_PARTITION = partition-table-dual:$(CONFIG_REPO_PATH)/common/partition/device-partitions-7GB-ab-dual-bootloader_super.bpt
-
 BOARD_PREBUILT_DTBOIMAGE := $(OUT_DIR)/target/product/$(PRODUCT_DEVICE)/dtbo-imx8ulp.img
 
 BOARD_USES_METADATA_PARTITION := true
