@@ -19,6 +19,7 @@ on early-init
 
     # Use ro.boot.lcd_density to override ro.sf.lcd_density
     setprop ro.sf.lcd_density ${ro.boot.lcd_density}
+    setprop vendor.hwc.framebuffer_format "RGB_565"
 
 # Skip charger_not_need trigger for charger mode
 on early-init && property:ro.boot.mode=charger
