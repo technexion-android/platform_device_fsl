@@ -222,7 +222,7 @@ else
       # imx8qxp support SOF
       TARGET_BOARD_DTS_CONFIG += imx8qxp-sof:imx8qxp-mek-sof-wm8960.dtb
       # imx8qm standard android; MIPI-HDMI display on revd
-      TARGET_BOARD_DTS_CONFIG += imx8qm-revd:imx8qm-mek-revd-rpmsg.dtb
+      TARGET_BOARD_DTS_CONFIG += imx8qm-revd:imx8qm-mek-revd-ov5640-rpmsg.dtb
       # imx8qm standard android; MIPI panel display on revd
       TARGET_BOARD_DTS_CONFIG += imx8qm-mipi-panel-revd:imx8qm-mek-revd-dsi-rm67199.dtb
       TARGET_BOARD_DTS_CONFIG += imx8qm-mipi-panel-rm67191-revd:imx8qm-mek-revd-dsi-rm67191.dtb
