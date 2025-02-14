@@ -401,6 +401,11 @@ PRODUCT_COPY_FILES += \
     $(FSL_PROPRIETARY_PATH)/fsl-proprietary/sof/sof-gcc/sof-imx8.ldc:$(TARGET_COPY_OUT_VENDOR)/firmware/imx/sof/sof-imx8.ldc \
     $(FSL_PROPRIETARY_PATH)/fsl-proprietary/sof/sof-gcc/sof-imx8.ri:$(TARGET_COPY_OUT_VENDOR)/firmware/imx/sof/sof-imx8.ri
 
+# libcamera
+PRODUCT_PACKAGES += \
+    libcamera-base \
+    libcamera \
+    libyaml
 
 # -------@block_camera-------
 PRODUCT_COPY_FILES += \
