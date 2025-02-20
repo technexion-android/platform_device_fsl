@@ -73,3 +73,4 @@ on property:vendor.rw.camera.isp.control=1
 service isp_media_server /vendor/bin/isp_media_server
     group camera
     oneshot
+    user root

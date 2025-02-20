@@ -143,10 +143,12 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
     oneshot
+    user root
 
 # Set watchdog timer to 30 seconds and pet it every 10 seconds to get a 20 second margin
 service watchdogd /system/bin/watchdogd 10 20
     class core
+    user root
     seclabel u:r:watchdogd:s0
 
 # bugreport is triggered by holding down volume down, volume up and power
@@ -154,6 +156,7 @@ service bugreport /system/bin/dumpstate -d -p -z
     class main
     disabled
     oneshot
+    user root
     keycodes 114 115 116
 
 
@@ -217,9 +220,11 @@ on post-fs-data && property:vendor.storageproxyd=trusty && property:vendor.skip.
 
 service storageproxyd /vendor/bin/storageproxyd -p /data/vendor/ss -r /dev/mmcblk0rpmb -d /dev/trusty-ipc-dev0
    group system
+   user root
 
 service securedpu_daemon /vendor/bin/secure_dpu
    group system
+   user root
 
 on property:ro.boot.vendor.sysrq=1 && property:vendor.skip.charger_not_need=0
     write /proc/sys/kernel/sysrq 1
