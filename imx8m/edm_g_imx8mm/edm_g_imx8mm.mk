@@ -594,3 +594,6 @@ PRODUCT_SOONG_NAMESPACES += vendor/partner_gms
 
 # sets vendor.battery.status.msg to true to show the battery status message
 PRODUCT_VENDOR_PROPERTIES += vendor.battery.status.msg=false
+
+# disable lockscreen
+PRODUCT_PROPERTY_OVERRIDES += ro.lockscreen.disable.default=true
