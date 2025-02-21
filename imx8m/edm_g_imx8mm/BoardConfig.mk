@@ -106,6 +106,11 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(IMX_DEVICE_PATH)/device_framewor
 
 
 # -------@block_wifi-------
+# needed module driver
+BOARD_VENDOR_KERNEL_MODULES += \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/net/rfkill/rfkill.ko \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/net/wireless/cfg80211.ko
+
 #ifeq ($(WIFI_BT_DEV),QCA9377)
 # qca9377 wifi
 BOARD_WLAN_DEVICE := qcwcn
