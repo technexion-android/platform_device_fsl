@@ -9,10 +9,11 @@ TARGET_BOOTLOADER_CONFIG += imx8mm-evk-uuu:edm-g-imx8mm_android_defconfig
 # imx8mm kernel defconfig
 TARGET_KERNEL_DEFCONFIG := gki_defconfig
 ifeq ($(LOADABLE_KERNEL_MODULE),true)
-TARGET_KERNEL_GKI_DEFCONF:= tn_imx8mm_gki.fragment
+TARGET_KERNEL_GKI_DEFCONF:= imx8mm_gki.fragment
 else
-TARGET_KERNEL_GKI_DEFCONF := tn_imx8_android_defconfig
+TARGET_KERNEL_GKI_DEFCONF := imx_v8_android_defconfig
 endif
+TARGET_KERNEL_VENDOR_DEFCONF := tn_imx8_android_defconfig
 
 TARGET_KERNEL_ADDITION_DEFCONF := android_addition_defconfig
 
