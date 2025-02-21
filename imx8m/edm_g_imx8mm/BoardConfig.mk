@@ -138,6 +138,17 @@ WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 
 
 # -------@block_bluetooth-------
+# needed module driver
+BOARD_VENDOR_KERNEL_MODULES += \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/net/bluetooth/bluetooth.ko \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/drivers/bluetooth/btbcm.ko \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/drivers/bluetooth/btqca.ko \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/drivers/bluetooth/hci_uart.ko \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/drivers/bluetooth/hci_vhci.ko \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/net/bluetooth/rfcomm/rfcomm.ko \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/net/bluetooth/bnep/bnep.ko \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/net/bluetooth/hidp/hidp.ko
+
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(IMX_DEVICE_PATH)/bluetooth
 
 #ifeq ($(WIFI_BT_DEV),QCA9377)
