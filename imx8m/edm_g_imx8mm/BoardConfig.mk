@@ -69,6 +69,7 @@ BOARD_ROOT_EXTRA_FOLDERS += metadata
 
 #
 # Refer to NxP Android User Guide section 7.1.4 Building an OTA package for single-bootloader image
+BUILD_ENCRYPTED_BOOT := true
 ifneq ($(BUILD_ENCRYPTED_BOOT),true)
   AB_OTA_PARTITIONS += bootloader
 endif
