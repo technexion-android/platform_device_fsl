@@ -89,8 +89,7 @@
 /postinstall/bin/imx_dek_inserter u:object_r:system_file:s0
 
 # ele target
-/dev/hsm1_ch0	u:object_r:ele_device:s0
-/dev/hsm1_ch1	u:object_r:ele_device:s0
+/dev/hsm0_ch0	u:object_r:ele_device:s0
 /vendor/bin/hw/nvmd u:object_r:ele_exec:s0
 
 /vendor/bin/init\.insmod\.sh                u:object_r:init-insmod-sh_exec:s0
