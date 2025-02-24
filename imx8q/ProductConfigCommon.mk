@@ -180,6 +180,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PREBUILT_FSL_IMX_CODEC := true
 
 # -------@block_storage-------
+PRODUCT_PACKAGES_DEBUG += \
+    overlay_remounter
 
 TARGET_USERIMAGES_USE_F2FS := true
 
