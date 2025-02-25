@@ -35,6 +35,8 @@
 /sys/devices/platform/soc/42000000.bus/42530000.i2c/i2c-2/2-0050/power_supply/tcpm-source-psy-2-0050/wakeup[0-9]*(/.*)?                               u:object_r:sysfs_wakeup:s0
 /sys/devices/platform/soc/42800000.bus/428b0000.mmc/mmc_host/mmc2/mmc2:0001/mmc2:0001:1/wakeup[0-9]*(/.*)?                                            u:object_r:sysfs_wakeup:s0
 /sys/devices/platform/soc/42000000.bus/426d0000.i2c/i2c-6/6-0052/power_supply/tcpm-source-psy-6-0052/wakeup[0-9]*(/.*)?                               u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/arm-scmi\.0\.auto/scmi_dev\.[0-9]*/wakeup/wakeup[0-9]*                                                                          u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/arm-scmi\.0\.auto/scmi_dev\.[0-9]*/rtc/rtc0/alarmtimer\.3\.auto/wakeup/wakeup[0-9]*                                             u:object_r:sysfs_wakeup:s0
 
 # mali gpu related
 /dev/mali0                                    u:object_r:gpu_device:s0
