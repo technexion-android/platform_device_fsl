@@ -354,6 +354,7 @@ PRODUCT_PACKAGES += \
     libarm_egl_properties_sysprop \
     libarm_gralloc_properties_sysprop \
     libarm_mali_config_sysprops \
+    libgpudataproducer \
     libGLES_mali \
     libOpenCL \
     vulkan.mali
@@ -367,6 +368,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_VENDOR_PROPERTIES += \
     ro.hardware.egl = mali \
     ro.hardware.vulkan = mali
+
+PRODUCT_VENDOR_PROPERTIES += \
+    graphics.gpu.profiler.support=true
 
 # -------@block_wifi-------
 
