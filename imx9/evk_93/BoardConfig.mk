@@ -93,7 +93,7 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/staging/media/imx/imx8-media-dev.ko
 
 # NXP 8987 wifi driver module
-#BOARD_VENDOR_KERNEL_MODULES += \
+BOARD_VENDOR_KERNEL_MODULES += \
     $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/mlan.ko \
     $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/moal.ko
 
