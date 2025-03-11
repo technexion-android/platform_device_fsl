@@ -170,15 +170,7 @@ BOARD_HAVE_BLUETOOTH_NXP := true
 #endif
 
 # -------@block_touch-------
-BOARD_VENDOR_KERNEL_MODULES += \
-    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/drivers/input/touchscreen/exc3000.ko
-
-# -------@block_camera-------
-BOARD_VENDOR_KERNEL_MODULES += \
-    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/drivers/staging/media/imx/imx8-isi-hw.ko \
-    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/drivers/staging/media/imx/imx8-isi-capture.ko \
-    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/drivers/staging/media/imx/imx8-isi-mem2mem.ko \
-    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/drivers/staging/media/imx/imx8-capture.ko
+BOARD_VENDOR_KERNEL_MODULES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/drivers/input/touchscreen/exc3000.ko
 
 # -------@block_kernel_bootimg-------
 BOARD_KERNEL_BASE := 0x40400000
