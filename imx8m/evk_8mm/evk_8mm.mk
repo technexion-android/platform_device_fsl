@@ -352,7 +352,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     vendor/nxp/imx-firmware/nxp/FwImage_8987/sduart8987_combo.bin:vendor/firmware/sduart8987_combo.bin \
     vendor/nxp/imx-firmware/nxp/FwImage_IW612_SD/sduart_nw61x_v1.bin.se:vendor/firmware/sduart_nw61x_v1.bin.se \
-    vendor/nxp/imx-firmware/nxp/android_wifi_mod_para.conf:vendor/firmware/wifi_mod_para_sd8987.conf
+    vendor/nxp/imx-firmware/nxp/android_wifi_mod_para.conf:vendor/firmware/wifi_mod_para_sd8987.conf \
+    hardware/nxp/libbt/conf/nxp/evk_8mm/bt_vendor.conf:/vendor/etc/bluetooth/bt_vendor.conf
 
 # Wifi regulatory
 PRODUCT_COPY_FILES += \
