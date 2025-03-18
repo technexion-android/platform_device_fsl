@@ -67,13 +67,13 @@ on init && property:vendor.skip.charger_not_need=0 && property:ro.boot.powersave
 
 on late-fs && property:vendor.storageproxyd=trusty && property:vendor.skip.charger_not_need=0
     start storageproxyd
-    start vendor.oemlock-1-0
-    start confirmationui-1-0
+    start vendor.confirmationui_default
 
 on late-fs && property:vendor.skip.charger_not_need=0
-    # Start keymaster/gatekeeper service
-    start vendor.gatekeeper-1-0-${ro.boot.keystore}
+    # Start keymaster/gatekeeper/oemlock service
+    start vendor.gatekeeper-${ro.boot.keystore}
     start vendor.keymint-${ro.boot.keystore}
+    start vendor.oemlock-1-0-${ro.boot.keystore}
     setprop vendor.powerhal.init 1
 
     # Wait for keymaster
@@ -91,6 +91,9 @@ on early-boot && property:vendor.skip.charger_not_need=0
 
     # Default g2d [dpu|pxp|viv] lib to be used
     setprop vendor.imx.default-g2d viv
+
+    #viv sdk dir
+    setprop vendor.VIVANTE_SDK_DIR /vendor/etc/viv_sdk
 
     # fsl omx graphic manager media framework property
     setprop vendor.rw.VIDEO_RENDER_NAME video_render.surface
@@ -125,18 +128,6 @@ on early-boot && property:vendor.skip.charger_not_need=0
     # Set sw_sync group to graphics and set permission to 664
     chown root graphics /sys/kernel/debug/sync/sw_sync
     chmod 0664 /sys/kernel/debug/sync/sw_sync
-
-    # Default backlight device
-    setprop vendor.hw.backlight.dev "32e60000.mipi_dsi.0"
-    # Chmod/chown FSL specific sys entry
-    chown system system /sys/class/backlight/32e60000.mipi_dsi.0/brightness
-    chmod 0660 /sys/class/backlight/32e60000.mipi_dsi.0/brightness
-
-    # Backup backlight device
-    setprop vendor.hw.backlight_backup.dev "lvds_backlight"
-    # Chmod/chown FSL specific sys entry
-    chown system system /sys/class/backlight/lvds_backlight/brightness
-    chmod 0666 /sys/class/backlight/lvds_backlight/brightness
 
     # Allow DSD file(duration larger than 10s) can play
     setprop audio.offload.min.duration.secs 10
@@ -188,12 +179,6 @@ on fs && property:vendor.skip.charger_not_need=0
     verity_update_state
 
 on post-fs && property:vendor.skip.charger_not_need=0
-    # Set netd memlock rlimit to 8MB
-    setrlimit 8 8388608 8388608
-
-    # Turn on swap
-    swapon_all /vendor/etc/fstab.nxp
-
     # Swap in only 1 page at a time
     write /proc/sys/vm/page-cluster 0
 
@@ -270,6 +255,19 @@ service confirmationui_ta_load /vendor/bin/trusty_apploader /vendor/firmware/tee
 
 on property:sys.boot_completed=1 && property:vendor.storageproxyd=trusty && property:vendor.skip.charger_not_need=0
     start confirmationui_ta_load
+
+service imx_dek_extractor /vendor/bin/hw/imx_dek_extractor
+    user system
+    group system
+    disabled
+    oneshot
+
+on property:sys.boot_completed=1 && property:vendor.storageproxyd=trusty
+    start imx_dek_extractor
+
+on property:sys.boot_completed=1
+    # Turn on swap
+    swapon_all /vendor/etc/fstab.nxp
 
 on property:vendor.wc_transport.start_hci=true
     start start_hci_filter
