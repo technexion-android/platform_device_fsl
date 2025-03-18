@@ -93,9 +93,7 @@ endif
 
 # Media c2_component_register
 PRODUCT_COPY_FILES += \
-    $(IMX_MEDIA_CODEC_XML_PATH)/codec2/store/registry/c2_component_register_8q:$(TARGET_COPY_OUT_VENDOR)/etc/c2_component_register \
-	$(IMX_MEDIA_CODEC_XML_PATH)/codec2/store/registry/c2_component_register_8qm:$(TARGET_COPY_OUT_VENDOR)/vendor_overlay_soc/imx8qm/vendor/etc/c2_component_register \
-	$(IMX_MEDIA_CODEC_XML_PATH)/codec2/store/registry/c2_component_register_8qxp:$(TARGET_COPY_OUT_VENDOR)/vendor_overlay_soc/imx8qxp/vendor/etc/c2_component_register
+    $(IMX_MEDIA_CODEC_XML_PATH)/codec2/store/registry/c2_component_register_8q:$(TARGET_COPY_OUT_VENDOR)/etc/c2_component_register
 
 # -------@block_app-------
 ifneq ($(PRODUCT_IMX_CAR),true)
