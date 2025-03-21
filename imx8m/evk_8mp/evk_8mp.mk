@@ -316,6 +316,12 @@ PRODUCT_COPY_FILES += \
 PRODUCT_SOONG_NAMESPACES += hardware/google/camera
 PRODUCT_SOONG_NAMESPACES += vendor/nxp-opensource/imx/camera
 
+# -------@block_oclcvt-------
+PRODUCT_PACKAGES += \
+    lib_imx_opencl_converter \
+    ocl_converter.cl \
+    ocl_converter_ext.cl
+
 PRODUCT_PACKAGES += \
     media_profiles_8mp-ov5640.xml \
     media_profiles_8mp-ispsensor-ov5640.xml
