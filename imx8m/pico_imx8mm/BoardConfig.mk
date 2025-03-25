@@ -69,8 +69,9 @@ BOARD_ROOT_EXTRA_FOLDERS += metadata
 
 #
 # Refer to NxP Android User Guide section 7.1.4 Building an OTA package for single-bootloader image
-ifneq (${SINGLE_BOOTLOADER},true)
-AB_OTA_PARTITIONS += bootloader
+BUILD_ENCRYPTED_BOOT := true
+ifneq ($(BUILD_ENCRYPTED_BOOT),true)
+  AB_OTA_PARTITIONS += bootloader
 endif
 
 # -------@block_security-------
@@ -96,6 +97,7 @@ BOARD_AVB_SYSTEM_EXT_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_PRODUCT_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_VENDOR_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_VENDOR_DLKM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
+BOARD_AVB_SYSTEM_DLKM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 
 # -------@block_treble-------
 # Vendor Interface manifest and compatibility
@@ -105,6 +107,13 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(IMX_DEVICE_PATH)/device_framewor
 
 
 # -------@block_wifi-------
+# needed module driver
+BOARD_VENDOR_KERNEL_MODULES += \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/net/rfkill/rfkill.ko \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/net/rfkill/rfkill-gpio.ko \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/drivers/bluetooth/mx8_bt_rfkill.ko \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/net/wireless/cfg80211.ko
+
 ifeq ($(WIFI_BT_DEV),QCA9377)
 # qca9377 wifi
 BOARD_WLAN_DEVICE := qcwcn
@@ -130,6 +139,17 @@ WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 
 
 # -------@block_bluetooth-------
+# needed module driver
+BOARD_VENDOR_KERNEL_MODULES += \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/net/bluetooth/bluetooth.ko \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/drivers/bluetooth/btbcm.ko \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/drivers/bluetooth/btqca.ko \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/drivers/bluetooth/hci_uart.ko \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/drivers/bluetooth/hci_vhci.ko \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/net/bluetooth/rfcomm/rfcomm.ko \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/net/bluetooth/bnep/bnep.ko \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/net/bluetooth/hidp/hidp.ko
+
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(IMX_DEVICE_PATH)/bluetooth
 
 ifeq ($(WIFI_BT_DEV),QCA9377)
@@ -140,16 +160,14 @@ BOARD_HAS_QCA_BT_ROME := true
 BOARD_HAVE_BLUETOOTH_BLUEZ := false
 QCOM_BT_USE_SIBS := true
 WIFI_BT_STATUS_SYNC := false
-
+SOONG_CONFIG_IMXPLUGIN += APCF_SUPPORT
+SOONG_CONFIG_IMXPLUGIN_APCF_SUPPORT := false
 else
 
 # NXP 8997 BT
 BOARD_HAVE_BLUETOOTH_NXP := true
 
 endif
-
-# -------@block_sensor-------
-BOARD_USE_SENSOR_FUSION := false
 
 # -------@block_touch-------
 BOARD_VENDOR_KERNEL_MODULES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/drivers/input/touchscreen/exc3000.ko
@@ -167,7 +185,7 @@ BOARD_BOOTCONFIG += androidboot.console=ttymxc1 androidboot.hardware=nxp
 BOARD_KERNEL_CMDLINE += transparent_hugepage=never
 
 # display config
-BOARD_BOOTCONFIG += androidboot.lcd_density=240 androidboot.primary_display=imx-drm
+BOARD_BOOTCONFIG += androidboot.lcd_density=240
 
 # wifi config
 BOARD_BOOTCONFIG += androidboot.wificountrycode=TW
