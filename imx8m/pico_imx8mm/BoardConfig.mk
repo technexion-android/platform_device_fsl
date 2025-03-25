@@ -218,9 +218,8 @@ TARGET_BOARD_DTS_CONFIG := imx8mm:imx8mm-pico-$(BASEBOARD_TAG)_android.dtb
 WITH_EXT_DTBO ?= true
 ifeq ($(WITH_EXT_DTBO),true)
 	TARGET_BOARD_DTBO_CONFIG := imx8mm:imx8mm-pico-$(BASEBOARD_TAG)-ili9881c.dtbo
-	TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-$(BASEBOARD_TAG)-tevi-ov5640.dtbo
 ifeq ($(EXPORT_BASEBOARD_NAME),PI)
-	TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-$(BASEBOARD_TAG)-tevi-ap1302.dtbo
+	TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-$(BASEBOARD_TAG)-tevs.dtbo
 endif
 ifeq ($(EXPORT_BASEBOARD_NAME),WIZARD)
 	TARGET_BOARD_DTBO_CONFIG += imx8mm:imx8mm-pico-$(BASEBOARD_TAG)-mipi2hdmi-adv7535.dtbo
