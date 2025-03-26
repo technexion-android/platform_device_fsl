@@ -211,6 +211,8 @@ else
       TARGET_BOARD_DTS_CONFIG += imx8qm-lvds1-panel:imx8qm-mek-jdi-wuxga-lvds1-panel.dtb
       # imx8qxp standard android; MIPI-HDMI display
       TARGET_BOARD_DTS_CONFIG += imx8qxp:imx8qxp-mek-ov5640-rpmsg.dtb
+      TARGET_BOARD_DTS_CONFIG += imx8qxp-ov5640-parallel:imx8qxp-mek-ov5640-parallel-rpmsg.dtb
+      TARGET_BOARD_DTS_CONFIG += imx8qxp-ov5640-dual:imx8qxp-mek-ov5640-dual-rpmsg.dtb
       TARGET_BOARD_DTS_CONFIG += imx8dx:imx8dx-mek.dtb
       # imx8qxp standard android; MIPI panel display
       TARGET_BOARD_DTS_CONFIG += imx8qxp-mipi-panel:imx8qxp-mek-dsi-rm67199-rpmsg.dtb

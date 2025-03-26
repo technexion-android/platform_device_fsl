@@ -11,7 +11,7 @@
   "camera_metadata": [
     {
       "camera_type": "back",
-      "camera_name": "ov5640",
+      "camera_name": "i2c@58226000/ov5640_mipi",
       "orientation": "0",
       "mplane": "1",
       "buffer_type": "dma",
@@ -26,17 +26,12 @@
       "MinFrameDuration": "33333333",
       "MaxFrameDuration": "300000000",
       "MinFrameDurationBlob5M": "600000000",
-      "OmitFrame": [
-          {
-              "width": "2592",
-              "height": "1944",
-              "omit_num": "2"
-          }
-      ]
+      "MaxWidth": "1920",
+      "MaxHeight": "1080"
     },
     {
       "camera_type": "front",
-      "camera_name": "ov5640",
+      "camera_name": "i2c-rpbus-5/ov5640",
       "orientation": "0",
       "mplane": "1",
       "buffer_type": "dma",
@@ -51,13 +46,8 @@
       "MinFrameDuration": "33333333",
       "MaxFrameDuration": "300000000",
       "MinFrameDurationBlob5M": "600000000",
-      "OmitFrame": [
-          {
-              "width": "2592",
-              "height": "1944",
-              "omit_num": "2"
-          }
-      ]
+      "MaxWidth": "640",
+      "MaxHeight": "480"
     }
   ]
 }
