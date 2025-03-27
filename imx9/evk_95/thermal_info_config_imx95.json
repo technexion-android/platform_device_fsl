@@ -6,16 +6,16 @@
     ],
     "Sensors":[
         {
-            "Name":"a55",
+            "Name":"a55-thermal",
             "Type":"CPU",
             "HotThreshold":[
                 "NAN",
-                80.0,
-                82.0,
-                86.0,
-                88.0,
+                95.0,
+                100.0,
+                105.0,
+                110.0,
                 "NAN",
-                90.0
+                125.0
             ],
             "HotHysteresis":[
                 2.0,
