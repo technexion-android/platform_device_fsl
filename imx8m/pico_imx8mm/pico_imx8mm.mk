@@ -285,6 +285,7 @@ PRODUCT_COPY_FILES +=\
 VENDOR_MULTIMEDIA_PATH := vendor/technexion/multimedia
 PRODUCT_COPY_FILES +=\
  $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar0144.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar0144.json\
+ $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar0144-or90.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar0144-or90.json\
  $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar0234.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar0234.json\
  $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar0521.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar0521.json\
  $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar0522.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar0522.json\
