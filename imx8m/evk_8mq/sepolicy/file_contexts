@@ -9,7 +9,6 @@
 
 #peripheral
 /dev/ttymxc[0-9]*               u:object_r:tty_device:s0
-/dev/sda[0-8]*                  u:object_r:fuse:s0
 
 #Neural Network HAL service
 /vendor/bin/hw/android\.hardware\.neuralnetworks-shell-service-imx             u:object_r:hal_neuralnetworks_imx_exec:s0
