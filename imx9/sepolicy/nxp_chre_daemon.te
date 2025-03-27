@@ -1,8 +1,0 @@
-type nxp_chre_daemon, domain;
-type nxp_chre_device, dev_type;
-
-type nxp_chre_daemon_exec, exec_type, vendor_file_type, file_type;
-
-init_daemon_domain(nxp_chre_daemon)
-
-allow nxp_chre_daemon nxp_chre_device:chr_file {open read write};

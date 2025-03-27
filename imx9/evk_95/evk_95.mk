@@ -600,7 +600,6 @@ $(call inherit-product-if-exists, vendor/nxp-private/imx-apps/imx-private-app.mk
 ifeq ($(ENABLE_CONTEXTHUB), true)
 PRODUCT_PACKAGES += \
     android.hardware.contexthub-service.imx \
-    chre_daemon_nxp \
     hello_world.so \
     hello_world.napp_header \
     IMXChreDemo
