@@ -5,3 +5,4 @@ type pps_socket, file_type;
 type sysfs_iio_file_ctrl, fs_type, sysfs_type;
 type sysfs_iio_devices, fs_type, sysfs_type;
 type vendor_hwc_file, file_type, data_file_type;
+type opencl_g2d-bin_file, file_type, data_file_type;

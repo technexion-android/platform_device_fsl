@@ -15,3 +15,6 @@ add_service(hal_camera_default, external_camera_service)
 
 set_prop(hal_camera_default, vendor_camera_prop)
 get_prop(hal_camera_default, vendor_camera_prop)
+
+allow hal_camera_default opencl_g2d-bin_file:dir create_dir_perms;
+allow hal_camera_default opencl_g2d-bin_file:file create_file_perms;

@@ -1,4 +1,3 @@
-type opencl_g2d-bin_file, file_type, data_file_type;
 allow mediacodec sysfs:file { read write open getattr };
 allow mediacodec tmpfs:dir { search write add_name create};
 allow mediacodec tmpfs:file { create open read write };
