@@ -7,6 +7,9 @@ IMX_DEVICE_PATH := $(strip $(patsubst %/, %, $(dir $(CURRENT_FILE_PATH))))
 PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := true
 #Enable this to choose 32 bit user space build
 IMX_BUILD_32BIT_ROOTFS ?= false
+#true means each display can show different contents, false means secondary display is just a
+#simple mirror from primary display.
+MULTIDISPLAY_WITH_INDEPENDENT_CONTROL ?= true
 
 # configs shared between uboot, kernel and Android rootfs
 include $(IMX_DEVICE_PATH)/SharedBoardConfig.mk
@@ -326,11 +329,11 @@ endif
 PRODUCT_PACKAGES += \
         libg2d-opencl
 
+ifeq ($(MULTIDISPLAY_WITH_INDEPENDENT_CONTROL),true)
 PRODUCT_COPY_FILES += \
-    $(IMX_DEVICE_PATH)/display_settings.xml:$(TARGET_COPY_OUT_VENDOR)/etc/display_settings.xml
-
-PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/display_settings.xml:$(TARGET_COPY_OUT_VENDOR)/etc/display_settings.xml \
     $(IMX_DEVICE_PATH)/input-port-associations.xml:$(TARGET_COPY_OUT_VENDOR)/etc/input-port-associations.xml
+endif
 
 # -------@block_gpu-------
 PRODUCT_PACKAGES += \

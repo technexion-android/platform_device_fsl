@@ -5,6 +5,9 @@ IMX_DEVICE_PATH := $(strip $(patsubst %/, %, $(dir $(CURRENT_FILE_PATH))))
 
 #Enable this to choose 32 bit user space build
 IMX_BUILD_32BIT_ROOTFS ?= false
+#true means each display can show different contents, false means secondary display is just a
+#simple mirror from primary display.
+MULTIDISPLAY_WITH_INDEPENDENT_CONTROL ?= true
 
 # configs shared between uboot, kernel and Android rootfs
 include $(IMX_DEVICE_PATH)/SharedBoardConfig.mk
@@ -477,9 +480,19 @@ PRODUCT_PACKAGES += \
     DirectRenderingCluster
 endif
 
-ifeq ($(PRODUCT_IMX_CAR),true)
+ifneq ($(PRODUCT_IMX_CAR),true)
+ifeq ($(MULTIDISPLAY_WITH_INDEPENDENT_CONTROL),true)
 PRODUCT_COPY_FILES += \
-    $(IMX_DEVICE_PATH)/car_display_settings.xml:$(TARGET_COPY_OUT_VENDOR)/etc/display_settings.xml
+    $(IMX_DEVICE_PATH)/display_settings.xml:$(TARGET_COPY_OUT_VENDOR)/etc/display_settings.xml \
+    $(IMX_DEVICE_PATH)/input-port-associations.xml:$(TARGET_COPY_OUT_VENDOR)/etc/input-port-associations.xml
+endif
+else
+PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/car_display_settings.xml:$(TARGET_COPY_OUT_VENDOR)/etc/display_settings.xml \
+    $(IMX_DEVICE_PATH)/input-port-associations.xml:$(TARGET_COPY_OUT_VENDOR)/etc/input-port-associations.xml
+
+PRODUCT_PACKAGES += \
+    MultiDisplaySecondaryHomeTestLauncher
 endif
 
 ifeq ($(PRODUCT_IMX_CAR),true)
@@ -490,8 +503,6 @@ PRODUCT_COPY_FILES += \
     vendor/nxp/linux-firmware-imx/firmware/hdmi/cadence/hdmitxfw.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/hdmitxfw.bin \
     vendor/nxp/linux-firmware-imx/firmware/hdmi/cadence/hdmirxfw.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/hdmirxfw.bin
 
-PRODUCT_COPY_FILES += \
-    $(IMX_DEVICE_PATH)/input-port-associations.xml:$(TARGET_COPY_OUT_VENDOR)/etc/input-port-associations.xml
 # -------@block_gpu-------
 PRODUCT_PACKAGES += \
         libEGL_VIVANTE \
