@@ -278,14 +278,6 @@ PRODUCT_PACKAGES += \
     WallpaperPicker
 endif
 
-ifneq ($(PRODUCT_IMX_CAR),true)
-PRODUCT_COPY_FILES += \
-   $(IMX_DEVICE_PATH)/display_settings.xml:$(TARGET_COPY_OUT_VENDOR)/etc/display_settings.xml
-else
-PRODUCT_PACKAGES += \
-    MultiDisplaySecondaryHomeTestLauncher
-endif
-
 PRODUCT_PACKAGES += \
     libdrm_android \
 
