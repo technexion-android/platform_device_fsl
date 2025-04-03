@@ -64,6 +64,8 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/mailbox/imx-mailbox.ko \
     $(KERNEL_OUT)/drivers/rpmsg/rpmsg_ns.ko \
     $(KERNEL_OUT)/drivers/rpmsg/virtio_rpmsg_bus.ko \
+    $(KERNEL_OUT)/drivers/firmware/imx/sm-cpu.ko \
+    $(KERNEL_OUT)/drivers/firmware/imx/sm-lmm.ko \
     $(KERNEL_OUT)/drivers/remoteproc/imx_rproc.ko \
     $(KERNEL_OUT)/drivers/remoteproc/imx_dsp_rproc.ko \
     $(KERNEL_OUT)/drivers/i2c/busses/i2c-rpmsg-imx.ko \
