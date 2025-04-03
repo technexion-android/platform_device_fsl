@@ -7,6 +7,8 @@ ifeq ($(LOADABLE_KERNEL_MODULE),true)
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/hwmon/hwmon.ko \
     $(KERNEL_OUT)/drivers/hwmon/scmi-hwmon.ko \
+    $(KERNEL_OUT)/drivers/firmware/arm_scmi/vendors/imx/imx-sm-lmm.ko \
+    $(KERNEL_OUT)/drivers/firmware/arm_scmi/vendors/imx/imx-sm-cpu.ko \
     $(KERNEL_OUT)/drivers/firmware/arm_scmi/vendors/imx/imx-sm-bbm.ko \
     $(KERNEL_OUT)/drivers/firmware/arm_scmi/vendors/imx/imx-sm-misc.ko \
     $(KERNEL_OUT)/drivers/pmdomain/arm/scmi_pm_domain.ko \
@@ -19,6 +21,8 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/mailbox/imx-mailbox.ko \
     $(KERNEL_OUT)/drivers/rpmsg/rpmsg_ns.ko \
     $(KERNEL_OUT)/drivers/rpmsg/virtio_rpmsg_bus.ko \
+    $(KERNEL_OUT)/drivers/firmware/imx/sm-cpu.ko \
+    $(KERNEL_OUT)/drivers/firmware/imx/sm-lmm.ko \
     $(KERNEL_OUT)/drivers/remoteproc/imx_rproc.ko \
     $(KERNEL_OUT)/drivers/pinctrl/freescale/pinctrl-imx.ko \
     $(KERNEL_OUT)/drivers/pinctrl/freescale/pinctrl-imx-scmi.ko \

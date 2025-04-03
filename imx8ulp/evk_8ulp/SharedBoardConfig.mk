@@ -78,6 +78,8 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/clk/imx/mxc-clk.ko \
     $(KERNEL_OUT)/drivers/clk/imx/clk-imx8ulp.ko \
     $(KERNEL_OUT)/drivers/mailbox/imx-mailbox.ko \
+    $(KERNEL_OUT)/drivers/firmware/imx/sm-cpu.ko \
+    $(KERNEL_OUT)/drivers/firmware/imx/sm-lmm.ko \
     $(KERNEL_OUT)/drivers/remoteproc/imx_rproc.ko \
     $(KERNEL_OUT)/drivers/firmware/imx/sec_enclave.ko \
     $(KERNEL_OUT)/drivers/rpmsg/rpmsg_ns.ko \
