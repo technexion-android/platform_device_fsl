@@ -27,6 +27,7 @@
 # Copied from build/target/product/AndroidProducts.mk
 
 PRODUCT_MAKEFILES := \
+  $(LOCAL_DIR)/evk_943/evk_943.mk \
   $(LOCAL_DIR)/evk_93/evk_93.mk \
   $(LOCAL_DIR)/evk_95/evk_95.mk
 
