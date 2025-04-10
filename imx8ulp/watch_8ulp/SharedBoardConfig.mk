@@ -100,7 +100,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/gpio/gpio-imx-rpmsg.ko \
     $(KERNEL_OUT)/drivers/dma/pxp/pxp_device.ko \
     $(KERNEL_OUT)/drivers/dma/pxp/pxp_dma_v3.ko \
-    $(KERNEL_OUT)/drivers/dma/fsl-edma-v3.ko \
+    $(KERNEL_OUT)/drivers/dma/fsl-edma.ko \
     $(KERNEL_OUT)/drivers/clocksource/timer-imx-tpm.ko \
     $(KERNEL_OUT)/lib/stmp_device.ko \
     $(KERNEL_OUT)/drivers/dma/mxs-dma.ko \
@@ -134,16 +134,14 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/gpu/drm/drm_dma_helper.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/bridge/nwl-dsi.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/bridge/it6161.ko \
+    $(KERNEL_OUT)/drivers/gpu/drm/display/drm_display_helper.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/imx/dcnano/imx-dcnano-drm.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/panel/panel-rocktech-hx8394f.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/panel/panel-nxp-rm67162.ko \
+    $(KERNEL_OUT)/drivers/reset/reset-imx8ulp-csr.ko \
+    $(KERNEL_OUT)/drivers/media/platform/nxp/imx8-isi/imx8-isi.ko \
     $(KERNEL_OUT)/drivers/media/i2c/ov5640.ko \
-    $(KERNEL_OUT)/drivers/staging/media/imx/imx8-isi-hw.ko \
-    $(KERNEL_OUT)/drivers/staging/media/imx/imx8-isi-capture.ko \
-    $(KERNEL_OUT)/drivers/staging/media/imx/imx8-isi-mem2mem.ko \
-    $(KERNEL_OUT)/drivers/staging/media/imx/imx8-capture.ko \
     $(KERNEL_OUT)/drivers/media/platform/nxp/imx8mq-mipi-csi2.ko \
-    $(KERNEL_OUT)/drivers/staging/media/imx/imx8-media-dev.ko \
     $(KERNEL_OUT)/drivers/trusty/trusty-core.ko \
     $(KERNEL_OUT)/drivers/trusty/trusty-log.ko \
     $(KERNEL_OUT)/drivers/trusty/trusty-virtio.ko \
@@ -151,8 +149,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
 else
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/input/touchscreen/goodix_ts.ko \
-    $(KERNEL_OUT)/drivers/input/touchscreen/elants_i2c.ko\
-    $(KERNEL_OUT)/drivers/staging/media/imx/imx8-media-dev.ko
+    $(KERNEL_OUT)/drivers/input/touchscreen/elants_i2c.ko
 endif
 
 # CONFIG_MFD_FP9931: fp9931-core.ko
