@@ -88,6 +88,7 @@ on early-boot && property:vendor.skip.charger_not_need=0
     setprop vendor.rw.VIDEO_RENDER_NAME video_render.surface
     setprop vendor.media.fsl_codec.flag 7
     setprop media.c2.hal.selection aidl
+    setprop media.c2.remove_rendering_depth true
 
     setprop camera.disable_zsl_mode 1
 
