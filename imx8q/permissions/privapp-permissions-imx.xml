@@ -20,6 +20,7 @@
         <permission name="android.permission.WRITE_DEVICE_CONFIG" />
         <permission name="android.permission.THREAD_NETWORK_PRIVILEGED" />
         <permission name="android.permission.READ_DROPBOX_DATA" />
+        <permission name="android.permission.SETUP_FSVERITY" />
     </privapp-permissions>
     <privapp-permissions package="com.google.android.googlequicksearchbox">
         <permission name="android.permission.SCHEDULE_EXACT_ALARM" />
