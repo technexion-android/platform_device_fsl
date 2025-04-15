@@ -130,7 +130,7 @@ BOARD_BOOTCONFIG += androidboot.console=ttymxc0 androidboot.hardware=nxp
 BOARD_BOOTCONFIG += androidboot.fbTileSupport=enable
 
 # memory config
-BOARD_KERNEL_CMDLINE += transparent_hugepage=never cma=$(CMASIZE)
+BOARD_KERNEL_CMDLINE += transparent_hugepage=never cma=$(CMASIZE) restrict_cma_redirect=false
 BOARD_KERNEL_CMDLINE += swiotlb=512
 
 # display config
