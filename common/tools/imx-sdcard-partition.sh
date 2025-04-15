@@ -29,11 +29,9 @@ options:
                            └────────────────────────────┴───────────────┘
   -a                only flash image to slot_a
   -b                only flash image to slot_b
-  -c card_size      optional setting: 7 / 14 / 28
-                        If not set, use partition-table.img (default)
-                        If set to  7, use partition-table-7GB.img  for  8GB SD card
-                        If set to 14, use partition-table-14GB.img for 16GB SD card
-                        If set to 28, use partition-table-28GB.img for 32GB SD card
+  -c card_size      If this option is not used, partition-table.img or partition-table-dual.img is flashed
+                    If this option is used, partition-table-<card_size>GB.img or partition-table-<card_size>GB-dual.img is flashed
+                    Make sure the corresponding partition table image file exists
                     Make sure the corresponding file exist for your platform.
   -u uboot_feature  flash uboot or spl&bootloader image files with "uboot_feature" in their names.
   -d dtb_feature    flash dtbo, recovery and vbmeta image files with "dtb_feature" in their names.
@@ -113,10 +111,6 @@ done
 command -v simg2img >/dev/null 2>&1 || { echo -e >&2 "${RED}Missing simg2img app. Please run: sudo apt-get install android-tools-fsutils${STD}" ; exit 1 ; }
 command -v hdparm >/dev/null 2>&1 || { echo -e >&2 "${RED}Missing hdparm app. Please make sure it is installed. Exiting.${STD}" ; exit 1 ; }
 command -v gdisk >/dev/null 2>&1 || { echo -e >&2 "${RED}Missing gdisk app. Please make sure it is installed. Exiting.${STD}" ; exit 1 ; }
-
-if [ ${card_size} -ne 0 ] && [ ${card_size} -ne 7 ] && [ ${card_size} -ne 14 ] && [ ${card_size} -ne 28 ]; then
-    help; exit 1;
-fi
 
 # imx8qxp RevB0 chips, imx8qm RevB0 chips, imx8mp and imx8mn chips, bootloader offset is 32KB on SD card
 if [ "${soc_name}" = "imx8qxp" -o "${soc_name}" = "imx8qm" -o "${soc_name}" = "imx8mn" -o "${soc_name}" = "imx8mp" -o "${soc_name}" = "imx95" ]; then
