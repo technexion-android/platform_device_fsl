@@ -56,9 +56,9 @@ build_imx_uboot()
 {
 	echo Building i.MX U-Boot with firmware
 	if echo "$2" | grep -q "lpddr5" ; then
-		cp ${BOARD_OEI_PATH}/build/mx943lp4-19/ddr/oei-m33-ddr.bin ${BOARD_MKIMAGE_PATH}
-	else
 		cp ${BOARD_OEI_PATH}/build/mx943lp5-19/ddr/oei-m33-ddr.bin ${BOARD_MKIMAGE_PATH}
+	else
+		cp ${BOARD_OEI_PATH}/build/mx943lp4-19/ddr/oei-m33-ddr.bin ${BOARD_MKIMAGE_PATH}
 	fi
 
 	cp ${BOARD_SM_PATH}/build/mx94evk/m33_image.bin ${BOARD_MKIMAGE_PATH}/m33_image.bin
@@ -71,6 +71,10 @@ build_imx_uboot()
 	cp ${FSL_PROPRIETARY_PATH}/linux-firmware-imx/firmware/ddr/synopsys/lpddr*_dmem_v202409.bin ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX94/
 	cp ${FSL_PROPRIETARY_PATH}/linux-firmware-imx/firmware/ddr/synopsys/lpddr*_imem_qb_v202409.bin ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX94/
 	cp ${FSL_PROPRIETARY_PATH}/linux-firmware-imx/firmware/ddr/synopsys/lpddr*_dmem_qb_v202409.bin ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX94/
+
+	cp ${FSL_PROPRIETARY_PATH}/fsl-proprietary/mcu-sdk/imx943/m33s_image.bin ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX94/
+	cp ${FSL_PROPRIETARY_PATH}/fsl-proprietary/mcu-sdk/imx943/m70_image.bin ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX94/
+	cp ${FSL_PROPRIETARY_PATH}/fsl-proprietary/mcu-sdk/imx943/m71_image.bin ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX94/
 
 	# build ATF based on whether tee is involved
 	make -C ${IMX_PATH}/arm-trusted-firmware/ PLAT=${ATF_PLAT} clean
@@ -93,9 +97,9 @@ build_imx_uboot()
 	pwd_backup=${PWD}
 	PWD=${PWD}/${IMX_MKIMAGE_PATH}/imx-mkimage/
 	if echo "$2" | grep -q "lpddr5" ; then
-		make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ SOC=${MKIMAGE_SOC} flash_a55 LPDDR_TYPE=lpddr5 OEI=YES || exit 1
+		make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ SOC=${MKIMAGE_SOC} flash_all LPDDR_TYPE=lpddr5 OEI=YES || exit 1
 	else
-		make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ SOC=${MKIMAGE_SOC} flash_a55 LPDDR_TYPE=lpddr4 OEI=YES || exit 1
+		make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ SOC=${MKIMAGE_SOC} flash_all LPDDR_TYPE=lpddr4 OEI=YES || exit 1
 	fi
 
 	PWD=${pwd_backup}
