@@ -52,7 +52,6 @@ set next_parameter=
 set super_partition=super
 set /A flash_mcu=0
 set /A flash_mcu_only=0
-set /A statisc=0
 set /A erase=0
 set /A has_system_ext_partition=0
 set image_directory=
@@ -200,13 +199,6 @@ if not [%yocto_image%] == [] (
     echo %yocto_image% | findstr \ > nul || set yocto_image="%cd%"\%yocto_image%
 )
 
-:: If sdcard size is not correctly set, exit
-if %card_size% neq 0 set /A statisc+=1
-if %card_size% neq 7 set /A statisc+=1
-if %card_size% neq 13 set /A statisc+=1
-if %card_size% neq 28 set /A statisc+=1
-if %statisc% == 4 echo card_size is not a legal value & set /A error_level=1 && goto :exit
-
 :: dual bootloader support will use different gpt, this is for imx8m and imx8ulp
 if [%support_dual_bootloader%] equ [1] (
     if %card_size% == 0 (
@@ -216,6 +208,10 @@ if [%support_dual_bootloader%] equ [1] (
     )
 )else (
     if %card_size% gtr 0 set partition_file=partition-table-%card_size%GB.img
+)
+if not exist %image_directory%%partition_file% (
+    echo %partition_file% does not exist, the "-c" option is not correctly used
+    set /A error_level=1 && goto :exit
 )
 
 
@@ -617,10 +613,9 @@ echo  -h                displays this help message
 echo  -f soc_name       flash android image file with soc_name
 echo  -a                only flash image to slot_a
 echo  -b                only flash image to slot_b
-echo  -c card_size      optional setting: 13 / 28
-echo                        If not set, use partition-table.img/partition-table-dual.img
-echo                        If set to 13, use partition-table-13GB.img/partition-table-13GB-dual.img for 16GB SD card
-echo                        If set to 28, use partition-table-28GB.img/partition-table-28GB-dual.img for 32GB SD card
+echo  -c card_size      If this option is not used, partition-table.img or partition-table-dual.img is flashed.
+echo                    If this option is used, partition-table-^<card_size^>GB.img or partition-table-^<card_size^>GB-dual.img is flashed
+echo                    Make sure the corresponding partition table image file exists
 echo  -m                flash mcu image
 echo  -u uboot_feature  flash uboot or spl and bootloader image with "uboot_feature" in their names
 echo                        For Standard Android:
@@ -657,7 +652,7 @@ echo                           ©¦                ©¦  15x15 15x15-dual trusty-15x
 echo                           ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È
 echo                           ©¦   imx7ulp      ©¦  evk-uuu                                                                                             ©¦
 echo                           ©¸©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ø©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¼
-echo
+echo:
 echo  -d dtbo_feature   flash dtbo, vbmeta and recovery image file with "dtb_feature" in their names
 echo                        If not set, default dtbo, vbmeta and recovery image will be flashed
 echo                        Below table lists the legal value supported now based on the soc_name provided:
@@ -693,7 +688,7 @@ echo                           ©¦                ©¦  verdin-mipi4k 15x15 15x15-a
 echo                           ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È
 echo                           ©¦   imx7ulp      ©¦  evk-mipi evk mipi                                                                                   ©¦
 echo                           ©¸©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ø©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¼
-echo
+echo:
 echo  -e                erase user data after all image files being flashed
 echo  -D directory      the directory of of images, it this option is used, it must be followed with an absolute path.
 echo                        No need to use this option if images are in current working directory

@@ -18,10 +18,9 @@ options:
   -f soc_name       flash android image file with soc_name
   -a                only flash image to slot_a
   -b                only flash image to slot_b
-  -c card_size      optional setting: 13 / 28
-                        If not set, use partition-table.img/partition-table-dual.img
-                        If set to 13, use partition-table-13GB.img/partition-table-13GB-dual.img for 16GB SD card
-                        If set to 28, use partition-table-28GB.img/partition-table-28GB-dual.img for 32GB SD card
+  -c card_size      If this option is not used, partition-table.img or partition-table-dual.img is flashed
+                    If this option is used, partition-table-<card_size>GB.img or partition-table-<card_size>GB-dual.img is flashed
+                    Make sure the corresponding partition table image file exists
   -m                flash mcu image
   -u uboot_feature  flash uboot or spl&bootloader image with "uboot_feature" in their names
                         For Standard Android:
@@ -585,13 +584,6 @@ else
     yocto_image_sym_link=${yocto_image_sym_link}${yocto_image}
 fi
 
-
-# if card_size is not correctly set, exit.
-if [ ${card_size} -ne 0 ] && [ ${card_size} -ne 7 ] && [ ${card_size} -ne 13 ] && [ ${card_size} -ne 28 ]; then
-    echo -e >&2 ${RED}card size ${card_size} is not legal${STD};
-    help; exit 1;
-fi
-
 # dual bootloader support will use different gpt, this is for imx8m and imx8ulp
 if [ ${support_dual_bootloader} -eq 1 ]; then
     if [ ${card_size} -gt 0 ]; then
@@ -606,6 +598,11 @@ else
         partition_file="partition-table.img";
     fi
 fi
+if [ ! -f ${sym_link_directory}${partition_file} ]; then
+    echo ${partition_file} does not exist, the "-c" option is not correctly used
+    exit 1;
+fi
+
 
 if [ ${dryrun} -eq 0 ]; then
     randome_part=$RANDOM

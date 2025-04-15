@@ -17,10 +17,9 @@ options:
   -f soc_name       flash android image file with soc_name
   -a                only flash image to slot_a
   -b                only flash image to slot_b
-  -c card_size      optional setting: 13 / 28
-                        If not set, use partition-table.img/partition-table-dual.img
-                        If set to 13, use partition-table-13GB.img/partition-table-13GB-dual.img for 16GB SD card
-                        If set to 28, use partition-table-28GB.img/partition-table-28GB-dual.img for 32GB SD card
+  -c card_size      If this option is not used, partition-table.img or partition-table-dual.img is flashed
+                    If this option is used, partition-table-<card_size>GB.img or partition-table-<card_size>GB-dual.img is flashed
+                    Make sure the corresponding partition table image file exists
   -m                flash mcu image
   -u uboot_feature  flash uboot or spl&bootloader image with "uboot_feature" in their names
                         For Standard Android:
@@ -433,10 +432,11 @@ if [[ "${uboot_feature}" = *"dual"* ]]; then
     support_dual_bootloader=1;
 fi
 
-# if card_size is not correctly set, exit.
-if [ ${card_size} -ne 0 ] && [ ${card_size} -ne 7 ] && [ ${card_size} -ne 13 ] && [ ${card_size} -ne 28 ]; then
-    help; exit 1;
+# if directory is specified, make sure there is a slash at the end
+if [[ "${image_directory}" = "" ]]; then
+    image_directory=`pwd`
 fi
+image_directory="${image_directory%/}/"
 
 # Android Automative by default support dual bootloader, no "dual" in its partition table name
 if [ ${support_dual_bootloader} -eq 1 ]; then
@@ -453,12 +453,10 @@ else
         partition_file="partition-table.img";
     fi
 fi
-
-# if directory is specified, make sure there is a slash at the end
-if [[ "${image_directory}" = "" ]]; then
-    image_directory=`pwd`
+if [ ! -f ${image_directory}${partition_file} ]; then
+    echo ${partition_file} does not exist, the "-c" option is not correctly used
+    exit 1;
 fi
-image_directory="${image_directory%/}/"
 
 if [[ "${ser_num}" != "" ]]; then
     fastboot_tool="fastboot -s ${ser_num}"
