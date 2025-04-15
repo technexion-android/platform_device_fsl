@@ -382,7 +382,8 @@ PRODUCT_COPY_FILES += \
 else
 PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
-    $(IMX_DEVICE_PATH)/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml
+    $(IMX_DEVICE_PATH)/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
+    $(IMX_DEVICE_PATH)/audio_policy_configuration_multichannel.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration_multichannel.xml
 endif
 
 # AudioControl service

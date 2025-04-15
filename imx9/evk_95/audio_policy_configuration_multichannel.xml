@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!-- Copyright (C) 2017 The Android Open Source Project
+     Copyright 2024 NXP
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -29,26 +30,27 @@
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                              samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
                 </mixPort>
+                <mixPort name="direct output" role="source" flags="AUDIO_OUTPUT_FLAG_DIRECT">
+                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                             samplingRates="48000 96000 192000" channelMasks="AUDIO_CHANNEL_OUT_QUAD AUDIO_CHANNEL_OUT_5POINT1 AUDIO_CHANNEL_OUT_7POINT1"/>
+                </mixPort>
+                <mixPort name="lpa output" role="source" flags="AUDIO_OUTPUT_FLAG_DIRECT AUDIO_OUTPUT_FLAG_HW_AV_SYNC">
+                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                             samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
+                </mixPort>
                 <mixPort name="bt sco output" role="source">
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                              samplingRates="16000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
                 </mixPort>
-                <mixPort name="compressed_offload" role="source"
-                         flags="AUDIO_OUTPUT_FLAG_DIRECT AUDIO_OUTPUT_FLAG_COMPRESS_OFFLOAD">
-                    <profile name="" format="AUDIO_FORMAT_MP3"
-                             samplingRates="8000 11025 12000 16000 22050 24000 32000 44100 48000"
-                             channelMasks="AUDIO_CHANNEL_OUT_STEREO AUDIO_CHANNEL_OUT_MONO"/>
-                </mixPort>
 
                 <mixPort name="primary input" role="sink">
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
-                             samplingRates="16000 48000"
+                             samplingRates="8000 11025 16000 22050 32000 44100 48000"
                              channelMasks="AUDIO_CHANNEL_IN_STEREO"/>
                 </mixPort>
                 <mixPort name="bt sco input" role="sink">
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
-                             samplingRates="16000"
-                             channelMasks="AUDIO_CHANNEL_IN_STEREO"/>
+                             samplingRates="16000" channelMasks="AUDIO_CHANNEL_IN_STEREO"/>
                 </mixPort>
             </mixPorts>
             <devicePorts>
@@ -58,7 +60,7 @@
                 </devicePort>
                 <devicePort tagName="Wired Headset" type="AUDIO_DEVICE_OUT_WIRED_HEADSET" role="sink">
                 </devicePort>
-                <devicePort tagName="HDMI Out" type="AUDIO_DEVICE_OUT_AUX_DIGITAL" role="sink">
+                <devicePort tagName="Line-Out" type="AUDIO_DEVICE_OUT_LINE" role="sink">
                 </devicePort>
                 <devicePort tagName="BT SCO Headset" type="AUDIO_DEVICE_OUT_BLUETOOTH_SCO_HEADSET" role="sink">
                 </devicePort>
@@ -66,9 +68,6 @@
                 </devicePort>
                 <devicePort tagName="BT SCO" type="AUDIO_DEVICE_OUT_BLUETOOTH_SCO" role="sink">
                 </devicePort>
-                <devicePort tagName="Line-Out" type="AUDIO_DEVICE_OUT_LINE" role="sink">
-                </devicePort>
-
                 <devicePort tagName="Built-In Mic" type="AUDIO_DEVICE_IN_BUILTIN_MIC" role="source">
                 </devicePort>
                 <devicePort tagName="Wired Headset Mic" type="AUDIO_DEVICE_IN_WIRED_HEADSET" role="source">
@@ -78,24 +77,22 @@
             </devicePorts>
             <routes>
                 <route type="mix" sink="Speaker"
-                       sources="primary output"/>
+                       sources="direct output,primary output"/>
                 <route type="mix" sink="Wired Headphones"
                        sources="primary output"/>
                 <route type="mix" sink="Wired Headset"
                        sources="primary output"/>
-                <route type="mix" sink="HDMI Out"
-                       sources="primary output"/>
+                <route type="mix" sink="Line-Out"
+                       sources="lpa output,primary output"/>
                 <route type="mix" sink="BT SCO Headset"
                        sources="bt sco output"/>
                 <route type="mix" sink="BT SCO CarKit"
                        sources="bt sco output"/>
                 <route type="mix" sink="BT SCO"
                        sources="bt sco output"/>
-                <route type="mix" sink="Line-Out"
-                       sources="compressed_offload,primary output"/>
 
                 <route type="mix" sink="primary input"
-                       sources="Built-In Mic,Wired Headset Mic"/>
+                       sources="Wired Headset Mic,Built-In Mic"/>
                 <route type="mix" sink="bt sco input"
                        sources="BT SCO Headset Mic"/>
             </routes>
