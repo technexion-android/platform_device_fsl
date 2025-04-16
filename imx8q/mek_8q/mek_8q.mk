@@ -263,6 +263,9 @@ endif
 PRODUCT_PACKAGES += \
     android.hardware.security.keymint-service-imx
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.hardware.keystore_desede=true
+
 # new gatekeeper HAL
 PRODUCT_PACKAGES += \
     android.hardware.gatekeeper-service-imx

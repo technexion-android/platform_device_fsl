@@ -184,6 +184,9 @@ endif
 PRODUCT_PACKAGES += \
     android.hardware.security.keymint-service-imx
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.hardware.keystore_desede=true
+
 # Confirmation UI
 ifeq ($(PRODUCT_IMX_TRUSTY),true)
 PRODUCT_PACKAGES += \
