@@ -51,9 +51,9 @@ build_pre_image()
 	make -C ${BOARD_SM_PATH} SM_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" all config=mx95evk-android 1>/dev/null || exit 1
 	echo Building imx-oei ...
 	make -C ${BOARD_OEI_PATH} really-clean
-	make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=mx95lp5 DDR_CONFIG=XIMX95LPD5EVK19_6400mbps_train_timing_a1 oei=ddr DEBUG=1 1>/dev/null || exit 1
-	make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=mx95lp5 oei=tcm DEBUG=1 1>/dev/null || exit 1
-	make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=mx95lp4x-15 DDR_CONFIG=XIMX95LPD4XCPU15_4000mbps_train_timing_a1 oei=ddr DEBUG=1 1>/dev/null || exit 1
+	make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=mx95lp5 r=b0 oei=ddr d=1 all 1>/dev/null || exit 1
+	make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=mx95lp5 r=b0 oei=tcm d=1 all 1>/dev/null || exit 1
+	make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=mx95lp4x-15 r=b0 oei=ddr d=1 all 1>/dev/null || exit 1
 }
 
 build_imx_uboot()
@@ -86,7 +86,7 @@ build_imx_uboot()
 		fi
 	fi
 
-	cp ${FSL_PROPRIETARY_PATH}/ele/mx95a0-ahab-container.img ${BOARD_MKIMAGE_PATH}/mx95a0-ahab-container.img
+	cp ${FSL_PROPRIETARY_PATH}/ele/mx95b0-ahab-container.img ${BOARD_MKIMAGE_PATH}/mx95b0-ahab-container.img
 	cp ${UBOOT_OUT}/u-boot.$1 ${BOARD_MKIMAGE_PATH}
 	cp ${UBOOT_OUT}/spl/u-boot-spl.bin ${BOARD_MKIMAGE_PATH}
 	cp ${UBOOT_OUT}/tools/mkimage ${BOARD_MKIMAGE_PATH}/mkimage_uboot
@@ -116,11 +116,11 @@ build_imx_uboot()
 	pwd_backup=${PWD}
 	PWD=${PWD}/${IMX_MKIMAGE_PATH}/imx-mkimage/
 	if echo "$2" | grep -q "15x15" ; then
-		make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ SOC=${MKIMAGE_SOC} flash_all LPDDR_TYPE=lpddr4x OEI=YES || exit 1
+		make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ SOC=${MKIMAGE_SOC} flash_all REV=B0 LPDDR_TYPE=lpddr4x OEI=YES || exit 1
 	elif [ `echo $2 | cut -d '-' -f2` = "rpmsg" ]; then
-		make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ SOC=${MKIMAGE_SOC} flash_a55 MSEL=1 LPDDR_TYPE=lpddr5 OEI=YES || exit 1
+		make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ SOC=${MKIMAGE_SOC} flash_a55 REV=B0 MSEL=1 LPDDR_TYPE=lpddr5 OEI=YES || exit 1
 	else
-		make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ SOC=${MKIMAGE_SOC} flash_all LPDDR_TYPE=lpddr5 OEI=YES || exit 1
+		make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ SOC=${MKIMAGE_SOC} flash_all REV=B0 LPDDR_TYPE=lpddr5 OEI=YES || exit 1
 	fi
 
 	PWD=${pwd_backup}
