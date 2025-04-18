@@ -17,7 +17,6 @@ PRODUCT_IMX_TRUSTY := true
 # CONFIG_ZSMALLOC: zsmalloc.ko
 # CONFIG_HWMON: hwmon.ko, hardware monitor
 # CONFIG_SENSORS_ARM_SCMI: scmi-hwmon.ko, ARM SCMI sensors
-# CONFIG_ARM_SCMI_POWER_DOMAIN: scmi_pm_domain.ko, SCMI power domain driver
 # CONFIG_MXC_CLK: mxc-clk.ko
 # CONFIG_CLK_IMX8ULP: clk-imx8ulp.ko
 # CONFIG_IMX_MBOX: imx-mailbox.ko
@@ -76,7 +75,6 @@ ifeq ($(LOADABLE_KERNEL_MODULE),true)
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/hwmon/hwmon.ko \
     $(KERNEL_OUT)/drivers/hwmon/scmi-hwmon.ko \
-    $(KERNEL_OUT)/drivers/pmdomain/arm/scmi_pm_domain.ko \
     $(KERNEL_OUT)/drivers/clk/imx/mxc-clk.ko \
     $(KERNEL_OUT)/drivers/clk/imx/clk-imx8ulp.ko \
     $(KERNEL_OUT)/drivers/mailbox/imx-mailbox.ko \
