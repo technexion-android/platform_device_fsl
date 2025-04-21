@@ -38,7 +38,7 @@ build_imx_uboot()
 	cp ${UBOOT_OUT}/u-boot-nodtb.$1 ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/
 	cp ${UBOOT_OUT}/spl/u-boot-spl.bin ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/
 	cp ${UBOOT_OUT}/tools/mkimage ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/mkimage_uboot
-	cp ${UBOOT_OUT}/arch/arm/dts/imx8mq-evk.dtb  ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/
+	cp ${UBOOT_OUT}/dts/upstream/src/arm64/freescale/imx8mq-evk.dtb  ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/
 	cp ${FSL_PROPRIETARY_PATH}/linux-firmware-imx/firmware/hdmi/cadence/signed_hdmi_imx8m.bin  ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/
 	cp ${FSL_PROPRIETARY_PATH}/linux-firmware-imx/firmware/ddr/synopsys/lpddr4_pmu_train* ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/
 
