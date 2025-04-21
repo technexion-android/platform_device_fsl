@@ -232,7 +232,7 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/media/platform/nxp/imx8mq-mipi-csi2.ko \
     $(KERNEL_OUT)/drivers/media/platform/nxp/imx-parallel-csi.ko \
     $(KERNEL_OUT)/drivers/media/i2c/ov5640.ko \
-    $(KERNEL_OUT)/drivers/staging/media/imx/hdmirx/cdns_mhdp_hdmirx.ko
+    $(KERNEL_OUT)/drivers/media/platform/nxp/hdmirx/cdns_mhdp_hdmirx.ko
 else
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/remoteproc/imx_dsp_rproc.ko
