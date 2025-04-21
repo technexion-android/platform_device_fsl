@@ -27,7 +27,14 @@
       "exposure_ns_min": "116000",
       "exposure_ns_max": "33216000",
       "PreviewBuffers": 5,
-      "LibcameraBuffers": 5
+      "LibcameraBuffers": 5,
+      "OmitFrame": [
+        {
+          "width": "3840",
+          "height": "2160",
+          "omit_num": "1"
+        }
+      ]
     }
   ]
 }
