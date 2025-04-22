@@ -161,7 +161,6 @@ endif
 # CONFIG_SND_SOC_FSL_RPMSG: snd-soc-fsl-rpmsg.ko
 # CONFIG_SND_SOC_IMX_AUDIO_RPMSG: snd-soc-imx-rpmsg.ko
 # CONFIG_SND_SOC_RPMSG_WM8960: snd-soc-rpmsg-wm8960.ko
-# CONFIG_SND_SOC_RPMSG_WM8960_I2C: snd-soc-rpmsg-wm8960-i2c.ko
 # CONFIG_IMX_DSP_REMOTEPROC: imx_dsp_rproc.ko
 # CONFIG_MPL3115: mpl3115.ko
 # CONFIG_RPMSG_IIO_PEDOMETER: rpmsg_iio_pedometer.ko
@@ -210,7 +209,6 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-rpmsg.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-imx-rpmsg.ko \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-rpmsg-wm8960.ko \
-    $(KERNEL_OUT)/sound/soc/codecs/snd-soc-rpmsg-wm8960-i2c.ko \
     $(KERNEL_OUT)/drivers/remoteproc/imx_dsp_rproc.ko \
     $(KERNEL_OUT)/drivers/firmware/imx/imx-dsp.ko \
     $(KERNEL_OUT)/sound/soc/sof/snd-sof-utils.ko \
