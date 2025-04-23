@@ -83,6 +83,7 @@ PRODUCT_PACKAGES += \
     media_codecs_c2_rv.xml \
     media_codecs_c2_dsp.xml \
     media_profiles_V1_0.xml \
+    media_profiles_8qxp.xml \
     media_codecs_c2.xml \
     media_codecs_performance_c2.xml \
     media_codecs_performance_c2_8qm.xml \
