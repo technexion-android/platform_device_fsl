@@ -51,9 +51,9 @@ build_pre_image()
 	make -C ${BOARD_SM_PATH} SM_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" all config=mx95evk-android 1>/dev/null || exit 1
 	echo Building imx-oei ...
 	make -C ${BOARD_OEI_PATH} really-clean
-	make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=mx95lp5 oei=ddr DEBUG=1 1>/dev/null || exit 1
+	make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=mx95lp5 DDR_CONFIG=XIMX95LPD5EVK19_6400mbps_train_timing_a1 oei=ddr DEBUG=1 1>/dev/null || exit 1
 	make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=mx95lp5 oei=tcm DEBUG=1 1>/dev/null || exit 1
-	make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=mx95lp4x-15 oei=ddr DEBUG=1 1>/dev/null || exit 1
+	make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=mx95lp4x-15 DDR_CONFIG=XIMX95LPD4XCPU15_4000mbps_train_timing_a1 oei=ddr DEBUG=1 1>/dev/null || exit 1
 }
 
 build_imx_uboot()
