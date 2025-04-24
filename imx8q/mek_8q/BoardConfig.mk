@@ -199,7 +199,9 @@ else
       TARGET_BOARD_DTS_CONFIG += imx8qxp:imx8qxp-mek-ov5640-rpmsg-no-product.dtb
     else
       # imx8qm standard android; MIPI-HDMI display
-      TARGET_BOARD_DTS_CONFIG := imx8qm:imx8qm-mek-ov5640-rpmsg.dtb
+      TARGET_BOARD_DTS_CONFIG := imx8qm:imx8qm-mek-ov5640-dual-rpmsg.dtb
+      TARGET_BOARD_DTS_CONFIG += imx8qm-ov5640-csi0:imx8qm-mek-ov5640-csi0-rpmsg.dtb
+      TARGET_BOARD_DTS_CONFIG += imx8qm-ov5640-csi1:imx8qm-mek-ov5640-csi1-rpmsg.dtb
       # imx8qm standard android; MIPI panel display
       TARGET_BOARD_DTS_CONFIG += imx8qm-mipi-panel:imx8qm-mek-dsi-rm67199.dtb
       TARGET_BOARD_DTS_CONFIG += imx8qm-mipi-panel-rm67191:imx8qm-mek-dsi-rm67191.dtb
@@ -210,9 +212,9 @@ else
       # imx8qm standard android; LVDS1 panel display
       TARGET_BOARD_DTS_CONFIG += imx8qm-lvds1-panel:imx8qm-mek-jdi-wuxga-lvds1-panel.dtb
       # imx8qxp standard android; MIPI-HDMI display
-      TARGET_BOARD_DTS_CONFIG += imx8qxp:imx8qxp-mek-ov5640-rpmsg.dtb
+      TARGET_BOARD_DTS_CONFIG += imx8qxp:imx8qxp-mek-ov5640-dual-rpmsg.dtb
+      TARGET_BOARD_DTS_CONFIG += imx8qxp-ov5640-csi:imx8qxp-mek-ov5640-csi-rpmsg.dtb
       TARGET_BOARD_DTS_CONFIG += imx8qxp-ov5640-parallel:imx8qxp-mek-ov5640-parallel-rpmsg.dtb
-      TARGET_BOARD_DTS_CONFIG += imx8qxp-ov5640-dual:imx8qxp-mek-ov5640-dual-rpmsg.dtb
       TARGET_BOARD_DTS_CONFIG += imx8dx:imx8dx-mek.dtb
       # imx8qxp standard android; MIPI panel display
       TARGET_BOARD_DTS_CONFIG += imx8qxp-mipi-panel:imx8qxp-mek-dsi-rm67199-rpmsg.dtb
@@ -224,7 +226,9 @@ else
       # imx8qxp support SOF
       TARGET_BOARD_DTS_CONFIG += imx8qxp-sof:imx8qxp-mek-sof-wm8960.dtb
       # imx8qm standard android; MIPI-HDMI display on revd
-      TARGET_BOARD_DTS_CONFIG += imx8qm-revd:imx8qm-mek-revd-ov5640-rpmsg.dtb
+      TARGET_BOARD_DTS_CONFIG += imx8qm-revd:imx8qm-mek-revd-ov5640-dual-rpmsg.dtb
+      TARGET_BOARD_DTS_CONFIG += imx8qm-ov5640-csi0-revd:imx8qm-mek-revd-ov5640-csi0-rpmsg.dtb
+      TARGET_BOARD_DTS_CONFIG += imx8qm-ov5640-csi1-revd:imx8qm-mek-revd-ov5640-csi1-rpmsg.dtb
       # imx8qm standard android; MIPI panel display on revd
       TARGET_BOARD_DTS_CONFIG += imx8qm-mipi-panel-revd:imx8qm-mek-revd-dsi-rm67199.dtb
       TARGET_BOARD_DTS_CONFIG += imx8qm-mipi-panel-rm67191-revd:imx8qm-mek-revd-dsi-rm67191.dtb
