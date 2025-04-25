@@ -485,3 +485,7 @@ PRODUCT_PACKAGES += \
     nxp.hardware.secure-enclave \
     SecureEnclaveDemo \
     el2go_demo
+
+# ELE FW
+PRODUCT_COPY_FILES += \
+    vendor/nxp/ele/mx943a0runtime-ahab-container.img:$(TARGET_COPY_OUT_VENDOR)/firmware/imx/ele/mx943a0runtime-ahab-container.img

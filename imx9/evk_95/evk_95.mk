@@ -253,6 +253,10 @@ PRODUCT_PACKAGES += \
 
 $(call  inherit-product-if-exists, vendor/nxp-private/security/nxp_security.mk)
 
+# ELE FW
+PRODUCT_COPY_FILES += \
+    vendor/nxp/ele/mx95a0runtime-ahab-container.img:$(TARGET_COPY_OUT_VENDOR)/firmware/imx/ele/mx95a0runtime-ahab-container.img
+
 # Resume on Reboot support
 PRODUCT_PACKAGES += \
     android.hardware.rebootescrow-service.default
