@@ -99,9 +99,6 @@ on late-fs && property:vendor.skip.charger_not_need=0
 
     mount_all /vendor/etc/fstab.nxp --late
 
-on late-fs && property:vendor.storageproxyd=trusty && property:vendor.skip.charger_not_need=0
-    start vpu_firmware_load
-
     write /sys/block/dm-6/queue/read_ahead_kb 1024
     write /sys/block/dm-7/queue/read_ahead_kb 1024
     write /sys/block/dm-8/queue/read_ahead_kb 1024
@@ -116,7 +113,6 @@ on property:sys.boot_completed=1
     write /sys/block/dm-9/queue/read_ahead_kb 128
     write /sys/block/dm-10/queue/read_ahead_kb 128
     write /sys/block/dm-11/queue/read_ahead_kb 128
-
 
 on early-boot && property:vendor.skip.charger_not_need=0
     # For evk_95, when swap used about 400M, upgrade the level.
@@ -224,6 +220,9 @@ on zygote-start && property:vendor.skip.charger_not_need=0
     mkdir /data/vendor/wifi/wpa 0770 wifi wifi
     mkdir /data/vendor/wifi/wpa/sockets 0770 wifi wifi
 
+on zygote-start && property:vendor.storageproxyd=trusty && property:vendor.skip.charger_not_need=0
+    start vpu_firmware_load
+
 service early_init_sh /vendor/bin/init.insmod.sh /vendor/etc/early.init.cfg vendor.all.early_init.ready
     class main
     user root
@@ -235,6 +234,10 @@ on post-fs-data && property:vendor.storageproxyd=trusty && property:vendor.skip.
     # create temp node for secure storage proxy
     mkdir /data/vendor/ss 0700 system system
     restart storageproxyd
+    # create node for secure enclave
+    mkdir /data/vendor/ele 0700 system system
+    # start nvmd to trigger ELE runtime FW load
+    start nvmd
 
 service storageproxyd /vendor/bin/storageproxyd -p /data/vendor/ss -r /dev/mmcblk0rpmb -d /dev/trusty-ipc-dev0
    group system
@@ -292,9 +295,6 @@ on property:ro.boot.camera.layout=ap1302
     setprop ro.media.xml_variant.profiles _95-ap1302
 
 on property:sys.boot_completed=1 && property:vendor.storageproxyd=trusty
-    # create node for secure enclave
-    mkdir /data/vendor/ele 0700 system system
-    start nvmd
     start vendor.secure-enclave
 
 on property:sys.boot_completed=1
