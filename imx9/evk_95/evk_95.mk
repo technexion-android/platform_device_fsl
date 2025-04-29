@@ -306,7 +306,7 @@ PRODUCT_PACKAGES += \
     media_profiles_95-ap1302.xml
 
 PRODUCT_PACKAGES += \
-    ap130x_ar0144_single_fw.bin
+    ap1302_ar0144_single_fw.bin
 
 PREBUILT_LIBCAMERA := false
 PRODUCT_PACKAGES += \
