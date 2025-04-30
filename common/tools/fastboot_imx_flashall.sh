@@ -75,10 +75,11 @@ options:
                            │                │  powersave-revb4 powersave-non-rpmsg-revb4 basler-ov5640-revb4 ov5640.img-revb4 sof-revb4            │
                            │                │  dual-basler-revb4 os08a20-ov5640-revb4 os08a20-revb4                                                │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
-                           │   imx8qxp      │  sof mipi-panel mipi-panel-rm67191 lvds0-panel                                                       │
+                           │   imx8qxp      │  sof mipi-panel mipi-panel-rm67191 lvds0-panel ov5640-csi ov5640-parallel                            │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx8qm       │  hdmi mipi-panel mipi-panel-rm67191 md xen sof lvds1-panel                                           │
-                           │                │  revd mipi-panel-revd mipi-panel-rm67191-revd hdmi-revd hdmi-rx-revd md-revd lvds1-panel-revd sof-revd │
+                           │                │  revd mipi-panel-revd mipi-panel-rm67191-revd hdmi-revd hdmi-rx-revd md-revd lvds1-panel-revd        │
+                           │                │  sof-revd ov5640-csi0 ov5640-csi1 ov5640-csi0-revd ov5640-csi1-revd                                  │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx8ulp      │  hdmi epdc 9x9 9x9-hdmi sof lpa lpd                                                                  │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
