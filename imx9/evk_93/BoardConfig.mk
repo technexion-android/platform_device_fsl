@@ -110,7 +110,7 @@ BOARD_KERNEL_CMDLINE := init=/init firmware_class.path=/vendor/firmware loop.max
 BOARD_BOOTCONFIG += androidboot.hardware=nxp androidboot.hw_timeout_multiplier=4
 
 # memory config
-BOARD_KERNEL_CMDLINE += cma=640M transparent_hugepage=never restrict_cma_redirect=false
+BOARD_KERNEL_CMDLINE += cma=640M transparent_hugepage=never
 BOARD_KERNEL_CMDLINE += swiotlb=256
 
 # display config
