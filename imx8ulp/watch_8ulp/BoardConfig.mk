@@ -104,7 +104,7 @@ BOARD_KERNEL_CMDLINE := init=/init firmware_class.path=/vendor/firmware loop.max
 BOARD_BOOTCONFIG += androidboot.hardware=nxp
 
 # memory config
-BOARD_KERNEL_CMDLINE += cma=640M transparent_hugepage=never restrict_cma_redirect=false
+BOARD_KERNEL_CMDLINE += cma=640M transparent_hugepage=never
 
 # display config
 BOARD_BOOTCONFIG += androidboot.lcd_density=120

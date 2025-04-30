@@ -120,7 +120,7 @@ BOARD_BOOTCONFIG += androidboot.hardware=nxp
 BOARD_BOOTCONFIG += androidboot.fbTileSupport=enable
 
 # memory config
-BOARD_KERNEL_CMDLINE += cma=928M@0x960M-0xfc0M transparent_hugepage=never restrict_cma_redirect=false
+BOARD_KERNEL_CMDLINE += cma=928M@0x960M-0xfc0M transparent_hugepage=never
 BOARD_KERNEL_CMDLINE += swiotlb=768
 
 # display config
