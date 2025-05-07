@@ -5,6 +5,9 @@ TARGET_KERNEL_ARCH := arm64
 
 LOADABLE_KERNEL_MODULE ?= false
 
+BOARD_VENDOR_KERNEL_MODULES += \
+    $(KERNEL_OUT)/drivers/media/i2c/ap1302.ko \
+
 # -------@block_memory-------
 #Enable this to config low memory
 LOW_MEMORY := false
