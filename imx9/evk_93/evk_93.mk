@@ -263,6 +263,12 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(FSL_PROPRIETARY_PATH)/fsl-proprietary/mcu-sdk/imx93/imx93_mcu_demo.img:imx93_mcu_demo.img
 
+# libcamera
+PRODUCT_PACKAGES += \
+    libcamera-base \
+    libcamera \
+    libyaml
+
 # -------@block_camera-------
 PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/camera_config_imx93.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx93.json \
@@ -344,7 +350,7 @@ PRODUCT_COPY_FILES += \
 
 # NXP ap1302 camera Firmware
 PRODUCT_PACKAGES += \
-    ap1302.fw
+    ap1302_ar0144_single_fw.bin
 
 # -------@block_bluetooth-------
 

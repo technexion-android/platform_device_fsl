@@ -37,3 +37,7 @@
 /sys/bus/iio/devices/iio:device*    events/in_steps_change_period    0660    system     system
 /sys/bus/iio/devices/iio:device*    events/in_steps_change_value     0660    system     system
 /sys/class/backlight/* brightness 0660 system system
+
+# for libcamera
+/dev/media* 0660 system camera
+/dev/v4l-subdev* 0660 system camera

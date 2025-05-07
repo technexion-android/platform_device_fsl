@@ -11,29 +11,21 @@
   "camera_metadata": [
     {
       "camera_type": "back",
-      "camera_name": "mxc_isi.0.capture",
-      "orientation": "90",
+      "camera_name": "ap1302",
+      "orientation": "0",
       "mplane": "1",
       "buffer_type": "dma",
-      "ActiveArrayWidth": "2592",
-      "ActiveArrayHeight": "1944",
-      "PixelArrayWidth": "2592",
-      "PixelArrayHeight": "1944",
-      "PhysicalWidth": "3.6288",
-      "PhysicalHeight": "2.7216",
-      "FocalLength": "3.37",
-      "MaxJpegSize": "8388608",
-      "MinFrameDuration": "33333333",
+      "ActiveArrayWidth": "1280",
+      "ActiveArrayHeight": "800",
+      "PixelArrayWidth": "1280",
+      "PixelArrayHeight": "800",
+      "PhysicalWidth": "3.84",
+      "PhysicalHeight": "2.4",
+      "FocalLength": "3.29",
+      "MaxJpegSize": "4000000",
+      "MinFrameDuration": "16666666",
       "MaxFrameDuration": "300000000",
-      "MinFrameDurationBlob5M": "700000000",
-      "v4l2_format": "nv12",
-      "OmitFrame": [
-        {
-            "width": "2592",
-            "height": "1944",
-            "omit_num": "2"
-        }
-      ]
+      "v4l2_format": "nv12"
     }
   ]
 }
