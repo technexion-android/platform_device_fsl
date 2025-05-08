@@ -132,7 +132,7 @@ BOARD_KERNEL_CMDLINE := init=/init firmware_class.path=/vendor/firmware loop.max
 BOARD_BOOTCONFIG += androidboot.console=ttymxc1 androidboot.hardware=nxp
 
 # memory config
-BOARD_KERNEL_CMDLINE += transparent_hugepage=never restrict_cma_redirect=false
+BOARD_KERNEL_CMDLINE += transparent_hugepage=never
 BOARD_KERNEL_CMDLINE += swiotlb=512
 
 # display config
