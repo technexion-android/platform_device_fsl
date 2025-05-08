@@ -664,7 +664,8 @@ PRODUCT_PACKAGES += \
     libsom_ctrl \
     libversion \
     libvom_ctrl \
-    libvvdisplay_shared
+    libvvdisplay_shared \
+    libacproc
 
 # bin
 PRODUCT_PACKAGES += \
