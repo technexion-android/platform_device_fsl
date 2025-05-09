@@ -138,7 +138,7 @@ BOARD_BOOTCONFIG += androidboot.lcd_density=240
 
 # wifi config
 BOARD_BOOTCONFIG += androidboot.wificountrycode=CN
-BOARD_KERNEL_CMDLINE += moal.mod_para=wifi_mod_para_sd612.conf
+BOARD_KERNEL_CMDLINE += moal.mod_para=wifi_mod_para.conf
 
 BOARD_BOOTCONFIG += androidboot.displaymode=720p
 
@@ -147,6 +147,7 @@ BOARD_BOOTCONFIG += androidboot.vendor.sysrq=1
 endif
 
 TARGET_BOARD_DTS_CONFIG += imx943:imx943-evk.dtb
+TARGET_BOARD_DTS_CONFIG += imx943-sdwifi:imx943-evk-sdwifi.dtb
 
 ALL_DEFAULT_INSTALLED_MODULES += $(BOARD_VENDOR_KERNEL_MODULES)
 
