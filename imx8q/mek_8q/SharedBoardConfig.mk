@@ -171,6 +171,7 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/sound/soc/sof/snd-sof-utils.ko \
     $(KERNEL_OUT)/sound/soc/sof/snd-sof.ko \
     $(KERNEL_OUT)/sound/soc/sof/snd-sof-of.ko \
+    $(KERNEL_OUT)/sound/soc/generic/snd-soc-audio-graph-card2.ko \
     $(KERNEL_OUT)/sound/soc/sof/xtensa/snd-sof-xtensa-dsp.ko \
     $(KERNEL_OUT)/sound/soc/sof/imx/imx-common.ko \
     $(KERNEL_OUT)/sound/soc/sof/imx/snd-sof-imx8.ko \
