@@ -196,6 +196,7 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/video/fbdev/mxc/mxc_epdc_v2_fb.ko \
     $(KERNEL_OUT)/drivers/video/fbdev/mxc/mxc_edid.ko \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-bt-sco.ko \
+    $(KERNEL_OUT)/sound/soc/codecs/snd-soc-wm8960.ko \
     $(KERNEL_OUT)/sound/soc/fsl/imx-pcm-dma.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-utils.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-spdif.ko \
