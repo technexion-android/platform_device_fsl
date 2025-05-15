@@ -1,2 +1,1 @@
-permissive system_server;
-dontaudit system_server self:process execmem;
+allow system_server self:process execmem;
