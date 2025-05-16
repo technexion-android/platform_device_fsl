@@ -32,28 +32,31 @@ options:
                            ┌────────────────┬──────────────────────────────────────────────────────────────────────────────────────────────────────┐
                            │   soc_name     │  legal parameter after "-u"                                                                          │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
-                           │   imx8mm       │  dual trusty-dual 4g-evk-uuu 4g ddr4-evk-uuu ddr4 evk-uuu trusty-secure-unlock-dual                  │
+                           │   imx8mm       │  dual trusty-dual trusty-rbidx-blob-dual 4g-evk-uuu 4g ddr4-evk-uuu ddr4 evk-uuu                     │
+                           │                │  trusty-secure-unlock-dual                                                                           │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
-                           │   imx8mn       │  dual trusty-dual evk-uuu trusty-secure-unlock-dual ddr4-evk-uuu ddr4                                │
+                           │   imx8mn       │  dual trusty-dual trusty-rbidx-blob-dual evk-uuu trusty-secure-unlock-dual ddr4-evk-uuu ddr4         │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx8mq       │  dual trusty-dual evk-uuu trusty-secure-unlock-dual wevk wevk-dual trusty-wevk-dual                  │
-			   │                │  wevk-uuu trusty-secure-unlock-wevk-dual                                                             │
+                           │                │  trusty-wevk-rbidx-blob-dual wevk-uuu trusty-secure-unlock-wevk-dual                                 │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
-                           │   imx8mp       │  dual trusty-dual evk-uuu trusty-secure-unlock-dual powersave trusty-powersave-dual                  │
+                           │   imx8mp       │  dual trusty-dual trusty-rbidx-blob-dual evk-uuu trusty-secure-unlock-dual powersave                 │
+                           │                │  trusty-powersave-dual                                                                               │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
-                           │   imx8ulp      │  dual trusty-dual trusty-dualboot-dual evk-uuu trusty-secure-unlock-dual 9x9-evk-uuu 9x9 9x9-dual trusty-9x9-dual trusty-lpa-dual  │
+                           │   imx8ulp      │  dual trusty-dual trusty-dualboot-dual evk-uuu trusty-secure-unlock-dual 9x9-evk-uuu 9x9 9x9-dual    │
+                           │                │  trusty-9x9-dual trusty-9x9-rbidx-blob-dual trusty-lpa-dual                                          │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
-                           │   imx8qxp      │  dual trusty-dual mek-uuu trusty-secure-unlock-dual secure-unlock c0 c0-dual                         │
+                           │   imx8qxp      │  dual trusty-dual trusty-rbidx-blob-dual mek-uuu trusty-secure-unlock-dual secure-unlock c0 c0-dual  │
                            │                │  trusty-c0-dual mek-c0-uuu                                                                           │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
-                           │   imx8qm       │  dual trusty-dual mek-uuu trusty-secure-unlock-dual secure-unlock md hdmi xen                        │
+                           │   imx8qm       │  dual trusty-dual trusty-rbidx-blob-dual mek-uuu trusty-secure-unlock-dual secure-unlock md hdmi xen │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx93        │  dual trusty-dual evk-uuu                                                                            │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx943       │  dual trusty-dual lpddr5 lpddr5-dual trusty-lpddr5-dual evk-uuu lpddr5-evk-uuu                       │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx95        │  dual trusty-dual trusty-secure-unlock-dual verdin trusty-verdin-dual 15x15 15x15-dual               │
-                           |                |  trusty-15x15-dual                                                                                   │
+                           |                |  trusty-15x15-dual trusty-15x15-rbidx-blob-dual                                                      │
                            │                │  verdin-uuu evk-uuu 15x15-evk-uuu rpmsg                                                              │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx7ulp      │  evk-uuu                                                                                             │
@@ -465,17 +468,17 @@ randome_part=
 # We want to detect illegal feature input to some extent. Here it's based on SoC names. Since an SoC may be on a
 # board running different set of images(android and automative for a example), so misuse the features of one set of
 # images when flash another set of images can not be detect early with this scenario.
-imx8mm_uboot_feature=(dual trusty-dual 4g-evk-uuu 4g ddr4-evk-uuu ddr4 evk-uuu trusty-secure-unlock-dual)
-imx8mn_uboot_feature=(dual trusty-dual evk-uuu trusty-secure-unlock-dual ddr4-evk-uuu ddr4)
-imx8mq_uboot_feature=(dual trusty-dual evk-uuu trusty-secure-unlock-dual wevk wevk-dual trusty-wevk-dual wevk-uuu trusty-secure-unlock-wevk-dual)
-imx8mp_uboot_feature=(dual trusty-dual evk-uuu trusty-secure-unlock-dual powersave trusty-powersave-dual)
-imx8ulp_uboot_feature=(dual trusty-dual trusty-dualboot-dual evk-uuu trusty-secure-unlock-dual 9x9-evk-uuu 9x9 9x9-dual trusty-9x9-dual trusty-lpa-dual)
-imx8qxp_uboot_feature=(dual trusty-dual mek-uuu trusty-secure-unlock-dual secure-unlock c0 c0-dual trusty-c0-dual mek-c0-uuu)
-imx8qm_uboot_feature=(dual trusty-dual mek-uuu trusty-secure-unlock-dual secure-unlock md hdmi xen)
+imx8mm_uboot_feature=(dual trusty-dual trusty-rbidx-blob-dual 4g-evk-uuu 4g ddr4-evk-uuu ddr4 evk-uuu trusty-secure-unlock-dual)
+imx8mn_uboot_feature=(dual trusty-dual trusty-rbidx-blob-dual evk-uuu trusty-secure-unlock-dual ddr4-evk-uuu ddr4)
+imx8mq_uboot_feature=(dual trusty-dual evk-uuu trusty-secure-unlock-dual wevk wevk-dual trusty-wevk-dual trusty-wevk-rbidx-blob-dual wevk-uuu trusty-secure-unlock-wevk-dual)
+imx8mp_uboot_feature=(dual trusty-dual trusty-rbidx-blob-dual evk-uuu trusty-secure-unlock-dual powersave trusty-powersave-dual)
+imx8ulp_uboot_feature=(dual trusty-dual trusty-dualboot-dual evk-uuu trusty-secure-unlock-dual 9x9-evk-uuu 9x9 9x9-dual trusty-9x9-dual trusty-9x9-rbidx-blob-dual trusty-lpa-dual)
+imx8qxp_uboot_feature=(dual trusty-dual trusty-rbidx-blob-dual mek-uuu trusty-secure-unlock-dual secure-unlock c0 c0-dual trusty-c0-dual mek-c0-uuu)
+imx8qm_uboot_feature=(dual trusty-dual trusty-rbidx-blob-dual mek-uuu trusty-secure-unlock-dual secure-unlock md hdmi xen)
 imx7ulp_uboot_feature=(evk-uuu)
 imx93_uboot_feature=(dual trusty-dual evk-uuu)
 imx943_uboot_feature=(dual trusty-dual lpddr5 lpddr5-dual trusty-lpddr5-dual lpddr5-evk-uuu evk-uuu)
-imx95_uboot_feature=(dual trusty-dual trusty-secure-unlock-dual evk-uuu verdin trusty-verdin-dual verdin-uuu 15x15 15x15-dual trusty-15x15-dual 15x15-evk-uuu rpmsg)
+imx95_uboot_feature=(dual trusty-dual trusty-secure-unlock-dual evk-uuu verdin trusty-verdin-dual verdin-uuu 15x15 15x15-dual trusty-15x15-dual trusty-15x15-rbidx-blob-dual 15x15-evk-uuu rpmsg)
 
 imx8mm_dtb_feature=(ddr4 m4 mipi-panel mipi-panel-rm67191)
 imx8mn_dtb_feature=(mipi-panel mipi-panel-rm67191 rpmsg ddr4 ddr4-mipi-panel ddr4-mipi-panel-rm67191 ddr4-rpmsg)
