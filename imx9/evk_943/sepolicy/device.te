@@ -1,1 +1,2 @@
 type threadnetwork_chr, dev_type;
+type npu_device, dev_type, mlstrustedobject;

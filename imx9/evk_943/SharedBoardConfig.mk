@@ -5,6 +5,11 @@ TARGET_KERNEL_ARCH := arm64
 
 LOADABLE_KERNEL_MODULE ?= false
 
+#neutron driver module
+BOARD_VENDOR_KERNEL_MODULES += \
+    $(KERNEL_OUT)/drivers/remoteproc/imx_neutron_rproc.ko \
+    $(KERNEL_OUT)/drivers/staging/neutron/neutron.ko
+
 # -------@block_memory-------
 #Enable this to config low memory
 LOW_MEMORY := false
