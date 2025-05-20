@@ -392,6 +392,12 @@ endif
 
 # -------@block_neural_network-------
 
+# Neural Network HAL and lib
+PRODUCT_PACKAGES += \
+    libNeutronDriver \
+    NeutronFirmware.elf \
+    android.hardware.neuralnetworks-shell-service-imx
+
 # Tensorflow lite camera demo
 PRODUCT_PACKAGES += \
     tflitecamerademo

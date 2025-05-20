@@ -38,3 +38,6 @@
 /vendor/lib(64)?/egl/libGLESv1_CM_angle\.so        u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/egl/libGLESv2_angle\.so           u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/hw/vulkan.pastel.so               u:object_r:same_process_hal_file:s0
+
+# neutron npu
+/dev/neutron0                                 u:object_r:npu_device:s0
