@@ -123,6 +123,21 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/mux/mux-core.ko \
     $(KERNEL_OUT)/drivers/mux/mux-mmio.ko \
     $(KERNEL_OUT)/drivers/input/touchscreen/goodix_ts.ko \
+    $(KERNEL_OUT)/drivers/video/logo/linux_logo.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/fb.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/fb_notify.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/cfbcopyarea.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/fb_io_fops.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/fb_sys_fops.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/sysimgblt.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/syscopyarea.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/sysfillrect.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/cfbfillrect.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/cfbimgblt.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/mxc/fb_fence.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/mxc/mxc_epdc_v2_fb.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/mxc/mxc_edid.ko \
+    $(KERNEL_OUT)/drivers/gpu/drm/drm_fbdev_helper.ko \
     $(KERNEL_OUT)/drivers/phy/freescale/phy-fsl-imx8-mipi-dphy.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/drm_dma_helper.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/bridge/nwl-dsi.ko \
@@ -186,15 +201,6 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/mfd/fp9931-core.ko \
     $(KERNEL_OUT)/drivers/regulator/fp9931-regulator.ko \
     $(KERNEL_OUT)/drivers/hwmon/fp9931-hwmon.ko \
-    $(KERNEL_OUT)/drivers/video/fbdev/core/cfbcopyarea.ko \
-    $(KERNEL_OUT)/drivers/video/fbdev/core/cfbfillrect.ko \
-    $(KERNEL_OUT)/drivers/video/fbdev/core/cfbimgblt.ko \
-    $(KERNEL_OUT)/drivers/video/fbdev/core/fb_notify.ko \
-    $(KERNEL_OUT)/drivers/video/fbdev/core/fb_io_fops.ko \
-    $(KERNEL_OUT)/drivers/video/fbdev/core/fb.ko \
-    $(KERNEL_OUT)/drivers/video/fbdev/mxc/fb_fence.ko \
-    $(KERNEL_OUT)/drivers/video/fbdev/mxc/mxc_epdc_v2_fb.ko \
-    $(KERNEL_OUT)/drivers/video/fbdev/mxc/mxc_edid.ko \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-bt-sco.ko \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-wm8960.ko \
     $(KERNEL_OUT)/sound/soc/fsl/imx-pcm-dma.ko \

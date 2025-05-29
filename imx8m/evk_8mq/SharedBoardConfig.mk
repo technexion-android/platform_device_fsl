@@ -158,6 +158,18 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/input/keyboard/snvs_pwrkey.ko \
     $(KERNEL_OUT)/drivers/input/touchscreen/goodix_ts.ko \
     $(KERNEL_OUT)/drivers/input/touchscreen/synaptics_dsx/synaptics_dsx_i2c.ko \
+    $(KERNEL_OUT)/drivers/video/logo/linux_logo.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/fb.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/fb_notify.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/cfbcopyarea.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/fb_io_fops.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/fb_sys_fops.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/sysimgblt.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/syscopyarea.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/sysfillrect.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/cfbfillrect.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/cfbimgblt.ko \
+    $(KERNEL_OUT)/drivers/gpu/drm/drm_fbdev_helper.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/panel/panel-raydium-rm67191.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/imx/dcss/imx-dcss.ko \
     $(KERNEL_OUT)/drivers/gpu/imx/lcdif/imx8mm-lcdif-core.ko \

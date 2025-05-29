@@ -88,6 +88,18 @@ IMX_RECOVERY_FIRST_STAGE_ADDITION_MODULES += \
     $(KERNEL_OUT)/drivers/mux/mux-mmio.ko \
     $(KERNEL_OUT)/drivers/phy/freescale/phy-fsl-imx9-dphy-rx.ko \
     $(KERNEL_OUT)/drivers/phy/freescale/phy-fsl-imx8mp-lvds.ko \
+    $(KERNEL_OUT)/drivers/video/logo/linux_logo.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/fb.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/fb_notify.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/cfbcopyarea.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/fb_io_fops.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/fb_sys_fops.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/sysimgblt.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/syscopyarea.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/sysfillrect.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/cfbfillrect.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/cfbimgblt.ko \
+    $(KERNEL_OUT)/drivers/gpu/drm/drm_fbdev_helper.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/drm_dma_helper.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/bridge/it6161.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/bridge/max96752-lvds.ko \
