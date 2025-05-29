@@ -130,6 +130,7 @@ BOARD_BOOTCONFIG += androidboot.vendor.sysrq=1
 endif
 
 TARGET_BOARD_DTS_CONFIG := imx95:imx95-19x19-evk-os08a20-isp-adv7535.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-ox03c10:imx95-19x19-evk-ox03c10-isp-adv7535.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-ap1302:imx95-19x19-evk-adv7535-ap1302.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-mipi-lvds1:imx95-19x19-evk-adv7535-it6263-lvds1-ap1302.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-mipi-panel:imx95-19x19-evk-rm692c9.dtb
@@ -141,6 +142,7 @@ TARGET_BOARD_DTS_CONFIG += imx95-rpmsg:imx95-19x19-evk-adv7535-rpmsg.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-mipi4k:imx95-19x19-evk-lt9611uxc-ap1302.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-dsi-serdes:imx95-19x19-evk-dsi-serdes.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-verdin:imx95-19x19-verdin-os08a20-isp-adv7535.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-verdin-ox03c10:imx95-19x19-verdin-ox03c10-isp-adv7535.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-verdin-ap1302:imx95-19x19-verdin-adv7535-ap1302.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-verdin-lt8912:imx95-19x19-verdin-lt8912-ap1302.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-verdin-10inch-panel-lvds:imx95-19x19-verdin-panel-cap-touch-10inch-lvds.dtb
@@ -148,6 +150,7 @@ TARGET_BOARD_DTS_CONFIG += imx95-verdin-10inch-panel-dsi:imx95-19x19-verdin-pane
 TARGET_BOARD_DTS_CONFIG += imx95-verdin-mipi-panel:imx95-19x19-verdin-rm692c9.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-verdin-mipi4k:imx95-19x19-verdin-lt9611uxc-ap1302.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-15x15:imx95-15x15-evk-os08a20-isp-adv7535.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-15x15-ox03c10:imx95-15x15-evk-ox03c10-isp-adv7535.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-15x15-ap1302:imx95-15x15-evk-adv7535-ap1302.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-15x15-mipi-panel:imx95-15x15-evk-rm692c9.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-15x15-aud-hat:imx95-15x15-evk-adv7535-aud-hat.dtb

@@ -300,6 +300,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/camera_config_imx95-os08a20.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx95.json \
     $(IMX_DEVICE_PATH)/camera_config_imx95-ap1302.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx95-ap1302.json \
+    $(IMX_DEVICE_PATH)/camera_config_imx95-mbcam.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx95-mbcam.json \
     $(IMX_DEVICE_PATH)/external_camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/external_camera_config.xml
 
 PRODUCT_PACKAGES += \
@@ -318,6 +319,7 @@ PRODUCT_PACKAGES += \
     ipa_nxp_neo \
     config.yaml \
     os08a20.yaml \
+    mx95mbcam.yaml \
     nxpneo_ipa_proxy
 
 PRODUCT_SOONG_NAMESPACES += hardware/google/camera
