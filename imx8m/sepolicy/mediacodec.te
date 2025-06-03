@@ -17,4 +17,4 @@ allow mediacodec dmabuf_heap_device:chr_file { open ioctl map read write };
 allow mediacodec dmabuf_heap_device:dir { read open search };
 allow mediacodec dmabuf_system_heap_device:chr_file { open ioctl map read write };
 allow mediacodec dmabuf_system_heap_device:dir { read open search };
-
+allow mediacodec sysfs:dir { read open };
