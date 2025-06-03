@@ -3,9 +3,6 @@ on early-boot
     # Set OpenGLES version
     setprop ro.opengles.version 196610
 
-    # ANGLE OpenGL implementation based on SwiftShader Vulkan
-    setprop ro.hardware.vulkan pastel
-
     # Set CPU Vulkan version 1.3.0
     setprop ro.cpuvulkan.version 4206592
 

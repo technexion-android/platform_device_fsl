@@ -307,8 +307,9 @@ PRODUCT_PACKAGES += \
     mapper.imx
 
 # -------@block_gpu-------
-# ANGLE OpenGL implementation based on SwiftShader Vulkan
-$(call inherit-product, build/make/target/product/angle_default.mk)
+PRODUCT_VENDOR_PROPERTIES += \
+    ro.hardware.egl = angle \
+    ro.hardware.vulkan = pastel
 
 # TODO(b/65201432): Swiftshader needs to create executable memory.
 PRODUCT_REQUIRES_INSECURE_EXECMEM_FOR_SWIFTSHADER := true
