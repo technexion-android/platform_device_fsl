@@ -393,6 +393,10 @@ PRODUCT_VENDOR_PROPERTIES += \
 PRODUCT_VENDOR_PROPERTIES += \
     graphics.gpu.profiler.support=true
 
+# gpu debug tool
+PRODUCT_PACKAGES += \
+    gpu-top
+
 # -------@block_wifi-------
 
 PRODUCT_COPY_FILES += \
