@@ -114,7 +114,7 @@ BOARD_KERNEL_CMDLINE += cma=640M transparent_hugepage=never
 BOARD_KERNEL_CMDLINE += swiotlb=256
 
 # display config
-BOARD_BOOTCONFIG += androidboot.lcd_density=240
+BOARD_BOOTCONFIG += androidboot.lcd_density=160
 
 # wifi config
 BOARD_BOOTCONFIG += androidboot.wificountrycode=CN
