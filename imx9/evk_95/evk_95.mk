@@ -295,6 +295,9 @@ PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
     $(IMX_DEVICE_PATH)/audio_policy_configuration_multichannel.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration_multichannel.xml
 
+PRODUCT_PROPERTY_OVERRIDES += aaudio.mmap_policy=2
+PRODUCT_PROPERTY_OVERRIDES += aaudio.mmap_exclusive_policy=1
+
 # -------@block_camera-------
 
 PRODUCT_COPY_FILES += \

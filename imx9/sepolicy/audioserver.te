@@ -1,3 +1,4 @@
 get_prop(audioserver, vendor_public_default_prop)
 
 allow audioserver rootfs:lnk_file { getattr };
+allow audioserver audio_device:chr_file r_file_perms;
