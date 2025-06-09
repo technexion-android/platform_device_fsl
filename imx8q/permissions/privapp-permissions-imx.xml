@@ -21,10 +21,13 @@
         <permission name="android.permission.THREAD_NETWORK_PRIVILEGED" />
         <permission name="android.permission.READ_DROPBOX_DATA" />
         <permission name="android.permission.SETUP_FSVERITY" />
+        <permission name="android.permission.SUBSCRIBE_TO_KEYGUARD_LOCKED_STATE" />
     </privapp-permissions>
     <privapp-permissions package="com.google.android.googlequicksearchbox">
         <permission name="android.permission.SCHEDULE_EXACT_ALARM" />
         <permission name="android.permission.RECEIVE_SANDBOX_TRIGGER_AUDIO" />
+        <permission name="android.permission.EXECUTE_APP_FUNCTIONS" />
+        <permission name="android.permission.SUBSCRIBE_TO_KEYGUARD_LOCKED_STATE" />
     </privapp-permissions>
     <privapp-permissions package="com.google.android.apps.carrier.carrierwifi">
         <permission name="android.permission.MODIFY_PHONE_STATE" />
