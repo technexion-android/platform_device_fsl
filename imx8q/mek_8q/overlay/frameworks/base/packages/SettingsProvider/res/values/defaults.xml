@@ -23,4 +23,7 @@
     <bool name="def_stay_on_while_plugged_in">true</bool>
     <string name="enabled_input_methods" translatable="false">com.android.inputmethod.latin/.LatinIME</string>
     <string name="default_input_method" translatable="false">com.android.inputmethod.latin/.LatinIME</string>
+
+    <!-- Default for Settings.Global.BACKUP_AGENT_TIMEOUT_PARAMETERS -->
+    <string name="def_backup_agent_timeout_parameters">kv_backup_agent_timeout_millis=60000</string>
 </resources>
