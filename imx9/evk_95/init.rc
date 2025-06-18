@@ -274,6 +274,7 @@ on property:ro.boot.lpa.enable=1
     setprop vendor.audio.lpa.hold_second 20
     setprop vendor.audio.lpa.period_ms 500
     setprop vendor.audio.lpa.enable 1
+    setprop audio.timecheck.timeout_duration_ms 300000
 
 # setenv append_bootargs androidboot.powersave.lpa=true
 on property:ro.boot.lpa.enable=1 && property:ro.boot.powersave.lpa=true
