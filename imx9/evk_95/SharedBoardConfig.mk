@@ -3,6 +3,10 @@ KERNEL_NAME := Image.lz4
 TARGET_KERNEL_ARCH := arm64
 LOADABLE_KERNEL_MODULE ?= true
 
+#ARM GPU driver module
+BOARD_VENDOR_KERNEL_MODULES += \
+    $(KERNEL_OUT)/drivers/gpu/arm/midgard/mali_kbase.ko
+
 ifeq ($(LOADABLE_KERNEL_MODULE),true)
 IMX_ANDROID_FIRST_STAGE_MODULES += \
     $(KERNEL_OUT)/drivers/hwmon/hwmon.ko \
@@ -198,10 +202,6 @@ endif
 BOARD_VENDOR_KERNEL_MODULES += \
     $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/mlan.ko \
     $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/moal.ko
-
-#ARM GPU driver module
-BOARD_VENDOR_KERNEL_MODULES += \
-    $(KERNEL_OUT)/drivers/gpu/arm/midgard/mali_kbase.ko
 
 #neutron driver module
 BOARD_VENDOR_KERNEL_MODULES += \
