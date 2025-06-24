@@ -63,10 +63,10 @@ on late-fs && property:vendor.storageproxyd=trusty && property:vendor.skip.charg
     start securedpu_daemon
 
 on late-fs && property:vendor.skip.charger_not_need=0
-    # Start keymaster/gatekeeper/oemlock service
-    start vendor.gatekeeper-${ro.boot.keystore}
-    start vendor.keymint-${ro.boot.keystore}
-    start vendor.oemlock-1-0-${ro.boot.keystore}
+    enable vendor.gatekeeper-${ro.boot.keystore}
+    enable vendor.keymint-${ro.boot.keystore}
+    enable vendor.oemlock-1-0-${ro.boot.keystore}
+    enable vendor.secretkeeper.${ro.boot.keystore}
     setprop vendor.powerhal.init 1
 
     # Wait for keymaster
@@ -242,6 +242,3 @@ on property:sys.boot_completed=1
     chmod 0660 /sys/devices/iio_sysfs_trigger/add_trigger
     chown system  system /sys/devices/iio_sysfs_trigger/remove_trigger
     chmod 0660 /sys/devices/iio_sysfs_trigger/remove_trigger
-
-on property:sys.boot_completed=1
-    start vendor.secretkeeper.${ro.boot.keystore}
