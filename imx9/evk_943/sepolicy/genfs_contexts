@@ -7,6 +7,15 @@ genfscon sysfs /devices/platform/soc@0/29800000.bus/298d0000.mmc/mmc_host/mmc0/m
 #sys/class/net
 genfscon sysfs /devices/platform/soc@0/29800000.bus/29950000.ethernet/net                                u:object_r:sysfs_net:s0
 genfscon sysfs /devices/platform/soc@0/29800000.bus/298f0000.mmc/mmc_host/mmc2/mmc2:0001/mmc2:0001:1/net u:object_r:sysfs_net:s0
+genfscon sysfs /devices/platform/soc/42000000.bus/425b0000.can/net u:object_r:sysfs_net:s0
+genfscon sysfs /devices/platform/soc/42000000.bus/425f0000.can/net u:object_r:sysfs_net:s0
+genfscon sysfs /devices/platform/soc/4c300000.pcie/pci0002:00/0002:00:00.0/0002:01:00.0/net u:object_r:sysfs_net:s0
+genfscon sysfs /devices/platform/soc/4c300000.pcie/pci0002:00/0002:00:00.0/0002:01:00.1/net u:object_r:sysfs_net:s0
+genfscon sysfs /devices/platform/soc/4ceb0000.system-controller/4cb00000.pcie/pci0001:01/0001:01:08.0/net u:object_r:sysfs_net:s0
+genfscon sysfs /devices/platform/soc/4ceb0000.system-controller/4cb00000.pcie/pci0001:01/0001:01:10.0/net u:object_r:sysfs_net:s0
+genfscon sysfs /devices/platform/soc/4ceb0000.system-controller/4ca00000.pcie/pci0000:00/0000:00:00.2/net u:object_r:sysfs_net:s0
+genfscon sysfs /devices/platform/soc/4ceb0000.system-controller/4ca00000.pcie/pci0000:00/0000:00:00.0/net u:object_r:sysfs_net:s0
+genfscon sysfs /devices/platform/soc/42800000.bus/42880000.mmc/mmc_host/mmc2/mmc2:0001/mmc2:0001:1/net u:object_r:sysfs_net:s0
 
 # for dumpstate to access the stat file
 genfscon sysfs /devices/platform/b8500000.pmem/ndbus0/region0/namespace0.0/block/pmem0                                            u:object_r:sysfs_block_devices:s0
