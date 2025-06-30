@@ -325,6 +325,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_SOONG_NAMESPACES += hardware/google/camera
 PRODUCT_SOONG_NAMESPACES += vendor/nxp-opensource/imx/camera
 
+# -------@block_oclcvt-------
+PRODUCT_PACKAGES += \
+    lib_imx_opencl_converter \
+    ocl_converter.cl \
+    ocl_converter_ext.cl
 
 # -------@block_display-------
 
