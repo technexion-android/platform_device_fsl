@@ -242,16 +242,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.rebootescrow.device=/dev/block/pmem0
 
-#DRM Widevine 1.4 L3 support
-PRODUCT_PACKAGES += \
-    android.hardware.drm-service.clearkey \
-    libwvdrmcryptoplugin
-
-TARGET_BUILD_WIDEVINE :=
-TARGET_BUILD_WIDEVINE_USE_PREBUILT := true
-
-$(call inherit-product-if-exists, vendor/nxp-private/widevine/apex/device.mk)
-
 # -------@block_audio-------
 
 # Audio card json
