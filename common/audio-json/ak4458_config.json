@@ -12,7 +12,7 @@
   ],
 
   "out_period_size": 1024,
-  "out_period_count": 2,
+  "out_period_count": 4,
   "out_volume_min": 170,
   "out_volume_max": 255,
   "out_volume_ctl": [
