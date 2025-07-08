@@ -385,3 +385,4 @@ ro.vendor.trusty.storage.fs_ready          u:object_r:vendor_trusty_storage_prop
 
 # hdcp status file path
 vendor.hdcp_status_path             u:object_r:vendor_public_default_prop:s0
+vendor.hwc.primarydisplay.support_hdcp              u:object_r:vendor_public_default_prop:s0
