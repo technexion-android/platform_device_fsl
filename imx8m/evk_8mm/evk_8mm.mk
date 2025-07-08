@@ -62,10 +62,6 @@ PRODUCT_COPY_FILES += \
 
 # -------@block_app-------
 
-# Set permission for GMS packages
-PRODUCT_COPY_FILES += \
-    $(CONFIG_REPO_PATH)/imx8m/permissions/privapp-permissions-imx.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp.permissions-imx.xml
-
 PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/app_whitelist.xml:system/etc/sysconfig/app_whitelist.xml
 
@@ -498,17 +494,6 @@ PRODUCT_COPY_FILES += \
 
 # Add Virtualization support
 $(call inherit-product, packages/modules/Virtualization/apex/product_packages.mk)
-
-# Included GMS package
-ifeq ($(filter TRUE true 1,$(IMX_BUILD_32BIT_ROOTFS) $(IMX_BUILD_32BIT_64BIT_ROOTFS)),)
-$(call inherit-product-if-exists, vendor/partner_gms/products/gms_64bit_only.mk)
-else
-$(call inherit-product-if-exists, vendor/partner_gms/products/gms.mk)
-endif
-PRODUCT_SOONG_NAMESPACES += vendor/partner_gms
-
-PRODUCT_PACKAGES += \
-    privapp_whitelist_com.android.emergency
 
 PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey
