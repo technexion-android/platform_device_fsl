@@ -107,7 +107,7 @@ BOARD_KERNEL_BASE := 0x90400000
 
 # NXP default config
 BOARD_KERNEL_CMDLINE := init=/init firmware_class.path=/vendor/firmware loop.max_part=7 bootconfig
-BOARD_BOOTCONFIG += androidboot.hardware=nxp
+BOARD_BOOTCONFIG += androidboot.hardware=nxp androidboot.hw_timeout_multiplier=4
 
 # memory config
 BOARD_KERNEL_CMDLINE += cma=640M transparent_hugepage=never restrict_cma_redirect=false

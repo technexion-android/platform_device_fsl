@@ -286,10 +286,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.surface_flinger.max_frame_buffer_acquired_buffers=3
 
-# define hw_timeout_multiplie 3 to avoid hitting timeouts
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.hw_timeout_multiplier=3
-
 # set game default frame rate override
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.surface_flinger.game_default_frame_rate_override=60
