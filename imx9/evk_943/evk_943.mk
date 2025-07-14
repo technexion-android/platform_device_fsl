@@ -363,11 +363,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     DirectAudioPlayer
 
-# imx c2 codec register
-PRODUCT_PACKAGES += \
-    c2_component_register \
-    c2_component_register_ms \
-    c2_component_register_ra
 
 ifeq ($(PREBUILT_FSL_IMX_CODEC),true)
 ifneq ($(IMX_BUILD_32BIT_ROOTFS),true)
@@ -480,3 +475,8 @@ PRODUCT_PACKAGES += \
 # ELE FW
 PRODUCT_COPY_FILES += \
     vendor/nxp/ele/mx943a0runtime-ahab-container.img:$(TARGET_COPY_OUT_VENDOR)/firmware/imx/ele/mx943a0runtime-ahab-container.img
+
+# media codecs xml files
+PRODUCT_COPY_FILES += \
+    $(IMX_MEDIA_CODEC_XML_PATH)/mediacodec-profile/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
+    $(IMX_MEDIA_CODEC_XML_PATH)/mediacodec-profile/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml
