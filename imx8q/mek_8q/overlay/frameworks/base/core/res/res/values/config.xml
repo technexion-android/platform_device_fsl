@@ -199,4 +199,10 @@
 
     <!-- show global actions menu when long press power button -->
     <integer name="config_longPressOnPowerBehavior">1</integer>
+
+    <bool name="config_freeformWindowManagement">true</bool>
+    <bool name="config_isDesktopModeSupported">true</bool>
+    <bool name="config_canInternalDisplayHostDesktops">true</bool>
+
+    <integer name="config_maxDesktopWindowingActiveTasks">4</integer>
 </resources>
