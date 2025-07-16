@@ -155,19 +155,18 @@ function uuu_load_uboot
     tmp_files_in_uuu+=(uuu.lst${randome_part})
 
     ln -sf "${sym_link_directory}"${bootloader_used_by_uuu} /tmp/${bootloader_used_by_uuu}${randome_part}
-    echo ${sdp}: boot -f ${bootloader_used_by_uuu}${randome_part} >> /tmp/uuu.lst${randome_part}
     tmp_files_in_uuu+=(${bootloader_used_by_uuu}${randome_part})
-    # for uboot by uuu which enabled SPL
-    if [[ ${soc_name#imx8q} == ${soc_name} ]]; then
-        # for images need SDPU
-        echo SDPU: delay 1000 >> /tmp/uuu.lst${randome_part}
-        echo SDPU: write -f ${bootloader_used_by_uuu}${randome_part} -offset 0x57c00 >> /tmp/uuu.lst${randome_part}
-        echo SDPU: jump >> /tmp/uuu.lst${randome_part}
-        # for images need SDPV
-        echo SDPV: delay 1000 >> /tmp/uuu.lst${randome_part}
-        echo SDPV: write -f ${bootloader_used_by_uuu}${randome_part} -skipspl >> /tmp/uuu.lst${randome_part}
-        echo SDPV: jump >> /tmp/uuu.lst${randome_part}
-    fi
+
+    echo ${sdp}: boot -f ${bootloader_used_by_uuu}${randome_part} >> /tmp/uuu.lst${randome_part}
+    # for images need SDPU
+    echo SDPU: delay 1000 >> /tmp/uuu.lst${randome_part}
+    echo SDPU: write -f ${bootloader_used_by_uuu}${randome_part} -offset 0x57c00 >> /tmp/uuu.lst${randome_part}
+    echo SDPU: jump >> /tmp/uuu.lst${randome_part}
+    # for images need SDPV
+    echo SDPV: delay 1000 >> /tmp/uuu.lst${randome_part}
+    echo SDPV: write -f ${bootloader_used_by_uuu}${randome_part} -skipspl >> /tmp/uuu.lst${randome_part}
+    echo SDPV: jump >> /tmp/uuu.lst${randome_part}
+
     echo FB: ucmd setenv fastboot_dev mmc >> /tmp/uuu.lst${randome_part}
     echo FB: ucmd setenv mmcdev ${target_num} >> /tmp/uuu.lst${randome_part}
     echo FB: ucmd mmc dev ${target_num} >> /tmp/uuu.lst${randome_part}

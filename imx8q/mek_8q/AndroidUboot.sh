@@ -83,12 +83,7 @@ build_imx_uboot()
 		SCFW_PLATFORM=8qm
 		ATF_PLATFORM=imx8qm
 		REV=B0
-
-		if [ `echo $2 | rev | cut -d '-' -f1` = "uuu" ]; then
-			FLASH_TARGET=flash_b0
-		else
-			FLASH_TARGET=flash_linux_m4
-		fi
+		FLASH_TARGET=flash_linux_m4
 
 		cp ${FSL_PROPRIETARY_PATH}/imx-seco/firmware/seco/mx8qm*ahab-container.img ${IMX_MKIMAGE_PATH}/imx-mkimage/$MKIMAGE_PLATFORM/
 		cp ${FSL_PROPRIETARY_PATH}/fsl-proprietary/mcu-sdk/imx8q/imx8qm_m4_0_default.bin ${IMX_MKIMAGE_PATH}/imx-mkimage/$MKIMAGE_PLATFORM/m4_image.bin
@@ -130,15 +125,11 @@ build_imx_uboot()
 		MKIMAGE_PLATFORM=iMX8QX
 		SCFW_PLATFORM=8qx
 		ATF_PLATFORM=imx8qx
+		FLASH_TARGET=flash_linux_m4
 		if [ `echo $2 | cut -d '-' -f2` = "c0" ] || [ "`echo $2 | cut -d '-' -f3`" = "c0" ]; then
 			REV=C0
 		else
 			REV=B0
-		fi
-		if [ `echo $2 | rev | cut -d '-' -f1` = "uuu" ]; then
-			FLASH_TARGET=flash
-		else
-			FLASH_TARGET=flash_linux_m4
 		fi
 		cp ${FSL_PROPRIETARY_PATH}/imx-seco/firmware/seco/mx8qx*ahab-container.img ${IMX_MKIMAGE_PATH}/imx-mkimage/$MKIMAGE_PLATFORM/
 		cp ${FSL_PROPRIETARY_PATH}/fsl-proprietary/mcu-sdk/imx8q/imx8qx_m4_default.bin ${IMX_MKIMAGE_PATH}/imx-mkimage/$MKIMAGE_PLATFORM/m4_image.bin
@@ -189,9 +180,7 @@ build_imx_uboot()
 		fi
 		cp ${IMX_PATH}/arm-trusted-firmware/build/$ATF_PLATFORM/release/bl31.bin ${IMX_MKIMAGE_PATH}/imx-mkimage/$MKIMAGE_PLATFORM/bl31.bin
 		cp  ${UBOOT_OUT}/u-boot.$1 ${IMX_MKIMAGE_PATH}/imx-mkimage/$MKIMAGE_PLATFORM/u-boot.bin
-		if [ `echo $2 | rev | cut -d '-' -f1` != "uuu" ]; then
-			cp  ${UBOOT_OUT}/spl/u-boot-spl.bin ${IMX_MKIMAGE_PATH}/imx-mkimage/$MKIMAGE_PLATFORM/u-boot-spl.bin
-		fi
+		cp  ${UBOOT_OUT}/spl/u-boot-spl.bin ${IMX_MKIMAGE_PATH}/imx-mkimage/$MKIMAGE_PLATFORM/u-boot-spl.bin
 		cp  ${UBOOT_OUT}/tools/mkimage  ${IMX_MKIMAGE_PATH}/imx-mkimage/$MKIMAGE_PLATFORM/mkimage_uboot
 
 		make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ clean
