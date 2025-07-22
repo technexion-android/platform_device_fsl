@@ -14,7 +14,7 @@
 
 ifdef BOARD_BPT_INPUT_FILES
 
-BPTTOOL := system/tools/bpt/bpttool
+BPTTOOL := device/nxp/common/tools/bpttool
 
 IMX_BUILT_BPTIMAGE_TARGET := $(PRODUCT_OUT)/partition-table.img
 IMX_BUILT_BPTJSON_TARGET := $(PRODUCT_OUT)/partition-table.bpt
