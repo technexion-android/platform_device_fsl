@@ -22,7 +22,7 @@
       "PhysicalHeight": "4.536",
       "FocalLength": "8.0",
       "MaxJpegSize": "12582912",
-      "MinFrameDuration": "33333333",
+      "MinFrameDuration": "16666666",
       "MaxFrameDuration": "300000000",
       "exposure_ns_min": "116000",
       "exposure_ns_max": "33216000",
