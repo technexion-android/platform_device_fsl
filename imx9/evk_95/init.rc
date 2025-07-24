@@ -301,6 +301,9 @@ on property:sys.boot_completed=1 && property:vendor.storageproxyd=trusty
 on property:ro.boot.camera.layout=ap1302
     setprop ro.media.xml_variant.profiles _95-ap1302
 
+on property:ro.boot.camera.layout=mbcam
+    setprop ro.media.xml_variant.profiles _95-mbcam
+
 on property:sys.boot_completed=1 && property:vendor.storageproxyd=trusty
     start vendor.secure-enclave
 
