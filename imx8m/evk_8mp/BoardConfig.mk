@@ -207,6 +207,8 @@ ifeq ($(TARGET_USE_DYNAMIC_PARTITIONS),true)
     TARGET_BOARD_DTS_CONFIG += imx8mp-mipi-panel-revb4:imx8mp-evk-revb4-rm67199.dtb
     # Support rm67191 MIPI panel on revb4
     TARGET_BOARD_DTS_CONFIG += imx8mp-mipi-panel-rm67191-revb4:imx8mp-evk-revb4-rm67191.dtb
+    # FRDM with mipi
+    TARGET_BOARD_DTS_CONFIG += imx8mp-frdm:imx8mp-frdm-os08a20-dual.dtb
   endif
 else # no dynamic parition feature
   ifeq ($(IMX_NO_PRODUCT_PARTITION),true)
