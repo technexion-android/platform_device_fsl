@@ -137,9 +137,11 @@ BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := erofs
 TARGET_COPY_OUT_SYSTEM_EXT := system_ext
 
 # Build a separate vendor_dlkm partition
+ifeq ($(BAZEL_BUILD_VENDOR_MODULES),false)
 BOARD_USES_VENDOR_DLKMIMAGE := true
 BOARD_VENDOR_DLKMIMAGE_FILE_SYSTEM_TYPE := erofs
 TARGET_COPY_OUT_VENDOR_DLKM := vendor_dlkm
+endif
 
 # Build a separate system_dlkm partition
 BOARD_USES_SYSTEM_DLKMIMAGE := false

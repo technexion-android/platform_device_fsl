@@ -93,9 +93,11 @@ BOARD_WPA_SUPPLICANT_PRIVATE_LIB        := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 
 # NXP 8987 wifi driver module
+ifeq ($(BAZEL_BUILD_VENDOR_MODULES),false)
 BOARD_VENDOR_KERNEL_MODULES += \
     $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/mlan.ko \
     $(TARGET_OUT_INTERMEDIATES)/MXMWIFI_OBJ/moal.ko
+endif
 
 # -------@block_bluetooth-------
 # NXP 8987 bluetooth
@@ -135,6 +137,11 @@ BOARD_KERNEL_CMDLINE += fw_devlink.strict=0
 
 # Add KVM support
 BOARD_BOOTCONFIG += androidboot.hypervisor.vm.supported=true
+
+ifeq ($(BAZEL_BUILD_VENDOR_MODULES),true)
+BOARD_VENDOR_RAMDISK_FRAGMENTS := dlkm_gki
+BOARD_VENDOR_RAMDISK_FRAGMENT.dlkm_gki.PREBUILT := vendor/nxp-opensource/imx-gki/ramdisk.lz4
+endif
 
 ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
 BOARD_BOOTCONFIG += androidboot.vendor.sysrq=1

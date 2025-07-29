@@ -125,6 +125,11 @@ BOARD_KERNEL_CMDLINE +=  moal.mod_para=wifi_mod_para.conf
 # Add KVM support
 BOARD_BOOTCONFIG += androidboot.hypervisor.vm.supported=true
 
+ifeq ($(BAZEL_BUILD_VENDOR_MODULES),true)
+BOARD_VENDOR_RAMDISK_FRAGMENTS := dlkm_gki
+BOARD_VENDOR_RAMDISK_FRAGMENT.dlkm_gki.PREBUILT := vendor/nxp-opensource/imx-gki/ramdisk.lz4
+endif
+
 ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
 BOARD_BOOTCONFIG += androidboot.vendor.sysrq=1
 endif

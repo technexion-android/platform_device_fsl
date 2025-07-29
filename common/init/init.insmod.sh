@@ -20,7 +20,10 @@ if [ -f $cfg_file ]; then
                      arg="$(ls /system/lib/modules/)"
                      modprobe -a -d /system/lib/modules/ $arg
                  fi
-                 if [ -f  /vendor/lib/modules/modules.load ]; then
+                 if [ -f /vendor/lib/modules/*/modules.load ]; then
+                     arg="$(cat /vendor/lib/modules/*/modules.load)"
+                     modprobe -a -d /vendor/lib/modules/* $arg
+                 elif [ -f  /vendor/lib/modules/modules.load ]; then
                      arg="$(cat /vendor/lib/modules/modules.load)"
                      modprobe -a -d /vendor/lib/modules $arg
                  fi

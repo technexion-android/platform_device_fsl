@@ -2,7 +2,9 @@
 KERNEL_NAME := Image.lz4
 TARGET_KERNEL_ARCH := arm64
 LOADABLE_KERNEL_MODULE ?= true
+BAZEL_BUILD_VENDOR_MODULES ?= false
 
+ifeq ($(BAZEL_BUILD_VENDOR_MODULES),false)
 #ARM GPU driver module
 BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/gpu/arm/midgard/mali_kbase.ko
@@ -241,7 +243,7 @@ ifeq ($(LOADABLE_KERNEL_MODULE),true)
     BOARD_VENDOR_KERNEL_MODULES += \
         $(IMX_RECOVERY_FIRST_STAGE_ADDITION_MODULES)
 endif
-
+endif
 
 # -------@block_memory-------
 #Enable this to config 1GB ddr on evk_95

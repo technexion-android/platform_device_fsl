@@ -21,6 +21,7 @@ cat << EOF
            bootimage               boot.img will be built out
            vendorbootimage         vendor_boot.img will be built out
            vendor_dlkmimage        vendor_dlkm.img will be built out
+           abi_update_symbol_list  update GKI symbol list
            -c                      use clean build for kernel, not incremental build
 
 
@@ -79,10 +80,12 @@ build_bootimage=""
 build_vendorbootimage=""
 build_dtboimage=""
 build_vendordlkmimage=""
+build_abi_update_symbol_list=""
 parallel_option=""
 clean_build=0
 skip_config_or_clean=0
 enable_gki=${ENABLE_GKI:-1}
+enable_bazel=${ENABLE_BAZEL:-0}
 
 # process of the arguments
 args=( "$@" )
@@ -106,9 +109,11 @@ for arg in ${args[*]} ; do
                     build_kernel="${OUT}/kernel";
                     build_bootimage="bootimage";;
         vendorbootimage) build_android_flag=1;
-                    build_kernel_oot_module_flag=1;
                     build_kernel_dts="KERNEL_DTB";
-                    build_kernel_modules="KERNEL_MODULES";
+                    if [ "${enable_bazel}" -ne 1 ]; then
+                        build_kernel_oot_module_flag=1;
+                        build_kernel_modules="KERNEL_MODULES";
+                    fi
                     build_vendorbootimage="vendorbootimage";;
         dtboimage) build_android_flag=1;
                     build_kernel_dts="KERNEL_DTB";
@@ -117,6 +122,7 @@ for arg in ${args[*]} ; do
                     build_kernel_oot_module_flag=1;
                     build_kernel_modules="KERNEL_MODULES";
                     build_vendordlkmimage="vendor_dlkmimage";;
+        abi_update_symbol_list) build_abi_update_symbol_list="abi_update_symbol_list";;
         *) handle_special_arg ${arg};;
     esac
 done
@@ -132,6 +138,162 @@ if [ "${build_bootloader}" = "" ] && [ "${build_kernel}" = "" ] && \
     build_kernel_modules="KERNEL_MODULES";
     build_kernel_dts="KERNEL_DTB";
     build_whole_android_flag=1
+fi
+
+# Check if Bazel build is enabled
+if [ "${enable_bazel}" -eq 1 ]; then
+  # Set default parallel job count to 8 if not already defined
+  jobs="${jobs:-8}"
+
+  # Save the original working directory to return after build
+  orig_dir=$(pwd)
+
+  # Define Bazel workspace directory
+  BAZEL_WORKSPACE_DIR="${BAZEL_WORKSPACE_DIR:-$HOME/android16-6.12}"
+
+  # Verify that the Bazel workspace exists
+  if [ ! -d "$BAZEL_WORKSPACE_DIR" ]; then
+    echo "Workspace not found: $BAZEL_WORKSPACE_DIR"
+    echo "Please set BAZEL_WORKSPACE_DIR environment variable to point to your Bazel workspace"
+    echo "Example: export BAZEL_WORKSPACE_DIR=/path/to/your/android16-6.12"
+    exit 1
+  fi
+
+  # Function to run a Bazel target and optionally copy its output file
+  # Named Arguments:
+  # --target=      Bazel target label (e.g., //kernel_imx:target_name) [required]
+  # --output=      Path to the expected output file (relative to workspace) [optional]
+  # --dest=        Destination directory to copy the output file [optional]
+  # --label=       Label for logging purposes [optional]
+
+  run_bazel_target() {
+    local target=""
+    local output_file=""
+    local dest_dir=""
+    local label=""
+
+    # Parse named arguments
+    while [[ $# -gt 0 ]]; do
+      case "$1" in
+        --target=*) target="${1#*=}" ;;     # Bazel target label
+        --output=*) output_file="${1#*=}" ;; # Output file path
+        --dest=*)   dest_dir="${1#*=}" ;;    # Destination directory
+        --label=*)  label="${1#*=}" ;;       # Logging label
+        *) echo "Unknown option: $1"; return 1 ;;
+      esac
+      shift
+    done
+
+    # Validate required argument
+    if [[ -z "$target" ]]; then
+      echo "Error: --target is required"
+      return 1
+    fi
+
+    # Set default label if not provided
+    if [[ -z "$label" ]]; then
+      label="Unnamed"
+    fi
+
+    echo ">>> ${label} Bazel build <<<"
+
+    # Ensure required environment variables are set
+    : "${BAZEL_WORKSPACE_DIR:?BAZEL_WORKSPACE_DIR not set}"
+    : "${jobs:?jobs not set}"
+    : "${orig_dir:?orig_dir not set}"
+
+    # Change to Bazel workspace
+    cd "$BAZEL_WORKSPACE_DIR" || {
+      echo "Failed to cd into $BAZEL_WORKSPACE_DIR"
+      return 1
+    }
+
+    # Run Bazel build
+    tools/bazel run "$target" --local_resources=cpu="${jobs}" || {
+      echo "Bazel build failed for ${label}"
+      cd "$orig_dir"
+      return 1
+    }
+
+    # If output_file and dest_dir are provided, copy the file
+    if [[ -n "$output_file" && -n "$dest_dir" ]]; then
+      if [[ -f "$output_file" ]]; then
+        cp -fv "$output_file" "$dest_dir"
+      else
+        echo "${output_file##*/} not found"
+        cd "$orig_dir"
+        return 1
+      fi
+    else
+      echo "Skipping copy step (output_file or dest_dir not provided)"
+    fi
+
+    # Return to original directory
+    cd "$orig_dir"
+  }
+
+  # Build vendor boot image (ramdisk.lz4)
+  if [ -n "${build_vendorbootimage}" ]; then
+    run_bazel_target \
+      --target="//kernel_imx:imx_${TARGET_PRODUCT}_aarch64_vendor_boot_dist" \
+      --output="out/imx_${TARGET_PRODUCT}_aarch64/dist/ramdisk.lz4" \
+      --dest="$orig_dir/vendor/nxp-opensource/imx-gki/" \
+      --label="bazel_vendorbootimage" || {
+      echo "error：vendor boot ramdisk.lz4 build fail"
+      exit 1
+      }
+  fi
+
+  # Build vendor DLKM image (vendor_dlkm.img)
+  if [ -n "${build_vendordlkmimage}" ]; then
+    run_bazel_target \
+      --target="//kernel_imx:imx_${TARGET_PRODUCT}_aarch64_vendor_dlkm_dist" \
+      --output="out/imx_${TARGET_PRODUCT}_aarch64/dist/vendor_dlkm.img" \
+      --dest="$orig_dir/out/target/product/${TARGET_PRODUCT}/" \
+      --label="bazel_vendordlkmimage" || {
+      echo "error：vendor_dlkm image build fail"
+      exit 1
+      }
+
+    # Exit after successful build
+    exit 0
+  fi
+
+  # Update symbol list
+  if [ -n "${build_abi_update_symbol_list}" ]; then
+    run_bazel_target \
+      --target="//kernel_imx:imx_modules_abi_update_symbol_list" \
+      --label="bazel_abi_update_symbol_list"
+
+    # Exit after successful build
+    exit 0
+  fi
+
+  # Build complete vendor_boot.img when no specific target is specified
+  if [ ${build_whole_android_flag} -eq 1 ]; then
+    echo ">>> Building complete vendor_boot.img and vendor_dlkm.img with Bazel <<<"
+
+    # First build ramdisk.lz4
+    run_bazel_target \
+      --target="//kernel_imx:imx_${TARGET_PRODUCT}_aarch64_vendor_boot_dist" \
+      --output="out/imx_${TARGET_PRODUCT}_aarch64/dist/ramdisk.lz4" \
+      --dest="$orig_dir/vendor/nxp-opensource/imx-gki/" \
+      --label="bazel_vendorbootimage" || {
+      echo "error：vendor boot ramdisk.lz4 build fail"
+      exit 1
+      }
+
+   # Build vendor DLKM image (vendor_dlkm.img)
+    run_bazel_target \
+      --target="//kernel_imx:imx_${TARGET_PRODUCT}_aarch64_vendor_dlkm_dist" \
+      --output="out/imx_${TARGET_PRODUCT}_aarch64/dist/vendor_dlkm.img" \
+      --dest="$orig_dir/out/target/product/${TARGET_PRODUCT}/" \
+      --label="bazel_vendordlkmimage" || {
+      echo "error：vendor_dlkm image build fail"
+      exit 1
+      }
+
+  fi
 fi
 
 # vvcam.ko need build with in-tree modules each time to make sure "insmod vvcam.ko" works

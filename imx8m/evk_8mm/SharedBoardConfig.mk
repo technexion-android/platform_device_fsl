@@ -4,6 +4,7 @@ KERNEL_NAME := Image.lz4
 TARGET_KERNEL_ARCH := arm64
 
 LOADABLE_KERNEL_MODULE ?= true
+BAZEL_BUILD_VENDOR_MODULES ?= false
 
 # CONFIG_VIDEO_MXC_CSI_CAMERA: mx6s_capture.ko, it's csi adapt driver which is the input of v4l2 framework
 # CONFIG_MXC_CAMERA_OV5640_MIPI_V2: ov5640_camera_mipi_v2.ko, sensor ov5640 driver, the input of mipi
@@ -24,6 +25,7 @@ LOADABLE_KERNEL_MODULE ?= true
 # CONFIG_FEC: fec.ko which depend on pps_core.ko and ptp.ko
 # CONFIG_AT803X_PHY: ethernet phy driver at803x.ko
 
+ifeq ($(BAZEL_BUILD_VENDOR_MODULES),false)
 ifeq ($(LOADABLE_KERNEL_MODULE),true)
 BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/mm/zsmalloc.ko \
@@ -191,6 +193,7 @@ else
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/input/touchscreen/goodix_ts.ko \
     $(KERNEL_OUT)/drivers/input/touchscreen/synaptics_dsx/synaptics_dsx_i2c.ko
+endif
 endif
 
 
