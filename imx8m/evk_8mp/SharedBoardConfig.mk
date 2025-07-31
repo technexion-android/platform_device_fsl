@@ -176,6 +176,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/pinctrl/freescale/pinctrl-imx.ko \
     $(KERNEL_OUT)/drivers/pinctrl/freescale/pinctrl-imx8mp.ko \
     $(KERNEL_OUT)/drivers/gpio/gpio-mxc.ko \
+    $(KERNEL_OUT)/drivers/gpio/gpio-pca953x.ko \
     $(KERNEL_OUT)/drivers/tty/serial/imx.ko \
     $(KERNEL_OUT)/drivers/watchdog/imx2_wdt.ko \
     $(KERNEL_OUT)/drivers/i2c/busses/i2c-imx.ko \
@@ -197,6 +198,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/input/keyboard/snvs_pwrkey.ko \
     $(KERNEL_OUT)/drivers/input/touchscreen/goodix_ts.ko \
     $(KERNEL_OUT)/drivers/input/touchscreen/synaptics_dsx/synaptics_dsx_i2c.ko \
+    $(KERNEL_OUT)/drivers/input/touchscreen/exc3000.ko \
     $(KERNEL_OUT)/drivers/video/logo/linux_logo.ko \
     $(KERNEL_OUT)/drivers/video/fbdev/core/fb.ko \
     $(KERNEL_OUT)/drivers/video/fbdev/core/fb_notify.ko \
