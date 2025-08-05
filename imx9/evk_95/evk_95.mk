@@ -323,6 +323,9 @@ PRODUCT_PACKAGES += \
     mx95mbcam.yaml \
     nxpneo_ipa_proxy
 
+PRODUCT_PACKAGES += \
+    ox03c_absolute_32bpp_dewarp_file-1920x1280.bin
+
 PRODUCT_SOONG_NAMESPACES += hardware/google/camera
 PRODUCT_SOONG_NAMESPACES += vendor/nxp-opensource/imx/camera
 
