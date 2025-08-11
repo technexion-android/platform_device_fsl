@@ -9,4 +9,8 @@ ifneq ($(BOARD_OTA_BOOTLOADERIMAGE),)
   BOARD_PACK_RADIOIMAGES += bootloader.img
 endif
 
+# uncomment below to enable gbl OTA
+#BOARD_PACK_RADIOIMAGES += efisp.img
+#INSTALLED_RADIOIMAGE_TARGET  += $(PRODUCT_OUT)/efisp.img
+
 -include $(IMX_MEDIA_CODEC_XML_PATH)/mediacodec-profile/mediacodec-profile.mk

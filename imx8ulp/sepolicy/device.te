@@ -13,3 +13,4 @@ type vsi_daemon_ctrl_device, dev_type;
 type bootloader_block_device, dev_type;
 type fbmisc_block_device, dev_type;
 type logbuffer_device, dev_type;
+type efisp_block_device, dev_type;

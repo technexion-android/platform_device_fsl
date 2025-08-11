@@ -66,6 +66,11 @@ BOARD_AVB_VENDOR_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_VENDOR_DLKM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_SYSTEM_DLKM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 
+# Build GBL image
+BOARD_GBL_PARTITION_SIZE := 8388608
+BOARD_GBL_KEY_PATH := device/nxp/common/security/testkey_gbl_rsa4096.pem
+BOARD_GBL_ROLLBACK_INDEX_LOCATION := 15
+
 # -------@block_treble-------
 # Vendor Interface manifest and compatibility
 DEVICE_MANIFEST_FILE := $(IMX_DEVICE_PATH)/manifest.xml

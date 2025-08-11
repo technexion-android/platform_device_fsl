@@ -7,3 +7,7 @@ include $(FSL_PROPRIETARY_PATH)/fsl-proprietary/media-profile/media-profile.mk
 
 BOARD_PACK_RADIOIMAGES += bootloader.img
 INSTALLED_RADIOIMAGE_TARGET  += $(PRODUCT_OUT)/bootloader.img
+
+# uncomment below to enable gbl OTA
+#BOARD_PACK_RADIOIMAGES += efisp.img
+#INSTALLED_RADIOIMAGE_TARGET  += $(PRODUCT_OUT)/efisp.img

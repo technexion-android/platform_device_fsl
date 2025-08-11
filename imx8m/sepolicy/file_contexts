@@ -120,6 +120,7 @@
 /dev/block/by-name/super                     u:object_r:super_block_device:s0
 /dev/block/by-name/bootloader_[ab]           u:object_r:bootloader_block_device:s0
 /dev/block/by-name/fbmisc                    u:object_r:fbmisc_block_device:s0
+/dev/block/by-name/efisp_[ab]                u:object_r:efisp_block_device:s0
 
 /vendor/bin/hw/android\.hardware\.camera\.provider@2\.7-service-google       u:object_r:hal_camera_default_exec:s0
 
