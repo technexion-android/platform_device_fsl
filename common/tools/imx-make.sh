@@ -22,6 +22,7 @@ cat << EOF
            vendorbootimage         vendor_boot.img will be built out
            vendor_dlkmimage        vendor_dlkm.img will be built out
            abi_update_symbol_list  update GKI symbol list
+           gblimage                efisp.img would be built out
            -c                      use clean build for kernel, not incremental build
 
 
@@ -81,6 +82,7 @@ build_vendorbootimage=""
 build_dtboimage=""
 build_vendordlkmimage=""
 build_abi_update_symbol_list=""
+build_gblimage=""
 parallel_option=""
 clean_build=0
 skip_config_or_clean=0
@@ -123,13 +125,14 @@ for arg in ${args[*]} ; do
                     build_kernel_modules="KERNEL_MODULES";
                     build_vendordlkmimage="vendor_dlkmimage";;
         abi_update_symbol_list) build_abi_update_symbol_list="abi_update_symbol_list";;
+        gblimage) build_gblimage="gblimage";;
         *) handle_special_arg ${arg};;
     esac
 done
 
 # if bootloader and kernel not in arguments, all need to be made
 if [ "${build_bootloader}" = "" ] && [ "${build_kernel}" = "" ] && \
-        [ "${build_partition_imgs}" = "" ] && \
+        [ "${build_partition_imgs}" = "" ] && [ "${build_gblimage}" = "" ] && \
         [ "${build_kernel_modules}" = "" ] && [ "${build_kernel_dts}" = "" ] && \
         [ ${build_kernel_oot_module_flag} -eq 0 ] && [ ${build_android_flag} -eq 0 ]; then
     build_bootloader="bootloader";
@@ -137,6 +140,7 @@ if [ "${build_bootloader}" = "" ] && [ "${build_kernel}" = "" ] && \
     build_partition_imgs="partition_imgs"
     build_kernel_modules="KERNEL_MODULES";
     build_kernel_dts="KERNEL_DTB";
+    build_gblimage="gblimage";
     build_whole_android_flag=1
 fi
 
@@ -329,7 +333,7 @@ fi
 # redirect standard input to /dev/null to avoid manually input in kernel configuration stage
 soc_path=${soc_path} product_path=${product_path} nxp_git_path=${nxp_git_path} clean_build=${clean_build} \
     make -C ./ -f ${nxp_git_path}/common/build/Makefile ${parallel_option} \
-    ${build_bootloader} ${build_kernel} ${build_partition_imgs} </dev/null || exit
+    ${build_bootloader} ${build_kernel} ${build_partition_imgs} ${build_gblimage} </dev/null || exit
 # in the execution of this script, if the kernel build env is cleaned or configured, do not trigger that again
 if [ -n "${build_kernel}" ]; then
     skip_config_or_clean=1
