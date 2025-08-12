@@ -381,6 +381,7 @@ endif
 
 # Neural Network HAL and lib
 PRODUCT_PACKAGES += \
+    libneutron_delegate \
     libNeutronDriver \
     NeutronFirmware.elf \
     android.hardware.neuralnetworks-shell-service-imx
