@@ -215,7 +215,6 @@ service confirmationui_ta_load /vendor/bin/trusty_apploader /vendor/firmware/tee
 
 on property:sys.boot_completed=1 && property:vendor.storageproxyd=trusty && property:vendor.skip.charger_not_need=0
     start confirmationui_ta_load
-    start vendor.secureime-default
 
 on property:sys.boot_completed=1
     # Turn on swap

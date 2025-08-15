@@ -205,9 +205,6 @@ on property:ro.boot.lpa.enable=1
     setprop vendor.audio.lpa.period_ms 500
     setprop vendor.audio.lpa.enable 1
 
-on property:sys.boot_completed=1 && property:vendor.storageproxyd=trusty && property:vendor.skip.charger_not_need=0
-    start vendor.secureime-default
-
 on property:sys.boot_completed=1
     # Turn on swap
     swapon_all /vendor/etc/fstab.nxp

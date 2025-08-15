@@ -452,11 +452,6 @@ endif
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.device_id_attestation.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.device_id_attestation.xml
 
-PRODUCT_PACKAGES += \
-    SecureIME \
-    nxp.hardware.secureime \
-    nxp.hardware.secureime-service
-
 IMX-DEFAULT-G2D-LIB := libg2d-pxp
 
 PRODUCT_COPY_FILES += \
