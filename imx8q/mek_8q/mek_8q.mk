@@ -618,9 +618,9 @@ PRODUCT_PACKAGES += \
     android.hardware.neuralnetworks-shell-service-imx
 
 ifneq ($(PRODUCT_IMX_CAR),true)
-# Tensorflow lite camera demo
+# Tensorflow lite demo
 PRODUCT_PACKAGES += \
-                    tflitecamerademo
+    TfliteCameraDemo
 endif
 
 # imx8 sensor HAL libs.

@@ -428,9 +428,9 @@ PRODUCT_PACKAGES += \
     libVsiSupportLibrary \
     android.hardware.neuralnetworks-shell-service-imx
 
-# Tensorflow lite camera demo
+# Tensorflow lite demo
 PRODUCT_PACKAGES += \
-                    tflitecamerademo
+    TfliteCameraDemo
 
 # -------@block_miscellaneous-------
 

@@ -395,9 +395,9 @@ endif
 
 # -------@block_neural_network-------
 
-# Tensorflow lite camera demo
+# Tensorflow lite demo
 PRODUCT_PACKAGES += \
-    tflitecamerademo
+    TfliteCameraDemo
 
 # -------@block_miscellaneous-------
 
