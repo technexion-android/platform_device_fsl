@@ -45,11 +45,11 @@ COMMON_LUNCH_CHOICES := \
   evk_8mn-nxp_stable-userdebug \
   evk_8mp-nxp_stable-user \
   evk_8mp-nxp_stable-userdebug \
-  edm_g_imx8mp-trunk_staging-user \
-  edm_g_imx8mp-trunk_staging-userdebug \
-  edm_g_imx8mm-trunk_staging-user \
-  edm_g_imx8mm-trunk_staging-userdebug \
-  axon_imx8mp-trunk_staging-user \
-  axon_imx8mp-trunk_staging-userdebug \
-  pico_imx8mm-trunk_staging-user \
-  pico_imx8mm-trunk_staging-userdebug
+  edm_g_imx8mp-nxp_stable-user \
+  edm_g_imx8mp-nxp_stable-userdebug \
+  edm_g_imx8mm-nxp_stable-user \
+  edm_g_imx8mm-nxp_stable-userdebug \
+  axon_imx8mp-nxp_stable-user \
+  axon_imx8mp-nxp_stable-userdebug \
+  pico_imx8mm-nxp_stable-user \
+  pico_imx8mm-nxp_stable-userdebug
