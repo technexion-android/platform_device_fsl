@@ -6,6 +6,9 @@ IMX_DEVICE_PATH := $(strip $(patsubst %/, %, $(dir $(CURRENT_FILE_PATH))))
 PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := true
 #Enable this to choose 32 bit user space build
 IMX_BUILD_32BIT_ROOTFS ?= false
+#true means each display can show different contents, false means secondary display is just a
+#simple mirror from primary display.
+MULTIDISPLAY_WITH_INDEPENDENT_CONTROL ?= true
 
 # configs shared between uboot, kernel and Android rootfs
 include $(IMX_DEVICE_PATH)/SharedBoardConfig.mk
@@ -84,6 +87,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/thermal_info_config_imx8mp.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/thermal_info_config_imx8mp.json
 
+# Media c2_component_register
+PRODUCT_COPY_FILES += \
+    $(IMX_MEDIA_CODEC_XML_PATH)/codec2/store/registry/c2_component_register_8mp:$(TARGET_COPY_OUT_VENDOR)/etc/c2_component_register
 
 # -------@block_app-------
 
@@ -206,6 +212,9 @@ endif
 PRODUCT_PACKAGES += \
     android.hardware.security.keymint-service-imx
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.hardware.keystore_desede=true
+
 # Confirmation UI
 ifeq ($(PRODUCT_IMX_TRUSTY),true)
 PRODUCT_PACKAGES += \
@@ -233,6 +242,15 @@ PRODUCT_PACKAGES += \
     storageproxyd \
     imx_dek_extractor \
     imx_dek_inserter
+endif
+
+# Secretkeeper HAL
+PRODUCT_PACKAGES += \
+    com.android.hardware.security.secretkeeper
+
+ifeq ($(PRODUCT_IMX_TRUSTY),true)
+PRODUCT_PACKAGES += \
+    android.hardware.security.secretkeeper.trusty
 endif
 
 # Specify rollback index for boot and vbmeta partitions
@@ -267,7 +285,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey \
     libwvdrmcryptoplugin \
-    libwvaidl \
     liboemcrypto
 
 TARGET_BUILD_WIDEVINE :=
@@ -282,7 +299,9 @@ $(call inherit-product-if-exists, vendor/nxp-private/widevine/apex/device.mk)
 PRODUCT_COPY_FILES += \
     $(CONFIG_REPO_PATH)/common/audio-json/wm8960_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/wm8960_config.json \
     $(CONFIG_REPO_PATH)/common/audio-json/wm8962_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/wm8962_config.json \
+    $(CONFIG_REPO_PATH)/common/audio-json/micfil_s32_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/micfil_s32_config.json \
     $(CONFIG_REPO_PATH)/common/audio-json/hdmi_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/hdmi_config.json \
+    $(CONFIG_REPO_PATH)/common/audio-json/btsco_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/btsco_config.json \
     $(CONFIG_REPO_PATH)/common/audio-json/readme.txt:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/readme.txt
 
 ifeq ($(POWERSAVE),true)
@@ -331,6 +350,11 @@ PRODUCT_COPY_FILES +=\
 PRODUCT_SOONG_NAMESPACES += hardware/google/camera
 PRODUCT_SOONG_NAMESPACES += vendor/nxp-opensource/imx/camera
 
+# -------@block_oclcvt-------
+PRODUCT_PACKAGES += \
+    lib_imx_opencl_converter \
+    ocl_converter.cl \
+    ocl_converter_ext.cl
 
 # -------@block_display-------
 
@@ -349,18 +373,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.surface_flinger.max_frame_buffer_acquired_buffers=3
 
-# disable frame rate override
+# set game default frame rate override
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.surface_flinger.enable_frame_rate_override=false
+    ro.surface_flinger.game_default_frame_rate_override=60
 
 # Gralloc HAL
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator-service.imx \
     mapper.imx
-
-# RenderScript HAL
-PRODUCT_PACKAGES += \
-    android.hardware.renderscript@1.0-impl
 
 # 2d test
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
@@ -370,12 +390,11 @@ endif
 PRODUCT_PACKAGES += \
     libg2d-opencl
 
+ifeq ($(MULTIDISPLAY_WITH_INDEPENDENT_CONTROL),true)
 PRODUCT_COPY_FILES += \
-    $(IMX_DEVICE_PATH)/display_settings.xml:$(TARGET_COPY_OUT_VENDOR)/etc/display_settings.xml
-
-PRODUCT_COPY_FILES += \
+    $(IMX_DEVICE_PATH)/display_settings.xml:$(TARGET_COPY_OUT_VENDOR)/etc/display_settings.xml \
     $(IMX_DEVICE_PATH)/input-port-associations.xml:$(TARGET_COPY_OUT_VENDOR)/etc/input-port-associations.xml
-
+endif
 
 # -------@block_gpu-------
 PRODUCT_PACKAGES += \
@@ -391,17 +410,14 @@ PRODUCT_PACKAGES += \
     libvulkan_VIVANTE \
     vulkan.$(TARGET_BOARD_PLATFORM) \
     libCLC \
-    libLLVM_viv \
     libOpenCL \
     libg2d-viv \
     libOpenVX \
     libOpenVXU \
     libNNVXCBinary-evis \
     libNNVXCBinary-evis2 \
-    libNNVXCBinary-lite \
     libOvx12VXCBinary-evis \
     libOvx12VXCBinary-evis2 \
-    libOvx12VXCBinary-lite \
     libNNGPUBinary-evis \
     libNNGPUBinary-evis2 \
     libNNGPUBinary-lite \
@@ -470,7 +486,8 @@ PRODUCT_PACKAGES += \
 # nxp iw416 wifi and bluetooth combo firmware
 PRODUCT_COPY_FILES += \
     vendor/nxp/imx-firmware/nxp/FwImage_IW416_SD/sdiouartiw416_combo_v0.bin:vendor/firmware/sdiouartiw416_combo_v0.bin \
-    vendor/nxp/imx-firmware/nxp/android_wifi_mod_para.conf:vendor/firmware/nxp/android_wifi_mod_para.conf
+    vendor/nxp/imx-firmware/nxp/android_wifi_mod_para.conf:vendor/firmware/nxp/android_wifi_mod_para.conf \
+    hardware/nxp/libbt/conf/nxp/$(PRODUCT_NAME)/bt_vendor.conf:/vendor/etc/bluetooth/bt_vendor.conf
 #endif
 
 # Wifi regulatory
@@ -558,8 +575,8 @@ PRODUCT_PACKAGES += \
 
 # Bluetooth HAL
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth@1.0-impl \
-    android.hardware.bluetooth@1.0-service
+    android.hardware.bluetooth \
+    android.hardware.bluetooth-service.default.nxp
 
 
 # -------@block_usb-------
@@ -675,14 +692,19 @@ endif
 
 ifneq ($(POWERSAVE),true)
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.camera.external.xml:vendor/etc/permissions/android.hardware.camera.external.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.camera.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.xml
+
+PERMISSION_EXTCAM ?= true
+ifeq ($(PERMISSION_EXTCAM),true)
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.camera.external.xml:vendor/etc/permissions/android.hardware.camera.external.xml
+endif
 endif
 
 # Display Device Config
 PRODUCT_COPY_FILES += \
-    device/nxp/imx8m/displayconfig/display_id_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_id_0.xml
+    device/nxp/imx8m/displayconfig/display_port_1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_port_1.xml
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.output.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.audio.output.xml \
@@ -697,8 +719,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.host.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.host.xml \
     frameworks/native/data/etc/android.hardware.vulkan.level-0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.level-0.xml \
     frameworks/native/data/etc/android.hardware.vulkan.version-1_3.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.version-1_3.xml \
-    frameworks/native/data/etc/android.software.vulkan.deqp.level-2023-03-01.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.vulkan.deqp.level.xml \
-    frameworks/native/data/etc/android.software.opengles.deqp.level-2023-03-01.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.opengles.deqp.level.xml \
+    frameworks/native/data/etc/android.software.vulkan.deqp.level-2024-03-01.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.vulkan.deqp.level.xml \
+    frameworks/native/data/etc/android.software.opengles.deqp.level-2024-03-01.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.opengles.deqp.level.xml \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/android.hardware.wifi.passpoint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.passpoint.xml \
@@ -712,7 +734,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.verified_boot.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.verified_boot.xml \
     frameworks/native/data/etc/android.software.voice_recognizers.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.voice_recognizers.xml \
     frameworks/native/data/etc/android.software.activities_on_secondary_displays.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.activities_on_secondary_displays.xml \
-    frameworks/native/data/etc/android.software.picture_in_picture.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.picture_in_picture.xml
+    frameworks/native/data/etc/android.software.picture_in_picture.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.picture_in_picture.xml \
+    frameworks/native/data/etc/android.software.credentials.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.credentials.xml
 
 # trusty loadable apps
 PRODUCT_COPY_FILES += \
@@ -730,6 +753,8 @@ $(call inherit-product-if-exists, vendor/partner_gms/products/gms.mk)
 endif
 PRODUCT_SOONG_NAMESPACES += vendor/partner_gms
 
+PRODUCT_PACKAGES += \
+    privapp_whitelist_com.android.emergency
 
 # isp block
 # lib
@@ -744,10 +769,6 @@ PRODUCT_PACKAGES += \
     libaflt \
     libaf \
     libahdr \
-    libappshell_ebase \
-    libappshell_hal \
-    libappshell_ibd \
-    libappshell_oslayer \
     libavs \
     libawb \
     libawdr3 \
@@ -779,7 +800,8 @@ PRODUCT_PACKAGES += \
     libsom_ctrl \
     libversion \
     libvom_ctrl \
-    libvvdisplay_shared
+    libvvdisplay_shared \
+    libacproc
 
 # bin
 PRODUCT_PACKAGES += \
@@ -810,6 +832,12 @@ PRODUCT_PACKAGES += \
 
 # make sure /vendor/etc/configs/isp/ is created
 PRODUCT_PACKAGES += hollow
+
+# Add Virtualization support
+$(call inherit-product, packages/modules/Virtualization/apex/product_packages.mk)
+
+# Add imx private apps
+$(call inherit-product-if-exists, vendor/nxp-private/imx-apps/imx-private-app.mk)
 
 # sets vendor.battery.status.msg to true to show the battery status message
 PRODUCT_VENDOR_PROPERTIES += vendor.battery.status.msg=false
