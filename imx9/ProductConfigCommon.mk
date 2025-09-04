@@ -183,7 +183,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     remote_provisioning.enable_rkpd=true \
     remote_provisioning.tee.rkp_only=1 \
-    remote_provisioning.strongbox.rkp_only \
+    remote_provisioning.strongbox.rkp_only=1 \
     remote_provisioning.hostname=remoteprovisioning.googleapis.com
 
 # health
