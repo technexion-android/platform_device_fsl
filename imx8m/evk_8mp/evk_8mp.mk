@@ -528,6 +528,7 @@ endif
 PRODUCT_PACKAGES += \
     libtim-vx \
     libVsiSupportLibrary \
+    libvx_delegate \
     android.hardware.neuralnetworks-shell-service-imx
 
 # Tensorflow lite demo
