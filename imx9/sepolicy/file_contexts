@@ -137,3 +137,6 @@
 
 /dev/dmabuf_imx                               u:object_r:ion_device:s0
 /dev/dma_heap/secure                          u:object_r:dmabuf_system_secure_heap_device:s0
+
+/vendor/lib(64)?/libneutron_delegate\.so              u:object_r:vendor_app_file:s0
+/vendor/lib(64)?/libNeutronDriver\.so                 u:object_r:vendor_app_file:s0
