@@ -209,7 +209,8 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/lib/crc-itu-t.ko \
     $(KERNEL_OUT)/drivers/net/ethernet/freescale/enetc/fsl-enetc-vf.ko \
     $(KERNEL_OUT)/drivers/net/ethernet/freescale/enetc/fsl-enetc4.ko \
-    $(KERNEL_OUT)/drivers/net/phy/realtek.ko
+    $(KERNEL_OUT)/drivers/net/phy/realtek.ko \
+    $(KERNEL_OUT)/drivers/hwmon/pwm-fan.ko
 
 ifeq ($(ENABLE_CONTEXTHUB), true)
 BOARD_VENDOR_KERNEL_MODULES += \
