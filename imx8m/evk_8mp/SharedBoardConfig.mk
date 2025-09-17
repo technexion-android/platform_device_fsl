@@ -179,6 +179,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES +=     \
     $(KERNEL_OUT)/drivers/pinctrl/freescale/pinctrl-imx.ko \
     $(KERNEL_OUT)/drivers/pinctrl/freescale/pinctrl-imx8mp.ko \
     $(KERNEL_OUT)/drivers/gpio/gpio-mxc.ko \
+    $(KERNEL_OUT)/drivers/leds/leds-gpio.ko \
     $(KERNEL_OUT)/drivers/gpio/gpio-pca953x.ko \
     $(KERNEL_OUT)/drivers/tty/serial/imx.ko \
     $(KERNEL_OUT)/drivers/watchdog/imx2_wdt.ko \
