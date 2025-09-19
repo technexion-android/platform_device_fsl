@@ -147,8 +147,7 @@ endif
 BOARD_USES_SYSTEM_DLKMIMAGE := false
 BOARD_SYSTEM_DLKMIMAGE_FILE_SYSTEM_TYPE := erofs
 TARGET_COPY_OUT_SYSTEM_DLKM := system_dlkm
-TARGET_GKI_SYSTEM_DLKM ?= true
-ifeq ($(TARGET_GKI_SYSTEM_DLKM),true)
+ifeq ($(LOADABLE_KERNEL_MODULE),true)
 BOARD_SYSTEM_KERNEL_MODULES += $(wildcard vendor/nxp-opensource/imx-gki/system_dlkm_staging_95/flatten/lib/modules/*.ko)
 endif
 
