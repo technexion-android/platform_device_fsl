@@ -488,6 +488,10 @@ PRODUCT_COPY_FILES += \
     vendor/nxp/imx-firmware/nxp/FwImage_IW416_SD/sduartiw416_combo.bin:vendor/firmware/sduartiw416_combo.bin \
     vendor/nxp/imx-firmware/nxp/android_wifi_mod_para.conf:vendor/firmware/nxp/android_wifi_mod_para.conf \
     hardware/nxp/libbt/conf/nxp/edm_g_imx8mp/bt_vendor.conf:/vendor/etc/bluetooth/bt_vendor.conf
+
+# nxp iw612 wifi and bluetooth combo firmware
+PRODUCT_COPY_FILES += \
+    vendor/nxp/imx-firmware/nxp/FwImage_IW612_SD/sduart_nw61x_v1.bin.se:vendor/firmware/sduart_nw61x_v1.bin.se
 #endif
 
 # Wifi regulatory
