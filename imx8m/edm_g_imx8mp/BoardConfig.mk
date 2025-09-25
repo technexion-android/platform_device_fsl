@@ -128,7 +128,8 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/net/rfkill/rfkill.ko \
     $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/net/rfkill/rfkill-gpio.ko \
     $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/drivers/bluetooth/mx8_bt_rfkill.ko \
-    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/net/wireless/cfg80211.ko
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/net/wireless/cfg80211.ko \
+    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/net/mac80211/mac80211.ko
 
 #ifeq ($(WIFI_BT_DEV),QCA9377)
 # qca9377 wifi
