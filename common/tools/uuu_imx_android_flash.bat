@@ -28,6 +28,8 @@ set partition_file=partition-table.img
 set super_file=super.img
 set vendorboot_file=vendor_boot.img
 set initboot_file=init_boot.img
+set vbmeta_file=vbmeta.img
+set gbl_file=efisp.img
 set /A support_dtbo=0
 set /A support_recovery=0
 set /A support_dualslot=0
@@ -36,6 +38,7 @@ set /A support_trusty=0
 set /A support_dynamic_partition=0
 set /A support_vendor_boot=0
 set /A support_init_boot=0
+set /A support_gbl=0
 set boot_partition=boot
 set recovery_partition=recovery
 set system_partition=system
@@ -47,6 +50,7 @@ set dtbo_partition=dtbo
 set vendor_boot_partition=vendor_boot
 set init_boot_partition=init_boot
 set mcu_os_partition=mcu_os
+set gbl_partition=efisp
 set mcu_feature=
 set next_parameter=
 set super_partition=super
@@ -87,16 +91,16 @@ set mcu_demo=
 :: We want to detect illegal feature input to some extent. Here it's based on SoC names. Since an SoC may be on a
 :: board running different set of images(android and automative for a example), so misuse the features of one set of
 :: images when flash another set of images can not be detect early with this scenario.
-set imx8mm_uboot_feature=dual trusty-dual trusty-rbidx-blob-dual 4g-evk-uuu 4g ddr4-evk-uuu ddr4 evk-uuu trusty-secure-unlock-dual
-set imx8mn_uboot_feature=dual trusty-dual trusty-rbidx-blob-dual evk-uuu trusty-secure-unlock-dual ddr4-evk-uuu ddr4
-set imx8mp_uboot_feature=dual trusty-dual trusty-rbidx-blob-dual evk-uuu trusty-secure-unlock-dual powersave trusty-powersave-dual frdm trusty-frdm-dual frdm-uuu
-set imx8ulp_uboot_feature=dual trusty-dual trusty-dualboot-dual evk-uuu trusty-secure-unlock-dual 9x9-evk-uuu 9x9 9x9-dual trusty-9x9-dual trusty-9x9-rbidx-blob-dual trusty-lpa-dual
-set imx8mq_uboot_feature=dual trusty-dual evk-uuu trusty-secure-unlock-dual wevk wevk-dual trusty-wevk-dual trusty-wevk-rbidx-blob-dual wevk-uuu trusty-secure-unlock-wevk-dual
-set imx8qxp_uboot_feature=dual trusty-dual trusty-rbidx-blob-dual mek-uuu trusty-secure-unlock-dual secure-unlock c0 c0-dual trusty-c0-dual mek-c0-uuu
-set imx8qm_uboot_feature=dual trusty-dual trusty-rbidx-blob-dual mek-uuu trusty-secure-unlock-dual secure-unlock md hdmi xen
+set imx8mm_uboot_feature=dual trusty-dual trusty-rbidx-blob-dual 4g-evk-uuu 4g ddr4-evk-uuu ddr4 evk-uuu trusty-secure-unlock-dual gbl trusty-gbl-dual
+set imx8mn_uboot_feature=dual trusty-dual trusty-rbidx-blob-dual evk-uuu trusty-secure-unlock-dual ddr4-evk-uuu ddr4 gbl trusty-gbl-dual
+set imx8mp_uboot_feature=dual trusty-dual trusty-rbidx-blob-dual evk-uuu trusty-secure-unlock-dual powersave trusty-powersave-dual frdm trusty-frdm-dual frdm-uuu gbl trusty-gbl-dual
+set imx8ulp_uboot_feature=dual trusty-dual trusty-dualboot-dual evk-uuu trusty-secure-unlock-dual 9x9-evk-uuu 9x9 9x9-dual trusty-9x9-dual trusty-9x9-rbidx-blob-dual trusty-lpa-dual gbl trusty-gbl-dual
+set imx8mq_uboot_feature=dual trusty-dual evk-uuu trusty-secure-unlock-dual wevk wevk-dual trusty-wevk-dual trusty-wevk-rbidx-blob-dual wevk-uuu trusty-secure-unlock-wevk-dual wevk-gbl trusty-wevk-gbl-dual
+set imx8qxp_uboot_feature=dual trusty-dual trusty-rbidx-blob-dual mek-uuu trusty-secure-unlock-dual secure-unlock c0 c0-dual trusty-c0-dual mek-c0-uuu gbl trusty-gbl-dual
+set imx8qm_uboot_feature=dual trusty-dual trusty-rbidx-blob-dual mek-uuu trusty-secure-unlock-dual secure-unlock md hdmi xen gbl trusty-gbl-dual
 set imx93_uboot_feature=dual trusty-dual evk-uuu
-set imx943_uboot_feature=dual trusty-dual lpddr5 lpddr5-dual trusty-lpddr5-dual evk-uuu lpddr5-evk-uuu
-set imx95_uboot_feature=dual trusty-dual trusty-secure-unlock-dual evk-uuu verdin trusty-verdin-dual verdin-uuu 15x15 15x15-dual trusty-15x15-dual trusty-15x15-rbidx-blob-dual 15x15-evk-uuu rpmsg
+set imx943_uboot_feature=dual trusty-dual lpddr5 lpddr5-dual trusty-lpddr5-dual evk-uuu lpddr5-evk-uuu gbl trusty-gbl-dual
+set imx95_uboot_feature=dual trusty-dual trusty-secure-unlock-dual evk-uuu verdin trusty-verdin-dual verdin-uuu 15x15 15x15-dual trusty-15x15-dual trusty-15x15-rbidx-blob-dual 15x15-evk-uuu rpmsg gbl trusty-gbl-dual 15x15-gbl trusty-15x15-gbl-dual
 set imx7ulp_uboot_feature=evk-uuu
 
 set imx8mm_dtb_feature=ddr4 m4 mipi-panel mipi-panel-rm67191
@@ -170,6 +174,7 @@ set uboot_feature_test=A%uboot_feature%
 if not [%uboot_feature_test:trusty=%] == [%uboot_feature_test%] set /A support_trusty=1
 if not [%uboot_feature_test:secure=%] == [%uboot_feature_test%] set /A support_trusty=1
 if not [%uboot_feature_test:dual=%] == [%uboot_feature_test%] set /A support_dual_bootloader=1
+if not [%uboot_feature_test:gbl=%] == [%uboot_feature_test%] set /A support_gbl=1
 
 :: TrustyOS can't boot from SD card
 if [%target_dev%] == [sd] (
@@ -249,6 +254,18 @@ find "v.e.n.d.o.r._.b.o.o.t." %tmp_dir%partition-table_3.txt > nul && set /A sup
 find "i.n.i.t._.b.o.o.t." %tmp_dir%partition-table_3.txt > nul && set /A support_init_boot=1 && echo init_boot is supported
 :: check whether there is system_ext in partition table
 find "s.y.s.t.e.m._.e.x.t." %tmp_dir%partition-table_3.txt > nul && set /A has_system_ext_partition=1
+
+if %support_gbl% == 1 (
+    if not [%dtb_feature%] == [] (
+        echo No dtb_feature should be selected when the dtbs are included to vendor_boot image
+        set /A error_level=1 && goto :exit
+    )
+
+    if %support_dtbo% == 1 (
+        set /A support_dtbo=1
+
+    )
+)
 
 del %tmp_dir%partition-table_1.txt
 del %tmp_dir%partition-table_2.txt
@@ -650,36 +667,40 @@ echo                           ©°©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ð©¤©¤©¤©¤©¤©¤©
 echo                           ©¦   soc_name     ©¦  legal parameter after "-u"                                                                          ©¦
 echo                           ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È
 echo                           ©¦   imx8mm       ©¦  dual trusty-dual trusty-rbidx-blob-dual 4g-evk-uuu 4g ddr4-evk-uuu ddr4 evk-uuu                     ©¦
-echo                           ©¦                ©¦  trusty-secure-unlock-dual                                                                           ©¦
+echo                           ©¦                ©¦  trusty-secure-unlock-dual gbl trusty-gbl-dual                                                       ©¦
 echo                           ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È
 echo                           ©¦   imx8mn       ©¦  dual trusty-dual trusty-rbidx-blob-dual evk-uuu trusty-secure-unlock-dual ddr4-evk-uuu ddr4         ©¦
+echo                           ©¦                ©¦  gbl trusty-gbl-dual                                                                                 ©¦
 echo                           ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È
 echo                           ©¦   imx8mp       ©¦  dual trusty-dual trusty-rbidx-blob-dual evk-uuu trusty-secure-unlock-dual powersave                 ©¦
-echo                           ©¦                ©¦  trusty-powersave-dual frdm trusty-frdm-dual frdm-uuu                                                ©¦
+echo                           ©¦                ©¦  trusty-powersave-dual frdm trusty-frdm-dual frdm-uuu gbl trusty-gbl-dual                            ©¦
 echo                           ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È
 echo                           ©¦   imx8ulp      ©¦  dual trusty-dual trusty-dualboot-dual evk-uuu trusty-secure-unlock-dual 9x9-evk-uuu 9x9 9x9-dual    ©¦
-echo                           ©¦                ©¦  trusty-9x9-dual trusty-9x9-rbidx-blob-dual trusty-lpa-dual                                          ©¦
+echo                           ©¦                ©¦  trusty-9x9-dual trusty-9x9-rbidx-blob-dual trusty-lpa-dual gbl trusty-gbl-dual                      ©¦
 echo                           ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È
 echo                           ©¦   imx8mq       ©¦  dual trusty-dual evk-uuu trusty-secure-unlock-dual wevk wevk-dual trusty-wevk-dual                  ©¦
-echo                           ©¦                ©¦  trusty-wevk-rbidx-blob-dual wevk-uuu trusty-secure-unlock-wevk-dual                                 ©¦
+echo                           ©¦                ©¦  trusty-wevk-rbidx-blob-dual wevk-uuu trusty-secure-unlock-wevk-dual wevk-gbl trusty-wevk-gbl-dual   ©¦
 echo                           ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È
 echo                           ©¦   imx8qxp      ©¦  dual trusty-dual trusty-rbidx-blob-dual mek-uuu trusty-secure-unlock-dual secure-unlock c0 c0-dual  ©¦
-echo                           ©¦                ©¦  trusty-c0-dual mek-c0-uuu                                                                           ©¦
+echo                           ©¦                ©¦  trusty-c0-dual mek-c0-uuu gbl trusty-gbl-dual                                                       ©¦
 echo                           ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È
 echo                           ©¦   imx8qm       ©¦  dual trusty-dual trusty-rbidx-blob-dual mek-uuu trusty-secure-unlock-dual secure-unlock md hdmi xen ©¦
+echo                           ©¦                ©¦  gbl trusty-gbl-dual                                                                                 ©¦
 echo                           ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È
 echo                           ©¦   imx93        ©¦  dual trusty-dual evk-uuu                                                                            ©¦
 echo                           ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È
-echo                           ©¦   imx943       ©¦  dual trusty-dual lpddr5 lpddr5-dual trusty-lpddr5-dual evk-uuu lpddr5-evk-uuu                       ©¦
+echo                           ©¦   imx943       ©¦  dual trusty-dual lpddr5 lpddr5-dual trusty-lpddr5-dual evk-uuu lpddr5-evk-uuu gbl trusty-gbl-dual   ©¦
 echo                           ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È
 echo                           ©¦   imx95        ©¦  dual trusty-dual trusty-secure-unlock-dual evk-uuu verdin trusty-verdin-dual verdin-uuu             ©¦
 echo                           ©¦                ©¦  15x15 15x15-dual trusty-15x15-dual trusty-15x15-rbidx-blob-dual 15x15-evk-uuu rpmsg                 ©¦
+echo                           ©¦                ©¦  gbl trusty-gbl-dual 15x15-gbl trusty-15x15-gbl-dual                                                 ©¦
 echo                           ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È
 echo                           ©¦   imx7ulp      ©¦  evk-uuu                                                                                             ©¦
 echo                           ©¸©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ø©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¼
 echo:
-echo  -d dtbo_feature   flash dtbo, vbmeta and recovery image file with "dtb_feature" in their names
+echo  -d dtbo_feature   flash dtbo, vbmeta and recovery image file with "dtb_feature" in their names (legacy)
 echo                        If not set, default dtbo, vbmeta and recovery image will be flashed
+echo                        This parameter doesn't work if the dtbs are included to the vendor_boot image (with vendor_boot image but no dtbo image)
 echo                        Below table lists the legal value supported now based on the soc_name provided:
 echo                           ©°©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ð©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©´
 echo                           ©¦   soc_name     ©¦  legal parameter after "-d"                                                                          ©¦
@@ -849,7 +870,10 @@ if not [%partition_to_be_flashed:bootloader_=%] == [%partition_to_be_flashed%] (
     set img_name=%uboot_proper_to_be_flashed%
     goto :start_to_flash
 )
-
+if not [%partition_to_be_flashed:efisp=%] == [%partition_to_be_flashed%] (
+    set img_name=%gbl_file%
+    goto :start_to_flash
+)
 if not [%partition_to_be_flashed:vendor_boot=%] == [%partition_to_be_flashed%] (
     set img_name=%vendorboot_file%
     goto :start_to_flash
@@ -878,6 +902,10 @@ if not [%partition_to_be_flashed:mcu_os=%] == [%partition_to_be_flashed%] (
     set img_name=%soc_name%_mcu_demo.img
     goto :start_to_flash
 )
+if not [%partition_to_be_flashed:vbmeta=%] == [%partition_to_be_flashed%] if %support_gbl% == 1 (
+    set img_name=%vbmeta_file%
+    goto :start_to_flash
+)
 if not [%partition_to_be_flashed:vbmeta=%] == [%partition_to_be_flashed%] if not [%dtb_feature%] == [] (
     set img_name=%local_str%-%soc_name%-%dtb_feature%.img
     goto :start_to_flash
@@ -899,9 +927,11 @@ if not [%partition_to_be_flashed:super=%] == [%partition_to_be_flashed%] (
     goto :start_to_flash
 )
 
-
-if %support_dtbo% == 1 (
-    if not [%partition_to_be_flashed:boot=%] == [%partition_to_be_flashed%] (
+if not [%partition_to_be_flashed:boot=%] == [%partition_to_be_flashed%] (
+    if %support_dtbo% == 1 (
+        set img_name=%bootimage%
+        goto :start_to_flash
+    ) else if %support_gbl% == 1 (
         set img_name=%bootimage%
         goto :start_to_flash
     )
@@ -929,6 +959,7 @@ goto :eof
 :flash_userpartitions
 if %support_dual_bootloader% == 1 call :flash_partition %dual_bootloader_partition% || set /A error_level=1 && goto :exit
 if %support_dtbo% == 1 call :flash_partition %dtbo_partition% || set /A error_level=1 && goto :exit
+if %support_gbl% == 1 call :flash_partition %gbl_partition% || set /A error_level=1 && goto :exit
 if %support_recovery% == 1 call :flash_partition %recovery_partition% || set /A error_level=1 && goto :exit
 if %support_vendor_boot% == 1 call :flash_partition %vendor_boot_partition% || set /A error_level=1 && goto :exit
 if %support_init_boot% == 1 call :flash_partition %init_boot_partition% || set /A error_level=1 && goto :exit
@@ -957,6 +988,7 @@ set dtbo_partition=dtbo%1
 set vendor_boot_partition=vendor_boot%1
 set init_boot_partition=init_boot%1
 if %support_dual_bootloader% == 1 set dual_bootloader_partition=bootloader%1
+if %support_gbl% == 1 set gbl_partition=efisp%1
 goto :eof
 
 :flash_mcu_sf

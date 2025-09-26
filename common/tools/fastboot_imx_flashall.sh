@@ -32,31 +32,34 @@ options:
                            │   soc_name     │  legal parameter after "-u"                                                                          │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx8mm       │  dual trusty-dual trusty-rbidx-blob-dual 4g-evk-uuu 4g ddr4-evk-uuu ddr4 evk-uuu                     │
-                           │                │  trusty-secure-unlock-dual                                                                           │
+                           │                │  trusty-secure-unlock-dual gbl trusty-gbl-dual                                                       │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx8mn       │  dual trusty-dual trusty-rbidx-blob-dual evk-uuu trusty-secure-unlock-dual ddr4-evk-uuu ddr4         │
+                           │                │  gbl trusty-gbl-dual                                                                                 │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx8mp       │  dual trusty-dual trusty-rbidx-blob-dual evk-uuu trusty-secure-unlock-dual powersave                 │
-                           │                │  trusty-powersave-dual frdm trusty-frdm-dual frdm-uuu                                                │
+                           │                │  trusty-powersave-dual frdm trusty-frdm-dual frdm-uuu gbl trusty-gbl-dual                            │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx8ulp      │  dual trusty-dual trusty-dualboot-dual evk-uuu trusty-secure-unlock-dual                             │
                            │                │  9x9-evk-uuu 9x9 9x9-dual trusty-9x9-dual trusty-9x9-rbidx-blob-dual trusty-lpa-dual                 │
+                           │                │  gbl trusty-gbl-dual                                                                                 │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx8mq       │  dual trusty-dual evk-uuu trusty-secure-unlock-dual wevk wevk-dual trusty-wevk-rbidx-blob-dual       │
-                           │                │  trusty-wevk-dual wevk-uuu trusty-secure-unlock-wevk-dual                                            │
+                           │                │  trusty-wevk-dual wevk-uuu trusty-secure-unlock-wevk-dual wevk-gbl trusty-wevk-gbl-dual              │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx8qxp      │  dual trusty-dual trusty-rbidx-blob-dual mek-uuu trusty-secure-unlock-dual secure-unlock c0          │
-                           │                │  c0-dual trusty-c0-dual mek-c0-uuu                                                                   │
+                           │                │  c0-dual trusty-c0-dual mek-c0-uuu gbl trusty-gbl-dual                                               │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx8qm       │  dual trusty-dual trusty-rbidx-blob-dual mek-uuu trusty-secure-unlock-dual secure-unlock md hdmi     │
-                           │                │  xen                                                                                                 │
+                           │                │  xen gbl trusty-gbl-dual                                                                             │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
-                           │   imx93        │  dual trusty-dual evk-uuu                                                                            │
+                           │   imx93        │  dual trusty-dual evk-uuu gbl trusty-gbl-dual                                                        │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
-                           │   imx943       │  dual trusty-dual lpddr5 lpddr5-dual trusty-lpddr5-dual lpddr5-evk-uuu evk-uuu                       │
+                           │   imx943       │  dual trusty-dual lpddr5 lpddr5-dual trusty-lpddr5-dual lpddr5-evk-uuu evk-uuu gbl trusty-gbl-dual   │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx95        │  dual trusty-dual trusty-secure-unlock-dual evk-uuu verdin trusty-verdin-dual verdin-uuu             │
                            │                │  15x15 15x15-dual trusty-15x15-rbidx-blob-dual trusty-15x15-dual 15x15-evk-uuu rpmsg                 │
+                           │                │  gbl trusty-gbl-dual 15x15-gbl trusty-15x15-gbl-dual                                                 │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx7ulp      │  evk-uuu                                                                                             │
                            └────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────┘
@@ -149,7 +152,7 @@ function flash_partition
         img_name=${product_file}
     elif [ "$(echo ${1} | grep "bootloader")" != "" ]; then
          img_name=${bootloader_flashed_to_board}
-    elif [ ${support_dtbo} -eq 1 ] && [ "$(echo ${1} | grep "boot")" != "" ]; then
+    elif [[ (${support_dtbo} -eq 1 || ${support_gbl} -eq 1) ]] && [ "$(echo ${1} | grep "boot")" != "" ]; then
         img_name="boot.img"
     elif [ "$(echo ${1} | grep `echo ${mcu_os_partition}`)" != "" ]; then
         if [ "${soc_name}" = "imx7ulp" ]; then
@@ -157,12 +160,16 @@ function flash_partition
         else
             img_name="${soc_name}_mcu_demo.img"
         fi
+    elif [ ${support_gbl} -eq 1 ] && [ "$(echo ${1} | grep "vbmeta")" != "" ]; then
+        img_name="vbmeta.img"
     elif [ "$(echo ${1} | grep -E "dtbo|vbmeta|recovery")" != "" -a "${dtb_feature}" != "" ]; then
         img_name="${1%_*}-${soc_name}-${dtb_feature}.img"
     elif [ "$(echo ${1} | grep "gpt")" != "" ]; then
         img_name=${partition_file}
     elif [ "$(echo ${1} | grep "super")" != "" ]; then
         img_name=${super_file}
+    elif [ "$(echo ${1} | grep "efisp")" != "" ]; then
+        img_name="efisp.img"
     else
         img_name="${1%_*}-${soc_name}.img"
     fi
@@ -218,9 +225,17 @@ function flash_partition_name
 
 function flash_android
 {
+    # set gbl default block or gpt partition may not be recognized.
+    ${fastboot_tool} oem gbl-set-default-block 0 || set_gbl_default_block=0
+
     # a precondition: the location of gpt partition and the partition for uboot or spl(in dual bootloader condition)
     # should be the same for the u-boot just boot up the board and the on to be flashed to the board
     flash_partition "gpt"
+
+    # reset the gbl default block
+    if [ ${set_gbl_default_block} -eq 1 ]; then
+        ${fastboot_tool} oem gbl-unset-default-block
+    fi
 
     randome_part=$RANDOM
     while [ -f /tmp/fastboot_var.log${randome_part} ]; do
@@ -239,6 +254,10 @@ function flash_android
     grep -q "init_boot" /tmp/${fastboot_var_file} && support_init_boot=1
     grep -q "system_ext" /tmp/${fastboot_var_file} && has_system_ext_partition=1
     rm -rf /tmp/${fastboot_var_file}
+
+    if [ ${support_gbl} -eq 1 ] && [ ${support_dtbo} -eq 1 ]; then
+        support_dtbo=0;
+    fi
 
     # some partitions are hard-coded in uboot, flash the uboot first and then reboot to check these partitions
 
@@ -270,12 +289,22 @@ function flash_android
         if [ "${slot}" != "" ]; then
             dual_bootloader_partition="bootloader"${slot}
             flash_partition ${dual_bootloader_partition}
+            if [ ${support_gbl} -eq 1 ]; then
+                gbl_partition="efisp"${slot}
+                flash_partition ${gbl_partition}
+            fi
             ${fastboot_tool} set_active ${slot#_}
         else
             dual_bootloader_partition="bootloader_a"
             flash_partition ${dual_bootloader_partition}
             dual_bootloader_partition="bootloader_b"
             flash_partition ${dual_bootloader_partition}
+            if [ ${support_gbl} -eq 1 ]; then
+                gbl_partition="efisp_a"
+                flash_partition ${gbl_partition}
+                gbl_partition="efisp_b"
+                flash_partition ${gbl_partition}
+            fi
             ${fastboot_tool} set_active a
         fi
     fi
@@ -339,6 +368,8 @@ support_dual_bootloader=0
 support_dynamic_partition=0
 support_vendor_boot=0
 support_init_boot=0
+support_gbl=0
+set_gbl_default_block=1
 dual_bootloader_partition=""
 bootloader_flashed_to_board=""
 uboot_proper_to_be_flashed=""
@@ -355,6 +386,7 @@ mcu_os_partition="mcu_os"
 super_partition="super"
 vendor_boot_partition="vendor_boot"
 init_boot_partition="init_boot"
+gbl_partition="efisp"
 flash_mcu=0
 lock=0
 erase=0
@@ -370,17 +402,17 @@ result_value=0
 # We want to detect illegal feature input to some extent. Here it's based on SoC names. Since an SoC may be on a
 # board running different set of images(android and automative for a example), so misuse the features of one set of
 # images when flash another set of images can not be detect early with this scenario.
-imx8mm_uboot_feature=(dual trusty-dual trusty-rbidx-blob-dual 4g-evk-uuu 4g ddr4-evk-uuu ddr4 evk-uuu trusty-secure-unlock-dual)
-imx8mn_uboot_feature=(dual trusty-dual trusty-rbidx-blob-dual evk-uuu trusty-secure-unlock-dual ddr4-evk-uuu ddr4)
-imx8mq_uboot_feature=(dual trusty-dual evk-uuu trusty-secure-unlock-dual wevk wevk-dual trusty-wevk-dual trusty-wevk-rbidx-blob-dual wevk-uuu trusty-secure-unlock-wevk-dual)
-imx8mp_uboot_feature=(dual trusty-dual trusty-rbidx-blob-dual evk-uuu trusty-secure-unlock-dual powersave trusty-powersave-dual frdm trusty-frdm-dual frdm-uuu)
-imx8ulp_uboot_feature=(dual trusty-dual trusty-dualboot-dual evk-uuu trusty-secure-unlock-dual 9x9-evk-uuu 9x9 9x9-dual trusty-9x9-dual trusty-9x9-rbidx-blob-dual trusty-lpa-dual)
-imx8qxp_uboot_feature=(dual trusty-dual trusty-rbidx-blob-dual mek-uuu trusty-secure-unlock-dual secure-unlock c0 c0-dual trusty-c0-dual mek-c0-uuu)
-imx8qm_uboot_feature=(dual trusty-dual trusty-rbidx-blob-dual mek-uuu trusty-secure-unlock-dual secure-unlock md hdmi xen)
+imx8mm_uboot_feature=(dual trusty-dual trusty-rbidx-blob-dual 4g-evk-uuu 4g ddr4-evk-uuu ddr4 evk-uuu trusty-secure-unlock-dual gbl trusty-gbl-dual)
+imx8mn_uboot_feature=(dual trusty-dual trusty-rbidx-blob-dual evk-uuu trusty-secure-unlock-dual ddr4-evk-uuu ddr4 gbl trusty-gbl-dual)
+imx8mq_uboot_feature=(dual trusty-dual evk-uuu trusty-secure-unlock-dual wevk wevk-dual trusty-wevk-dual trusty-wevk-rbidx-blob-dual wevk-uuu trusty-secure-unlock-wevk-dual wevk-gbl trusty-wevk-gbl-dual)
+imx8mp_uboot_feature=(dual trusty-dual trusty-rbidx-blob-dual evk-uuu trusty-secure-unlock-dual powersave trusty-powersave-dual frdm trusty-frdm-dual frdm-uuu gbl trusty-gbl-dual)
+imx8ulp_uboot_feature=(dual trusty-dual trusty-dualboot-dual evk-uuu trusty-secure-unlock-dual 9x9-evk-uuu 9x9 9x9-dual trusty-9x9-dual trusty-9x9-rbidx-blob-dual trusty-lpa-dual gbl trusty-gbl-dual)
+imx8qxp_uboot_feature=(dual trusty-dual trusty-rbidx-blob-dual mek-uuu trusty-secure-unlock-dual secure-unlock c0 c0-dual trusty-c0-dual mek-c0-uuu gbl trusty-gbl-dual)
+imx8qm_uboot_feature=(dual trusty-dual trusty-rbidx-blob-dual mek-uuu trusty-secure-unlock-dual secure-unlock md hdmi xen gbl trusty-gbl-dual)
 imx7ulp_uboot_feature=(evk-uuu)
-imx93_uboot_feature=(dual trusty-dual evk-uuu)
-imx943_uboot_feature=(dual trusty-dual lpddr5 lpddr5-dual trusty-lpddr5-dual lpddr5-evk-uuu evk-uuu)
-imx95_uboot_feature=(dual trusty-dual trusty-secure-unlock-dual evk-uuu verdin trusty-verdin-dual verdin-uuu 15x15 15x15-dual trusty-15x15-dual trusty-15x15-rbidx-blob-dual 15x15-evk-uuu rpmsg)
+imx93_uboot_feature=(dual trusty-dual evk-uuu gbl trusty-gbl-dual)
+imx943_uboot_feature=(dual trusty-dual lpddr5 lpddr5-dual trusty-lpddr5-dual lpddr5-evk-uuu evk-uuu gbl trusty-gbl-dual)
+imx95_uboot_feature=(dual trusty-dual trusty-secure-unlock-dual evk-uuu verdin trusty-verdin-dual verdin-uuu 15x15 15x15-dual trusty-15x15-dual trusty-15x15-rbidx-blob-dual 15x15-evk-uuu rpmsg gbl trusty-gbl-dual 15x15-gbl trusty-15x15-gbl-dual)
 
 imx8mm_dtb_feature=(ddr4 m4 mipi-panel mipi-panel-rm67191)
 imx8mn_dtb_feature=(mipi-panel mipi-panel-rm67191 rpmsg ddr4 ddr4-mipi-panel ddr4-mipi-panel-rm67191 ddr4-rpmsg)
@@ -438,10 +470,16 @@ if [[ "${uboot_feature}" = *"dual"* ]]; then
     support_dual_bootloader=1;
 fi
 
+# Check if gbl is supported
+if [[ "${uboot_feature}" = *"gbl"* ]]; then
+    support_gbl=1;
+fi
+
 # if directory is specified, make sure there is a slash at the end
 if [[ "${image_directory}" = "" ]]; then
     image_directory=`pwd`
 fi
+
 image_directory="${image_directory%/}/"
 
 # Android Automative by default support dual bootloader, no "dual" in its partition table name
@@ -502,6 +540,14 @@ fi
 
 if [ ${lock} -eq 1 ]; then
     ${fastboot_tool} oem lock
+fi
+
+if [ ${support_gbl} -eq 1 ]; then
+    if [ -n "${dtb_feature}" ]; then
+        fdt_name="${soc_name}-${dtb_feature}"
+        echo -e setting ${GREEN}fdt_name${STD} to ${GREEN}${fdt_name}${STD}
+        ${fastboot_tool} oem set-fdt-name="${fdt_name}"
+    fi
 fi
 
 if [ ${support_dualslot} -eq 1 ] && [ "${slot}" != "" ]; then
