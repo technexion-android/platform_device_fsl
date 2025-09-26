@@ -5,9 +5,11 @@ UBOOT_POST_PROCESS := true
 # u-boot target for stand config and Trusty OS config
 TARGET_BOOTLOADER_CONFIG := imx8mn-ddr4:imx8mn_ddr4_evk_android_defconfig
 TARGET_BOOTLOADER_CONFIG += imx8mn:imx8mn_evk_android_defconfig
+TARGET_BOOTLOADER_CONFIG += imx8mn-gbl:imx8mn_evk_android_gbl_defconfig
 TARGET_BOOTLOADER_CONFIG += imx8mn-dual:imx8mn_evk_android_dual_defconfig
 ifeq ($(PRODUCT_IMX_TRUSTY),true)
   TARGET_BOOTLOADER_CONFIG += imx8mn-trusty-dual:imx8mn_evk_android_trusty_dual_defconfig
+  TARGET_BOOTLOADER_CONFIG += imx8mn-trusty-gbl-dual:imx8mn_evk_android_trusty_gbl_dual_defconfig
   TARGET_BOOTLOADER_CONFIG += imx8mn-trusty-secure-unlock-dual:imx8mn_evk_android_trusty_secure_unlock_dual_defconfig
   TARGET_BOOTLOADER_CONFIG += imx8mn-trusty-rbidx-blob-dual:imx8mn_evk_android_trusty_rbidx_blob_dual_defconfig
 endif

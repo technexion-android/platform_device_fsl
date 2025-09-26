@@ -26,11 +26,13 @@ ifeq ($(PRODUCT_IMX_CAR),true)
 else
   # u-boot target for imx8qm_mek standard android
   TARGET_BOOTLOADER_CONFIG := imx8qm:imx8qm_mek_android_defconfig
+  TARGET_BOOTLOADER_CONFIG += imx8qm-gbl:imx8qm_mek_android_gbl_defconfig
   TARGET_BOOTLOADER_CONFIG += imx8qm-dual:imx8qm_mek_android_dual_defconfig
   TARGET_BOOTLOADER_CONFIG += imx8qm-hdmi:imx8qm_mek_android_hdmi_defconfig
   TARGET_BOOTLOADER_CONFIG += imx8qm-md:imx8qm_mek_android_hdmi_defconfig
   # u-boot target for imx8qxp_mek standard android
   TARGET_BOOTLOADER_CONFIG += imx8qxp:imx8qxp_mek_android_defconfig
+  TARGET_BOOTLOADER_CONFIG += imx8qxp-gbl:imx8qxp_mek_android_gbl_defconfig
   TARGET_BOOTLOADER_CONFIG += imx8qxp-dual:imx8qxp_mek_android_dual_defconfig
   TARGET_BOOTLOADER_CONFIG += imx8qxp-c0:imx8qxp_mek_android_defconfig
   TARGET_BOOTLOADER_CONFIG += imx8qxp-c0-dual:imx8qxp_mek_android_dual_defconfig
@@ -42,10 +44,12 @@ else
   ifeq ($(PRODUCT_IMX_TRUSTY),true)
     # u-boot target for imx8qm_mek standard android with trusty support
     TARGET_BOOTLOADER_CONFIG += imx8qm-trusty-dual:imx8qm_mek_android_trusty_dual_defconfig
+    TARGET_BOOTLOADER_CONFIG += imx8qm-trusty-gbl-dual:imx8qm_mek_android_trusty_gbl_dual_defconfig
     TARGET_BOOTLOADER_CONFIG += imx8qm-trusty-rbidx-blob-dual:imx8qm_mek_android_trusty_rbidx_blob_dual_defconfig
     TARGET_BOOTLOADER_CONFIG += imx8qm-trusty-secure-unlock-dual:imx8qm_mek_android_trusty_secure_unlock_dual_defconfig
     # u-boot target for imx8qxp_mek standard android with trusty support
     TARGET_BOOTLOADER_CONFIG += imx8qxp-trusty-dual:imx8qxp_mek_android_trusty_dual_defconfig
+    TARGET_BOOTLOADER_CONFIG += imx8qxp-trusty-gbl-dual:imx8qxp_mek_android_trusty_gbl_dual_defconfig
     TARGET_BOOTLOADER_CONFIG += imx8qxp-trusty-rbidx-blob-dual:imx8qxp_mek_android_trusty_rbidx_blob_dual_defconfig
     TARGET_BOOTLOADER_CONFIG += imx8qxp-trusty-c0-dual:imx8qxp_mek_android_trusty_dual_defconfig
     TARGET_BOOTLOADER_CONFIG += imx8qxp-trusty-secure-unlock-dual:imx8qxp_mek_android_trusty_secure_unlock_dual_defconfig

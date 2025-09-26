@@ -8,12 +8,14 @@ ifeq ($(LOW_MEMORY),true)
   TARGET_BOOTLOADER_CONFIG += imx8mm:imx8mm_evk_1g_ddr_android_defconfig
 else
   TARGET_BOOTLOADER_CONFIG += imx8mm:imx8mm_evk_android_defconfig
+  TARGET_BOOTLOADER_CONFIG += imx8mm-gbl:imx8mm_evk_android_gbl_defconfig
   TARGET_BOOTLOADER_CONFIG += imx8mm-dual:imx8mm_evk_android_dual_defconfig
 endif
 TARGET_BOOTLOADER_CONFIG += imx8mm-4g:imx8mm_evk_4g_android_defconfig
 ifeq ($(PRODUCT_IMX_TRUSTY),true)
   TARGET_BOOTLOADER_CONFIG += imx8mm-trusty-secure-unlock-dual:imx8mm_evk_android_trusty_secure_unlock_dual_defconfig
   TARGET_BOOTLOADER_CONFIG += imx8mm-trusty-dual:imx8mm_evk_android_trusty_dual_defconfig
+  TARGET_BOOTLOADER_CONFIG += imx8mm-trusty-gbl-dual:imx8mm_evk_android_trusty_gbl_dual_defconfig
   TARGET_BOOTLOADER_CONFIG += imx8mm-trusty-rbidx-blob-dual:imx8mm_evk_android_trusty_rbidx_blob_dual_defconfig
 endif
 

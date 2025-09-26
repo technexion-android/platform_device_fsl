@@ -5,12 +5,14 @@ UBOOT_POST_PROCESS := true
 TARGET_BOOTLOADER_CONFIG := imx8mq:imx8mq_evk_android_defconfig
 TARGET_BOOTLOADER_CONFIG += imx8mq-dual:imx8mq_evk_android_dual_defconfig
 TARGET_BOOTLOADER_CONFIG += imx8mq-wevk:imx8mq_wevk_android_defconfig
+TARGET_BOOTLOADER_CONFIG += imx8mq-wevk-gbl:imx8mq_wevk_android_gbl_defconfig
 TARGET_BOOTLOADER_CONFIG += imx8mq-wevk-dual:imx8mq_wevk_android_dual_defconfig
 ifeq ($(PRODUCT_IMX_TRUSTY),true)
   TARGET_BOOTLOADER_CONFIG += imx8mq-trusty-secure-unlock-dual:imx8mq_evk_android_trusty_secure_unlock_dual_defconfig
   TARGET_BOOTLOADER_CONFIG += imx8mq-trusty-dual:imx8mq_evk_android_trusty_dual_defconfig
   TARGET_BOOTLOADER_CONFIG += imx8mq-trusty-secure-unlock-wevk-dual:imx8mq_wevk_android_trusty_secure_unlock_dual_defconfig
   TARGET_BOOTLOADER_CONFIG += imx8mq-trusty-wevk-dual:imx8mq_wevk_android_trusty_dual_defconfig
+  TARGET_BOOTLOADER_CONFIG += imx8mq-trusty-wevk-gbl-dual:imx8mq_wevk_android_trusty_gbl_dual_defconfig
   TARGET_BOOTLOADER_CONFIG += imx8mq-trusty-wevk-rbidx-blob-dual:imx8mq_wevk_android_trusty_rbidx_blob_dual_defconfig
 endif
 

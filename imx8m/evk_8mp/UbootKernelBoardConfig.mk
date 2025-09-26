@@ -4,9 +4,11 @@ UBOOT_POST_PROCESS := true
 
 # u-boot target
 TARGET_BOOTLOADER_CONFIG := imx8mp:imx8mp_evk_android_defconfig
+TARGET_BOOTLOADER_CONFIG += imx8mp-gbl:imx8mp_evk_android_gbl_defconfig
 TARGET_BOOTLOADER_CONFIG += imx8mp-trusty-secure-unlock-dual:imx8mp_evk_android_trusty_secure_unlock_dual_defconfig
 TARGET_BOOTLOADER_CONFIG += imx8mp-dual:imx8mp_evk_android_dual_defconfig
 TARGET_BOOTLOADER_CONFIG += imx8mp-trusty-dual:imx8mp_evk_android_trusty_dual_defconfig
+TARGET_BOOTLOADER_CONFIG += imx8mp-trusty-gbl-dual:imx8mp_evk_android_trusty_gbl_dual_defconfig
 TARGET_BOOTLOADER_CONFIG += imx8mp-trusty-rbidx-blob-dual:imx8mp_evk_android_trusty_rbidx_blob_dual_defconfig
 TARGET_BOOTLOADER_CONFIG += imx8mp-frdm:imx8mp_frdm_android_defconfig
 TARGET_BOOTLOADER_CONFIG += imx8mp-trusty-frdm-dual:imx8mp_frdm_android_trusty_dual_defconfig

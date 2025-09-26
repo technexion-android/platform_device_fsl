@@ -3,8 +3,10 @@ UBOOT_POST_PROCESS := true
 
 # u-boot target for imx93_evk board
 TARGET_BOOTLOADER_CONFIG := imx93:imx93_11x11_evk_android_defconfig
+TARGET_BOOTLOADER_CONFIG += imx93-gbl:imx93_11x11_evk_android_gbl_defconfig
 TARGET_BOOTLOADER_CONFIG += imx93-dual:imx93_11x11_evk_android_dual_defconfig
 TARGET_BOOTLOADER_CONFIG += imx93-trusty-dual:imx93_11x11_evk_android_trusty_dual_defconfig
+TARGET_BOOTLOADER_CONFIG += imx93-trusty-gbl-dual:imx93_11x11_evk_android_trusty_gbl_dual_defconfig
 TARGET_BOOTLOADER_CONFIG += imx93-evk-uuu:imx93_11x11_evk_android_uuu_defconfig
 
 # imx93 kernel defconfig

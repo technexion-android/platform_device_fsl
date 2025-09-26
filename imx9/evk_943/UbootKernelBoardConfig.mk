@@ -3,10 +3,12 @@ UBOOT_POST_PROCESS := true
 
 # u-boot target for imx943_evk board
 TARGET_BOOTLOADER_CONFIG := imx943:imx943_evk_android_defconfig
+TARGET_BOOTLOADER_CONFIG += imx943-gbl:imx943_evk_android_gbl_defconfig
 TARGET_BOOTLOADER_CONFIG += imx943-lpddr5:imx943_evk_android_defconfig
 TARGET_BOOTLOADER_CONFIG += imx943-dual:imx943_evk_android_dual_defconfig
 TARGET_BOOTLOADER_CONFIG += imx943-lpddr5-dual:imx943_evk_android_dual_defconfig
 TARGET_BOOTLOADER_CONFIG += imx943-trusty-dual:imx943_evk_android_trusty_dual_defconfig
+TARGET_BOOTLOADER_CONFIG += imx943-trusty-gbl-dual:imx943_evk_android_trusty_gbl_dual_defconfig
 TARGET_BOOTLOADER_CONFIG += imx943-trusty-lpddr5-dual:imx943_evk_android_trusty_dual_defconfig
 TARGET_BOOTLOADER_CONFIG += imx943-evk-uuu:imx943_evk_android_uuu_defconfig
 TARGET_BOOTLOADER_CONFIG += imx943-lpddr5-evk-uuu:imx943_evk_android_uuu_defconfig

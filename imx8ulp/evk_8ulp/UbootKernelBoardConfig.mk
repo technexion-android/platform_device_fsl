@@ -3,8 +3,10 @@ UBOOT_POST_PROCESS := true
 
 # u-boot target for imx8ulp_evk board
 TARGET_BOOTLOADER_CONFIG := imx8ulp:imx8ulp_evk_android_defconfig
+TARGET_BOOTLOADER_CONFIG += imx8ulp-gbl:imx8ulp_evk_android_gbl_defconfig
 TARGET_BOOTLOADER_CONFIG += imx8ulp-dual:imx8ulp_evk_android_dual_defconfig
 TARGET_BOOTLOADER_CONFIG += imx8ulp-trusty-dual:imx8ulp_evk_android_trusty_dual_defconfig
+TARGET_BOOTLOADER_CONFIG += imx8ulp-trusty-gbl-dual:imx8ulp_evk_android_trusty_gbl_dual_defconfig
 TARGET_BOOTLOADER_CONFIG += imx8ulp-trusty-lpa-dual:imx8ulp_evk_android_trusty_dual_defconfig
 TARGET_BOOTLOADER_CONFIG += imx8ulp-trusty-dualboot-dual:imx8ulp_evk_android_trusty_dual_defconfig
 TARGET_BOOTLOADER_CONFIG += imx8ulp-evk-uuu:imx8ulp_evk_android_uuu_defconfig
