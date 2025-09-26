@@ -96,6 +96,10 @@ PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/ueventd.nxp.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc
 
 # -------@block_storage-------
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.prefetch_boot.enabled=true \
+    ro.prefetch_boot.duration_s=10 \
+    ro.prefetch_boot.max_fds=64
 
 # support metadata checksum during first stage mount
 ifeq ($(TARGET_USE_VENDOR_BOOT),true)

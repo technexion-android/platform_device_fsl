@@ -94,6 +94,11 @@ PRODUCT_COPY_FILES += \
 
 # -------@block_storage-------
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.prefetch_boot.enabled=true \
+    ro.prefetch_boot.duration_s=8 \
+    ro.prefetch_boot.max_fds=512
+
 # support metadata checksum during first stage mount
 ifeq ($(TARGET_USE_VENDOR_BOOT),true)
 PRODUCT_PACKAGES += \

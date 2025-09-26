@@ -230,3 +230,9 @@ on property:sys.boot_completed=1 && property:vendor.storageproxyd=trusty
 on property:sys.boot_completed=1
     # Turn on swap
     swapon_all /vendor/etc/fstab.nxp
+
+on post-fs-data
+    start prefetch_replay
+
+on zygote-start
+    start prefetch_record

@@ -245,3 +245,9 @@ on property:sys.boot_completed=1
     chmod 0660 /sys/devices/iio_sysfs_trigger/add_trigger
     chown system  system /sys/devices/iio_sysfs_trigger/remove_trigger
     chmod 0660 /sys/devices/iio_sysfs_trigger/remove_trigger
+
+on post-fs-data
+    start prefetch_replay
+
+on zygote-start
+    start prefetch_record
