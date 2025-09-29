@@ -509,6 +509,10 @@ if not [%yocto_image%] == [] (
             if exist %tmp_dir%yocto_image_with_xen_support.link (
                 del %tmp_dir%yocto_image_with_xen_support.link
             )
+            call :file_exist %yocto_image% %yocto_image%
+            if errorlevel 1 (
+                set /A error_level=1 && goto :exit
+            )
             cmd /c mklink %tmp_dir%yocto_image_with_xen_support.link %yocto_image% > nul
             echo FB[-t 600000]: flash -raw2sparse all yocto_image_with_xen_support.link >> %tmp_dir%uuu.lst
             :: use "mmc part" to reload part info before "fatwrite"
@@ -519,6 +523,10 @@ if not [%yocto_image%] == [] (
             echo generate lines to flash u-boot-imx8qm-xen-dom0.imx to the partition of bootloader0 on SD card
             if exist %tmp_dir%u-boot-imx8qm-xen-dom0.imx.link (
                 del %tmp_dir%u-boot-imx8qm-xen-dom0.imx.link
+            )
+            call :file_exist %image_directory%u-boot-imx8qm-xen-dom0.imx u-boot-imx8qm-xen-dom0.imx
+            if errorlevel 1 (
+                set /A error_level=1 && goto :exit
             )
             cmd /c mklink %tmp_dir%u-boot-imx8qm-xen-dom0.imx.link %image_directory%u-boot-imx8qm-xen-dom0.imx > nul
             echo FB: flash bootloader0 u-boot-imx8qm-xen-dom0.imx.link >> %tmp_dir%uuu.lst
@@ -531,6 +539,10 @@ if not [%yocto_image%] == [] (
             if exist %tmp_dir%!xen_uboot_name!.link (
                 del %tmp_dir%!xen_uboot_name!.link
             )
+            call :file_exist %image_directory%!xen_uboot_name! !xen_uboot_name!
+            if errorlevel 1 (
+                set /A error_level=1 && goto :exit
+            )
             cmd /c mklink %tmp_dir%!xen_uboot_name!.link %image_directory%!xen_uboot_name! > nul
             echo FB: ucmd setenv fastboot_buffer %imx8qm_stage_base_addr% >> %tmp_dir%uuu.lst
             echo FB: download -f !xen_uboot_name!.link >> %tmp_dir%uuu.lst
@@ -541,6 +553,10 @@ if not [%yocto_image%] == [] (
             echo generate lines to replace xen firmware on FAT
             if exist %tmp_dir%xen.link (
                 del %tmp_dir%xen.link
+            )
+            call :file_exist %image_directory%xen xen
+            if errorlevel 1 (
+                set /A error_level=1 && goto :exit
             )
             cmd /c mklink %tmp_dir%xen.link %image_directory%xen > nul
             echo FB: ucmd setenv fastboot_buffer %imx8qm_stage_base_addr% >> %tmp_dir%uuu.lst
@@ -759,11 +775,23 @@ if [%board%] == [] (
 )
 goto :eof
 
+:file_exist
+if not exist %1 (
+    echo.
+    echo Error: %2 not found
+    set /A error_level=1 && goto :exit
+)
+goto :eof
+
 :uuu_load_uboot
 echo uuu_version 1.4.182 > %tmp_dir%uuu.lst
 
 if exist %tmp_dir%%bootloader_used_by_uuu%.link (
     del %tmp_dir%%bootloader_used_by_uuu%.link
+)
+call :file_exist %image_directory%%bootloader_used_by_uuu% %bootloader_used_by_uuu%
+if errorlevel 1 (
+    set /A error_level=1 && goto :exit
 )
 cmd /c mklink %tmp_dir%%bootloader_used_by_uuu%.link %image_directory%%bootloader_used_by_uuu% > nul
 
@@ -886,6 +914,10 @@ echo generate lines to flash %img_name% to the partition of %1
 if exist %tmp_dir%%img_name%.link (
     del %tmp_dir%%img_name%.link
 )
+call :file_exist %image_directory%%img_name% %img_name%
+if errorlevel 1 (
+    set /A error_level=1 && goto :exit
+)
 cmd /c mklink %tmp_dir%%img_name%.link %image_directory%%img_name% > nul
 echo FB[-t 600000]: flash %1 %img_name%.link >> %tmp_dir%uuu.lst
 goto :eof
@@ -931,6 +963,10 @@ if [%soc_name%] == [imx7ulp] (
     if exist %tmp_dir%%soc_name%_m4_demo.img.link (
         del %tmp_dir%%soc_name%_m4_demo.img.link
     )
+    call :file_exist %image_directory%%soc_name%_m4_demo.img %soc_name%_m4_demo.img
+    if errorlevel 1 (
+        set /A error_level=1 && goto :exit
+    )
     cmd /c mklink %tmp_dir%%soc_name%_m4_demo.img.link %image_directory%%soc_name%_m4_demo.img > nul
     echo generate lines to flash %soc_name%_m4_demo.img to the partition of m4_os
     echo FB: ucmd setenv fastboot_buffer %imx7ulp_stage_base_addr% >> %tmp_dir%uuu.lst
@@ -949,6 +985,10 @@ if [%soc_name%] == [imx8ulp] (
     )
     if exist %tmp_dir%%soc_name%_mcu_demo_!mcu_demo!.img.link (
         del %tmp_dir%%soc_name%_mcu_demo_!mcu_demo!.img.link
+    )
+    call :file_exist %image_directory%%soc_name%_mcu_demo_!mcu_demo!.img %soc_name%_mcu_demo_!mcu_demo!.img
+    if errorlevel 1 (
+        set /A error_level=1 && goto :exit
     )
     cmd /c mklink %tmp_dir%%soc_name%_mcu_demo_!mcu_demo!.img.link %image_directory%%soc_name%_mcu_demo_!mcu_demo!.img > nul
     echo generate lines to flash %soc_name%_mcu_demo_!mcu_demo!.img to the external serial flash

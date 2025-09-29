@@ -142,6 +142,15 @@ function whether_in_array
     done
 }
 
+function file_exist
+{
+    if [ ! -e "$1" ]; then
+        echo
+        echo -e ${RED}Error: `basename $1` not found${STD}
+        exit
+    fi
+}
+
 function uuu_load_uboot
 {
     if [ ${dryrun} -eq 0 ]; then
@@ -153,6 +162,7 @@ function uuu_load_uboot
     echo uuu_version 1.4.182 > /tmp/uuu.lst${randome_part}
     tmp_files_in_uuu+=(uuu.lst${randome_part})
 
+    file_exist "${sym_link_directory}"${bootloader_used_by_uuu}
     ln -sf "${sym_link_directory}"${bootloader_used_by_uuu} /tmp/${bootloader_used_by_uuu}${randome_part}
     tmp_files_in_uuu+=(${bootloader_used_by_uuu}${randome_part})
 
@@ -199,6 +209,7 @@ function flash_mcu_sf
     # since imx7ulp use uboot for uuu from BSP team,there is no hardcoded mcu_os partition. If m4 need to be flashed, flash it here.
     if [[ ${soc_name} == imx7ulp ]]; then
         # download m4 image to dram
+        file_exist "${sym_link_directory}"${soc_name}_m4_demo.img
         ln -sf "${sym_link_directory}"${soc_name}_m4_demo.img /tmp/${soc_name}_m4_demo.img${randome_part}
         tmp_files_in_uuu+=(${soc_name}_m4_demo.img${randome_part})
         echo -e generate lines to flash ${RED}${soc_name}_m4_demo.img${STD} to the partition of ${RED}m4_os${STD}
@@ -218,6 +229,8 @@ function flash_mcu_sf
         else
             mcu_demo="sf"
         fi
+
+        file_exist "${sym_link_directory}"${soc_name}_mcu_demo_${mcu_demo}.img
         ln -sf "${sym_link_directory}"${soc_name}_mcu_demo_${mcu_demo}.img /tmp/${soc_name}_mcu_demo_${mcu_demo}.img${randome_part}
         tmp_files_in_uuu+=(${soc_name}_mcu_demo_${mcu_demo}.img${randome_part})
         echo -e generate lines to flash ${RED}${soc_name}_mcu_demo_${mcu_demo}.img${STD} to the external serial flash
@@ -268,6 +281,7 @@ function flash_partition
     fi
 
     echo -e generate lines to flash ${RED}${img_name}${STD} to the partition of ${RED}${1}${STD}
+    file_exist "${sym_link_directory}"${img_name}
     ln -sf "${sym_link_directory}"${img_name} /tmp/${img_name}${randome_part}
     tmp_files_in_uuu+=(${img_name}${randome_part})
     echo FB[-t 600000]: flash ${1} ${img_name}${randome_part} >> /tmp/uuu.lst${randome_part}
@@ -398,6 +412,7 @@ function clean_tmp_files
         done
     fi
 }
+trap clean_tmp_files EXIT
 
 # parse command line
 soc_name=""
@@ -864,6 +879,7 @@ if [[ "${yocto_image}" != "" ]]; then
     echo FB: ucmd setenv mmcdev ${target_num} >> /tmp/uuu.lst${randome_part}
     echo FB: ucmd mmc dev ${target_num} >> /tmp/uuu.lst${randome_part}
     echo -e generate lines to flash ${RED}`basename ${yocto_image}`${STD} to the partition of ${RED}all${STD}
+    file_exist ${yocto_image_sym_link}
     ln -sf ${yocto_image_sym_link} /tmp/`basename ${yocto_image}`${randome_part}
     echo FB[-t 600000]: flash -raw2sparse all `basename ${yocto_image}`${randome_part} >> /tmp/uuu.lst${randome_part}
     # use "mmc part" to reload part info before "fatwrite"
@@ -873,6 +889,7 @@ if [[ "${yocto_image}" != "" ]]; then
 
     # replace uboot from yocto team with the one from android team
     echo -e generate lines to flash ${RED}u-boot-imx8qm-xen-dom0.imx${STD} to the partition of ${RED}bootloader0${STD} on SD card
+    file_exist "${sym_link_directory}"u-boot-imx8qm-xen-dom0.imx
     ln -sf "${sym_link_directory}"u-boot-imx8qm-xen-dom0.imx /tmp/u-boot-imx8qm-xen-dom0.imx${randome_part}
     echo FB: flash bootloader0 u-boot-imx8qm-xen-dom0.imx${randome_part} >> /tmp/uuu.lst${randome_part}
 
@@ -880,6 +897,7 @@ if [[ "${yocto_image}" != "" ]]; then
     xen_uboot_size_hex=`echo "obase=16;${xen_uboot_size_dec}" | bc`
     # write the xen spl from android team to FAT on SD card
     echo -e generate lines to write ${RED}spl-${soc_name}-${dtb_feature}.bin${STD} to ${RED}FAT${STD}
+    file_exist "${sym_link_directory}"spl-${soc_name}-${dtb_feature}.bin
     ln -sf "${sym_link_directory}"spl-${soc_name}-${dtb_feature}.bin /tmp/spl-${soc_name}-${dtb_feature}.bin${randome_part}
     echo FB: ucmd setenv fastboot_buffer ${imx8qm_stage_base_addr} >> /tmp/uuu.lst${randome_part}
     echo FB: download -f spl-${soc_name}-${dtb_feature}.bin${randome_part} >> /tmp/uuu.lst${randome_part}
@@ -887,6 +905,7 @@ if [[ "${yocto_image}" != "" ]]; then
     xen_firmware_size_dec=`wc -c "${image_directory}"xen | cut -d ' ' -f1`
     xen_firmware_size_hex=`echo "obase=16;${xen_firmware_size_dec}" | bc`
     echo -e generate lines to replace the ${RED}xen firmware${STD} on ${RED}FAT${STD}$
+    file_exist "${sym_link_directory}"xen
     ln -sf  "${sym_link_directory}"xen /tmp/xen${randome_part}
     echo FB: ucmd setenv fastboot_buffer ${imx8qm_stage_base_addr} >> /tmp/uuu.lst${randome_part}
     echo FB: download -f xen${randome_part} >> /tmp/uuu.lst${randome_part}
@@ -924,11 +943,9 @@ fi
 
 echo "uuu script generated, start to invoke uuu with the generated uuu script"
 if [ ${daemon_mode} -eq 1 ]; then
-    uuu ${usb_paths} -d /tmp/uuu.lst${randome_part} || clean_tmp_files
-    clean_tmp_files
+    uuu ${usb_paths} -d /tmp/uuu.lst${randome_part}
 else
-    uuu ${usb_paths} /tmp/uuu.lst${randome_part} || clean_tmp_files
-    clean_tmp_files
+    uuu ${usb_paths} /tmp/uuu.lst${randome_part}
 fi
 
 exit 0
