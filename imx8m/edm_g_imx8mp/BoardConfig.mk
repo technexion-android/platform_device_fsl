@@ -258,13 +258,11 @@ WITH_EXT_DTBO ?= true
 ifeq ($(WITH_EXT_DTBO),true)
   TARGET_BOARD_DTBO_CONFIG := imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-lvds-vl10112880.dtbo
   TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-lvds-vl15613676.dtbo
-  TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-lvds-vl215192108.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-lvds-vl156192108.dtbo
   TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-tevs.dtbo
   TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-vls.dtbo
   ifeq ($(EXPORT_BASEBOARD_NAME),WIZARD)
     TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-vizionpanel-vl10112880.dtbo
-    TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-vizionpanel-vl15010276.dtbo
-    TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-vizionpanel-vl15613676.dtbo
     TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-mipi2hdmi-adv7535.dtbo
     TARGET_BOARD_DTBO_CONFIG += imx8mp:imx8mp-edm-g-$(BASEBOARD_TAG)-ili9881c.dtbo
   endif
