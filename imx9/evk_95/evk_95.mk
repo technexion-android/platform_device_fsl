@@ -320,7 +320,12 @@ PRODUCT_PACKAGES += \
     libcamera_ipa_sign \
     libyaml \
     libnxp_ipa_cam_helper \
+    libcam_helper \
+    libuguzzi \
+    libuguzzi_connect \
     ipa_nxp_neo \
+    neo_ipa_uguzzi \
+    neo_ipa_uguzzi_dtp \
     config.yaml \
     os08a20.yaml \
     mx95mbcam.yaml \
