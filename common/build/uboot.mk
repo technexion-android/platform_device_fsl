@@ -87,8 +87,11 @@ UBOOT_CROSS_COMPILE := $(TARGET_UBOOT_CROSS_COMPILE_PREFIX)
 endif
 
 # Use ccache if requested by USE_CCACHE variable
+ifneq ($(UBOOT_CC_WRAPPER),)
 UBOOT_CROSS_COMPILE_WRAPPER := $(realpath $(UBOOT_CC_WRAPPER)) $(UBOOT_CROSS_COMPILE)
-
+else
+UBOOT_CROSS_COMPILE_WRAPPER := $(UBOOT_CROSS_COMPILE)
+endif
 UBOOT_GCC_NOANDROID_CHK := $(shell (echo "int main() {return 0;}" | $(UBOOT_CROSS_COMPILE)gcc -E -mno-android - > /dev/null 2>&1 ; echo $$?))
 ifeq ($(strip $(UBOOT_GCC_NOANDROID_CHK)),0)
 UBOOT_CFLAGS += -mno-android
@@ -106,6 +109,8 @@ export UBOOT_COLLECTION
 
 # Figure out which U-Boot version is being built (disregard -stable version).
 UBOOT_VERSION := $(shell $(MAKE) -j1 --no-print-directory -C $(UBOOT_IMX_PATH)/uboot-imx -s SUBLEVEL="" ubootversion)
+
+MERGE_CONFIG := $(realpath device/nxp/common/tools/merge_config.sh)
 
 $(UBOOT_COLLECTION) $(UBOOT_OUT):
 	mkdir -p $@
@@ -139,7 +144,14 @@ $(UBOOT_BIN): $(UBOOTENVSH) | $(UBOOT_COLLECTION) $(UBOOT_OUT)
 		UBOOT_PLATFORM=`echo $$ubootplat | cut -d':' -f1`; \
 		UBOOT_CONFIG=`echo $$ubootplat | cut -d':' -f2`; \
 		$(MAKE) -C $(UBOOT_IMX_PATH)/uboot-imx/ CROSS_COMPILE="$(UBOOT_CROSS_COMPILE_WRAPPER)" O=$(realpath $(UBOOT_OUT)) mrproper; \
-		$(MAKE) -C $(UBOOT_IMX_PATH)/uboot-imx/ CROSS_COMPILE="$(UBOOT_CROSS_COMPILE_WRAPPER)" O=$(realpath $(UBOOT_OUT)) $$UBOOT_CONFIG; \
+		if [ "$(TARGET_BOOTLOADER_BASE_CONFIG)" = "" ]; then \
+			$(MAKE) -C $(UBOOT_IMX_PATH)/uboot-imx/ CROSS_COMPILE="$(UBOOT_CROSS_COMPILE_WRAPPER)" O=$(realpath $(UBOOT_OUT)) $$UBOOT_CONFIG; \
+		else \
+			cd $(UBOOT_IMX_PATH)/uboot-imx/; \
+			$(KERNEL_MERGE_CONFIG) -p "CROSS_COMPILE=$(UBOOT_CROSS_COMPILE_WRAPPER)" -O $(realpath $(UBOOT_OUT)) configs/$(TARGET_BOOTLOADER_BASE_CONFIG) configs/$$UBOOT_CONFIG; \
+			cd -; \
+			echo "Merge U-Boot defconfig done..."; \
+		fi; \
 		$(MAKE) -s -C $(UBOOT_IMX_PATH)/uboot-imx/ CROSS_COMPILE="$(UBOOT_CROSS_COMPILE_WRAPPER)" O=$(realpath $(UBOOT_OUT)) 1>/dev/null || exit 1; \
 		if [ "$(UBOOT_POST_PROCESS)" = "true" ]; then \
 			echo "build post process" ; \
