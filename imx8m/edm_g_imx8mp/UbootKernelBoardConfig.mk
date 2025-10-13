@@ -3,6 +3,7 @@ TARGET_BOOTLOADER_POSTFIX := bin
 UBOOT_POST_PROCESS := true
 
 # u-boot target
+TARGET_BOOTLOADER_BASE_CONFIG := edm-g-imx8mp_defconfig
 TARGET_BOOTLOADER_CONFIG := imx8mp:edm-g-imx8mp_android_defconfig
 #TARGET_BOOTLOADER_CONFIG += imx8mp-trusty-secure-unlock-dual:edm-g-imx8mp_android_trusty_secure_unlock_dual_defconfig
 #TARGET_BOOTLOADER_CONFIG += imx8mp-dual:edm-g-imx8mp_android_dual_defconfig
