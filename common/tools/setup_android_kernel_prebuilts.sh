@@ -130,7 +130,7 @@ setup_clang() {
     setup_repository "clang" \
         "https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86" \
         "main-kernel" \
-        "66acdd82ee62e4aaa4248f03191c59dfed9db193" \
+        "9a98ca4072ec000f301bd3ece481ea2baca76ca5" \
         "$PREBUILTS_BASE/clang/host/linux-x86"
 }
 
@@ -138,7 +138,7 @@ setup_kernel_build_tools() {
     setup_repository "kernel-build-tools" \
         "https://android.googlesource.com/kernel/prebuilts/build-tools" \
         "main" \
-        "3c5e4f14b451ec85167c38b917d2459687abd7f4" \
+        "e65603ef822477b059f35d8c6ac2be6b2113e14f" \
         "$PREBUILTS_BASE/kernel-build-tools"
 }
 
@@ -146,7 +146,7 @@ setup_rust() {
     setup_repository "rust" \
         "https://android.googlesource.com/platform/prebuilts/rust" \
         "main-kernel" \
-        "5156e7f81ae254c79ee736e44c960e75ad685c67" \
+        "8d38f3f31e9a0c9a5cb537b9f73da400bedb9a75" \
         "$PREBUILTS_BASE/rust"
 }
 
@@ -154,7 +154,7 @@ setup_clang_tools() {
     setup_repository "clang-tools" \
         "https://android.googlesource.com/platform/prebuilts/clang-tools" \
         "main" \
-        "17329f6590e2872dcf04a0c96a176be089470cd9" \
+        "edb3c73c0398462492e7371fae68ce2db7afb6c7" \
         "$PREBUILTS_BASE/clang-tools"
 }
 
