@@ -29,7 +29,8 @@
 PRODUCT_MAKEFILES := \
   $(LOCAL_DIR)/evk_943/evk_943.mk \
   $(LOCAL_DIR)/evk_93/evk_93.mk \
-  $(LOCAL_DIR)/evk_95/evk_95.mk
+  $(LOCAL_DIR)/evk_95/evk_95.mk \
+  $(LOCAL_DIR)/edm_imx95/edm_imx95.mk
 
 COMMON_LUNCH_CHOICES := \
   evk_93-nxp_stable-user \
@@ -37,4 +38,6 @@ COMMON_LUNCH_CHOICES := \
   evk_943-nxp_stable-user \
   evk_943-nxp_stable-userdebug \
   evk_95-nxp_stable-user \
-  evk_95-nxp_stable-userdebug
+  evk_95-nxp_stable-userdebug \
+  edm_imx95-nxp_stable-user \
+  edm_imx95-nxp_stable-userdebug
