@@ -776,6 +776,9 @@ if [%board%] == [] (
 goto :eof
 
 :file_exist
+if [%dryrun%] == [1] (
+    goto :eof
+)
 if not exist %1 (
     echo.
     echo Error: %2 not found

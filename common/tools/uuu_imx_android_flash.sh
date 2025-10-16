@@ -144,7 +144,7 @@ function whether_in_array
 
 function file_exist
 {
-    if [ ! -e "$1" ]; then
+    if [ ! -e "$1" ] && [ ${dryrun} -eq 0 ]; then
         echo
         echo -e ${RED}Error: `basename $1` not found${STD}
         exit
@@ -408,6 +408,11 @@ function clean_tmp_files
     else
         for file in ${tmp_files_in_uuu[*]}
         do
+            if [ ${dryrun} -eq 1 ]; then
+                if [[ "${file}" = "uuu.lst"* ]]; then
+                    continue
+                fi
+            fi
             rm -rf /tmp/${file}
         done
     fi
