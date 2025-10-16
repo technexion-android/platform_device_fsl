@@ -31,7 +31,8 @@
       "exposure_ns_min": "112000",
       "exposure_ns_max": "16553000",
       "MaxWidth": "1920",
-      "MaxHeight": "1080"
+      "MaxHeight": "1080",
+      "v4l2_format": "nv12"
     },
     {
        "camera_type": "front",
