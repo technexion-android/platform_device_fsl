@@ -139,7 +139,7 @@ $(UBOOTENVSH): | $(UBOOT_OUT)
 $(UBOOT_BIN): $(UBOOTENVSH) | $(UBOOT_COLLECTION) $(UBOOT_OUT)
 	$(hide) echo "Building $(UBOOT_ARCH) $(UBOOT_VERSION) U-Boot ..."
 		. ${product_path}/AndroidUboot.sh; \
-		build_pre_image
+		build_pre_image $(TARGET_BOOTLOADER_CONFIG)
 	$(hide) for ubootplat in $(TARGET_BOOTLOADER_CONFIG); do \
 		UBOOT_PLATFORM=`echo $$ubootplat | cut -d':' -f1`; \
 		UBOOT_CONFIG=`echo $$ubootplat | cut -d':' -f2`; \
@@ -169,7 +169,7 @@ $(UBOOT_BIN): $(UBOOTENVSH) | $(UBOOT_COLLECTION) $(UBOOT_OUT)
 .PHONY: bootloader $(UBOOT_BIN) $(UBOOTENVSH)
 
 bootloader: $(UBOOT_BIN)
-	if [ -n "$(BOARD_OTA_BOOTLOADERIMAGE)" ]; then \
+	if [ -f "$(UBOOT_COLLECTION)/$(BOARD_OTA_BOOTLOADERIMAGE)" ]; then \
 		cp -fp $(UBOOT_COLLECTION)/$(BOARD_OTA_BOOTLOADERIMAGE) $(PRODUCT_OUT)/bootloader.img; \
 	fi
 
