@@ -62,6 +62,7 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/sound/soc/generic/snd-soc-simple-card.ko \
     $(KERNEL_OUT)/sound/soc/generic/snd-soc-simple-card-utils.ko \
     $(KERNEL_OUT)/drivers/mxc/hantro/hantrodec.ko \
+    $(KERNEL_OUT)/drivers/mxc/vpu/memory_usage/memory_usage.ko \
     $(KERNEL_OUT)/drivers/mxc/hantro_v4l2/vsiv4l2.ko \
     $(KERNEL_OUT)/drivers/rtc/rtc-snvs.ko \
     $(KERNEL_OUT)/drivers/pci/controller/dwc/pci-imx6.ko \

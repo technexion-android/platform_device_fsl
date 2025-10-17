@@ -195,6 +195,7 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/net/mac80211/mac80211.ko \
     $(KERNEL_OUT)/drivers/mxc/gpu-viv/galcore.ko \
     $(KERNEL_OUT)/drivers/thermal/imx_sc_thermal.ko \
+    $(KERNEL_OUT)/drivers/mxc/vpu/memory_usage/memory_usage.ko \
     $(KERNEL_OUT)/drivers/media/v4l2-core/v4l2-jpeg.ko \
     $(KERNEL_OUT)/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-encdec.ko \
     $(KERNEL_OUT)/drivers/media/platform/amphion/amphion-vpu.ko \
