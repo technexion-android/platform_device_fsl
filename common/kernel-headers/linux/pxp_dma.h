@@ -9,6 +9,11 @@
 #include <linux/posix_types.h>
 #include <linux/types.h>
 typedef unsigned long dma_addr_t;
+#ifndef __cplusplus
+#if defined(__STDC_VERSION__) && __STDC_VERSION__ > 201710
+#else
+#endif
+#endif
 #define fourcc(a,b,c,d) (((__u32) (a) << 0) | ((__u32) (b) << 8) | ((__u32) (c) << 16) | ((__u32) (d) << 24))
 #define PXP_PIX_FMT_RGB332 fourcc('R', 'G', 'B', '1')
 #define PXP_PIX_FMT_RGB444 fourcc('R', '4', '4', '4')

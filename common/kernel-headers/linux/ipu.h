@@ -9,7 +9,10 @@
 #include <linux/types.h>
 #include <linux/videodev2.h>
 #ifndef __cplusplus
+#if defined(__STDC_VERSION__) && __STDC_VERSION__ > 201710
+#else
 typedef unsigned char bool;
+#endif
 #endif
 #define irqreturn_t int
 #define dma_addr_t int
