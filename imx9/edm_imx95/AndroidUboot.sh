@@ -38,6 +38,7 @@ MKIMAGE_SOC=iMX95
 BOARD_MKIMAGE_PATH=${IMX_MKIMAGE_PATH}/imx-mkimage/${MKIMAGE_SOC}
 BOARD_SM_PATH=${IMX_PATH}/imx-sm
 BOARD_OEI_PATH=${IMX_PATH}/imx-oei
+IMX_OEI_CONFIG="edm-imx95"
 
 build_pre_image()
 {
@@ -50,55 +51,66 @@ build_pre_image()
 	make -C ${BOARD_SM_PATH} SM_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" cfg config=mx95evk-android 1>/dev/null || exit 1
 	make -C ${BOARD_SM_PATH} SM_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" all config=mx95evk-android 1>/dev/null || exit 1
 	echo Building imx-oei ...
-	make -C ${BOARD_OEI_PATH} really-clean
-	make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=mx95lp5 r=b0 oei=ddr d=1 all 1>/dev/null || exit 1
-	make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=mx95lp5 r=b0 oei=tcm d=1 all 1>/dev/null || exit 1
-	make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=mx95lp4x-15 r=b0 oei=ddr d=1 all 1>/dev/null || exit 1
+	make -C ${BOARD_OEI_PATH} really-clean # it will delete build folder
+	for config_item in "$@"; do
+		PLATFORM=$(echo "$config_item" | cut -d':' -f1)
+		echo "Platform: $PLATFORM"
+
+		if [ "$(echo ${PLATFORM} | grep 16GB)" != "" ]; then
+			make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=${IMX_OEI_CONFIG} r=b0 oei=ddr d=1 DDR_CONFIG=lpddr5_6400mbps_train_timing_16gb 1>/dev/null || exit 1
+			cp -v ${BOARD_OEI_PATH}/build/${IMX_OEI_CONFIG}/ddr/oei-m33-ddr.bin ${BOARD_OEI_PATH}/build/${IMX_OEI_CONFIG}/ddr/oei-m33-ddr-16gb.bin || exit 1
+		else
+			make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=${IMX_OEI_CONFIG} r=b0 oei=ddr d=1 DDR_CONFIG=lpddr5_6400mbps_train_timing_8gb 1>/dev/null || exit 1
+			cp -v ${BOARD_OEI_PATH}/build/${IMX_OEI_CONFIG}/ddr/oei-m33-ddr.bin ${BOARD_OEI_PATH}/build/${IMX_OEI_CONFIG}/ddr/oei-m33-ddr-8gb.bin || exit 1
+		fi
+	done
+	make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=${IMX_OEI_CONFIG} r=b0 oei=tcm d=1 all 1>/dev/null || exit 1
+#	make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=mx95lp4x-15 r=b0 oei=ddr d=1 all 1>/dev/null || exit 1
 }
 
 build_imx_uboot()
 {
 	echo Building i.MX U-Boot with firmware
-	if echo "$2" | grep -q "15x15" ; then
-		cp ${BOARD_OEI_PATH}/build/mx95lp4x-15/ddr/oei-m33-ddr.bin ${BOARD_MKIMAGE_PATH}/oei-m33-ddr.bin
+	if echo "$2" | grep -q "16GB" ; then
+		cp -v ${BOARD_OEI_PATH}/build/${IMX_OEI_CONFIG}/ddr/oei-m33-ddr-16gb.bin ${BOARD_MKIMAGE_PATH}/oei-m33-ddr.bin || exit 1
 	else
-		cp ${BOARD_OEI_PATH}/build/mx95lp5/ddr/oei-m33-ddr.bin ${BOARD_MKIMAGE_PATH}/oei-m33-ddr.bin
+		cp -v ${BOARD_OEI_PATH}/build/${IMX_OEI_CONFIG}/ddr/oei-m33-ddr-8gb.bin  ${BOARD_MKIMAGE_PATH}/oei-m33-ddr.bin || exit 1
 	fi
-	cp ${BOARD_OEI_PATH}/build/mx95lp5/tcm/oei-m33-tcm.bin ${BOARD_MKIMAGE_PATH}
+	cp -v ${BOARD_OEI_PATH}/build/${IMX_OEI_CONFIG}/tcm/oei-m33-tcm.bin ${BOARD_MKIMAGE_PATH} || exit 1
 
 	if [ `echo $2 | cut -d '-' -f2` = "trusty" ]; then
-		cp ${BOARD_SM_PATH}/build/mx95evk-android/m33_image.bin ${BOARD_MKIMAGE_PATH}/m33_image.bin
+		cp -v ${BOARD_SM_PATH}/build/mx95evk-android/m33_image.bin ${BOARD_MKIMAGE_PATH}/m33_image.bin || exit 1
 	elif [ `echo $2 | cut -d '-' -f2` = "rpmsg" ]; then
-		cp ${BOARD_SM_PATH}/build/mx95evkrpmsg/m33_image.bin ${BOARD_MKIMAGE_PATH}/m33_image.bin
+		cp -v ${BOARD_SM_PATH}/build/mx95evkrpmsg/m33_image.bin ${BOARD_MKIMAGE_PATH}/m33_image.bin || exit 1
 	else
-		cp ${BOARD_SM_PATH}/build/mx95evk/m33_image.bin ${BOARD_MKIMAGE_PATH}/m33_image.bin
+		cp -v ${BOARD_SM_PATH}/build/mx95evk/m33_image.bin ${BOARD_MKIMAGE_PATH}/m33_image.bin || exit 1
 	fi
 
 	if echo "$2" | grep -q "15x15" ; then
-		cp ${FSL_PROPRIETARY_PATH}/fsl-proprietary/mcu-sdk/imx95/imx95_15x15_mcu_demo.img ${BOARD_MKIMAGE_PATH}/m7_image.bin
+		cp -v ${FSL_PROPRIETARY_PATH}/fsl-proprietary/mcu-sdk/imx95/imx95_15x15_mcu_demo.img ${BOARD_MKIMAGE_PATH}/m7_image.bin || exit 1
 	elif echo "$2" | grep -q "verdin" ; then
-		cp ${FSL_PROPRIETARY_PATH}/fsl-proprietary/mcu-sdk/imx95/imx95_verdin_mcu_demo.img ${BOARD_MKIMAGE_PATH}/m7_image.bin
+		cp -v ${FSL_PROPRIETARY_PATH}/fsl-proprietary/mcu-sdk/imx95/imx95_verdin_mcu_demo.img ${BOARD_MKIMAGE_PATH}/m7_image.bin || exit 1
 	else
 		if [ "${ENABLE_CONTEXTHUB}" = "true" ]; then
-			cp ${FSL_PROPRIETARY_PATH}/fsl-proprietary/mcu-sdk/imx95/imx95_19x19_mcu_demo_chre.img ${BOARD_MKIMAGE_PATH}/m7_image.bin
+			cp -v ${FSL_PROPRIETARY_PATH}/fsl-proprietary/mcu-sdk/imx95/imx95_19x19_mcu_demo_chre.img ${BOARD_MKIMAGE_PATH}/m7_image.bin || exit 1
 		else
-			cp ${FSL_PROPRIETARY_PATH}/fsl-proprietary/mcu-sdk/imx95/imx95_19x19_mcu_demo.img ${BOARD_MKIMAGE_PATH}/m7_image.bin
+			cp -v ${FSL_PROPRIETARY_PATH}/fsl-proprietary/mcu-sdk/imx95/imx95_19x19_mcu_demo.img ${BOARD_MKIMAGE_PATH}/m7_image.bin || exit 1
 		fi
 	fi
 
-	cp ${FSL_PROPRIETARY_PATH}/ele/mx95b0-ahab-container.img ${BOARD_MKIMAGE_PATH}/mx95b0-ahab-container.img
-	cp ${UBOOT_OUT}/u-boot.$1 ${BOARD_MKIMAGE_PATH}
-	cp ${UBOOT_OUT}/spl/u-boot-spl.bin ${BOARD_MKIMAGE_PATH}
-	cp ${UBOOT_OUT}/tools/mkimage ${BOARD_MKIMAGE_PATH}/mkimage_uboot
-	cp ${FSL_PROPRIETARY_PATH}/linux-firmware-imx/firmware/ddr/synopsys/lpddr4x_imem_* ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX95/
-	cp ${FSL_PROPRIETARY_PATH}/linux-firmware-imx/firmware/ddr/synopsys/lpddr4x_dmem_* ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX95/
-	cp ${FSL_PROPRIETARY_PATH}/linux-firmware-imx/firmware/ddr/synopsys/lpddr5_imem_* ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX95/
-	cp ${FSL_PROPRIETARY_PATH}/linux-firmware-imx/firmware/ddr/synopsys/lpddr5_dmem_* ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX95/
+	cp -v ${FSL_PROPRIETARY_PATH}/ele/mx95b0-ahab-container.img ${BOARD_MKIMAGE_PATH}/mx95b0-ahab-container.img || exit 1
+	cp -v ${UBOOT_OUT}/u-boot.$1 ${BOARD_MKIMAGE_PATH}
+	cp -v ${UBOOT_OUT}/spl/u-boot-spl.bin ${BOARD_MKIMAGE_PATH}
+	cp -v ${UBOOT_OUT}/tools/mkimage ${BOARD_MKIMAGE_PATH}/mkimage_uboot
+	cp -v ${FSL_PROPRIETARY_PATH}/linux-firmware-imx/firmware/ddr/synopsys/lpddr4x_imem_* ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX95/
+	cp -v ${FSL_PROPRIETARY_PATH}/linux-firmware-imx/firmware/ddr/synopsys/lpddr4x_dmem_* ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX95/
+	cp -v ${FSL_PROPRIETARY_PATH}/linux-firmware-imx/firmware/ddr/synopsys/lpddr5_imem_* ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX95/
+	cp -v ${FSL_PROPRIETARY_PATH}/linux-firmware-imx/firmware/ddr/synopsys/lpddr5_dmem_* ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX95/
 
 	# build ATF based on whether tee is involved
 	make -C ${IMX_PATH}/arm-trusted-firmware/ PLAT=`echo $2 | cut -d '-' -f1` clean
 	if [ `echo $2 | cut -d '-' -f2` = "trusty" ] && [ `echo $2 | rev | cut -d '-' -f1` != "uuu" ]; then
-		cp ${FSL_PROPRIETARY_PATH}/fsl-proprietary/uboot-firmware/imx95/tee-imx95.bin ${BOARD_MKIMAGE_PATH}/tee.bin
+		cp -v ${FSL_PROPRIETARY_PATH}/fsl-proprietary/uboot-firmware/imx95/tee-imx95.bin ${BOARD_MKIMAGE_PATH}/tee.bin
 		make -C ${IMX_PATH}/arm-trusted-firmware/ CROSS_COMPILE="${ATF_CROSS_COMPILE}" PLAT=`echo $2 | cut -d '-' -f1` bl31 -B SPD=trusty 1>/dev/null || exit 1
 	else
 		if [ -f ${BOARD_MKIMAGE_PATH}/tee.bin ] ; then
@@ -107,7 +119,7 @@ build_imx_uboot()
 		make -C ${IMX_PATH}/arm-trusted-firmware/ CROSS_COMPILE="${ATF_CROSS_COMPILE}" PLAT=`echo $2 | cut -d '-' -f1` bl31 -B 1>/dev/null || exit 1
 	fi
 
-	cp ${IMX_PATH}/arm-trusted-firmware/build/`echo $2 | cut -d '-' -f1`/release/bl31.bin ${BOARD_MKIMAGE_PATH}/bl31.bin
+	cp -v ${IMX_PATH}/arm-trusted-firmware/build/`echo $2 | cut -d '-' -f1`/release/bl31.bin ${BOARD_MKIMAGE_PATH}/bl31.bin
 
 	make -C ${IMX_MKIMAGE_PATH}/imx-mkimage/ clean
 	# in imx-mkimage/Makefile, MKIMG is assigned with a value of "$(PWD)/mkimage_imx8", the value of PWD is set by shell to current
@@ -126,10 +138,10 @@ build_imx_uboot()
 	PWD=${pwd_backup}
 
 	if [ `echo $2 | rev | cut -d '-' -f1 | rev` != "dual" ]; then
-		cp ${BOARD_MKIMAGE_PATH}/flash.bin ${UBOOT_COLLECTION}/u-boot-$2.imx
+		cp -v ${BOARD_MKIMAGE_PATH}/flash.bin ${UBOOT_COLLECTION}/u-boot-$2.imx
 	else
-		cp ${BOARD_MKIMAGE_PATH}/boot-spl-container.img ${UBOOT_COLLECTION}/spl-$2.bin
-		cp ${BOARD_MKIMAGE_PATH}/u-boot-atf-container.img ${UBOOT_COLLECTION}/bootloader-$2.img
+		cp -v ${BOARD_MKIMAGE_PATH}/boot-spl-container.img ${UBOOT_COLLECTION}/spl-$2.bin
+		cp -v ${BOARD_MKIMAGE_PATH}/u-boot-atf-container.img ${UBOOT_COLLECTION}/bootloader-$2.img
 	fi
 
 }
