@@ -3,6 +3,7 @@ TARGET_BOOTLOADER_POSTFIX := bin
 UBOOT_POST_PROCESS := true
 
 # u-boot target
+TARGET_BOOTLOADER_BASE_CONFIG := axon-imx8mp_defconfig
 TARGET_BOOTLOADER_CONFIG := imx8mp:axon-imx8mp_android_defconfig
 #TARGET_BOOTLOADER_CONFIG += imx8mp-trusty-secure-unlock-dual:axon-imx8mp_android_trusty_secure_unlock_dual_defconfig
 #TARGET_BOOTLOADER_CONFIG += imx8mp-dual:axon-imx8mp_android_dual_defconfig
