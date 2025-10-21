@@ -14,7 +14,7 @@ include $(CONFIG_REPO_PATH)/imx8m/BoardConfigCommon.mk
 BOARD_SOC_TYPE := ${SOC_MODEL}
 BOARD_HAVE_VPU := true
 BOARD_VPU_TYPE := hantro
-HAVE_FSL_IMX_GPU2D := false
+HAVE_FSL_IMX_GPU2D := true
 HAVE_FSL_IMX_GPU3D := true
 HAVE_FSL_IMX_PXP := false
 TARGET_USES_HWC2 := true
@@ -41,12 +41,6 @@ SOONG_CONFIG_IMXPLUGIN_CFG_SECURE_IOCTRL_REGS = true
 SOONG_CONFIG_IMXPLUGIN_ENABLE_SEC_DMABUF_HEAP = true
 endif
 
-
-# -------@block_memory-------
-USE_ION_ALLOCATOR := true
-USE_GPU_ALLOCATOR := false
-
-
 # -------@block_storage-------
 
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -56,10 +50,10 @@ TARGET_USERIMAGES_SPARSE_EXT_DISABLED := false
 
 # Support gpt
 ifeq ($(TARGET_USE_DYNAMIC_PARTITIONS),true)
-  BOARD_BPT_INPUT_FILES += $(CONFIG_REPO_PATH)/common/partition/device-partitions-13GB-ab_super.bpt
-  ADDITION_BPT_PARTITION = partition-table-28GB:$(CONFIG_REPO_PATH)/common/partition/device-partitions-28GB-ab_super.bpt \
-                           partition-table-dual:$(CONFIG_REPO_PATH)/common/partition/device-partitions-13GB-ab-dual-bootloader_super.bpt \
-                           partition-table-28GB-dual:$(CONFIG_REPO_PATH)/common/partition/device-partitions-28GB-ab-dual-bootloader_super.bpt
+  BOARD_BPT_INPUT_FILES += $(CONFIG_REPO_PATH)/common/partition/device-partitions-28GB-ab_super.bpt
+  ADDITION_BPT_PARTITION = partition-table-13GB:$(CONFIG_REPO_PATH)/common/partition/device-partitions-13GB-ab_super.bpt \
+                           partition-table-dual:$(CONFIG_REPO_PATH)/common/partition/device-partitions-28GB-ab-dual-bootloader_super.bpt \
+                           partition-table-13GB-dual:$(CONFIG_REPO_PATH)/common/partition/device-partitions-13GB-ab-dual-bootloader_super.bpt
 else
   ifeq ($(IMX_NO_PRODUCT_PARTITION),true)
     BOARD_BPT_INPUT_FILES += $(CONFIG_REPO_PATH)/common/partition/device-partitions-13GB-ab-no-product.bpt
@@ -193,7 +187,6 @@ BOARD_HAVE_BLUETOOTH_NXP := true
 
 endif
 
-
 # -------@block_touch-------
 BOARD_VENDOR_KERNEL_MODULES += \
     $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/drivers/input/touchscreen/exc3000.ko
@@ -215,7 +208,6 @@ BOARD_BOOTCONFIG += androidboot.console=ttymxc1 androidboot.hardware=nxp
 
 ## memory config
 #BOARD_KERNEL_CMDLINE += transparent_hugepage=never
-#BOARD_KERNEL_CMDLINE += swiotlb=65536
 
 # display config
 BOARD_BOOTCONFIG += androidboot.lcd_density=240
@@ -231,6 +223,9 @@ BOARD_BOOTCONFIG += androidboot.displaymode=720p
 else
 BOARD_KERNEL_CMDLINE += cma=$(CMASIZE)@0x400M-0x1000M
 endif
+
+# Add KVM support
+BOARD_BOOTCONFIG += androidboot.hypervisor.vm.supported=true
 
 ## powersave config
 ifeq ($(POWERSAVE),true)
@@ -271,6 +266,8 @@ ALL_DEFAULT_INSTALLED_MODULES += $(BOARD_VENDOR_KERNEL_MODULES)
 BOARD_SEPOLICY_DIRS := \
  $(CONFIG_REPO_PATH)/imx8m/sepolicy \
  $(IMX_DEVICE_PATH)/sepolicy
+
+HAS_SYSTEM_EXT_SEPOLICY := true
 
 BOARD_SEPOLICY_DIRS += vendor/technexion/sepolicy/vendor vendor/technexion/sepolicy/$(SOC_MODEL_LT)
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += vendor/technexion/sepolicy/system
