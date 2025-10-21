@@ -29,3 +29,8 @@ IMX_NO_PRODUCT_PARTITION := false
 
 # -------@block_infrastructure-------
 CONFIG_REPO_PATH := device/nxp
+
+ifeq ($(SUPPORT_GBL),true)
+# Enable this to include the dtb images into vendor_boot image.
+TARGET_INCLUDE_DTB_TO_VENDOR_BOOT ?= true
+endif

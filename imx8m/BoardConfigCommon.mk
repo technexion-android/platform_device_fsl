@@ -63,7 +63,9 @@ BOARD_RAMDISK_OFFSET := 0x04280000
 ifeq ($(TARGET_USE_VENDOR_BOOT),true)
 BOARD_BOOT_HEADER_VERSION := 4
 BOARD_INIT_BOOT_HEADER_VERSION := 4
-BOARD_INCLUDE_DTB_IN_BOOTIMG := false
+ifeq ($(TARGET_INCLUDE_DTB_TO_VENDOR_BOOT),true)
+BOARD_INCLUDE_DTB_IN_BOOTIMG := true
+endif
 else
 BOARD_BOOT_HEADER_VERSION := 1
 endif
@@ -104,14 +106,20 @@ PRODUCT_VIRTUAL_AB_COMPRESSION_METHOD := lz4
 ifeq ($(IMX_NO_PRODUCT_PARTITION),true)
 AB_OTA_PARTITIONS += dtbo boot system system_dlkm system_ext vendor vendor_dlkm vbmeta
 else
-ifeq ($(TARGET_USE_VENDOR_BOOT),true)
-AB_OTA_PARTITIONS += dtbo boot init_boot vendor_boot system system_dlkm system_ext vendor vendor_dlkm vbmeta product
-else
-AB_OTA_PARTITIONS += dtbo boot system system_dlkm system_ext vendor vendor_dlkm vbmeta product
-endif
+  ifeq ($(TARGET_USE_VENDOR_BOOT),true)
+    ifeq ($(TARGET_INCLUDE_DTB_TO_VENDOR_BOOT),true)
+      AB_OTA_PARTITIONS += boot init_boot vendor_boot system system_dlkm system_ext vendor vendor_dlkm vbmeta product
+    else
+      AB_OTA_PARTITIONS += dtbo boot init_boot vendor_boot system system_dlkm system_ext vendor vendor_dlkm vbmeta product
+      endif
+  else
+    AB_OTA_PARTITIONS += dtbo boot system system_dlkm system_ext vendor vendor_dlkm vbmeta product
+  endif
 endif
 
+ifneq ($(TARGET_INCLUDE_DTB_TO_VENDOR_BOOT),true)
 BOARD_DTBOIMG_PARTITION_SIZE := 4194304
+endif
 
 # uncomment below to enable gbl OTA
 #AB_OTA_PARTITIONS += efisp

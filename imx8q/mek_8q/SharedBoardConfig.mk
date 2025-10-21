@@ -286,6 +286,11 @@ IMX_NO_PRODUCT_PARTITION := false
 ifeq ($(TARGET_PRODUCT),mek_8q)
   #Enable this to use dynamic partitions for the readonly partitions not touched by bootloader
   TARGET_USE_DYNAMIC_PARTITIONS ?= true
+
+  # Enable this to include the dtb images into vendor_boot image.
+  ifeq ($(SUPPORT_GBL),true)
+      TARGET_INCLUDE_DTB_TO_VENDOR_BOOT ?= true
+  endif
 endif
 
 ifeq ($(TARGET_PRODUCT),mek_8q_car)

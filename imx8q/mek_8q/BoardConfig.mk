@@ -4,12 +4,14 @@ TARGET_USERIMAGES_USE_EXT4 := true
 # use sparse image.
 TARGET_USERIMAGES_SPARSE_EXT_DISABLED := false
 
+ifneq ($(TARGET_INCLUDE_DTB_TO_VENDOR_BOOT),true)
 BOARD_PREBUILT_DTBOIMAGE := $(OUT_DIR)/target/product/$(PRODUCT_DEVICE)/dtbo-imx8qm-revd.img
 ifeq ($(OTA_TARGET),8qxp)
 BOARD_PREBUILT_DTBOIMAGE := $(OUT_DIR)/target/product/$(PRODUCT_DEVICE)/dtbo-imx8qxp.img
 endif
 ifeq ($(OTA_TARGET),8qxp-c0)
 BOARD_PREBUILT_DTBOIMAGE := $(OUT_DIR)/target/product/$(PRODUCT_DEVICE)/dtbo-imx8qxp.img
+endif
 endif
 
 BOARD_USES_METADATA_PARTITION := true
@@ -113,6 +115,9 @@ endif
 # For Android Auto with M4 EVS, fstab entries in dtb are in the form of non-dynamic partition by default
 # For Android Auto without M4 EVS, fstab entries in dtb are in the form of dynamic partition by default
 # For standard Android, the form of fstab entries in dtb depend on the value of "TARGET_USE_DYNAMIC_PARTITIONS"
+#
+# When dtbs was included into vendor_boot image, below dtbs should be aligned
+# with the same sequence in "imx_android_dt_mapping.h" in u-boot.
 ifeq ($(PRODUCT_IMX_CAR),true)
   ifeq ($(PRODUCT_IMX_CAR_M4),true)
     ifeq ($(IMX_NO_PRODUCT_PARTITION),true)

@@ -34,6 +34,27 @@ TARGET_DTB :=
 $(foreach dts_config,$(TARGET_BOARD_DTS_CONFIG), \
 	$(eval TARGET_DTB += $(addprefix $(DTB_OUT_PATH),$(shell echo ${dts_config} | cut -d':' -f2))))
 
+.PHONY: dtboimage
+
+ifeq ($(TARGET_INCLUDE_DTB_TO_VENDOR_BOOT), true)
+# Include all dtb into vendor_boot partition
+
+INSTALLED_DTBIMAGE_TARGET := $(PRODUCT_OUT)/dtb.img
+$(INSTALLED_DTBIMAGE_TARGET): $(KERNEL_BIN) $(TARGET_DTB) | $(MKDTIMG)
+	$(hide) echo "Building $(KERNEL_ARCH) dtb ..."
+	$(hide) dtb_args=""; \
+	i=0; \
+	for dtb in $(TARGET_DTB); do \
+		dtb_args="$$dtb_args $$dtb --id=0x$$(printf '%08x' $$i)"; \
+		i=$$((i + 1)); \
+	done; \
+	echo "Construct dtb image with args: $$dtb_args"; \
+	$(MKDTIMG) create $(INSTALLED_DTBIMAGE_TARGET) $$dtb_args
+
+dtboimage: $(INSTALLED_DTBIMAGE_TARGET)
+else
+# Build standalone dtbo image for each device tree.
+
 $(BOARD_PREBUILT_DTBOIMAGE): $(KERNEL_BIN) $(TARGET_DTB) | $(MKDTIMG) $(AVBTOOL)
 	$(hide) echo "Building $(KERNEL_ARCH) dtbo ..."
 	for dtsplat in $(TARGET_BOARD_DTS_CONFIG); do \
@@ -47,7 +68,6 @@ $(BOARD_PREBUILT_DTBOIMAGE): $(KERNEL_BIN) $(TARGET_DTB) | $(MKDTIMG) $(AVBTOOL)
 			--partition_size $(BOARD_DTBOIMG_PARTITION_SIZE); \
 	done
 
-.PHONY: dtboimage
 dtboimage: $(BOARD_PREBUILT_DTBOIMAGE)
 
 IMX_INSTALLED_VBMETAIMAGE_TARGET := $(PRODUCT_OUT)/vbmeta-$(shell echo $(word 1,$(TARGET_BOARD_DTS_CONFIG)) | cut -d':' -f1).img
@@ -80,6 +100,7 @@ imx_vbmetaimage: IMX_INSTALLED_RECOVERYIMAGE_TARGET $(IMX_INSTALLED_VBMETAIMAGE_
 droid: imx_vbmetaimage
 otapackage: imx_vbmetaimage
 target-files-package: imx_vbmetaimage
+endif
 
 ifeq (true,$(BOARD_BUILD_SUPER_IMAGE_BY_DEFAULT))
 otapackage: superimage_empty superimage
@@ -91,9 +112,3 @@ target-files-package: signapk
 
 otapackage: gen_update_config
 target-files-package: gen_update_config
-
-ifeq ($(TARGET_USE_VENDOR_BOOT), true)
-INSTALLED_DTBIMAGE_TARGET := $(PRODUCT_OUT)/dtb.img
-$(INSTALLED_DTBIMAGE_TARGET): $(KERNEL_BIN) $(TARGET_DTB)
-	cp $(word 1,$(TARGET_DTB)) $(INSTALLED_DTBIMAGE_TARGET)
-endif

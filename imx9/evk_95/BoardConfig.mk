@@ -47,7 +47,9 @@ TARGET_USERIMAGES_USE_EXT4 := true
 # use sparse image.
 TARGET_USERIMAGES_SPARSE_EXT_DISABLED := false
 
+ifneq ($(TARGET_INCLUDE_DTB_TO_VENDOR_BOOT),true)
 BOARD_PREBUILT_DTBOIMAGE := $(OUT_DIR)/target/product/$(PRODUCT_DEVICE)/dtbo-imx95.img
+endif
 
 BOARD_USES_METADATA_PARTITION := true
 BOARD_ROOT_EXTRA_FOLDERS += metadata
@@ -139,6 +141,8 @@ ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
 BOARD_BOOTCONFIG += androidboot.vendor.sysrq=1
 endif
 
+# When dtbs was included into vendor_boot image, below dtbs should be aligned
+# with the same sequence in "imx_android_dt_mapping.h" in u-boot.
 TARGET_BOARD_DTS_CONFIG := imx95:imx95-19x19-evk-os08a20-isp-adv7535.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-ox03c10:imx95-19x19-evk-ox03c10-isp-adv7535.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-ap1302:imx95-19x19-evk-adv7535-ap1302.dtb
