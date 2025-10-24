@@ -266,7 +266,7 @@ if [ "${enable_bazel}" -eq 1 ]; then
   # Update symbol list
   if [ -n "${build_abi_update_symbol_list}" ]; then
     run_bazel_target \
-      --target="//kernel_imx:imx_modules_abi_update_symbol_list" \
+      --target="//kernel_imx:imx_ddk_modules_abi_update_symbol_list" \
       --label="bazel_abi_update_symbol_list"
 
     # Exit after successful build
