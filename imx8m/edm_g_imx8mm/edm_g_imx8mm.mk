@@ -419,7 +419,7 @@ PRODUCT_PACKAGES += \
 
 # nxp iw416 wifi and bluetooth combo firmware
 PRODUCT_COPY_FILES += \
-    vendor/nxp/imx-firmware/nxp/FwImage_IW416_SD/sdiouartiw416_combo_v0.bin:vendor/firmware/sdiouartiw416_combo_v0.bin \
+    vendor/nxp/imx-firmware/nxp/FwImage_IW416_SD/sduartiw416_combo.bin:vendor/firmware/sduartiw416_combo.bin \
     vendor/nxp/imx-firmware/nxp/android_wifi_mod_para.conf:vendor/firmware/nxp/android_wifi_mod_para.conf \
     hardware/nxp/libbt/conf/nxp/edm_g_imx8mm/bt_vendor.conf:/vendor/etc/bluetooth/bt_vendor.conf
 #endif
