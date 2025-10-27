@@ -20,7 +20,7 @@ HAVE_FSL_IMX_GPU2D := true
 HAVE_FSL_IMX_GPU3D := true
 HAVE_FSL_IMX_PXP := false
 TARGET_USES_HWC2 := true
-TARGET_HAVE_VULKAN := true
+TARGET_HAVE_VULKAN := false
 
 SOONG_CONFIG_IMXPLUGIN += \
                           BOARD_VPU_TYPE
@@ -32,10 +32,6 @@ SOONG_CONFIG_IMXPLUGIN_BOARD_VPU_ONLY = false
 SOONG_CONFIG_IMXPLUGIN_PREBUILT_FSL_IMX_CODEC = true
 SOONG_CONFIG_IMXPLUGIN_POWERSAVE = false
 
-# -------@block_memory-------
-USE_ION_ALLOCATOR := true
-USE_GPU_ALLOCATOR := false
-
 # -------@block_storage-------
 TARGET_USERIMAGES_USE_EXT4 := true
 
@@ -44,10 +40,10 @@ TARGET_USERIMAGES_SPARSE_EXT_DISABLED := false
 
 # Support gpt
 ifeq ($(TARGET_USE_DYNAMIC_PARTITIONS),true)
-  BOARD_BPT_INPUT_FILES += $(CONFIG_REPO_PATH)/common/partition/device-partitions-13GB-ab_super.bpt
-  ADDITION_BPT_PARTITION = partition-table-28GB:$(CONFIG_REPO_PATH)/common/partition/device-partitions-28GB-ab_super.bpt \
-                           partition-table-dual:$(CONFIG_REPO_PATH)/common/partition/device-partitions-13GB-ab-dual-bootloader_super.bpt \
-                           partition-table-28GB-dual:$(CONFIG_REPO_PATH)/common/partition/device-partitions-28GB-ab-dual-bootloader_super.bpt
+  BOARD_BPT_INPUT_FILES += $(CONFIG_REPO_PATH)/common/partition/device-partitions-28GB-ab_super.bpt
+  ADDITION_BPT_PARTITION = partition-table-13GB:$(CONFIG_REPO_PATH)/common/partition/device-partitions-13GB-ab_super.bpt \
+                           partition-table-dual:$(CONFIG_REPO_PATH)/common/partition/device-partitions-28GB-ab-dual-bootloader_super.bpt \
+                           partition-table-13GB-dual:$(CONFIG_REPO_PATH)/common/partition/device-partitions-13GB-ab-dual-bootloader_super.bpt
 else
   ifeq ($(IMX_NO_PRODUCT_PARTITION),true)
     BOARD_BPT_INPUT_FILES += $(CONFIG_REPO_PATH)/common/partition/device-partitions-13GB-ab-no-product.bpt
@@ -201,6 +197,9 @@ endif
 # Disable fw_devlink.strict
 #BOARD_KERNEL_CMDLINE += fw_devlink.strict=0
 
+# Add KVM support
+BOARD_BOOTCONFIG += androidboot.hypervisor.vm.supported=true
+
 ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
 BOARD_BOOTCONFIG += androidboot.vendor.sysrq=1
 endif
@@ -232,6 +231,8 @@ ALL_DEFAULT_INSTALLED_MODULES += $(BOARD_VENDOR_KERNEL_MODULES)
 BOARD_SEPOLICY_DIRS := \
  $(CONFIG_REPO_PATH)/imx8m/sepolicy \
  $(IMX_DEVICE_PATH)/sepolicy
+
+HAS_SYSTEM_EXT_SEPOLICY := true
 
 BOARD_SEPOLICY_DIRS += vendor/technexion/sepolicy/vendor vendor/technexion/sepolicy/$(SOC_MODEL_LT)
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += vendor/technexion/sepolicy/system
