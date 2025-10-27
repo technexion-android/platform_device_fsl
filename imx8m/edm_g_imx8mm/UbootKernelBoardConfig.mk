@@ -3,6 +3,7 @@ TARGET_BOOTLOADER_POSTFIX := bin
 UBOOT_POST_PROCESS := true
 
 # u-boot target
+TARGET_BOOTLOADER_BASE_CONFIG := edm-g-imx8mm_defconfig
 TARGET_BOOTLOADER_CONFIG := imx8mm:edm-g-imx8mm_android_defconfig
 TARGET_BOOTLOADER_CONFIG += imx8mm-evk-uuu:edm-g-imx8mm_android_defconfig
 
