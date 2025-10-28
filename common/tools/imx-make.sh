@@ -331,7 +331,7 @@ if [ -n "${build_kernel_modules}" ] && [ ${TARGET_PRODUCT} = "mek_8q" ]; then
     make -f ${nxp_git_path}/common/build/encrypt_and_sign_firmware.mk manifest build encrypt sign clean< /dev/null || exit
 fi
 
-if [ -n "${build_kernel}" ] && [ ${TARGET_PRODUCT} = "evk_95" ]; then
+if [ -n "${build_kernel}" ] && [[ ${TARGET_PRODUCT} == *95* ]]; then
     make -f ${nxp_git_path}/common/build/encrypt_and_sign_firmware.mk manifest build encrypt sign clean< /dev/null || exit
 fi
 
