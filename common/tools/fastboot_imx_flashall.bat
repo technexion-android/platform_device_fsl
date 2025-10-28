@@ -38,7 +38,7 @@ set /A support_dynamic_partition=0
 set /A support_vendor_boot=0
 set /A support_init_boot=0
 set /A support_gbl=0
-set /A set_gbl_default_block=1
+set /A set_gbl_default_block=0
 set dual_bootloader_partition=
 set bootloader_flashed_to_board=
 set uboot_proper_to_be_flashed=
@@ -505,8 +505,15 @@ set init_boot_partition=init_boot%1
 goto :eof
 
 :flash_android
+%fastboot_tool% getvar all 2> fastboot_var.log
+:: check if we need to set gbl-default-block
+find "gbl-default-block" fastboot_var.log > nul && set /A set_gbl_default_block=1
+
 :: set gbl default block or gpt partition may not be recognized.
-%fastboot_tool% oem gbl-set-default-block 0 || set /A set_gbl_default_block=0
+if %set_gbl_default_block% == 1 (
+    %fastboot_tool% oem gbl-set-default-block 0
+)
+del fastboot_var.log
 
 call :flash_partition gpt || set /A error_level=1 && goto :exit
 
@@ -558,20 +565,24 @@ if %support_dualslot% == 0 set slot=
 if %support_dual_bootloader% == 1 (
     if not [%slot%] == [] (
         call :flash_partition bootloader%slot% || set /A error_level=1 && goto :exit
-        if %support_gbl% == 1 (
-            call :flash_partition efisp%slot% || set /A error_level=1 && goto :exit
-        )
         %fastboot_tool% set_active %slot:~-1%
     ) else (
         call :flash_partition bootloader_a || set /A error_level=1 && goto :exit
         call :flash_partition bootloader_b || set /A error_level=1 && goto :exit
-        if %support_gbl% == 1 (
-            call :flash_partition efisp_a || set /A error_level=1 && goto :exit
-            call :flash_partition efisp_b || set /A error_level=1 && goto :exit
-        )
         %fastboot_tool% set_active a
     )
 )
+
+:: if support_gbl feature is enabled, flash the efisp image
+if %support_gbl% == 1 (
+    if not [%slot%] == [] (
+        call :flash_partition efisp%slot% || set /A error_level=1 && goto :exit
+    ) else (
+        call :flash_partition efisp_a || set /A error_level=1 && goto :exit
+        call :flash_partition efisp_b || set /A error_level=1 && goto :exit
+    )
+)
+
 :: full uboot is flashed to the board and active slot is set, reboot to u-boot fastboot boot command
 :: XEN images on mek_8qm, it can't reboot
 if not [%dtb_feature%] == [xen] (

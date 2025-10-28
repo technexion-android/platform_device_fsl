@@ -225,8 +225,21 @@ function flash_partition_name
 
 function flash_android
 {
+    randome_part=$RANDOM
+    while [ -f /tmp/fastboot_var.log${randome_part} ]; do
+        randome_part=$RANDOM
+    done
+    fastboot_var_file=fastboot_var.log${randome_part}
+    ${fastboot_tool} getvar all 2>/tmp/${fastboot_var_file}
+
+    # check if we need to set gbl-default-block
+    grep -q "gbl-default-block" /tmp/${fastboot_var_file} && set_gbl_default_block=1
+    rm -rf /tmp/${fastboot_var_file}
+
     # set gbl default block or gpt partition may not be recognized.
-    ${fastboot_tool} oem gbl-set-default-block 0 || set_gbl_default_block=0
+    if [ ${set_gbl_default_block} -eq 1 ]; then
+        ${fastboot_tool} oem gbl-set-default-block 0
+    fi
 
     # a precondition: the location of gpt partition and the partition for uboot or spl(in dual bootloader condition)
     # should be the same for the u-boot just boot up the board and the on to be flashed to the board
@@ -236,12 +249,6 @@ function flash_android
     if [ ${set_gbl_default_block} -eq 1 ]; then
         ${fastboot_tool} oem gbl-unset-default-block
     fi
-
-    randome_part=$RANDOM
-    while [ -f /tmp/fastboot_var.log${randome_part} ]; do
-        randome_part=$RANDOM
-    done
-    fastboot_var_file=fastboot_var.log${randome_part}
 
     ${fastboot_tool} getvar all 2>/tmp/${fastboot_var_file}
     grep -q "bootloader_a" /tmp/${fastboot_var_file} && support_dual_bootloader=1
@@ -289,23 +296,26 @@ function flash_android
         if [ "${slot}" != "" ]; then
             dual_bootloader_partition="bootloader"${slot}
             flash_partition ${dual_bootloader_partition}
-            if [ ${support_gbl} -eq 1 ]; then
-                gbl_partition="efisp"${slot}
-                flash_partition ${gbl_partition}
-            fi
             ${fastboot_tool} set_active ${slot#_}
         else
             dual_bootloader_partition="bootloader_a"
             flash_partition ${dual_bootloader_partition}
             dual_bootloader_partition="bootloader_b"
             flash_partition ${dual_bootloader_partition}
-            if [ ${support_gbl} -eq 1 ]; then
-                gbl_partition="efisp_a"
-                flash_partition ${gbl_partition}
-                gbl_partition="efisp_b"
-                flash_partition ${gbl_partition}
-            fi
             ${fastboot_tool} set_active a
+        fi
+    fi
+
+    #if support_gbl feature is enabled, flash the efisp image
+    if [ ${support_gbl} -eq 1 ]; then
+        if [ "${slot}" != "" ]; then
+            gbl_partition="efisp"${slot}
+            flash_partition ${gbl_partition}
+        else
+            gbl_partition="efisp_a"
+            flash_partition ${gbl_partition}
+            gbl_partition="efisp_b"
+            flash_partition ${gbl_partition}
         fi
     fi
 
@@ -369,7 +379,7 @@ support_dynamic_partition=0
 support_vendor_boot=0
 support_init_boot=0
 support_gbl=0
-set_gbl_default_block=1
+set_gbl_default_block=0
 dual_bootloader_partition=""
 bootloader_flashed_to_board=""
 uboot_proper_to_be_flashed=""

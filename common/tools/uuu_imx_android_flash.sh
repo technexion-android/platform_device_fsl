@@ -298,12 +298,11 @@ function flash_userpartitions
     if [ ${support_dual_bootloader} -eq 1 ]; then
         flash_partition ${dual_bootloader_partition}
     fi
-    if [ ${support_dtbo} -eq 1 ]; then
-        flash_partition ${dtbo_partition}
-
     if [ ${support_gbl} -eq 1 ]; then
         flash_partition ${gbl_partition}
     fi
+    if [ ${support_dtbo} -eq 1 ]; then
+        flash_partition ${dtbo_partition}
     fi
 
     flash_partition ${boot_partition}

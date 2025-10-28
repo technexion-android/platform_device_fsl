@@ -958,8 +958,8 @@ goto :eof
 
 :flash_userpartitions
 if %support_dual_bootloader% == 1 call :flash_partition %dual_bootloader_partition% || set /A error_level=1 && goto :exit
-if %support_dtbo% == 1 call :flash_partition %dtbo_partition% || set /A error_level=1 && goto :exit
 if %support_gbl% == 1 call :flash_partition %gbl_partition% || set /A error_level=1 && goto :exit
+if %support_dtbo% == 1 call :flash_partition %dtbo_partition% || set /A error_level=1 && goto :exit
 if %support_recovery% == 1 call :flash_partition %recovery_partition% || set /A error_level=1 && goto :exit
 if %support_vendor_boot% == 1 call :flash_partition %vendor_boot_partition% || set /A error_level=1 && goto :exit
 if %support_init_boot% == 1 call :flash_partition %init_boot_partition% || set /A error_level=1 && goto :exit
