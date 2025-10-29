@@ -609,6 +609,3 @@ $(call inherit-product-if-exists, vendor/nxp-private/imx-apps/imx-private-app.mk
 
 # sets vendor.battery.status.msg to true to show the battery status message
 PRODUCT_VENDOR_PROPERTIES += vendor.battery.status.msg=false
-
-# disable lockscreen
-PRODUCT_PROPERTY_OVERRIDES += ro.lockscreen.disable.default=true
