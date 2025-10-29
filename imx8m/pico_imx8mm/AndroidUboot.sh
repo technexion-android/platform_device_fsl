@@ -55,7 +55,7 @@ build_imx_uboot()
 	cp ${_opt} ${UBOOT_OUT}/u-boot-nodtb.$1 ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/
 	cp ${_opt} ${UBOOT_OUT}/spl/u-boot-spl.bin  ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/
 	cp ${_opt} ${UBOOT_OUT}/tools/mkimage  ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/mkimage_uboot
-	#cp ${UBOOT_OUT}/arch/arm/dts/imx8mm-evk.dtb ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/
+	#cp ${UBOOT_OUT}/dts/upstream/src/arm64/freescale/imx8mm-evk.dtb  ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/
 	_do_cmd "cp ${_opt} -f ${UBOOT_OUT}/arch/arm/dts/${_uboot_dtb} ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/${_soc_type}-evk.dtb" || _error_exit "Copy ${_uboot_dtb} to ${_soc_type}-evk.dtb fail"
 	cp ${_opt} ${FSL_PROPRIETARY_PATH}/linux-firmware-imx/firmware/ddr/synopsys/lpddr4_pmu_train* ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/
 
