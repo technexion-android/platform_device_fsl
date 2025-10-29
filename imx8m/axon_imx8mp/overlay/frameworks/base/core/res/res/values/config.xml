@@ -196,4 +196,6 @@
 
     <!-- If the system has the input method for each display - enable per-display focus. -->
     <bool name="config_perDisplayFocusEnabled">true</bool>
+
+    <!-- Is the lock-screen disabled for new users by default -->
 </resources>
