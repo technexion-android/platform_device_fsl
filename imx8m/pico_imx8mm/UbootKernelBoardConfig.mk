@@ -3,6 +3,7 @@ TARGET_BOOTLOADER_POSTFIX := bin
 UBOOT_POST_PROCESS := true
 
 # u-boot target
+TARGET_BOOTLOADER_BASE_CONFIG := pico-imx8mm_defconfig
 TARGET_BOOTLOADER_CONFIG := imx8mm:pico-imx8mm_android_defconfig
 TARGET_BOOTLOADER_CONFIG += imx8mm-evk-uuu:pico-imx8mm_android_defconfig
 
