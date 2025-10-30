@@ -193,4 +193,7 @@
 
     <!-- Boolean indicating whether system support sustained performance mode. -->
     <bool name="config_sustainedPerformanceModeSupported">true</bool>
+
+    <!-- Is the lock-screen disabled for new users by default -->
+    <bool name="config_disableLockscreenByDefault">true</bool>
 </resources>
