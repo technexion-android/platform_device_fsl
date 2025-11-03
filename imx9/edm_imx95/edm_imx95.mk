@@ -622,3 +622,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.context_hub.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.context_hub.xml \
     $(IMX_DEVICE_PATH)/chre/preloaded_nanoapps.json:$(TARGET_COPY_OUT_VENDOR)/etc/chre/preloaded_nanoapps.json
 endif
+
+# sets vendor.battery.status.msg to true to show the battery status message
+PRODUCT_VENDOR_PROPERTIES += vendor.battery.status.msg=false
