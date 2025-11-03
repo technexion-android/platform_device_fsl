@@ -59,7 +59,10 @@ build_pre_image()
 		if [ "$(echo ${PLATFORM} | grep 16GB)" != "" ]; then
 			make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=${IMX_OEI_CONFIG} r=b0 oei=ddr d=1 DDR_CONFIG=lpddr5_6400mbps_train_timing_16gb 1>/dev/null || exit 1
 			cp -v ${BOARD_OEI_PATH}/build/${IMX_OEI_CONFIG}/ddr/oei-m33-ddr.bin ${BOARD_OEI_PATH}/build/${IMX_OEI_CONFIG}/ddr/oei-m33-ddr-16gb.bin || exit 1
-		else
+		elif [ "$(echo ${PLATFORM} | grep 4GB)" != "" ]; then
+			make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=${IMX_OEI_CONFIG} r=b0 oei=ddr d=1 DDR_CONFIG=lpddr5_6400mbps_train_timing_4gb 1>/dev/null || exit 1
+			cp -v ${BOARD_OEI_PATH}/build/${IMX_OEI_CONFIG}/ddr/oei-m33-ddr.bin ${BOARD_OEI_PATH}/build/${IMX_OEI_CONFIG}/ddr/oei-m33-ddr-4gb.bin || exit 1
+		else # default 8GB
 			make -C ${BOARD_OEI_PATH} OEI_CROSS_COMPILE="${SM_OEI_CROSS_COMPILE}" board=${IMX_OEI_CONFIG} r=b0 oei=ddr d=1 DDR_CONFIG=lpddr5_6400mbps_train_timing_8gb 1>/dev/null || exit 1
 			cp -v ${BOARD_OEI_PATH}/build/${IMX_OEI_CONFIG}/ddr/oei-m33-ddr.bin ${BOARD_OEI_PATH}/build/${IMX_OEI_CONFIG}/ddr/oei-m33-ddr-8gb.bin || exit 1
 		fi
@@ -73,6 +76,8 @@ build_imx_uboot()
 	echo Building i.MX U-Boot with firmware
 	if echo "$2" | grep -q "16GB" ; then
 		cp -v ${BOARD_OEI_PATH}/build/${IMX_OEI_CONFIG}/ddr/oei-m33-ddr-16gb.bin ${BOARD_MKIMAGE_PATH}/oei-m33-ddr.bin || exit 1
+	elif echo "$2" | grep -q "4GB" ; then
+		cp -v ${BOARD_OEI_PATH}/build/${IMX_OEI_CONFIG}/ddr/oei-m33-ddr-4gb.bin ${BOARD_MKIMAGE_PATH}/oei-m33-ddr.bin || exit 1
 	else
 		cp -v ${BOARD_OEI_PATH}/build/${IMX_OEI_CONFIG}/ddr/oei-m33-ddr-8gb.bin  ${BOARD_MKIMAGE_PATH}/oei-m33-ddr.bin || exit 1
 	fi
