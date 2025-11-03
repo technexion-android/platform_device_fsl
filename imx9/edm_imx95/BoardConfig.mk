@@ -97,6 +97,12 @@ BOARD_AVB_VENDOR_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_VENDOR_DLKM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_SYSTEM_DLKM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 
+ifneq ($(LOADABLE_KERNEL_MODULE),true)
+# disable system_dlkm partition
+BOARD_USES_SYSTEM_DLKMIMAGE := false
+BOARD_SYSTEM_KERNEL_MODULES :=
+endif
+
 # -------@block_treble-------
 # Vendor Interface manifest and compatibility
 DEVICE_MANIFEST_FILE := $(IMX_DEVICE_PATH)/manifest.xml
