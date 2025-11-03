@@ -199,4 +199,7 @@
 
     <!-- show global actions menu when long press power button -->
     <integer name="config_longPressOnPowerBehavior">1</integer>
+
+    <!-- Is the lock-screen disabled for new users by default -->
+    <bool name="config_disableLockscreenByDefault">true</bool>
 </resources>
