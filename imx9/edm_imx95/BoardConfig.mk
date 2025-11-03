@@ -145,7 +145,7 @@ ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
 BOARD_BOOTCONFIG += androidboot.vendor.sysrq=1
 endif
 
-TARGET_BOARD_DTS_CONFIG := imx95:imx95-edm-evm.dtb
+TARGET_BOARD_DTS_CONFIG := imx95:imx95-edm-evm_android.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-lvds-vl10:imx95-edm-evm-lvds-vl10112880.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-lvds-vl15:imx95-edm-evm-lvds-vl156192108.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-mipi2hdmi:imx95-edm-evm-mipi2hdmi-adv7535.dtb
