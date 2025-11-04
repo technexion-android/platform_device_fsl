@@ -8,6 +8,10 @@ set_prop(init-insmod-sh, vendor_public_default_prop)
 allow init-insmod-sh vendor_shell_exec:file rx_file_perms;
 allow init-insmod-sh vendor_toolbox_exec:file rx_file_perms;
 
+# allow to access sys files
+allow init-insmod-sh sysfs:dir { open read };
+allow init-insmod-sh sysfs:file { getattr open read };
+
 # Allow insmod
 allow init-insmod-sh self:capability sys_module;
 allow init-insmod-sh system_file:system module_load;
