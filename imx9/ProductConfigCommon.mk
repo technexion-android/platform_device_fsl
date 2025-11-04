@@ -327,7 +327,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # -------@block_bluetooth-------
 
 PRODUCT_PACKAGES += \
-     libbt-vendor
+     libbt-vendor \
+     libbt-vendor-nxp
 
 # LDAC codec
 PRODUCT_PACKAGES += \
