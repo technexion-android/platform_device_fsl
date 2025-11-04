@@ -200,6 +200,13 @@ ifeq ($(ENABLE_CONTEXTHUB), true)
 BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/rpmsg/imx_rpmsg_chre.ko
 endif
+else
+BOARD_VENDOR_KERNEL_MODULES += \
+    $(KERNEL_OUT)/net/rfkill/rfkill.ko \
+    $(KERNEL_OUT)/net/rfkill/rfkill-gpio.ko \
+    $(KERNEL_OUT)/drivers/bluetooth/mx8_bt_rfkill.ko \
+    $(KERNEL_OUT)/net/wireless/cfg80211.ko \
+    $(KERNEL_OUT)/net/mac80211/mac80211.ko
 endif
 
 #NXP 8997 wifi driver module
