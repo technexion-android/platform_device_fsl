@@ -18,6 +18,7 @@ on property:sys.boot_completed=1
 
 on early-init
     start early_init_sh
+    start btattach
     # Set the host name which used in console
     export HOSTNAME edm_imx95
 
@@ -224,6 +225,13 @@ on zygote-start && property:vendor.skip.charger_not_need=0
     start vpu_firmware_load
 
 service early_init_sh /vendor/bin/init.insmod.sh /vendor/etc/early.init.cfg vendor.all.early_init.ready
+    class main
+    user root
+    group root system
+    disabled
+    oneshot
+
+service btattach /vendor/bin/btattach.sh
     class main
     user root
     group root system
