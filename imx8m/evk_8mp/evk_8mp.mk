@@ -79,7 +79,8 @@ PRODUCT_COPY_FILES += \
 
 # Set permission for GMS packages
 PRODUCT_COPY_FILES += \
-	  $(CONFIG_REPO_PATH)/imx8m/permissions/privapp-permissions-imx.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp.permissions-imx.xml
+	  $(CONFIG_REPO_PATH)/imx8m/permissions/privapp-permissions-imx.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp.permissions-imx.xml \
+	  $(CONFIG_REPO_PATH)/imx8m/permissions/privapp-permissions_system_ext-imx.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp.permissions-imx.xml
 
 PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/app_whitelist.xml:system/etc/sysconfig/app_whitelist.xml

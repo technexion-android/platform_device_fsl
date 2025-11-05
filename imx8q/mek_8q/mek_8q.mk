@@ -99,7 +99,8 @@ PRODUCT_COPY_FILES += \
 ifneq ($(PRODUCT_IMX_CAR),true)
 # Set permission for GMS packages
 PRODUCT_COPY_FILES += \
-	  $(CONFIG_REPO_PATH)/imx8q/permissions/privapp-permissions-imx.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp.permissions-imx.xml
+	  $(CONFIG_REPO_PATH)/imx8q/permissions/privapp-permissions-imx.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp.permissions-imx.xml \
+	  $(CONFIG_REPO_PATH)/imx8q/permissions/privapp-permissions_system_ext-imx.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp.permissions-imx.xml
 endif
 
 PRODUCT_COPY_FILES += \
