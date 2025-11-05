@@ -1,0 +1,15 @@
+type btattach-sh, domain;
+type btattach-sh_exec, exec_type, vendor_file_type, file_type;
+
+# transfer domain from init domain to btattach-sh domain
+init_daemon_domain(btattach-sh)
+
+# allow to access sys files
+allow btattach-sh sysfs:dir { open read };
+allow btattach-sh sysfs:file { getattr open read };
+
+# allow to use /vendor/bin/
+allow btattach-sh vendor_toolbox_exec:file execute_no_trans;
+
+# allow setprop vendor.all.wifi_bt_device
+set_prop(btattach-sh, vendor_public_default_prop)
