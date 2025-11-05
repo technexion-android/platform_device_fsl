@@ -224,3 +224,6 @@ ro.boot.androidui.overlay              u:object_r:vendor_public_default_prop:s0
 
 # Trusty
 ro.vendor.trusty.storage.fs_ready          u:object_r:vendor_trusty_storage_prop:s0
+
+# wifi bt vendor
+vendor.all.wifi_bt_device     u:object_r:vendor_public_default_prop:s0
