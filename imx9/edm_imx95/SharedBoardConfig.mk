@@ -202,6 +202,7 @@ BOARD_VENDOR_KERNEL_MODULES += \
 endif
 else
 BOARD_VENDOR_KERNEL_MODULES += \
+    $(KERNEL_OUT)/net/bluetooth/bluetooth.ko \
     $(KERNEL_OUT)/net/rfkill/rfkill.ko \
     $(KERNEL_OUT)/net/rfkill/rfkill-gpio.ko \
     $(KERNEL_OUT)/drivers/bluetooth/mx8_bt_rfkill.ko \
