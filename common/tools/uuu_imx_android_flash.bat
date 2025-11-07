@@ -3,7 +3,7 @@
 
 :: get uuu version
 set uuu_ver=1.5.201
-call :get_uuu_ver %uuu_ver%
+call :get_uuu_ver uuu_ver
 
 echo This script is validated with uuu %uuu_ver% version, it is recommended to align with this version.
 
@@ -779,7 +779,7 @@ for /f "tokens=1 delims=" %%a in ('uuu') do (
 )
 
 :next_step
-for /f "tokens=2 delims=_-" %%a in ("%first_line%") do (
+for /f "tokens=3 delims=_-" %%a in ("%first_line%") do (
     set %1=%%a
 )
 goto :eof
