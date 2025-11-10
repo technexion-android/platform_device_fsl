@@ -279,7 +279,7 @@ $(call inherit-product-if-exists, vendor/nxp-private/widevine/apex/device.mk)
 
 # Audio card json
 PRODUCT_COPY_FILES += \
-    $(CONFIG_REPO_PATH)/common/audio-json/tlv320aic3x_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/tlv320aic3x_config.json \
+    $(CONFIG_REPO_PATH)/common/audio-json/tlv320aic31xx_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/tlv320aic31xx_config.json \
     $(CONFIG_REPO_PATH)/common/audio-json/hdmi_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/hdmi_config.json \
     $(CONFIG_REPO_PATH)/common/audio-json/readme.txt:$(TARGET_COPY_OUT_VENDOR)/etc/configs/audio/readme.txt
 
