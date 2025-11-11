@@ -207,7 +207,10 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/net/rfkill/rfkill-gpio.ko \
     $(KERNEL_OUT)/drivers/bluetooth/mx8_bt_rfkill.ko \
     $(KERNEL_OUT)/net/wireless/cfg80211.ko \
-    $(KERNEL_OUT)/net/mac80211/mac80211.ko
+    $(KERNEL_OUT)/net/mac80211/mac80211.ko \
+    $(KERNEL_OUT)/sound/soc/codecs/snd-soc-tlv320aic3x.ko \
+    $(KERNEL_OUT)/sound/soc/codecs/snd-soc-tlv320aic3x-i2c.ko \
+    $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-micfil.ko
 endif
 
 #NXP 8997 wifi driver module
