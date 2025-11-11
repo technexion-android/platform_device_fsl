@@ -1,0 +1,27 @@
+{
+  "driver_name": "tlv320aic3x-audio",
+  "bus_name": "bus1_system_sound_out",
+  "supported_out_devices": ["speaker", "wired_headphone", "wired_headset", "bus", "line"],
+  "supported_in_devices": ["builtin_mic", "wired_headset"],
+
+  "init_ctl": [
+    {"name": "PCM Playback Volume", "type": "int", "val": 127},
+    {"name": "HP DAC Playback Volume", "type": "int", "val": 106},
+    {"name": "HP Playback Volume", "type": "int", "val": 4}
+  ],
+
+  "builtin_mic_ctl": [
+    {"name": "Left PGA Mixer Line1L Switch", "type": "int", "val": 0},
+    {"name": "Right PGA Mixer Line1R Switch", "type": "int", "val": 0},
+    {"name": "Left PGA Mixer Mic2L Switch", "type": "int", "val": 1},
+    {"name": "Right PGA Mixer Mic2R Switch", "type": "int", "val": 1}
+  ],
+
+  "wired_headset_ctl": [
+    {"name": "Left PGA Mixer Line1L Switch", "type": "int", "val": 0},
+    {"name": "Right PGA Mixer Line1R Switch", "type": "int", "val": 0},
+    {"name": "Left PGA Mixer Mic2L Switch", "type": "int", "val": 1},
+    {"name": "Right PGA Mixer Mic2R Switch", "type": "int", "val": 1}
+  ]
+
+}
