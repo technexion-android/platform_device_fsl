@@ -210,7 +210,8 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/net/mac80211/mac80211.ko \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-tlv320aic3x.ko \
     $(KERNEL_OUT)/sound/soc/codecs/snd-soc-tlv320aic3x-i2c.ko \
-    $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-micfil.ko
+    $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-micfil.ko \
+    $(KERNEL_OUT)/drivers/input/touchscreen/exc3000.ko
 endif
 
 #NXP 8997 wifi driver module
