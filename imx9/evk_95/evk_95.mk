@@ -321,11 +321,13 @@ PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/camera_config_imx95-os08a20.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx95.json \
     $(IMX_DEVICE_PATH)/camera_config_imx95-ap1302.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx95-ap1302.json \
     $(IMX_DEVICE_PATH)/camera_config_imx95-mbcam.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx95-mbcam.json \
+    $(IMX_DEVICE_PATH)/camera_config_imx95-frdm-dual-os08a20.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_imx95-frdm-dual-os08a20.json \
     $(IMX_DEVICE_PATH)/external_camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/external_camera_config.xml
 
 PRODUCT_PACKAGES += \
     media_profiles_95-ap1302.xml \
-    media_profiles_95-mbcam.xml
+    media_profiles_95-mbcam.xml \
+    media_profiles_95-frdm-dual-os08a20.xml
 
 PRODUCT_PACKAGES += \
     ap1302_ar0144_single_fw.bin
