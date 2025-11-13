@@ -152,13 +152,17 @@ BOARD_BOOTCONFIG += androidboot.vendor.sysrq=1
 endif
 
 TARGET_BOARD_DTS_CONFIG := imx95:imx95-edm-evm_android.dtb
-TARGET_BOARD_DTS_CONFIG += imx95-lvds-vl10:imx95-edm-evm-lvds-vl10112880.dtb
-TARGET_BOARD_DTS_CONFIG += imx95-lvds-vl15:imx95-edm-evm-lvds-vl156192108.dtb
-TARGET_BOARD_DTS_CONFIG += imx95-mipi2hdmi:imx95-edm-evm-mipi2hdmi-adv7535.dtb
-TARGET_BOARD_DTS_CONFIG += imx95-tevs:imx95-edm-evm-tevs.dtb
-TARGET_BOARD_DTS_CONFIG += imx95-tevs-csi1:imx95-edm-evm-tevs-csi1.dtb
-TARGET_BOARD_DTS_CONFIG += imx95-fusion-lvsd-vl10:imx95-edm-evm-fusion-lvds-vl10112880.dtb
-TARGET_BOARD_DTS_CONFIG += imx95-fusion-lvsd-vl15:imx95-edm-evm-fusion-lvds-vl156192108.dtb
+
+WITH_EXT_DTBO ?= true
+ifeq ($(WITH_EXT_DTBO),true)
+  TARGET_BOARD_DTBO_CONFIG := imx95:imx95-edm-evm-lvds-vl10112880.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx95:imx95-edm-evm-lvds-vl156192108.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx95:imx95-edm-evm-mipi2hdmi-adv7535.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx95:imx95-edm-evm-tevs.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx95:imx95-edm-evm-tevs-csi1.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx95:imx95-edm-evm-fusion-lvds-vl10112880.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx95:imx95-edm-evm-fusion-lvds-vl156192108.dtbo
+endif
 
 ALL_DEFAULT_INSTALLED_MODULES += $(BOARD_VENDOR_KERNEL_MODULES)
 
