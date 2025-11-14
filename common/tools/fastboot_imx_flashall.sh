@@ -97,7 +97,7 @@ options:
                            │   imx95        │  ap1302 ox03c10 mipi-lvds1 mipi-panel lvds0 lvds-dualdisp lvds-panel cs42888 rpmsg mipi4k dsi-serde  │
                            │                │  verdin verdin-ap1302 verdin-ox03c10 verdin-lt8912 verdin-10inch-panel-lvds verdin-10inch-panel-dsi  │
                            │                │  verdin-mipi-panel verdin-mipi4k 15x15 15x15-ap1302 15x15-ox03c10 15x15-mipi-panel 15x15-aud-hat     │
-                           │                │  15x15-mqs 15x15-mipi4k 15x15-boe-panel-lvds1 15x15-frdm                                             │
+                           │                │  15x15-mqs 15x15-mipi4k 15x15-boe-panel-lvds1 15x15-frdm 15x15-frdm-dual-os08a20                     │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx7ulp      │  evk-mipi evk mipi                                                                                   │
                            └────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────┘
@@ -433,7 +433,7 @@ imx8qm_dtb_feature=(hdmi hdmi-rx mipi-panel mipi-panel-rm67191 md xen sof lvds1-
 imx8ulp_dtb_feature=(hdmi epdc 9x9 9x9-hdmi sof lpa lpd)
 imx93_dtb_feature=(frdm-iw612 iw612 frdm-iw612-tianma-wvga)
 imx943_dtb_feature=(sdwifi)
-imx95_dtb_feature=(ap1302 ox03c10 mipi-lvds1 mipi-panel lvds0 lvds-dualdisp lvds-panel cs42888 rpmsg mipi4k dsi-serdes verdin verdin-ap1302 verdin-ox03c10 verdin-lt8912 verdin-10inch-panel-lvds verdin-10inch-panel-dsi verdin-mipi-panel verdin-mipi4k 15x15 15x15-ap1302 15x15-ox03c10 15x15-mipi-panel 15x15-aud-hat 15x15-mqs 15x15-mipi4k 15x15-boe-panel-lvds1 15x15-frdm)
+imx95_dtb_feature=(ap1302 ox03c10 mipi-lvds1 mipi-panel lvds0 lvds-dualdisp lvds-panel cs42888 rpmsg mipi4k dsi-serdes verdin verdin-ap1302 verdin-ox03c10 verdin-lt8912 verdin-10inch-panel-lvds verdin-10inch-panel-dsi verdin-mipi-panel verdin-mipi4k 15x15 15x15-ap1302 15x15-ox03c10 15x15-mipi-panel 15x15-aud-hat 15x15-mqs 15x15-mipi4k 15x15-boe-panel-lvds1 15x15-frdm 15x15-frdm-dual-os08a20)
 imx7ulp_dtb_feature=(evk-mipi evk mipi)
 
 # an array to collect the supported soc_names
