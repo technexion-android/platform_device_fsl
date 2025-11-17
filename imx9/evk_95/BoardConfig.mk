@@ -149,6 +149,7 @@ TARGET_BOARD_DTS_CONFIG += imx95-ap1302:imx95-19x19-evk-adv7535-ap1302.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-mipi-lvds1:imx95-19x19-evk-adv7535-it6263-lvds1-ap1302.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-mipi-panel:imx95-19x19-evk-rm692c9.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-lvds0:imx95-19x19-evk-os08a20-isp-it6263-lvds0.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-lvds0-dual-os08a20:imx95-19x19-evk-dual-os08a20-isp-it6263-lvds0.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-lvds-dualdisp:imx95-19x19-evk-it6263-lvds-two-disp.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-lvds-panel:imx95-19x19-evk-jdi-wuxga-lvds-panel.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-cs42888:imx95-19x19-evk-os08a20-isp-adv7535-cs42888.dtb

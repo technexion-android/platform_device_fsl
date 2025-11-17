@@ -305,6 +305,9 @@ on property:ro.boot.camera.layout=mbcam
 on property:ro.boot.camera.layout=frdm-dual-os08a20
     setprop ro.media.xml_variant.profiles _95-frdm-dual-os08a20
 
+on property:ro.boot.camera.layout=lvds0-dual-os08a20
+    setprop ro.media.xml_variant.profiles _95-lvds0-dual-os08a20
+
 on property:sys.boot_completed=1 && property:vendor.storageproxyd=trusty
     start vendor.secure-enclave
 
