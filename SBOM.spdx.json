@@ -2,20 +2,20 @@
   "SPDXID": "SPDXRef-DOCUMENT",
   "spdxVersion": "SPDX-2.3",
   "creationInfo": {
-    "created": "2025-08-27T01:57:21Z",
+    "created": "2025-11-18T05:13:10Z",
     "creators": [
       "Organization: NXP"
     ],
     "licenseListVersion": "3.20"
   },
-  "name": "android-imx_device_fsl-android-16.0.0_1.0.0",
+  "name": "android-imx_device_fsl-android-16.0.0_1.2.0",
   "dataLicense": "CC0-1.0",
-  "documentNamespace": "https://nxp.com/spdx/289599ef-d2af-43d7-9337-b6b499e8da97",
+  "documentNamespace": "https://nxp.com/spdx/680b884c-47b9-4c4b-ad41-82a22edbbb61",
   "packages": [
     {
-      "SPDXID": "SPDXRef-package-289599ef-d2af-43d7-9337-b6b499e8da97",
+      "SPDXID": "SPDXRef-package-680b884c-47b9-4c4b-ad41-82a22edbbb61",
       "name": "android-imx_device_fsl",
-      "versionInfo": "android-16.0.0_1.0.0",
+      "versionInfo": "android-16.0.0_1.2.0",
       "licenseConcluded": "(Apache-2.0)",
       "licenseDeclared": "(Apache-2.0)",
       "downloadLocation": "https://github.com/nxp-imx-android/android-imx_device_fsl",
@@ -29,7 +29,7 @@
     {
       "spdxElementId": "SPDXRef-DOCUMENT",
       "relationshipType": "DESCRIBES",
-      "relatedSpdxElement": "SPDXRef-package-289599ef-d2af-43d7-9337-b6b499e8da97"
+      "relatedSpdxElement": "SPDXRef-package-680b884c-47b9-4c4b-ad41-82a22edbbb61"
     }
   ]
 }
