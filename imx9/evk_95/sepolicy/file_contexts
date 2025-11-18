@@ -48,5 +48,7 @@
 /sys/module/mali_kbase/parameters/large_page_conf                                           u:object_r:sysfs_mali_gpu:s0
 /vendor/lib(64)?/libgpudataproducer\.so                                                     u:object_r:profiling_mali_gpu:s0
 
+/dev/dma_heap/protected                       u:object_r:dmabuf_system_secure_heap_device:s0
+
 # neutron npu
 /dev/neutron0                                 u:object_r:npu_device:s0

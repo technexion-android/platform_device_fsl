@@ -7,6 +7,8 @@ BAZEL_BUILD_VENDOR_MODULES ?= false
 ifeq ($(BAZEL_BUILD_VENDOR_MODULES),false)
 #ARM GPU driver module
 BOARD_VENDOR_KERNEL_MODULES += \
+    $(KERNEL_OUT)/drivers/gpu/arm/pma/protected_memory_allocator.ko \
+    $(KERNEL_OUT)/drivers/gpu/arm/pma/protected_heap.ko \
     $(KERNEL_OUT)/drivers/gpu/arm/midgard/mali_kbase.ko
 
 ifeq ($(LOADABLE_KERNEL_MODULE),true)

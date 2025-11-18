@@ -23,6 +23,7 @@
 /dev/dma_heap/reserved    0666   system     system
 /dev/dma_heap/reserved-uncached    0666   system     system
 /dev/dma_heap/secure      0666   system     system
+/dev/dma_heap/protected   0666   system     system
 
 /dev/dma_heap/linux,cma            0666 system graphics
 /dev/dma_heap/linux,cma-uncached   0666 system graphics
