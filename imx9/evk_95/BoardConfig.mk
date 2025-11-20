@@ -174,6 +174,7 @@ TARGET_BOARD_DTS_CONFIG += imx95-15x15-mipi4k:imx95-15x15-evk-lt9611uxc-ap1302.d
 TARGET_BOARD_DTS_CONFIG += imx95-15x15-boe-panel-lvds1:imx95-15x15-evk-boe-wxga-lvds1-panel.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-15x15-frdm:imx95-15x15-frdm-os08a20-isp.dtb
 TARGET_BOARD_DTS_CONFIG += imx95-15x15-frdm-dual-os08a20:imx95-15x15-frdm-dual-os08a20-isp.dtb
+TARGET_BOARD_DTS_CONFIG += imx95-15x15-frdm-boe-panel:imx95-15x15-frdm-boe-wxga-lvds-panel.dtb
 
 ALL_DEFAULT_INSTALLED_MODULES += $(BOARD_VENDOR_KERNEL_MODULES)
 
