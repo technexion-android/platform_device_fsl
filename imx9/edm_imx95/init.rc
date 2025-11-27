@@ -19,6 +19,7 @@ on property:sys.boot_completed=1
 on early-init
     start early_init_sh
     start btattach
+    start media_config
     # Set the host name which used in console
     export HOSTNAME edm_imx95
 
@@ -237,6 +238,17 @@ service btattach /vendor/bin/btattach.sh
     group root system
     disabled
     oneshot
+
+# auto media config
+service media_config /vendor/bin/media_config.sh
+    class main
+    user root
+    group root system
+    disabled
+    oneshot
+
+on property:vendor.media.profile=*
+    setprop ro.media.xml_variant.profiles ${vendor.media.profile}
 
 on post-fs-data && property:vendor.storageproxyd=trusty && property:vendor.skip.charger_not_need=0
     # create temp node for secure storage proxy
