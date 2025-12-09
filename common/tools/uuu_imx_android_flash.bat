@@ -100,7 +100,7 @@ set imx8qxp_uboot_feature=dual trusty-dual trusty-rbidx-blob-dual mek-uuu trusty
 set imx8qm_uboot_feature=dual trusty-dual trusty-rbidx-blob-dual mek-uuu trusty-secure-unlock-dual secure-unlock md hdmi xen
 set imx93_uboot_feature=dual trusty-dual evk-uuu
 set imx943_uboot_feature=dual trusty-dual lpddr5 lpddr5-dual trusty-lpddr5-dual evk-uuu lpddr5-evk-uuu
-set imx95_uboot_feature=dual trusty-dual trusty-secure-unlock-dual evk-uuu verdin trusty-verdin-dual verdin-uuu 15x15 15x15-dual trusty-15x15-dual trusty-15x15-rbidx-blob-dual 15x15-evk-uuu rpmsg
+set imx95_uboot_feature=dual trusty-dual trusty-secure-unlock-dual evk-uuu verdin trusty-verdin-dual verdin-uuu 15x15 15x15-dual trusty-15x15-dual trusty-15x15-rbidx-blob-dual 15x15-evk-uuu rpmsg 4GB 16GB
 set imx7ulp_uboot_feature=evk-uuu
 
 set imx8mm_dtb_feature=ddr4 m4 mipi-panel mipi-panel-rm67191
@@ -481,6 +481,12 @@ if [%soc_name%] == [imx95] (
     )
 )
 
+if [%soc_name%] == [imx95] (
+    if not [%uboot_feature_test:GB=%] == [%uboot_feature_test%] (
+        set bootloader_used_by_uuu=u-boot-%soc_name%%uboot_feature%-evk-uuu.imx
+    )
+)
+
 if [%soc_name%] == [imx943] (
     if not [%uboot_feature_test:lpddr5=%] == [%uboot_feature_test%] (
         set bootloader_used_by_uuu=u-boot-%soc_name%-lpddr5-evk-uuu.imx
@@ -661,7 +667,7 @@ echo                           \A9\C0\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\
 echo                           \A9\A6   imx943       \A9\A6  dual trusty-dual lpddr5 lpddr5-dual trusty-lpddr5-dual evk-uuu lpddr5-evk-uuu                       \A9\A6
 echo                           \A9\C0\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9੤\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\C8
 echo                           \A9\A6   imx95        \A9\A6  dual trusty-dual trusty-secure-unlock-dual evk-uuu verdin trusty-verdin-dual verdin-uuu             \A9\A6
-echo                           \A9\A6                \A9\A6  15x15 15x15-dual trusty-15x15-dual trusty-15x15-rbidx-blob-dual 15x15-evk-uuu rpmsg                 \A9\A6
+echo                           \A9\A6                \A9\A6  15x15 15x15-dual trusty-15x15-dual trusty-15x15-rbidx-blob-dual 15x15-evk-uuu rpmsg 4GB 16GB        \A9\A6
 echo                           \A9\C0\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9੤\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\C8
 echo                           \A9\A6   imx7ulp      \A9\A6  evk-uuu                                                                                             \A9\A6
 echo                           \A9\B8\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9ة\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\A4\A9\BC
