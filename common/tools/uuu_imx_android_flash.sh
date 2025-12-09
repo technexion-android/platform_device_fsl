@@ -60,7 +60,7 @@ options:
                            │   imx95        │  dual trusty-dual trusty-secure-unlock-dual verdin trusty-verdin-dual 15x15 15x15-dual               │
                            |                |  trusty-15x15-dual trusty-15x15-rbidx-blob-dual                                                      │
                            │                │  verdin-uuu evk-uuu 15x15-evk-uuu rpmsg gbl trusty-gbl-dual 15x15-gbl trusty-15x15-gbl-dual          │
-                           │                │  15x15-frdm 15x15-frdm-uuu trusty-15x15-frdm-dual                                                    │
+                           │                │  15x15-frdm 15x15-frdm-uuu trusty-15x15-frdm-dual 4GB 16GB                                           │
                            ├────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
                            │   imx7ulp      │  evk-uuu                                                                                             │
                            └────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────┘
@@ -561,7 +561,7 @@ imx8qm_uboot_feature=(dual trusty-dual trusty-rbidx-blob-dual mek-uuu trusty-sec
 imx7ulp_uboot_feature=(evk-uuu)
 imx93_uboot_feature=(dual trusty-dual evk-uuu gbl trusty-gbl-dual)
 imx943_uboot_feature=(dual trusty-dual lpddr5 lpddr5-dual trusty-lpddr5-dual lpddr5-evk-uuu evk-uuu gbl trusty-gbl-dual)
-imx95_uboot_feature=(dual trusty-dual trusty-secure-unlock-dual evk-uuu verdin trusty-verdin-dual verdin-uuu 15x15 15x15-dual trusty-15x15-dual trusty-15x15-rbidx-blob-dual 15x15-evk-uuu rpmsg gbl trusty-gbl-dual 15x15-gbl trusty-15x15-gbl-dual 15x15-frdm 15x15-frdm-uuu trusty-15x15-frdm-dual)
+imx95_uboot_feature=(dual trusty-dual trusty-secure-unlock-dual evk-uuu verdin trusty-verdin-dual verdin-uuu 15x15 15x15-dual trusty-15x15-dual trusty-15x15-rbidx-blob-dual 15x15-evk-uuu rpmsg gbl trusty-gbl-dual 15x15-gbl trusty-15x15-gbl-dual 15x15-frdm 15x15-frdm-uuu trusty-15x15-frdm-dual 4GB 16GB)
 
 imx8mm_dtb_feature=(ddr4 m4 mipi-panel mipi-panel-rm67191)
 imx8mn_dtb_feature=(mipi-panel mipi-panel-rm67191 rpmsg ddr4 ddr4-mipi-panel ddr4-mipi-panel-rm67191 ddr4-rpmsg)
@@ -939,6 +939,9 @@ fi
 if [ "${soc_name}" = imx95 ]; then
     if [[ "${uboot_feature}" = *"15x15-frdm"* ]]; then
         bootloader_used_by_uuu=u-boot-${soc_name}-15x15-frdm-uuu.imx
+    fi
+    if [[ "${uboot_feature}" = *"GB"* ]]; then
+        bootloader_used_by_uuu=u-boot-${soc_name}${uboot_feature}-evk-uuu.imx
     fi
 fi
 
