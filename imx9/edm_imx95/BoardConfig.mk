@@ -158,10 +158,10 @@ ifeq ($(WITH_EXT_DTBO),true)
   TARGET_BOARD_DTBO_CONFIG := imx95:imx95-edm-evm-lvds-vl10112880.dtbo
   TARGET_BOARD_DTBO_CONFIG += imx95:imx95-edm-evm-lvds-vl156192108.dtbo
   TARGET_BOARD_DTBO_CONFIG += imx95:imx95-edm-evm-mipi2hdmi-adv7535.dtbo
-  TARGET_BOARD_DTBO_CONFIG += imx95:imx95-edm-evm-tevs.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx95:imx95-edm-evm-tevs-csi0.dtbo
   TARGET_BOARD_DTBO_CONFIG += imx95:imx95-edm-evm-tevs-csi1.dtbo
-  TARGET_BOARD_DTBO_CONFIG += imx95:imx95-edm-evm-fusion-lvds-vl10112880.dtbo
-  TARGET_BOARD_DTBO_CONFIG += imx95:imx95-edm-evm-fusion-lvds-vl156192108.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx95:imx95-edm-evm-vls-gm2-csi0.dtbo
+  TARGET_BOARD_DTBO_CONFIG += imx95:imx95-edm-evm-vls-gm2-csi1.dtbo
 endif
 
 ALL_DEFAULT_INSTALLED_MODULES += $(BOARD_VENDOR_KERNEL_MODULES)
