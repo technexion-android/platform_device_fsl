@@ -4,3 +4,7 @@ get_prop(platform_app, vendor_public_default_prop)
 
 allow platform_app vendor_app_file:file { read open getattr map execute };
 allow platform_app shell_data_file:file { read open getattr map execute };
+
+# GPIOD app
+permissive platform_app;
+allow platform_app device:dir { open read };
