@@ -5,6 +5,7 @@
 /dev/media* 0660 system camera
 /dev/v4l-subdev* 0660 system camera
 /dev/snd/*                0660   system     audio
+/dev/gpiochip*            0666   system     system
 /dev/video*               0660   system     camera
 /dev/dma_heap/dsp         0660   mediacodec      mediacodec
 /dev/rpmsg0               0660   mediacodec      mediacodec
