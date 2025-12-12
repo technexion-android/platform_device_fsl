@@ -1,3 +1,7 @@
 allow platform_app hal_graphics_allocator_default_tmpfs:file { read write map };
 
 get_prop(platform_app, vendor_public_default_prop)
+
+# GPIOD app
+permissive platform_app;
+allow platform_app device:dir { open read };
