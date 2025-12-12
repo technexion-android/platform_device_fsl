@@ -485,7 +485,7 @@ PRODUCT_PACKAGES += \
     c2_component_register_ms \
     c2_component_register_ra
 
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     DirectAudioPlayer
 
 ifeq ($(PREBUILT_FSL_IMX_CODEC),true)
