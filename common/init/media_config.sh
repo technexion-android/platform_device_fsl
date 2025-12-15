@@ -2,8 +2,8 @@
 
 FB_MODE_PATH="/sys/class/graphics/fb0/virtual_size"
 
-# 720p profile
-TARGET_PROFILE="_95-ap1302"
+# SOC
+SOC=$(getprop ro.boot.soc_type)
 
 if [ -f "$FB_MODE_PATH" ]; then
     FB_SIZE=$(cat $FB_MODE_PATH)
@@ -12,7 +12,16 @@ if [ -f "$FB_MODE_PATH" ]; then
 
     # low resolution display
     if [ "$WIDTH" -lt 1920 ] || [ "$HEIGHT" -lt 1080 ] ; then
-        TARGET_PROFILE="_95-ap1302"
+        case "$SOC" in
+            "imx95")
+                TARGET_PROFILE="_95-ap1302"
+                ;;
+            "imx8mm"|"imx8mp")
+                TARGET_PROFILE="-720p_30fps"
+                ;;
+            *)
+                ;;
+        esac
     fi
 fi
 
