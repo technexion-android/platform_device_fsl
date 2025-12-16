@@ -388,3 +388,7 @@ vendor.hdcp_status_path             u:object_r:vendor_public_default_prop:s0
 
 # wifi bt vendor
 vendor.all.wifi_bt_device              u:object_r:vendor_public_default_prop:s0
+
+# media profile
+vendor.media.profile                   u:object_r:vendor_public_default_prop:s0
+

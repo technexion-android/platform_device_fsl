@@ -143,3 +143,6 @@
 
 # fw-env service
 /vendor/bin/tn-u-boot-fw-env.sh                u:object_r:fw-env_exec:s0
+
+# media-config service
+/vendor/bin/media_config.sh    u:object_r:media-config-sh_exec:s0
