@@ -308,8 +308,8 @@ PRODUCT_COPY_FILES +=\
  $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar0821.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar0821.json\
  $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar0822.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar0822.json\
  $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-ar1335.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-ar1335.json\
- $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)_tevi-uvc.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)_tevi-uvc.json
-
+ $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)_tevi-uvc.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)_tevi-uvc.json\
+ $(VENDOR_MULTIMEDIA_PATH)/camera_config_$(SOC_MODEL_LT)-tevs.json:$(TARGET_COPY_OUT_VENDOR)/etc/configs/camera_config_$(SOC_MODEL_LT)-tevs.json
 
 # Add external medis profiles into /vendor/etc/
 PRODUCT_COPY_FILES +=\
