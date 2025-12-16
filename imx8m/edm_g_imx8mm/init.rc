@@ -9,6 +9,7 @@ on early-init
 on early-init
     start early_init_sh
     start btattach
+    start media_config
     # Set the host name which used in console
     export HOSTNAME edm_g_imx8mm
 
@@ -208,6 +209,16 @@ service btattach /vendor/bin/btattach.sh
     disabled
     oneshot
 
+# auto media config
+service media_config /vendor/bin/media_config.sh
+    class main
+    user root
+    group root system
+    disabled
+    oneshot
+
+on property:vendor.media.profile=*
+    setprop ro.media.xml_variant.profiles ${vendor.media.profile}
 
 on post-fs-data && property:vendor.storageproxyd=trusty && property:vendor.skip.charger_not_need=0
     # create temp node for secure storage proxy
@@ -229,11 +240,6 @@ on property:ro.boot.lpa.enable=1
     setprop vendor.audio.lpa.hold_second 20
     setprop vendor.audio.lpa.period_ms 500
     setprop vendor.audio.lpa.enable 1
-
-# Setup media profile for TEVI-AR serials
-on property:ro.boot.camera.layout=ar0144
-    setprop ro.media.xml_variant.profiles -720p_30fps
-
 
 service confirmationui_ta_load /vendor/bin/trusty_apploader /vendor/firmware/tee/confirmationui.app
     user root
