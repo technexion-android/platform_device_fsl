@@ -13,6 +13,14 @@ if [ -f "$FB_MODE_PATH" ]; then
     WIDTH=${FB_SIZE%%,*}
     HEIGHT=${FB_SIZE##*,}
 
+    if [ "$WIDTH" -lt "$HEIGHT" ]; then
+        # swap width and height
+        _tmp=${WIDTH}
+        WIDTH=${HEIGHT}
+        HEIGHT=${_tmp}
+        unset $_tmp
+    fi
+
     # low resolution on display or camera module
     if [ "$WIDTH" -lt 1920 ] || [ "$HEIGHT" -lt 1080 ] || [ "$CAM" = "ar0144" ] ; then
         case "$SOC" in
