@@ -501,7 +501,7 @@ if [%soc_name%] == [imx95] (
 )
 
 if [%soc_name%] == [imx95] (
-    if not [%uboot_feature_test:15x15=%] == [%uboot_feature_test%] (
+    if not [%uboot_feature_test:frdm=%] == [%uboot_feature_test%] (
         set bootloader_used_by_uuu=u-boot-%soc_name%-15x15-frdm-uuu.imx
     )
 )
