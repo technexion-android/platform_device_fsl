@@ -197,6 +197,15 @@
     <!-- If the system has the input method for each display - enable per-display focus. -->
     <bool name="config_perDisplayFocusEnabled">true</bool>
 
+    <!-- show global actions menu when long press power button -->
+    <integer name="config_longPressOnPowerBehavior">1</integer>
+
+    <bool name="config_freeformWindowManagement">true</bool>
+    <bool name="config_isDesktopModeSupported">true</bool>
+    <bool name="config_canInternalDisplayHostDesktops">true</bool>
+
+    <integer name="config_maxDesktopWindowingActiveTasks">4</integer>
+
     <!-- Is the lock-screen disabled for new users by default -->
     <bool name="config_disableLockscreenByDefault">true</bool>
 </resources>

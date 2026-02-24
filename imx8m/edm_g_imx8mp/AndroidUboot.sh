@@ -93,8 +93,12 @@ build_imx_uboot()
 	cp ${_opt} ${UBOOT_OUT}/u-boot-nodtb.$1 ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/
 	cp ${_opt} ${UBOOT_OUT}/spl/u-boot-spl.bin  ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/
 	cp ${_opt} ${UBOOT_OUT}/tools/mkimage  ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/mkimage_uboot
-	#cp ${UBOOT_OUT}/arch/arm/dts/imx8mp-evk.dtb ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/
-	cp ${_opt} -f ${UBOOT_OUT}/arch/arm/dts/${_uboot_dtb} ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/${_soc_type}-evk.dtb || _error_exit "Copy ${_uboot_dtb} to ${_soc_type}-evk.dtb fail"
+	if echo "$2" | grep -q "frdm" ; then
+		cp ${UBOOT_OUT}/arch/arm/dts/imx8mp-frdm.dtb ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/imx8mp-evk.dtb
+	else
+		#cp ${UBOOT_OUT}/dts/upstream/src/arm64/freescale/imx8mp-evk.dtb ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/
+		cp ${_opt} -f ${UBOOT_OUT}/arch/arm/dts/${_uboot_dtb} ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/${_soc_type}-evk.dtb || _error_exit "Copy ${_uboot_dtb} to ${_soc_type}-evk.dtb fail"
+	fi
 	cp ${_opt} ${FSL_PROPRIETARY_PATH}/linux-firmware-imx/firmware/ddr/synopsys/lpddr4_pmu_train* ${IMX_MKIMAGE_PATH}/imx-mkimage/iMX8M/
 
 	# build ATF based on whether tee is involved

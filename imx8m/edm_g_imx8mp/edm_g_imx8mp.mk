@@ -1,5 +1,4 @@
 # -------@block_infrastructure-------
-CONFIG_REPO_PATH := device/nxp
 CURRENT_FILE_PATH :=  $(lastword $(MAKEFILE_LIST))
 IMX_DEVICE_PATH := $(strip $(patsubst %/, %, $(dir $(CURRENT_FILE_PATH))))
 
@@ -95,7 +94,8 @@ PRODUCT_COPY_FILES += \
 
 # Set permission for GMS packages
 PRODUCT_COPY_FILES += \
- $(CONFIG_REPO_PATH)/imx8m/permissions/privapp-permissions-imx.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp.permissions-imx.xml
+	  $(CONFIG_REPO_PATH)/imx8m/permissions/privapp-permissions-imx.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp.permissions-imx.xml \
+	  $(CONFIG_REPO_PATH)/imx8m/permissions/privapp-permissions_system_ext-imx.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp.permissions-imx.xml
 
 PRODUCT_COPY_FILES += \
     $(IMX_DEVICE_PATH)/app_whitelist.xml:system/etc/sysconfig/app_whitelist.xml
@@ -139,12 +139,8 @@ PRODUCT_PACKAGES += \
     tune2fs.vendor_ramdisk
 endif
 
-#Enable this to use dynamic partitions for the readonly partitions not touched by bootloader
-TARGET_USE_DYNAMIC_PARTITIONS ?= true
-
 ifeq ($(TARGET_USE_DYNAMIC_PARTITIONS),true)
   ifeq ($(TARGET_USE_VENDOR_BOOT),true)
-    $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
     $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression_with_xor.mk)
   else
     $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
@@ -153,9 +149,6 @@ ifeq ($(TARGET_USE_DYNAMIC_PARTITIONS),true)
   BOARD_BUILD_SUPER_IMAGE_BY_DEFAULT := true
   BOARD_SUPER_IMAGE_IN_UPDATE_PACKAGE := true
 endif
-
-#Enable this to disable product partition build.
-IMX_NO_PRODUCT_PARTITION := false
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
@@ -202,6 +195,10 @@ PRODUCT_COPY_FILES += \
     $(CONFIG_REPO_PATH)/common/security/rpmb_key_test.bin:rpmb_key_test.bin \
     $(CONFIG_REPO_PATH)/common/security/testkey_public_rsa4096.bin:testkey_public_rsa4096.bin
 endif
+
+# GBL public key
+PRODUCT_COPY_FILES += \
+    $(CONFIG_REPO_PATH)/common/security/testkey_gbl_public_rsa4096.bin:testkey_gbl_public_rsa4096.bin
 
 # Keymaster HAL
 ifeq ($(PRODUCT_IMX_TRUSTY),true)
@@ -272,6 +269,12 @@ else
 BOARD_AVB_INIT_BOOT_ROLLBACK_INDEX := 0
 endif
 
+# GBL rollback index
+ifneq ($(GBL_RBINDEX),)
+BOARD_GBL_ROLLBACK_INDEX := $(GBL_RBINDEX)
+else
+BOARD_GBL_ROLLBACK_INDEX := 0
+endif
 $(call  inherit-product-if-exists, vendor/nxp-private/security/nxp_security.mk)
 
 # Resume on Reboot support
@@ -349,6 +352,10 @@ PRODUCT_COPY_FILES +=\
 
 PRODUCT_SOONG_NAMESPACES += hardware/google/camera
 PRODUCT_SOONG_NAMESPACES += vendor/nxp-opensource/imx/camera
+
+# Concurrent camera
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.camera.concurrent.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.concurrent.xml
 
 # -------@block_oclcvt-------
 PRODUCT_PACKAGES += \
@@ -485,13 +492,13 @@ PRODUCT_PACKAGES += \
 
 # nxp iw416 wifi and bluetooth combo firmware
 PRODUCT_COPY_FILES += \
-    vendor/nxp/imx-firmware/nxp/FwImage_IW416_SD/sduartiw416_combo.bin:vendor/firmware/sduartiw416_combo.bin \
-    vendor/nxp/imx-firmware/nxp/android_wifi_mod_para.conf:vendor/firmware/nxp/android_wifi_mod_para.conf \
+    vendor/nxp/imx-firmware/FwImage_IW416_SD/sduartiw416_combo.bin:vendor/firmware/sduartiw416_combo.bin \
+    vendor/nxp/imx-firmware/android_wifi_mod_para.conf:vendor/firmware/nxp/android_wifi_mod_para.conf \
     hardware/nxp/libbt/conf/nxp/edm_g_imx8mp/bt_vendor.conf:/vendor/etc/bluetooth/bt_vendor.conf
 
 # nxp iw612 wifi and bluetooth combo firmware
 PRODUCT_COPY_FILES += \
-    vendor/nxp/imx-firmware/nxp/FwImage_IW612_SD/sduart_nw61x_v1.bin.se:vendor/firmware/sduart_nw61x_v1.bin.se
+    vendor/nxp/imx-firmware/FwImage_IW612_SD/sduart_nw61x_v1.bin.se:vendor/firmware/sduart_nw61x_v1.bin.se
 #endif
 
 # Wifi regulatory
@@ -658,11 +665,14 @@ endif
 PRODUCT_PACKAGES += \
     libtim-vx \
     libVsiSupportLibrary \
+    libvx_delegate \
     android.hardware.neuralnetworks-shell-service-imx
 
-# Tensorflow lite camera demo
+# Tensorflow lite demo
 PRODUCT_PACKAGES += \
-                    tflitecamerademo
+    benchmark_model \
+    label_image \
+    TfliteCameraDemo
 
 
 # -------@block_miscellaneous-------
@@ -739,6 +749,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.voice_recognizers.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.voice_recognizers.xml \
     frameworks/native/data/etc/android.software.activities_on_secondary_displays.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.activities_on_secondary_displays.xml \
     frameworks/native/data/etc/android.software.picture_in_picture.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.picture_in_picture.xml \
+    frameworks/native/data/etc/android.software.freeform_window_management.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.freeform_window_management.xml \
+    frameworks/native/data/etc/android.software.app_compat_overrides.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.app_compat_overrides.xml \
     frameworks/native/data/etc/android.software.credentials.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.credentials.xml
 
 # trusty loadable apps

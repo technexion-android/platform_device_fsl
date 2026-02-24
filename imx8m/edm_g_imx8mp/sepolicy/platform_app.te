@@ -1,0 +1,2 @@
+allow platform_app vendor_app_file:file { read open getattr map execute };
+allow platform_app shell_data_file:file { read open getattr map execute };
