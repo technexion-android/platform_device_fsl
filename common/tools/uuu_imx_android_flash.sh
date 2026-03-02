@@ -834,6 +834,9 @@ case ${soc_name%%-*} in
             help; exit 1;
 esac
 
+# For redundant uboot env, double env size
+uboot_env_len=$(printf "0x%x" $((uboot_env_len * 2)))
+
 # test whether board info is specified for imx6dl, imx6q and imx6qp
 if [[ "${board}" == "" ]]; then
     if [[ "$(echo ${dtb_feature} | grep "ldo")" != "" ]]; then

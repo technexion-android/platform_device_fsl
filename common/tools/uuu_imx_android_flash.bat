@@ -401,6 +401,8 @@ if not [%soc_name:imx6q=%] == [%soc_name%] (
 echo please check whether the soc_name you specified is correct
 call :help & set /A error_level=1 && goto :exit
 :device_info_end
+:: For redundant uboot env, double env size
+for /f %%i in ('powershell -NoProfile -Command "'0x{0:x}' -f (%uboot_env_len% * 2)"') do set uboot_env_len=%%i
 
 :: set target_num based on target_dev
 if [%target_dev%] == [emmc] (
