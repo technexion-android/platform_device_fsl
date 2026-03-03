@@ -6,10 +6,6 @@ UBOOT_POST_PROCESS := true
 TARGET_BOOTLOADER_BASE_CONFIG := edm-imx95_defconfig
 TARGET_BOOTLOADER_CONFIG := imx95:edm-imx95_android_defconfig
 TARGET_BOOTLOADER_CONFIG += imx95-evk-uuu:edm-imx95_android_defconfig
-TARGET_BOOTLOADER_CONFIG += imx95-16GB:edm-imx95_android_defconfig
-TARGET_BOOTLOADER_CONFIG += imx95-16GB-evk-uuu:edm-imx95_android_defconfig
-TARGET_BOOTLOADER_CONFIG += imx95-4GB:edm-imx95_android_defconfig
-TARGET_BOOTLOADER_CONFIG += imx95-4GB-evk-uuu:edm-imx95_android_defconfig
 
 #TARGET_KERNEL_DEFCONFIG := gki_defconfig
 #ifeq ($(LOADABLE_KERNEL_MODULE),true)
