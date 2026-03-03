@@ -47,27 +47,9 @@ TARGET_USERIMAGES_USE_EXT4 := true
 # use sparse image.
 TARGET_USERIMAGES_SPARSE_EXT_DISABLED := false
 
-# Support gpt
-ifeq ($(TARGET_USE_DYNAMIC_PARTITIONS),true)
-  BOARD_BPT_INPUT_FILES += $(CONFIG_REPO_PATH)/common/partition/device-partitions-28GB-ab_super.bpt
-  ADDITION_BPT_PARTITION = partition-table-13GB:$(CONFIG_REPO_PATH)/common/partition/device-partitions-13GB-ab_super.bpt \
-                           partition-table-dual:$(CONFIG_REPO_PATH)/common/partition/device-partitions-28GB-ab-dual-bootloader_super.bpt \
-                           partition-table-13GB-dual:$(CONFIG_REPO_PATH)/common/partition/device-partitions-13GB-ab-dual-bootloader_super.bpt
-else
-  ifeq ($(IMX_NO_PRODUCT_PARTITION),true)
-    BOARD_BPT_INPUT_FILES += $(CONFIG_REPO_PATH)/common/partition/device-partitions-13GB-ab-no-product.bpt
-    ADDITION_BPT_PARTITION = partition-table-28GB:$(CONFIG_REPO_PATH)/common/partition/device-partitions-28GB-ab-no-product.bpt \
-                             partition-table-dual:$(CONFIG_REPO_PATH)/common/partition/device-partitions-13GB-ab-dual-bootloader-no-product.bpt \
-                             partition-table-28GB-dual:$(CONFIG_REPO_PATH)/common/partition/device-partitions-28GB-ab-dual-bootloader-no-product.bpt
-  else
-    BOARD_BPT_INPUT_FILES += $(CONFIG_REPO_PATH)/common/partition/device-partitions-13GB-ab.bpt
-    ADDITION_BPT_PARTITION = partition-table-28GB:$(CONFIG_REPO_PATH)/common/partition/device-partitions-28GB-ab.bpt \
-                             partition-table-dual:$(CONFIG_REPO_PATH)/common/partition/device-partitions-13GB-ab-dual-bootloader.bpt \
-                             partition-table-28GB-dual:$(CONFIG_REPO_PATH)/common/partition/device-partitions-28GB-ab-dual-bootloader.bpt
-  endif
-endif
-
+ifneq ($(TARGET_INCLUDE_DTB_TO_VENDOR_BOOT),true)
 BOARD_PREBUILT_DTBOIMAGE := $(OUT_DIR)/target/product/$(PRODUCT_DEVICE)/dtbo-imx95.img
+endif
 
 BOARD_USES_METADATA_PARTITION := true
 BOARD_ROOT_EXTRA_FOLDERS += metadata
@@ -96,6 +78,11 @@ BOARD_AVB_PRODUCT_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_VENDOR_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_VENDOR_DLKM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_SYSTEM_DLKM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
+
+# Build GBL image
+BOARD_GBL_PARTITION_SIZE := 8388608
+BOARD_GBL_KEY_PATH := device/nxp/common/security/testkey_gbl_rsa4096.pem
+BOARD_GBL_ROLLBACK_INDEX_LOCATION := 15
 
 ifneq ($(LOADABLE_KERNEL_MODULE),true)
 # disable system_dlkm partition
@@ -146,6 +133,11 @@ BOARD_KERNEL_CMDLINE +=  moal.mod_para=wifi_mod_para.conf
 
 # Add KVM support
 BOARD_BOOTCONFIG += androidboot.hypervisor.vm.supported=true
+
+ifeq ($(BAZEL_BUILD_VENDOR_MODULES),true)
+BOARD_VENDOR_RAMDISK_FRAGMENTS := dlkm_gki
+BOARD_VENDOR_RAMDISK_FRAGMENT.dlkm_gki.PREBUILT := vendor/nxp-opensource/imx-gki/ramdisk.lz4
+endif
 
 ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
 BOARD_BOOTCONFIG += androidboot.vendor.sysrq=1

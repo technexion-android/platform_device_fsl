@@ -2,13 +2,16 @@
 KERNEL_NAME := Image.lz4
 TARGET_KERNEL_ARCH := arm64
 LOADABLE_KERNEL_MODULE ?= false
+BAZEL_BUILD_VENDOR_MODULES ?= false
 ifneq ($(LOADABLE_KERNEL_MODULE),true)
     TARGET_IMX_KERNEL := true
 endif
 
-
+ifeq ($(BAZEL_BUILD_VENDOR_MODULES),false)
 #ARM GPU driver module
 BOARD_VENDOR_KERNEL_MODULES += \
+    $(KERNEL_OUT)/drivers/gpu/arm/pma/protected_memory_allocator.ko \
+    $(KERNEL_OUT)/drivers/gpu/arm/pma/protected_heap.ko \
     $(KERNEL_OUT)/drivers/gpu/arm/midgard/mali_kbase.ko
 
 ifeq ($(LOADABLE_KERNEL_MODULE),true)
@@ -92,6 +95,18 @@ IMX_RECOVERY_FIRST_STAGE_ADDITION_MODULES += \
     $(KERNEL_OUT)/drivers/mux/mux-mmio.ko \
     $(KERNEL_OUT)/drivers/phy/freescale/phy-fsl-imx9-dphy-rx.ko \
     $(KERNEL_OUT)/drivers/phy/freescale/phy-fsl-imx8mp-lvds.ko \
+    $(KERNEL_OUT)/drivers/video/logo/linux_logo.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/fb.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/fb_notify.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/cfbcopyarea.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/fb_io_fops.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/fb_sys_fops.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/sysimgblt.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/syscopyarea.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/sysfillrect.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/cfbfillrect.ko \
+    $(KERNEL_OUT)/drivers/video/fbdev/core/cfbimgblt.ko \
+    $(KERNEL_OUT)/drivers/gpu/drm/drm_fbdev_helper.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/drm_dma_helper.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/bridge/it6161.ko \
     $(KERNEL_OUT)/drivers/gpu/drm/bridge/max96752-lvds.ko \
@@ -130,6 +145,10 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
 
 BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/media/i2c/ap1302.ko \
+    $(KERNEL_OUT)/drivers/media/i2c/ox03c10.ko \
+    $(KERNEL_OUT)/drivers/media/i2c/max96717_lib.ko \
+    $(KERNEL_OUT)/drivers/media/i2c/mx95mbcam.ko \
+    $(KERNEL_OUT)/drivers/media/i2c/max96724.ko \
     $(KERNEL_OUT)/mm/zsmalloc.ko \
     $(KERNEL_OUT)/drivers/block/zram/zram.ko \
     $(KERNEL_OUT)/net/rfkill/rfkill.ko \
@@ -150,15 +169,18 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/drivers/leds/leds-gpio.ko \
     $(KERNEL_OUT)/drivers/leds/leds-pca995x.ko \
     $(KERNEL_OUT)/drivers/leds/leds-pca963x.ko \
+    $(KERNEL_OUT)/drivers/mxc/vpu/memory_usage/memory_usage.ko \
     $(KERNEL_OUT)/drivers/mxc/vpu/wave6/wave6-vpu-ctrl.ko \
     $(KERNEL_OUT)/drivers/mxc/vpu/wave6/wave6.ko \
-    $(KERNEL_OUT)/drivers/media/i2c/ox05b1s/ox05b1s_mipi.ko \
+    $(KERNEL_OUT)/drivers/media/v4l2-core/v4l2-cci.ko \
+    $(KERNEL_OUT)/drivers/media/i2c/ox05b1s/ox05b1s.ko \
     $(KERNEL_OUT)/drivers/media/v4l2-core/v4l2-jpeg.ko \
     $(KERNEL_OUT)/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-encdec.ko \
     $(KERNEL_OUT)/drivers/media/platform/nxp/neoisp/neoisp.ko \
     $(KERNEL_OUT)/sound/soc/fsl/imx-pcm-dma.ko \
     $(KERNEL_OUT)/sound/soc/fsl/imx-pcm-rpmsg.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-utils.ko \
+    $(KERNEL_OUT)/sound/soc/codecs/snd-soc-dmic.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-micfil.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-mqs.ko \
     $(KERNEL_OUT)/sound/soc/fsl/snd-soc-fsl-asrc.ko \
@@ -194,7 +216,8 @@ BOARD_VENDOR_KERNEL_MODULES += \
     $(KERNEL_OUT)/lib/crc-itu-t.ko \
     $(KERNEL_OUT)/drivers/net/ethernet/freescale/enetc/fsl-enetc-vf.ko \
     $(KERNEL_OUT)/drivers/net/ethernet/freescale/enetc/fsl-enetc4.ko \
-    $(KERNEL_OUT)/drivers/net/phy/realtek.ko
+    $(KERNEL_OUT)/drivers/net/phy/realtek.ko \
+    $(KERNEL_OUT)/drivers/hwmon/pwm-fan.ko
 
 ifeq ($(ENABLE_CONTEXTHUB), true)
 BOARD_VENDOR_KERNEL_MODULES += \
@@ -240,7 +263,7 @@ ifeq ($(LOADABLE_KERNEL_MODULE),true)
     BOARD_VENDOR_KERNEL_MODULES += \
         $(IMX_RECOVERY_FIRST_STAGE_ADDITION_MODULES)
 endif
-
+endif
 
 # -------@block_memory-------
 #Enable this to config 1GB ddr on edm_imx95
@@ -253,3 +276,17 @@ PRODUCT_IMX_TRUSTY := true
 # -------@block_storage-------
 # the bootloader image used in dual-bootloader OTA
 BOARD_OTA_BOOTLOADERIMAGE := bootloader-imx95-trusty-dual.img
+
+#Enable this to use dynamic partitions for the readonly partitions not touched by bootloader
+TARGET_USE_DYNAMIC_PARTITIONS ?= true
+
+#Enable this to disable product partition build.
+IMX_NO_PRODUCT_PARTITION := false
+
+# -------@block_infrastructure-------
+CONFIG_REPO_PATH := device/nxp
+
+ifeq ($(SUPPORT_GBL),true)
+# Enable this to include the dtb images into vendor_boot image.
+TARGET_INCLUDE_DTB_TO_VENDOR_BOOT ?= true
+endif

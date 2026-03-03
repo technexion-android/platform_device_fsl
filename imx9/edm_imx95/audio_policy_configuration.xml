@@ -38,8 +38,12 @@
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                              samplingRates="16000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
                 </mixPort>
+                <mixPort name="mmap_no_irq_out" role="source" flags="AUDIO_OUTPUT_FLAG_DIRECT AUDIO_OUTPUT_FLAG_MMAP_NOIRQ">
+                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                             samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
+                </mixPort>
 
-                <mixPort name="primary input" role="sink">
+                <mixPort name="primary input" role="sink" maxOpenCount="1">
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                              samplingRates="8000 11025 16000 22050 32000 44100 48000"
                              channelMasks="AUDIO_CHANNEL_IN_STEREO"/>
@@ -47,6 +51,10 @@
                 <mixPort name="bt sco input" role="sink">
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                              samplingRates="16000" channelMasks="AUDIO_CHANNEL_IN_STEREO"/>
+                </mixPort>
+                <mixPort name="mmap_no_irq_in" role="sink" flags="AUDIO_INPUT_FLAG_MMAP_NOIRQ">
+                    <profile name="" format="AUDIO_FORMAT_PCM_32_BIT"
+                             samplingRates="48000" channelMasks="AUDIO_CHANNEL_IN_STEREO"/>
                 </mixPort>
             </mixPorts>
             <devicePorts>
@@ -73,11 +81,11 @@
             </devicePorts>
             <routes>
                 <route type="mix" sink="Speaker"
-                       sources="primary output"/>
+                       sources="primary output,mmap_no_irq_out"/>
                 <route type="mix" sink="Wired Headphones"
-                       sources="primary output"/>
+                       sources="primary output,mmap_no_irq_out"/>
                 <route type="mix" sink="Wired Headset"
-                       sources="primary output"/>
+                       sources="primary output,mmap_no_irq_out"/>
                 <route type="mix" sink="Line-Out"
                        sources="lpa output,primary output"/>
                 <route type="mix" sink="BT SCO Headset"
@@ -91,11 +99,11 @@
                        sources="Wired Headset Mic,Built-In Mic"/>
                 <route type="mix" sink="bt sco input"
                        sources="BT SCO Headset Mic"/>
+                <route type="mix" sink="mmap_no_irq_in"
+                       sources="Wired Headset Mic,Built-In Mic"/>
             </routes>
         </module>
 
-        <!-- A2dp Input Audio HAL -->
-        <xi:include href="a2dp_in_audio_policy_configuration_7_0.xml"/>
 
         <!-- Usb Audio HAL -->
         <xi:include href="usb_audio_policy_configuration.xml"/>
@@ -104,7 +112,7 @@
         <xi:include href="r_submix_audio_policy_configuration.xml"/>
 
         <!-- Bluetooth Audio HAL -->
-        <xi:include href="bluetooth_audio_policy_configuration_7_0.xml"/>
+        <xi:include href="bluetooth_with_le_audio_policy_configuration_7_0.xml"/>
 
     </modules>
 

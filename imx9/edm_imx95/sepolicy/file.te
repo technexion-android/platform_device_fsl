@@ -1,3 +1,2 @@
 type sysfs_mali_gpu, fs_type, sysfs_type;
 type profiling_mali_gpu, vendor_file_type, file_type;
-type opencl_g2d-bin_file, file_type, data_file_type;
