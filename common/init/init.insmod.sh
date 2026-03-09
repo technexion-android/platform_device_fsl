@@ -30,7 +30,7 @@ if [ -f $cfg_file ]; then
                      do
                       case $module in
                         "moal.ko"|"mlan.ko")
-                          if [ $(cat /sys/bus/mmc/devices/mmc?\:0001/device) != "0x0701" ]; then
+                          if [ "$(cat /sys/bus/mmc/devices/mmc?\:0001/device)" != "0x0701" ]; then
                             modprobe -a -d /vendor/lib/modules $module mod_para=nxp/android_wifi_mod_para.conf
                           fi
                           ;;
